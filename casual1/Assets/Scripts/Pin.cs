@@ -4,6 +4,9 @@ public class Pin : MonoBehaviour
 {
 	[SerializeField]
 	private float moveSpeed = 10f;
+
+	private bool isPinned = false;
+	private bool isLaunched = false;
 	// Start is called once before the first execution of Update after the MonoBehaviour is created
 	void Start()
     {
@@ -11,8 +14,31 @@ public class Pin : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        transform.position += Vector3.up * moveSpeed * Time.deltaTime;
+        if (isPinned == false && isLaunched == true)
+        {
+			transform.position += Vector3.up * moveSpeed * Time.deltaTime;
+		}
+	}
+
+	private void OnTriggerEnter2D(Collider2D collision)
+	{
+		isPinned = true;
+		if(collision.gameObject.tag == "Target")
+		{
+			GameObject childObject = transform.Find("Square").gameObject;
+			//GameObject childObject = transform.GetChild(0).gameObject;
+			SpriteRenderer childSprite = childObject.GetComponent<SpriteRenderer>();
+			childSprite.enabled = true;
+			transform.SetParent(collision.gameObject.transform);
+
+			GameManager.instance.DecreaseGoal();
+		}
+	}
+
+	public void Launch()
+	{
+		isLaunched = true;
 	}
 }
