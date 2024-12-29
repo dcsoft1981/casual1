@@ -1,0 +1,13 @@
+<engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <engine:ProgressBar value="22" title="my-progress" high-value="100" style="height: 50px; -unity-font-style: bold; background-color: rgba(0, 0, 0, 0); bottom: 0;">
+        <Bindings>
+            <engine:DataBinding property="title" data-source-path="level" data-source="project://database/Assets/UI%20Toolkit/SimpleOS.asset?fileID=11400000&amp;guid=7189e7df2d6aa5a4a9bb3c5d3746d11c&amp;type=2#SimpleOS" binding-mode="ToTarget" />
+            <engine:DataBinding property="value" data-source-path="exp" data-source="project://database/Assets/UI%20Toolkit/SimpleOS.asset?fileID=11400000&amp;guid=7189e7df2d6aa5a4a9bb3c5d3746d11c&amp;type=2#SimpleOS" binding-mode="ToTarget" />
+        </Bindings>
+    </engine:ProgressBar>
+    <engine:EnumField label="Class" value="Knight" type="NewScriptableObjectScript+FantasyClass, Assembly-CSharp" style="width: 400px; -unity-font-style: bold; height: 100px; font-size: 30px; -unity-text-align: middle-center; background-color: rgba(60, 248, 13, 0);">
+        <Bindings>
+            <engine:DataBinding property="value" data-source-path="myClass" data-source="project://database/Assets/UI%20Toolkit/SimpleOS.asset?fileID=11400000&amp;guid=7189e7df2d6aa5a4a9bb3c5d3746d11c&amp;type=2#SimpleOS" binding-mode="TwoWay" />
+        </Bindings>
+    </engine:EnumField>
+</engine:UXML>

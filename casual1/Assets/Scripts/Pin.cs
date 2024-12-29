@@ -32,8 +32,15 @@ public class Pin : MonoBehaviour
 			SpriteRenderer childSprite = childObject.GetComponent<SpriteRenderer>();
 			childSprite.enabled = true;
 			transform.SetParent(collision.gameObject.transform);
+			AudioManager.instance.PlaySfx(AudioManager.Sfx.shoot_good);
 
 			GameManager.instance.DecreaseGoal();
+		}
+		else if(collision.gameObject.tag == "Pin")
+		{
+			AudioManager.instance.StopBgm();
+			AudioManager.instance.PlaySfx(AudioManager.Sfx.shoot_failure);
+			GameManager.instance.SetGameOver(false);
 		}
 	}
 

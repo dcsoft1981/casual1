@@ -10,26 +10,28 @@ public class PinLauncher : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        PreparePing();
+		PreparePin();
 
 	}
 
     // Update is called once per frame
     void Update()
     {
-        if (currPin != null && Input.GetMouseButtonDown(0))
+        if (currPin != null && Input.GetMouseButtonDown(0) && GameManager.instance.isGameOver == false)
         {
             currPin.Launch();
             currPin = null;
-            Invoke("PreparePing", 0.1f);
+            Invoke("PreparePin", 0.15f);
 
 		}
     }
 
-    void PreparePing()
+    void PreparePin()
     {
-        GameObject pin = Instantiate(pinObject, transform.position, Quaternion.identity);
-        currPin = pin.GetComponent<Pin>();
-
+        if(GameManager.instance.isGameOver == false)
+        {
+			GameObject pin = Instantiate(pinObject, transform.position, Quaternion.identity);
+			currPin = pin.GetComponent<Pin>();
+		}
 	}
 }
