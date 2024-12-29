@@ -160,7 +160,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      DC_Icon_Improved_0: 3644022908965636488
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
