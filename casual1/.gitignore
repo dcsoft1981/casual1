@@ -6,3 +6,7 @@
 [Bb]uilds/
 .vs/
 Logs/
+.utmp/
+com.dcsoft1981.casual1_BurstDebugInformation_DoNotShip/
+DC Play_BurstDebugInformation_DoNotShip/
+UserSettings/
