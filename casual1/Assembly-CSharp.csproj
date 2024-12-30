@@ -64,9 +64,11 @@
     <Compile Include="Assets\Scripts\Pin.cs" />
     <Compile Include="Assets\ExcelImporter\Example\Scripts\Example.cs" />
     <Compile Include="Assets\Scripts\SimpleOS.cs" />
+    <Compile Include="Assets\Scripts\IngameScene.cs" />
     <Compile Include="Assets\Scripts\AudioManager.cs" />
     <Compile Include="Assets\ExcelImporter\Example\Scripts\Entity\MstItemEntity.cs" />
     <Compile Include="Assets\Scripts\GoogleManager.cs" />
+    <Compile Include="Assets\Scripts\PopupIngameCheat.cs" />
     <Compile Include="Assets\Scripts\LevelGimmickData.cs" />
     <Compile Include="Assets\Scripts\TargetCircle.cs" />
     <Compile Include="Assets\Scripts\LevelData.cs" />

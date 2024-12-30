@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour
 	private Color targetColor;
 	private float pinScale;
 	private int shot;
+	private int cheatRotation = 0;
 
 
 	[SerializeField] private GameObject btnRetry;
@@ -169,7 +170,7 @@ public class GameManager : MonoBehaviour
 
 	public void Retry()
     {
-        SceneManager.LoadScene("SampleScene");
+        SceneManager.LoadScene("IngameScene");
     }
 
 	public void CreateAndPlayAnimation()
@@ -195,6 +196,7 @@ public class GameManager : MonoBehaviour
 			keyframes[i] = new Keyframe(data.time, data.rotate);
 		}
 		*/
+		
 		Keyframe[] keyframes = new Keyframe[1]; // 이후 회전 값 복수개 사용시 증가 가능
 		keyframes[0] = new Keyframe(Define.ROTATE_SEC, levelData.rotation);
 		//keyframes[1] = new Keyframe(levelData.time1, levelData.rotation1);
@@ -285,5 +287,15 @@ public class GameManager : MonoBehaviour
 		// shot == 0 이면 실패
 		if (shot == 0)
 			SetGameOver(false);
+	}
+
+	public void SetCheatRotation(int rotation)
+	{
+		cheatRotation = rotation;
+	}
+
+	public int GetCheatRotation()
+	{
+		return cheatRotation;
 	}
 }

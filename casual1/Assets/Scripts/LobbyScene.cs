@@ -30,7 +30,7 @@ public class LobbyScene : MonoBehaviour
 
     public void LoadLevelScene()
     {
-		SceneManager.LoadScene("SampleScene");
+		SceneManager.LoadScene("IngameScene");
 	}
 
 	public void OnClickShare()
@@ -68,6 +68,6 @@ public class LobbyScene : MonoBehaviour
 
 	public void OnCloseCheat()
 	{
-		popupCheat.transform.DOScale(Vector3.zero, 0.2f).SetEase(Ease.InBack).OnComplete(() => popupCheat.SetActive(false));
+		popupCheat.SetActive(false);
 	}
 }

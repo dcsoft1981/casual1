@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class PinLauncher : MonoBehaviour
 {
@@ -17,7 +18,7 @@ public class PinLauncher : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (currPin != null && Input.GetMouseButtonDown(0) && GameManager.instance.isGameOver == false)
+        if (currPin != null && Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject() && GameManager.instance.isGameOver == false)
         {
             currPin.Launch();
 			GameManager.instance.DecreaseShot();

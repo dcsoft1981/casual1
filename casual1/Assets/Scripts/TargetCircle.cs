@@ -58,6 +58,10 @@ public class TargetCircle : MonoBehaviour
 			return levelDBEntity.rotation4;
 		else return 0f;
 		*/
+
+		int cheatRotation = GameManager.instance.GetCheatRotation();
+		if (cheatRotation != 0)
+			return cheatRotation;
 		return levelDBEntity.rotation;
 	}
 
