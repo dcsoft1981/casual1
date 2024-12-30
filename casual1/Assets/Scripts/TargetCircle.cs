@@ -27,6 +27,7 @@ public class TargetCircle : MonoBehaviour
 	public void SetLevelDB(LevelDBEntity levelDBEntity)
 	{
 		this.levelDBEntity = levelDBEntity;
+		/*
 		if (levelDBEntity.time0 > totalTime)
 			totalTime = levelDBEntity.time0;
 		if (levelDBEntity.time1 > totalTime)
@@ -37,10 +38,14 @@ public class TargetCircle : MonoBehaviour
 			totalTime = levelDBEntity.time3;
 		if (levelDBEntity.time4 > totalTime)
 			totalTime = levelDBEntity.time4;
+		*/
+		totalTime = Define.ROTATE_SEC;
+
 	}
 
 	private float GetCurRotationSpeed(float curTime)
 	{
+		/*
 		if (curTime < levelDBEntity.time0)
 			return levelDBEntity.rotation0;
 		else if (curTime < levelDBEntity.time1)
@@ -52,6 +57,8 @@ public class TargetCircle : MonoBehaviour
 		else if (curTime < levelDBEntity.time4)
 			return levelDBEntity.rotation4;
 		else return 0f;
+		*/
+		return levelDBEntity.rotation;
 	}
 
     // Update is called once per frame

@@ -29,8 +29,8 @@ public class Pin : MonoBehaviour
 		{
 			GameObject childObject = transform.Find("Square").gameObject;
 			//GameObject childObject = transform.GetChild(0).gameObject;
-			SpriteRenderer childSprite = childObject.GetComponent<SpriteRenderer>();
-			childSprite.enabled = true;
+			//SpriteRenderer childSprite = childObject.GetComponent<SpriteRenderer>();
+			//childSprite.enabled = true;
 			transform.SetParent(collision.gameObject.transform);
 			AudioManager.instance.PlaySfx(AudioManager.Sfx.shoot_good);
 

@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 using UnityEditor;
 using System;
 using static UnityEngine.GraphicsBuffer;
+using static DG.Tweening.DOTweenAnimation;
 
 public class GameManager : MonoBehaviour
 {
@@ -16,9 +17,14 @@ public class GameManager : MonoBehaviour
 	[SerializeField] private TextMeshProUGUI textGoal;
     [SerializeField] private TextMeshProUGUI textLevel;
 
-	private int goal;
+	private int hp;
+	private int targetId;
+	private int targetScale;
+	private Color targetColor;
+	private float pinScale;
 
-    [SerializeField] private GameObject btnRetry;
+
+	[SerializeField] private GameObject btnRetry;
 	[SerializeField] private GameObject labelClear;
 	[SerializeField] private GameObject labelFailure;
 	[SerializeField] private LevelDB levelDB;
@@ -41,9 +47,27 @@ public class GameManager : MonoBehaviour
 		int level = LocalDataManager.instance.GetCurLevel();
 		//levelData = gameDataManager.GetLevelData(level);
 		levelData = levelDB.levels[level-1];
-		goal = levelData.goal;
+		hp = levelData.hp;
+
+		// Target SIZE 지정
+		targetScale = levelData.target % 100;
+		if (targetScale == 0)
+			targetScale = 100;
+		targetId = levelData.target - targetScale;
+		float curTargetScale = Define.TARGET_BASE_SCALE * targetScale / 100f;
+		targetCircle.transform.localScale = new Vector3(curTargetScale, curTargetScale, curTargetScale);
+
+		// Target 색상 지정
+		targetColor = GetTargetColor(targetId);
+		SpriteRenderer objectRenderer = targetCircle.GetComponent<SpriteRenderer>();
+		objectRenderer.color = targetColor;
+
+		// Pin SIZE 지정
+		pinScale = 1f;
+
+
 		CreateAndPlayAnimation();
-		Debug.Log("levelData : " + level + " - " + levelData.id + " - " + levelData.goal);
+		Debug.Log("levelData : " + level + " - " + levelData.id + " - " + levelData.hp);
 		Vector3 screenPosition = Camera.main.WorldToScreenPoint(targetCircle.transform.position);
 		textGoal.transform.position = screenPosition;
 
@@ -55,7 +79,7 @@ public class GameManager : MonoBehaviour
 
     void SetGoalText()
     {
-		textGoal.SetText(goal.ToString());
+		textGoal.SetText(hp.ToString());
 	}
 
 	void SetLevelText()
@@ -66,10 +90,10 @@ public class GameManager : MonoBehaviour
 
 	public void DecreaseGoal()
     {
-        goal--;
+        hp--;
         SetGoalText();
 
-        if(goal <= 0)
+        if(hp <= 0)
         {
             SetGameOver(true);
         }
@@ -147,12 +171,12 @@ public class GameManager : MonoBehaviour
 			keyframes[i] = new Keyframe(data.time, data.rotate);
 		}
 		*/
-		Keyframe[] keyframes = new Keyframe[Define.MAX_LEVEL_KEYFRAME_COUNT];
-		keyframes[0] = new Keyframe(levelData.time0, levelData.rotation0);
-		keyframes[1] = new Keyframe(levelData.time1, levelData.rotation1);
-		keyframes[2] = new Keyframe(levelData.time2, levelData.rotation2);
-		keyframes[3] = new Keyframe(levelData.time3, levelData.rotation3);
-		keyframes[4] = new Keyframe(levelData.time4, levelData.rotation4);
+		Keyframe[] keyframes = new Keyframe[1]; // 이후 회전 값 복수개 사용시 증가 가능
+		keyframes[0] = new Keyframe(Define.ROTATE_SEC, levelData.rotation);
+		//keyframes[1] = new Keyframe(levelData.time1, levelData.rotation1);
+		//keyframes[2] = new Keyframe(levelData.time2, levelData.rotation2);
+		//keyframes[3] = new Keyframe(levelData.time3, levelData.rotation3);
+		//keyframes[4] = new Keyframe(levelData.time4, levelData.rotation4);
 		// 모든 키프레임의 보간 방식을 선형으로 설정
 		for (int i = 0; i < keyframes.Length; i++)
 		{
@@ -218,5 +242,17 @@ public class GameManager : MonoBehaviour
 			AnimationUtility.SetAnimationClipSettings(clip, settings);
 		}
 #endif
+	}
+
+	public Color GetTargetColor(int targetId)
+	{
+		if (targetId == (int)Define.TargetType.BLACK)
+			return Color.black;
+		else if (targetId == (int)Define.TargetType.BLUE)
+			return Color.blue;
+		else if (targetId == (int)Define.TargetType.RED)
+			return Color.red;
+		else
+			return Color.black;
 	}
 }

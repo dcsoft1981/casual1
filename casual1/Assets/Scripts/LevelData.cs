@@ -6,6 +6,8 @@ using UnityEngine;
 public class LevelData : ScriptableObject
 {
     public int level;
-	public int goal;
+	public int hp;
+	public int shot;
+	public int target;
 	public List<LevelRotateData> datas;
 }
