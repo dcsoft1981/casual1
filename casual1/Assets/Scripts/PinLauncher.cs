@@ -20,14 +20,15 @@ public class PinLauncher : MonoBehaviour
         if (currPin != null && Input.GetMouseButtonDown(0) && GameManager.instance.isGameOver == false)
         {
             currPin.Launch();
-            currPin = null;
+			GameManager.instance.DecreaseShot();
+			currPin = null;
             Invoke("PreparePin", 0.15f);
-
 		}
     }
 
     void PreparePin()
     {
+        GameManager.instance.CheckFailure();
         if(GameManager.instance.isGameOver == false)
         {
 			GameObject pin = Instantiate(pinObject, transform.position, Quaternion.identity);

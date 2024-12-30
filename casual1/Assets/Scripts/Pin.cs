@@ -24,23 +24,32 @@ public class Pin : MonoBehaviour
 
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
-		isPinned = true;
 		if(collision.gameObject.tag == "Target")
 		{
+			isPinned = true;
 			GameObject childObject = transform.Find("Square").gameObject;
 			//GameObject childObject = transform.GetChild(0).gameObject;
 			//SpriteRenderer childSprite = childObject.GetComponent<SpriteRenderer>();
 			//childSprite.enabled = true;
+			// ∫Œ¬¯
 			transform.SetParent(collision.gameObject.transform);
 			AudioManager.instance.PlaySfx(AudioManager.Sfx.shoot_good);
-
-			GameManager.instance.DecreaseGoal();
+			GameManager.instance.DecreaseHP();
 		}
 		else if(collision.gameObject.tag == "Pin")
 		{
-			AudioManager.instance.StopBgm();
-			AudioManager.instance.PlaySfx(AudioManager.Sfx.shoot_failure);
-			GameManager.instance.SetGameOver(false);
+			if(isPinned)
+			{
+				// ¿ÃπÃ ∞Ì¡§µ» «…
+			}
+			else
+			{
+				//AudioManager.instance.StopBgm();
+				AudioManager.instance.PlaySfx(AudioManager.Sfx.shoot_failure);
+				//GameManager.instance.SetGameOver(false);
+				Destroy(this.gameObject);
+			}
+			Debug.Log("OnTriggerEnter2D : " + isPinned);
 		}
 	}
 

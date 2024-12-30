@@ -11,17 +11,20 @@ public class GameManager : MonoBehaviour
     public static GameManager instance = null;
 	public bool isGameOver = false;
 	public TargetCircle targetCircle; // 대상 TargetCircle
-	//private LevelData levelData;
+	public PinLauncher pinLauncher; // 대상 PinLauncher
+									 
 	private LevelDBEntity levelData;
 
-	[SerializeField] private TextMeshProUGUI textGoal;
+	[SerializeField] private TextMeshProUGUI textHP;
     [SerializeField] private TextMeshProUGUI textLevel;
+	[SerializeField] private TextMeshProUGUI textShot;
 
 	private int hp;
 	private int targetId;
 	private int targetScale;
 	private Color targetColor;
 	private float pinScale;
+	private int shot;
 
 
 	[SerializeField] private GameObject btnRetry;
@@ -47,6 +50,8 @@ public class GameManager : MonoBehaviour
 		int level = LocalDataManager.instance.GetCurLevel();
 		//levelData = gameDataManager.GetLevelData(level);
 		levelData = levelDB.levels[level-1];
+
+		// HP 지정
 		hp = levelData.hp;
 
 		// Target SIZE 지정
@@ -65,21 +70,29 @@ public class GameManager : MonoBehaviour
 		// Pin SIZE 지정
 		pinScale = 1f;
 
+		// Shot 지정
+		shot = levelData.shot;
+
 
 		CreateAndPlayAnimation();
 		Debug.Log("levelData : " + level + " - " + levelData.id + " - " + levelData.hp);
-		Vector3 screenPosition = Camera.main.WorldToScreenPoint(targetCircle.transform.position);
-		textGoal.transform.position = screenPosition;
+		Vector3 targetScreenPosition = Camera.main.WorldToScreenPoint(targetCircle.transform.position);
+		textHP.transform.position = targetScreenPosition;
 
-		SetGoalText();
+		Vector3 texpHPPostion = pinLauncher.transform.position + new Vector3(0.6f, 0f, 0f);
+		Vector3 pinLauncherScreenPosition = Camera.main.WorldToScreenPoint(texpHPPostion);
+		textShot.transform.position = pinLauncherScreenPosition;
+
+		SetHPText();
         SetLevelText();
+		SetShotText();
 		AudioManager.instance.OffEffectBgm();
 		AudioManager.instance.PlayBgm();
 	}
 
-    void SetGoalText()
+    void SetHPText()
     {
-		textGoal.SetText(hp.ToString());
+		textHP.SetText(hp.ToString());
 	}
 
 	void SetLevelText()
@@ -88,10 +101,15 @@ public class GameManager : MonoBehaviour
 		textLevel.SetText(level.ToString());
 	}
 
-	public void DecreaseGoal()
+	void SetShotText()
+	{
+		textShot.SetText("x" + shot.ToString());
+	}
+
+	public void DecreaseHP()
     {
         hp--;
-        SetGoalText();
+		SetHPText();
 
         if(hp <= 0)
         {
@@ -99,7 +117,13 @@ public class GameManager : MonoBehaviour
         }
 	}
 
-    public void SetGameOver(bool success)
+	public void DecreaseShot()
+	{
+		shot--;
+		SetShotText();
+	}
+
+	public void SetGameOver(bool success)
     {
         if(isGameOver == false)
         {
@@ -254,5 +278,12 @@ public class GameManager : MonoBehaviour
 			return Color.red;
 		else
 			return Color.black;
+	}
+
+	public void CheckFailure()
+	{
+		// shot == 0 이면 실패
+		if (shot == 0)
+			SetGameOver(false);
 	}
 }

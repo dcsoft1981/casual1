@@ -36,8 +36,8 @@ MonoBehaviour:
   - id: 3
     hp: 3
     shot: 5
-    target: 30050
-    rotation: 200
+    target: 30030
+    rotation: 500
     gimmick1: 10101,0,20,40,60
     gimmick2: 
     gimmick3: 
