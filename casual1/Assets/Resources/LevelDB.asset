@@ -14,37 +14,37 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levels:
   - id: 1
-    goal: 10
-    time0: 3
+    goal: 1
+    time0: 10
     rotation0: 50
-    time1: 5
-    rotation1: 200
-    time2: 7
-    rotation2: 50
+    time1: 0
+    rotation1: 0
+    time2: 0
+    rotation2: 0
     time3: 0
     rotation3: 0
     time4: 0
     rotation4: 0
   - id: 2
-    goal: 10
+    goal: 2
     time0: 3
-    rotation0: 51
+    rotation0: 50
     time1: 5
-    rotation1: 201
-    time2: 7
-    rotation2: 50
+    rotation1: 200
+    time2: 0
+    rotation2: 0
     time3: 0
     rotation3: 0
     time4: 0
     rotation4: 0
   - id: 3
-    goal: 10
+    goal: 3
     time0: 3
     rotation0: 52
     time1: 5
     rotation1: 202
     time2: 7
-    rotation2: 50
+    rotation2: -100
     time3: 0
     rotation3: 0
     time4: 0
@@ -56,7 +56,7 @@ MonoBehaviour:
     time1: 5
     rotation1: 203
     time2: 7
-    rotation2: 50
+    rotation2: 500
     time3: 0
     rotation3: 0
     time4: 0
@@ -67,8 +67,8 @@ MonoBehaviour:
     rotation0: 54
     time1: 5
     rotation1: 204
-    time2: 7
-    rotation2: 50
+    time2: 0
+    rotation2: 0
     time3: 0
     rotation3: 0
     time4: 0
@@ -79,8 +79,8 @@ MonoBehaviour:
     rotation0: 55
     time1: 5
     rotation1: 205
-    time2: 7
-    rotation2: 50
+    time2: 0
+    rotation2: 0
     time3: 0
     rotation3: 0
     time4: 0
@@ -91,8 +91,8 @@ MonoBehaviour:
     rotation0: 56
     time1: 5
     rotation1: 206
-    time2: 7
-    rotation2: 50
+    time2: 0
+    rotation2: 0
     time3: 0
     rotation3: 0
     time4: 0
@@ -100,11 +100,11 @@ MonoBehaviour:
   - id: 8
     goal: 10
     time0: 3
-    rotation0: 57
+    rotation0: 56
     time1: 5
-    rotation1: 207
-    time2: 7
-    rotation2: 50
+    rotation1: 206
+    time2: 0
+    rotation2: 0
     time3: 0
     rotation3: 0
     time4: 0
@@ -112,11 +112,11 @@ MonoBehaviour:
   - id: 9
     goal: 10
     time0: 3
-    rotation0: 58
+    rotation0: 56
     time1: 5
-    rotation1: 208
-    time2: 7
-    rotation2: 50
+    rotation1: 206
+    time2: 0
+    rotation2: 0
     time3: 0
     rotation3: 0
     time4: 0
@@ -124,491 +124,251 @@ MonoBehaviour:
   - id: 10
     goal: 10
     time0: 3
-    rotation0: 59
+    rotation0: 56
     time1: 5
-    rotation1: 209
-    time2: 7
-    rotation2: 50
+    rotation1: 206
+    time2: 0
+    rotation2: 0
     time3: 0
     rotation3: 0
     time4: 0
     rotation4: 0
   - id: 11
-    goal: 12
+    goal: 10
     time0: 3
-    rotation0: 60
+    rotation0: 56
     time1: 5
-    rotation1: 210
-    time2: 7
-    rotation2: 50
+    rotation1: 206
+    time2: 0
+    rotation2: 0
     time3: 0
     rotation3: 0
     time4: 0
     rotation4: 0
   - id: 12
-    goal: 12
+    goal: 10
     time0: 3
-    rotation0: 61
+    rotation0: 56
     time1: 5
-    rotation1: 211
-    time2: 7
-    rotation2: 50
+    rotation1: 206
+    time2: 0
+    rotation2: 0
     time3: 0
     rotation3: 0
     time4: 0
     rotation4: 0
   - id: 13
-    goal: 12
+    goal: 10
     time0: 3
-    rotation0: 62
+    rotation0: 56
     time1: 5
-    rotation1: 212
-    time2: 7
-    rotation2: 50
+    rotation1: 206
+    time2: 0
+    rotation2: 0
     time3: 0
     rotation3: 0
     time4: 0
     rotation4: 0
   - id: 14
-    goal: 12
+    goal: 10
     time0: 3
-    rotation0: 63
+    rotation0: 56
     time1: 5
-    rotation1: 213
-    time2: 7
-    rotation2: 50
+    rotation1: 206
+    time2: 0
+    rotation2: 0
     time3: 0
     rotation3: 0
     time4: 0
     rotation4: 0
   - id: 15
-    goal: 12
+    goal: 10
     time0: 3
-    rotation0: 64
+    rotation0: 56
     time1: 5
-    rotation1: 214
-    time2: 7
-    rotation2: 50
+    rotation1: 206
+    time2: 0
+    rotation2: 0
     time3: 0
     rotation3: 0
     time4: 0
     rotation4: 0
   - id: 16
-    goal: 12
+    goal: 10
     time0: 3
-    rotation0: 65
+    rotation0: 56
     time1: 5
-    rotation1: 215
-    time2: 7
-    rotation2: 50
+    rotation1: 206
+    time2: 0
+    rotation2: 0
     time3: 0
     rotation3: 0
     time4: 0
     rotation4: 0
   - id: 17
-    goal: 12
+    goal: 10
     time0: 3
-    rotation0: 66
+    rotation0: 56
     time1: 5
-    rotation1: 216
-    time2: 7
-    rotation2: 50
+    rotation1: 206
+    time2: 0
+    rotation2: 0
     time3: 0
     rotation3: 0
     time4: 0
     rotation4: 0
   - id: 18
-    goal: 12
+    goal: 10
     time0: 3
-    rotation0: 67
+    rotation0: 56
     time1: 5
-    rotation1: 217
-    time2: 7
-    rotation2: 50
+    rotation1: 206
+    time2: 0
+    rotation2: 0
     time3: 0
     rotation3: 0
     time4: 0
     rotation4: 0
   - id: 19
-    goal: 12
+    goal: 10
     time0: 3
-    rotation0: 68
+    rotation0: 56
     time1: 5
-    rotation1: 218
-    time2: 7
-    rotation2: 50
+    rotation1: 206
+    time2: 0
+    rotation2: 0
     time3: 0
     rotation3: 0
     time4: 0
     rotation4: 0
   - id: 20
-    goal: 12
+    goal: 10
     time0: 3
-    rotation0: 69
+    rotation0: 56
     time1: 5
-    rotation1: 219
-    time2: 7
-    rotation2: 50
+    rotation1: 206
+    time2: 0
+    rotation2: 0
     time3: 0
     rotation3: 0
     time4: 0
     rotation4: 0
   - id: 21
-    goal: 15
+    goal: 10
     time0: 3
-    rotation0: 160
+    rotation0: 56
     time1: 5
-    rotation1: 220
-    time2: 7
-    rotation2: 50
+    rotation1: 206
+    time2: 0
+    rotation2: 0
     time3: 0
     rotation3: 0
     time4: 0
     rotation4: 0
   - id: 22
-    goal: 15
+    goal: 10
     time0: 3
-    rotation0: 161
+    rotation0: 56
     time1: 5
-    rotation1: 221
-    time2: 7
-    rotation2: 50
+    rotation1: 206
+    time2: 0
+    rotation2: 0
     time3: 0
     rotation3: 0
     time4: 0
     rotation4: 0
   - id: 23
-    goal: 15
+    goal: 10
     time0: 3
-    rotation0: 162
+    rotation0: 56
     time1: 5
-    rotation1: 222
-    time2: 7
-    rotation2: 50
+    rotation1: 206
+    time2: 0
+    rotation2: 0
     time3: 0
     rotation3: 0
     time4: 0
     rotation4: 0
   - id: 24
-    goal: 15
+    goal: 10
     time0: 3
-    rotation0: 163
+    rotation0: 56
     time1: 5
-    rotation1: 223
-    time2: 7
-    rotation2: 50
+    rotation1: 206
+    time2: 0
+    rotation2: 0
     time3: 0
     rotation3: 0
     time4: 0
     rotation4: 0
   - id: 25
-    goal: 15
+    goal: 10
     time0: 3
-    rotation0: 164
+    rotation0: 56
     time1: 5
-    rotation1: 224
-    time2: 7
-    rotation2: 50
+    rotation1: 206
+    time2: 0
+    rotation2: 0
     time3: 0
     rotation3: 0
     time4: 0
     rotation4: 0
   - id: 26
-    goal: 15
+    goal: 10
     time0: 3
-    rotation0: 165
+    rotation0: 56
     time1: 5
-    rotation1: 225
-    time2: 7
-    rotation2: 50
+    rotation1: 206
+    time2: 0
+    rotation2: 0
     time3: 0
     rotation3: 0
     time4: 0
     rotation4: 0
   - id: 27
-    goal: 15
+    goal: 10
     time0: 3
-    rotation0: 166
+    rotation0: 56
     time1: 5
-    rotation1: 226
-    time2: 7
-    rotation2: 50
+    rotation1: 206
+    time2: 0
+    rotation2: 0
     time3: 0
     rotation3: 0
     time4: 0
     rotation4: 0
   - id: 28
-    goal: 15
+    goal: 10
     time0: 3
-    rotation0: 167
+    rotation0: 56
     time1: 5
-    rotation1: 227
-    time2: 7
-    rotation2: 50
+    rotation1: 206
+    time2: 0
+    rotation2: 0
     time3: 0
     rotation3: 0
     time4: 0
     rotation4: 0
   - id: 29
-    goal: 15
+    goal: 10
     time0: 3
-    rotation0: 168
+    rotation0: 56
     time1: 5
-    rotation1: 228
-    time2: 7
-    rotation2: 50
+    rotation1: 206
+    time2: 0
+    rotation2: 0
     time3: 0
     rotation3: 0
     time4: 0
     rotation4: 0
   - id: 30
-    goal: 15
+    goal: 10
     time0: 3
-    rotation0: 169
+    rotation0: 56
     time1: 5
-    rotation1: 229
-    time2: 7
-    rotation2: 50
-    time3: 0
-    rotation3: 0
-    time4: 0
-    rotation4: 0
-  - id: 31
-    goal: 15
-    time0: 3
-    rotation0: 170
-    time1: 5
-    rotation1: 230
-    time2: 7
-    rotation2: 50
-    time3: 0
-    rotation3: 0
-    time4: 0
-    rotation4: 0
-  - id: 32
-    goal: 15
-    time0: 3
-    rotation0: 171
-    time1: 5
-    rotation1: 231
-    time2: 7
-    rotation2: 50
-    time3: 0
-    rotation3: 0
-    time4: 0
-    rotation4: 0
-  - id: 33
-    goal: 15
-    time0: 3
-    rotation0: 172
-    time1: 5
-    rotation1: 232
-    time2: 7
-    rotation2: 50
-    time3: 0
-    rotation3: 0
-    time4: 0
-    rotation4: 0
-  - id: 34
-    goal: 18
-    time0: 3
-    rotation0: 173
-    time1: 5
-    rotation1: 233
-    time2: 7
-    rotation2: 50
-    time3: 0
-    rotation3: 0
-    time4: 0
-    rotation4: 0
-  - id: 35
-    goal: 15
-    time0: 3
-    rotation0: 174
-    time1: 5
-    rotation1: 234
-    time2: 7
-    rotation2: 50
-    time3: 0
-    rotation3: 0
-    time4: 0
-    rotation4: 0
-  - id: 36
-    goal: 15
-    time0: 3
-    rotation0: 175
-    time1: 5
-    rotation1: 235
-    time2: 7
-    rotation2: 50
-    time3: 0
-    rotation3: 0
-    time4: 0
-    rotation4: 0
-  - id: 37
-    goal: 15
-    time0: 3
-    rotation0: 176
-    time1: 5
-    rotation1: 236
-    time2: 7
-    rotation2: 50
-    time3: 0
-    rotation3: 0
-    time4: 0
-    rotation4: 0
-  - id: 38
-    goal: 15
-    time0: 3
-    rotation0: 177
-    time1: 5
-    rotation1: 237
-    time2: 7
-    rotation2: 50
-    time3: 0
-    rotation3: 0
-    time4: 0
-    rotation4: 0
-  - id: 39
-    goal: 15
-    time0: 3
-    rotation0: 178
-    time1: 5
-    rotation1: 238
-    time2: 7
-    rotation2: 50
-    time3: 0
-    rotation3: 0
-    time4: 0
-    rotation4: 0
-  - id: 40
-    goal: 15
-    time0: 3
-    rotation0: 179
-    time1: 5
-    rotation1: 239
-    time2: 7
-    rotation2: 50
-    time3: 0
-    rotation3: 0
-    time4: 0
-    rotation4: 0
-  - id: 41
-    goal: 15
-    time0: 3
-    rotation0: 180
-    time1: 5
-    rotation1: 240
-    time2: 7
-    rotation2: 50
-    time3: 0
-    rotation3: 0
-    time4: 0
-    rotation4: 0
-  - id: 42
-    goal: 15
-    time0: 3
-    rotation0: 181
-    time1: 5
-    rotation1: 241
-    time2: 7
-    rotation2: 50
-    time3: 0
-    rotation3: 0
-    time4: 0
-    rotation4: 0
-  - id: 43
-    goal: 15
-    time0: 3
-    rotation0: 182
-    time1: 5
-    rotation1: 242
-    time2: 7
-    rotation2: 50
-    time3: 0
-    rotation3: 0
-    time4: 0
-    rotation4: 0
-  - id: 44
-    goal: 15
-    time0: 3
-    rotation0: 183
-    time1: 5
-    rotation1: 243
-    time2: 7
-    rotation2: 50
-    time3: 0
-    rotation3: 0
-    time4: 0
-    rotation4: 0
-  - id: 45
-    goal: 15
-    time0: 3
-    rotation0: 184
-    time1: 5
-    rotation1: 244
-    time2: 7
-    rotation2: 50
-    time3: 0
-    rotation3: 0
-    time4: 0
-    rotation4: 0
-  - id: 46
-    goal: 15
-    time0: 3
-    rotation0: 185
-    time1: 5
-    rotation1: 245
-    time2: 7
-    rotation2: 50
-    time3: 0
-    rotation3: 0
-    time4: 0
-    rotation4: 0
-  - id: 47
-    goal: 15
-    time0: 3
-    rotation0: 186
-    time1: 5
-    rotation1: 246
-    time2: 7
-    rotation2: 50
-    time3: 0
-    rotation3: 0
-    time4: 0
-    rotation4: 0
-  - id: 48
-    goal: 15
-    time0: 3
-    rotation0: 187
-    time1: 5
-    rotation1: 247
-    time2: 7
-    rotation2: 50
-    time3: 0
-    rotation3: 0
-    time4: 0
-    rotation4: 0
-  - id: 49
-    goal: 15
-    time0: 3
-    rotation0: 188
-    time1: 5
-    rotation1: 248
-    time2: 7
-    rotation2: 50
-    time3: 0
-    rotation3: 0
-    time4: 0
-    rotation4: 0
-  - id: 50
-    goal: 15
-    time0: 3
-    rotation0: 189
-    time1: 5
-    rotation1: 249
-    time2: 7
-    rotation2: 50
+    rotation1: 206
+    time2: 0
+    rotation2: 0
     time3: 0
     rotation3: 0
     time4: 0

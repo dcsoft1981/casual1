@@ -9,6 +9,7 @@ public class LobbyScene : MonoBehaviour
 	[SerializeField] private GameObject btnPlay;
 	[SerializeField] private GameObject popupShare;
 	[SerializeField] private GameObject popupMenu;
+	[SerializeField] private GameObject popupCheat;
 
 	void Start()
     {
@@ -56,5 +57,17 @@ public class LobbyScene : MonoBehaviour
 	{
 		//popupShare.SetActive(false);
 		popupMenu.transform.DOScale(Vector3.zero, 0.2f).SetEase(Ease.InBack).OnComplete(() => popupMenu.SetActive(false));
+	}
+
+	public void OnClickCheat()
+	{
+		popupCheat.SetActive(true);
+		popupCheat.transform.localScale = Vector3.zero;
+		popupCheat.transform.DOScale(Vector3.one, 0.2f).SetEase(Ease.OutCirc);
+	}
+
+	public void OnCloseCheat()
+	{
+		popupCheat.transform.DOScale(Vector3.zero, 0.2f).SetEase(Ease.InBack).OnComplete(() => popupCheat.SetActive(false));
 	}
 }
