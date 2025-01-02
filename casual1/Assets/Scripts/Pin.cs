@@ -54,8 +54,9 @@ public class Pin : MonoBehaviour
 		else if (collision.gameObject.tag == "Gimmick")
 		{
 			AudioManager.instance.PlaySfx(AudioManager.Sfx.shoot_good);
-			GameManager.instance.GimmickHitWork(collision.gameObject);
-			Destroy(this.gameObject);
+			bool destroyPin = GameManager.instance.GimmickHitWork(collision.gameObject);
+			if(destroyPin)
+				Destroy(this.gameObject);
 		}
 	}
 

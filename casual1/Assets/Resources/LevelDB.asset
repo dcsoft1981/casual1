@@ -85,11 +85,11 @@ MonoBehaviour:
     gimmick5: 
   - id: 8
     hp: 5
-    shot: 10
+    shot: 4
     target: 10100
     rotation: 100
     gimmick1: 10102:0
-    gimmick2: 
+    gimmick2: 20301:130
     gimmick3: 
     gimmick4: 
     gimmick5: 
@@ -99,7 +99,7 @@ MonoBehaviour:
     target: 10100
     rotation: 100
     gimmick1: 10101:0:20:40:60:100:150:200:300
-    gimmick2: 
+    gimmick2: 20201:330
     gimmick3: 
     gimmick4: 
     gimmick5: 
@@ -109,7 +109,7 @@ MonoBehaviour:
     target: 10100
     rotation: 100
     gimmick1: 10103:0:20:40:60:100:150:200:300
-    gimmick2: 10201:330
+    gimmick2: 20101:330
     gimmick3: 
     gimmick4: 
     gimmick5: 

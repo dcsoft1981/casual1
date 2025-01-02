@@ -28,6 +28,7 @@ public class GameManager : MonoBehaviour
 	private float pinScale;
 	private int shot;
 	private int cheatRotation = 0;
+	private int rotationBuff = 0;
 
 
 	[SerializeField] private GameObject btnRetry;
@@ -347,6 +348,14 @@ public class GameManager : MonoBehaviour
 		{
 			case GimmickType.SUPER_SHIELD:
 				return Color.gray;
+			case GimmickType.TARGET_RECOVER:
+				return Color.white;
+			case GimmickType.ROTATION_DOWN:
+				return new Color(0.0f, 0.9f, 0f);
+			case GimmickType.ROTATION_UP:
+				return new Color(0.0f, 0.5f, 0f);
+			case GimmickType.ADD_SHOT:
+				return new Color(0.0f, 0f, 0.9f);
 		}
 
 		if (hp > 3)
@@ -358,15 +367,14 @@ public class GameManager : MonoBehaviour
 		else if (hp == 1)
 			return new Color(0.2f, 0f, 0f);
 
-		
-
 		return Color.black;
 	}
 
 	public Vector3 GetGimmickPos(int angle)
 	{
 		float radians = angle * Mathf.Deg2Rad;
-		float distance = 2f;  // 타겟으로부터 떨어진 거리
+		float curTargetScale = Define.TARGET_BASE_SCALE * targetScale / 100f;
+		float distance = curTargetScale/2f + 0.5f;  // 타겟으로부터 떨어진 거리
 
 		// 새 위치 계산
 		Vector3 targetPosition = targetCircle.transform.position; // 타겟 위치
@@ -386,21 +394,97 @@ public class GameManager : MonoBehaviour
 		gameObjectGimmick.SetGimmick(gimmickType, hp, color);
 	}
 
-	public void GimmickHitWork(GameObject gameObject)
+	public bool GimmickHitWork(GameObject gameObject)
 	{
+		bool destroyPin = true;
 		Gimmick gameObjectGimmick = gameObject.GetComponent<Gimmick>();
 
 		switch (gameObjectGimmick.gimmickType)
 		{
+			// 기믹 히트형
 			case GimmickType.SHIELD:
-				gameObjectGimmick.hp--;
-				gameObjectGimmick.SetColor(GetGimmickColor(gameObjectGimmick.gimmickType, gameObjectGimmick.hp));
-				if (gameObjectGimmick.hp <= 0)
 				{
-					// 기믹 제거
-					Destroy(gameObject);
+					gameObjectGimmick.hp--;
+					gameObjectGimmick.SetColor(GetGimmickColor(gameObjectGimmick.gimmickType, gameObjectGimmick.hp));
+					if (gameObjectGimmick.hp <= 0)
+					{
+						// 기믹 제거
+						Destroy(gameObject);
+					}
+					break;
+				}
+				
+			case GimmickType.TARGET_RECOVER:
+				{
+					hp++;
+					SetHPText();
 				}
 				break;
+
+
+			// 타겟 히트형
+			case GimmickType.ROTATION_UP:
+				{
+					destroyPin = false;
+					rotationBuff++;
+					gameObjectGimmick.hp--;
+					if (gameObjectGimmick.hp <= 0)
+					{
+						// 기믹 제거
+						Destroy(gameObject);
+					}
+				}
+				break;
+			case GimmickType.ROTATION_DOWN:
+				{
+					destroyPin = false;
+					rotationBuff--;
+					gameObjectGimmick.hp--;
+					if (gameObjectGimmick.hp <= 0)
+					{
+						// 기믹 제거
+						Destroy(gameObject);
+					}
+				}
+				break;
+			case GimmickType.ADD_SHOT:
+				{
+					destroyPin = false;
+					shot += Define.ADD_SHOT_COUNT;
+					SetShotText();
+					gameObjectGimmick.hp--;
+					if (gameObjectGimmick.hp <= 0)
+					{
+						// 기믹 제거
+						Destroy(gameObject);
+					}
+				}
+				break;
+		}
+		return destroyPin;
+	}
+
+	public float GetRotationValue(float rotation)
+	{
+		if(rotationBuff == 0)
+		{
+			return rotation;
+		}
+
+		float addValue = Define.ROTATION_BUFF_VALUE * rotationBuff;
+		if(rotation > 0)
+		{
+			float resultValue = rotation + addValue;
+			if (resultValue < 10f)
+				resultValue = 10f;
+			return resultValue;
+		}
+		else
+		{
+			float resultValue = rotation - addValue;
+			if (resultValue > -10f)
+				resultValue = -10f;
+			return resultValue;
 		}
 	}
 }

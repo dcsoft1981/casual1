@@ -86,7 +86,7 @@ public class TargetCircle : MonoBehaviour
 
 			elapsedTime += Time.deltaTime;
 			float curTime = elapsedTime % totalTime;
-			rotationSpeed = GetCurRotationSpeed(curTime);
+			rotationSpeed = GameManager.instance.GetRotationValue(GetCurRotationSpeed(curTime));
 			// 현재 속도로 회전 적용
 			transform.Rotate(0, 0, rotationSpeed * Time.deltaTime);
 			//Debug.Log("TargetCircle : " + elapsedTime + " - " + curTime + " - " + rotationSpeed);

@@ -11,6 +11,9 @@ public class Define
 	public const int ROTATE_SEC = 10;
 	public const float TARGET_BASE_SCALE = 3f;
 
+	public const float ROTATION_BUFF_VALUE = 50f; // 회전속도 증강 값
+	public const int ADD_SHOT_COUNT = 3; // 발사체 추가 수량
+
 	// 타겟
 	// 10000 자리 값 : 외형. 일단 색으로 구분(1-GREEN, 2-BLUE,3-RED)
 	// 1 자리 값 : 반지름 사이즈% 
