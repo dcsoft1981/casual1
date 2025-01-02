@@ -79,6 +79,7 @@
     <Compile Include="Assets\Scripts\PinLauncher.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\LevelDB.cs" />
+    <Compile Include="Assets\Scripts\Gimmick.cs" />
     <Compile Include="Assets\ExcelImporter\Example\Scripts\ExcelAsset\MstItems.cs" />
     <Compile Include="Assets\Scripts\PopupCheat.cs" />
     <Compile Include="Assets\Scripts\Define.cs" />

@@ -3,7 +3,7 @@ using UnityEngine.EventSystems;
 
 public class PinLauncher : MonoBehaviour
 {
-    [SerializeField]
+	[SerializeField]
     private GameObject pinObject;
 
     private Pin currPin;
@@ -12,7 +12,6 @@ public class PinLauncher : MonoBehaviour
     void Start()
     {
 		PreparePin();
-
 	}
 
     // Update is called once per frame
@@ -27,7 +26,7 @@ public class PinLauncher : MonoBehaviour
 		}
     }
 
-    void PreparePin()
+	void PreparePin()
     {
         GameManager.instance.CheckFailure();
         if(GameManager.instance.isGameOver == false)

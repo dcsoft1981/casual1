@@ -809,6 +809,8 @@ MonoBehaviour:
   levelDB: {fileID: 11400000, guid: 100d04b51f9336e4496841486b9b7d3b, type: 2}
   green: {r: 0.21568628, g: 1, b: 0, a: 0}
   red: {r: 1, g: 0, b: 0.23529412, a: 0}
+  gimmickHitObject: {fileID: 8814631178483852103, guid: d05dd2984c6552347b8792a358c88c89, type: 3}
+  targetHitObject: {fileID: 8814631178483852103, guid: 78a78b48b16467646b65571c589957b3, type: 3}
 --- !u!4 &208536165
 Transform:
   m_ObjectHideFlags: 0
@@ -2827,7 +2829,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.000061035156, y: 0.000061035156}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &959601848

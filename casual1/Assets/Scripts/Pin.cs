@@ -51,6 +51,12 @@ public class Pin : MonoBehaviour
 			}
 			Debug.Log("OnTriggerEnter2D : " + isPinned);
 		}
+		else if (collision.gameObject.tag == "Gimmick")
+		{
+			AudioManager.instance.PlaySfx(AudioManager.Sfx.shoot_good);
+			GameManager.instance.GimmickHitWork(collision.gameObject);
+			Destroy(this.gameObject);
+		}
 	}
 
 	public void Launch()

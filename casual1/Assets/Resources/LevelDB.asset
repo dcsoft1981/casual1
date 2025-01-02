@@ -18,7 +18,7 @@ MonoBehaviour:
     shot: 3
     target: 10100
     rotation: 50
-    gimmick1: 10101,0
+    gimmick1: 10101:0
     gimmick2: 
     gimmick3: 
     gimmick4: 
@@ -28,7 +28,7 @@ MonoBehaviour:
     shot: 4
     target: 10050
     rotation: 100
-    gimmick1: 10102,0
+    gimmick1: 10102:0
     gimmick2: 
     gimmick3: 
     gimmick4: 
@@ -38,7 +38,7 @@ MonoBehaviour:
     shot: 5
     target: 30030
     rotation: 500
-    gimmick1: 10101,0,20,40,60
+    gimmick1: 10101:0:20:40:60:100:150:200:300
     gimmick2: 
     gimmick3: 
     gimmick4: 
@@ -48,7 +48,7 @@ MonoBehaviour:
     shot: 6
     target: 10100
     rotation: -100
-    gimmick1: 
+    gimmick1: 10101:0
     gimmick2: 
     gimmick3: 
     gimmick4: 
@@ -58,7 +58,7 @@ MonoBehaviour:
     shot: 7
     target: 10100
     rotation: 100
-    gimmick1: 
+    gimmick1: 10102:0
     gimmick2: 
     gimmick3: 
     gimmick4: 
@@ -68,7 +68,7 @@ MonoBehaviour:
     shot: 8
     target: 10100
     rotation: 100
-    gimmick1: 
+    gimmick1: 10102:0
     gimmick2: 
     gimmick3: 
     gimmick4: 
@@ -78,7 +78,7 @@ MonoBehaviour:
     shot: 9
     target: 10100
     rotation: 100
-    gimmick1: 
+    gimmick1: 10102:0
     gimmick2: 
     gimmick3: 
     gimmick4: 
@@ -88,7 +88,7 @@ MonoBehaviour:
     shot: 10
     target: 10100
     rotation: 100
-    gimmick1: 
+    gimmick1: 10102:0
     gimmick2: 
     gimmick3: 
     gimmick4: 
@@ -98,7 +98,7 @@ MonoBehaviour:
     shot: 10
     target: 10100
     rotation: 100
-    gimmick1: 
+    gimmick1: 10101:0:20:40:60:100:150:200:300
     gimmick2: 
     gimmick3: 
     gimmick4: 
@@ -108,8 +108,8 @@ MonoBehaviour:
     shot: 10
     target: 10100
     rotation: 100
-    gimmick1: 
-    gimmick2: 
+    gimmick1: 10103:0:20:40:60:100:150:200:300
+    gimmick2: 10201:330
     gimmick3: 
     gimmick4: 
     gimmick5: 

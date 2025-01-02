@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Pin
   - Target
+  - Gimmick
   layers:
   - Default
   - TransparentFX

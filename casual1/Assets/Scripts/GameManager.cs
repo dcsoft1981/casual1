@@ -5,6 +5,8 @@ using UnityEditor;
 using System;
 using static UnityEngine.GraphicsBuffer;
 using static DG.Tweening.DOTweenAnimation;
+using static Define;
+using Unity.VisualScripting;
 
 public class GameManager : MonoBehaviour
 {
@@ -35,6 +37,9 @@ public class GameManager : MonoBehaviour
 
 	[SerializeField] private Color green;
 	[SerializeField] private Color red;
+
+	[SerializeField] private GameObject gimmickHitObject;
+	[SerializeField] private GameObject targetHitObject;
 
 	// Start is called once before the first execution of Update after the MonoBehaviour is created
 
@@ -87,6 +92,7 @@ public class GameManager : MonoBehaviour
 		SetHPText();
         SetLevelText();
 		SetShotText();
+		PrepareGimmickAll();
 		AudioManager.instance.OffEffectBgm();
 		AudioManager.instance.PlayBgm();
 	}
@@ -297,5 +303,104 @@ public class GameManager : MonoBehaviour
 	public int GetCheatRotation()
 	{
 		return cheatRotation;
+	}
+
+	void PrepareGimmickAll()
+	{
+		// 기믹 정보를 보며 기믹 생성
+		PrepareGimmick(levelData.gimmick1);
+		PrepareGimmick(levelData.gimmick2);
+		PrepareGimmick(levelData.gimmick3);
+		PrepareGimmick(levelData.gimmick4);
+		PrepareGimmick(levelData.gimmick5);
+	}
+
+	void PrepareGimmick(string gimmick)
+	{
+		if (gimmick.Length == 0)
+			return;
+
+		string[] strInfo = gimmick.Split(":");
+		int[] numInfo = new int[strInfo.Length];
+		for (int i = 0; i < numInfo.Length; i++)
+		{
+			numInfo[i] = int.Parse(strInfo[i]);
+		}
+
+		int gimmickValue = numInfo[0];
+		int hp = gimmickValue % 100;
+
+		GimmickType gimmickType = (GimmickType)(gimmickValue - hp);
+
+		Color color = GetGimmickColor(gimmickType, hp);
+		for (int i = 1; i < numInfo.Length; i++)
+		{
+			int angle = numInfo[i];
+			Vector3 gimmickPos = GetGimmickPos(angle);
+			CreateGimmick(gimmickType, hp, color, gimmickPos);
+		}
+	}
+
+	public Color GetGimmickColor(GimmickType type, int hp)
+	{
+		switch (type)
+		{
+			case GimmickType.SUPER_SHIELD:
+				return Color.gray;
+		}
+
+		if (hp > 3)
+			return new Color(0.9f, 0f, 0f);
+		if (hp == 3)
+			return new Color(0.7f, 0f, 0f);
+		else if (hp == 2)
+			return new Color(0.4f, 0f, 0f);
+		else if (hp == 1)
+			return new Color(0.2f, 0f, 0f);
+
+		
+
+		return Color.black;
+	}
+
+	public Vector3 GetGimmickPos(int angle)
+	{
+		float radians = angle * Mathf.Deg2Rad;
+		float distance = 2f;  // 타겟으로부터 떨어진 거리
+
+		// 새 위치 계산
+		Vector3 targetPosition = targetCircle.transform.position; // 타겟 위치
+		Vector3 newPosition = new Vector3(
+			targetPosition.x + distance * Mathf.Cos(radians),
+			targetPosition.y + distance * Mathf.Sin(radians),
+			targetPosition.z // 2D 게임이므로 Z값은 유지
+		);
+		return newPosition;
+	}
+
+	public void CreateGimmick(GimmickType gimmickType, int hp, Color color, Vector3 gimmickPos)
+	{
+		GameObject gimmickGameObject = Instantiate(gimmickHitObject, gimmickPos, Quaternion.identity);
+		gimmickGameObject.transform.SetParent(targetCircle.transform);
+		Gimmick gameObjectGimmick = gimmickGameObject.GetComponent<Gimmick>();
+		gameObjectGimmick.SetGimmick(gimmickType, hp, color);
+	}
+
+	public void GimmickHitWork(GameObject gameObject)
+	{
+		Gimmick gameObjectGimmick = gameObject.GetComponent<Gimmick>();
+
+		switch (gameObjectGimmick.gimmickType)
+		{
+			case GimmickType.SHIELD:
+				gameObjectGimmick.hp--;
+				gameObjectGimmick.SetColor(GetGimmickColor(gameObjectGimmick.gimmickType, gameObjectGimmick.hp));
+				if (gameObjectGimmick.hp <= 0)
+				{
+					// 기믹 제거
+					Destroy(gameObject);
+				}
+				break;
+		}
 	}
 }
