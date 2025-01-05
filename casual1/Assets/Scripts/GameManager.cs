@@ -349,7 +349,7 @@ public class GameManager : MonoBehaviour
 			case GimmickType.SUPER_SHIELD:
 				return Color.gray;
 			case GimmickType.TARGET_RECOVER:
-				return Color.white;
+				return Color.green;
 			case GimmickType.ROTATION_DOWN:
 				return new Color(0.0f, 0.9f, 0f);
 			case GimmickType.ROTATION_UP:
@@ -394,6 +394,17 @@ public class GameManager : MonoBehaviour
 		gameObjectGimmick.SetGimmick(gimmickType, hp, color);
 	}
 
+	private void GimmickHpMinusWork(GameObject gameObject, Gimmick gameObjectGimmick)
+	{
+		gameObjectGimmick.hp--;
+		gameObjectGimmick.SetColor(GetGimmickColor(gameObjectGimmick.gimmickType, gameObjectGimmick.hp));
+		if (gameObjectGimmick.hp <= 0)
+		{
+			// ±â¹Í Á¦°Å
+			Destroy(gameObject);
+		}
+	}
+
 	public bool GimmickHitWork(GameObject gameObject)
 	{
 		bool destroyPin = true;
@@ -404,13 +415,7 @@ public class GameManager : MonoBehaviour
 			// ±â¹Í È÷Æ®Çü
 			case GimmickType.SHIELD:
 				{
-					gameObjectGimmick.hp--;
-					gameObjectGimmick.SetColor(GetGimmickColor(gameObjectGimmick.gimmickType, gameObjectGimmick.hp));
-					if (gameObjectGimmick.hp <= 0)
-					{
-						// ±â¹Í Á¦°Å
-						Destroy(gameObject);
-					}
+					GimmickHpMinusWork(gameObject, gameObjectGimmick);
 					break;
 				}
 				
@@ -418,33 +423,24 @@ public class GameManager : MonoBehaviour
 				{
 					hp++;
 					SetHPText();
+					GimmickHpMinusWork(gameObject, gameObjectGimmick);
 				}
 				break;
 
 
-			// Å¸°Ù È÷Æ®Çü
+			// Å¸°Ù È÷Æ®Çü destroyPin = false;
 			case GimmickType.ROTATION_UP:
 				{
 					destroyPin = false;
 					rotationBuff++;
-					gameObjectGimmick.hp--;
-					if (gameObjectGimmick.hp <= 0)
-					{
-						// ±â¹Í Á¦°Å
-						Destroy(gameObject);
-					}
+					GimmickHpMinusWork(gameObject, gameObjectGimmick);
 				}
 				break;
 			case GimmickType.ROTATION_DOWN:
 				{
 					destroyPin = false;
 					rotationBuff--;
-					gameObjectGimmick.hp--;
-					if (gameObjectGimmick.hp <= 0)
-					{
-						// ±â¹Í Á¦°Å
-						Destroy(gameObject);
-					}
+					GimmickHpMinusWork(gameObject, gameObjectGimmick);
 				}
 				break;
 			case GimmickType.ADD_SHOT:
@@ -452,12 +448,7 @@ public class GameManager : MonoBehaviour
 					destroyPin = false;
 					shot += Define.ADD_SHOT_COUNT;
 					SetShotText();
-					gameObjectGimmick.hp--;
-					if (gameObjectGimmick.hp <= 0)
-					{
-						// ±â¹Í Á¦°Å
-						Destroy(gameObject);
-					}
+					GimmickHpMinusWork(gameObject, gameObjectGimmick);
 				}
 				break;
 		}
