@@ -1,3 +1,4 @@
+using Microsoft.SqlServer.Server;
 using UnityEngine;
 
 public class Pin : MonoBehaviour
@@ -7,6 +8,8 @@ public class Pin : MonoBehaviour
 
 	private bool isPinned = false;
 	private bool isLaunched = false;
+	private bool isReflecteded = false;
+	private Vector3 reflectVec = Vector3.zero;
 	// Start is called once before the first execution of Update after the MonoBehaviour is created
 	void Start()
     {
@@ -16,9 +19,19 @@ public class Pin : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (isPinned == false && isLaunched == true)
+        if (isPinned == false)
         {
-			transform.position += Vector3.up * moveSpeed * Time.deltaTime;
+			if(isLaunched)
+			{
+				if (isReflecteded)
+				{
+					transform.position += reflectVec * moveSpeed * Time.deltaTime;
+				}
+				else
+				{
+					transform.position += Vector3.up * moveSpeed * Time.deltaTime;
+				}
+			}
 		}
 	}
 
@@ -47,7 +60,7 @@ public class Pin : MonoBehaviour
 				//AudioManager.instance.StopBgm();
 				AudioManager.instance.PlaySfx(AudioManager.Sfx.shoot_failure);
 				//GameManager.instance.SetGameOver(false);
-				Destroy(this.gameObject);
+				ReflectPin(collision);
 			}
 			Debug.Log("OnTriggerEnter2D : " + isPinned);
 		}
@@ -55,13 +68,64 @@ public class Pin : MonoBehaviour
 		{
 			AudioManager.instance.PlaySfx(AudioManager.Sfx.shoot_good);
 			bool destroyPin = GameManager.instance.GimmickHitWork(collision.gameObject);
-			if(destroyPin)
-				Destroy(this.gameObject);
+			if (destroyPin)
+			{
+				ReflectPin(collision);
+			}
 		}
 	}
 
 	public void Launch()
 	{
 		isLaunched = true;
+	}
+
+	private void ReflectPin(Collider2D collision)
+	{
+		Pin collisionPin = collision.gameObject.GetComponent<Pin>();
+		if(collisionPin != null)
+		{
+			if(collisionPin.isReflected())
+			{
+				// 반사 시키지 않는다.
+				Debug.Log("튕기지 않음");
+				return;
+			}
+		}
+
+		Vector3 colliderPos = collision.transform.position;
+		reflectVec = (collision.transform.position - this.transform.position).normalized;
+		reflectVec = Vector3.Reflect(Vector3.down, reflectVec);
+		float reflectX = reflectVec.x;
+		if(reflectX > 0)
+		{
+			if (reflectX < 0.01f)
+				reflectX = 0.01f;
+			else if (reflectX > 0.6f)
+				reflectX = 0.6f;
+		}
+		else
+		{
+			if (reflectX > -0.01f)
+				reflectX = -0.01f;
+			else if (reflectX < -0.3f)
+				reflectX = -0.3f;
+		}
+
+		reflectVec = new Vector3(reflectX, -1f, 0f);
+		Debug.Log($"튕김 방향: {reflectVec}");
+
+		isReflecteded = true;
+		Invoke("DestroyPin", 0.3f);
+	}
+
+	private void DestroyPin()
+	{
+		Destroy(this.gameObject);
+	}
+
+	public bool isReflected()
+	{
+		return isReflecteded;
 	}
 }

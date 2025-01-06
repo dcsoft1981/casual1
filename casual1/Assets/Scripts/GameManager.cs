@@ -301,6 +301,12 @@ public class GameManager : MonoBehaviour
 		cheatRotation = rotation;
 	}
 
+	public void AddShot(int changeShot)
+	{
+		shot += changeShot;
+		SetShotText();
+	}
+
 	public int GetCheatRotation()
 	{
 		return cheatRotation;
