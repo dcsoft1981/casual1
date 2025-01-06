@@ -18,7 +18,7 @@ MonoBehaviour:
     shot: 3
     target: 10100
     rotation: 50
-    gimmick1: 10101:0
+    gimmick1: 10102:0:45:90:135:225:270:315
     gimmick2: 10501:180
     gimmick3: 
     gimmick4: 
@@ -28,7 +28,7 @@ MonoBehaviour:
     shot: 4
     target: 10050
     rotation: 100
-    gimmick1: 10102:0
+    gimmick1: 10102:0:45:90:135:180:225:270:315
     gimmick2: 
     gimmick3: 
     gimmick4: 
