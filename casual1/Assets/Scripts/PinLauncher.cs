@@ -17,7 +17,7 @@ public class PinLauncher : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (currPin != null && Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject() && GameManager.instance.isGameOver == false)
+		if (currPin != null && (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space)) && !EventSystem.current.IsPointerOverGameObject() && GameManager.instance.isGameOver == false)
         {
             currPin.Launch();
 			GameManager.instance.DecreaseShot();
