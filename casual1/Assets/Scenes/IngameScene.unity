@@ -807,10 +807,10 @@ MonoBehaviour:
   labelClear: {fileID: 731628196}
   labelFailure: {fileID: 1759744454}
   levelDB: {fileID: 11400000, guid: 100d04b51f9336e4496841486b9b7d3b, type: 2}
+  gimmickDB: {fileID: 11400000, guid: e41c75628e2f84d4c888db1e7a79deb3, type: 2}
   green: {r: 0.21568628, g: 1, b: 0, a: 0}
   red: {r: 1, g: 0, b: 0.23529412, a: 0}
-  gimmickHitObject: {fileID: 8814631178483852103, guid: d05dd2984c6552347b8792a358c88c89, type: 3}
-  targetHitObject: {fileID: 8814631178483852103, guid: 78a78b48b16467646b65571c589957b3, type: 3}
+  gimmickObject: {fileID: 8814631178483852103, guid: d05dd2984c6552347b8792a358c88c89, type: 3}
 --- !u!4 &208536165
 Transform:
   m_ObjectHideFlags: 0

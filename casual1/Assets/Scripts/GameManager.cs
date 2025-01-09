@@ -7,6 +7,8 @@ using static UnityEngine.GraphicsBuffer;
 using static DG.Tweening.DOTweenAnimation;
 using static Define;
 using Unity.VisualScripting;
+using System.Collections.Generic;
+using DG.Tweening;
 
 public class GameManager : MonoBehaviour
 {
@@ -30,17 +32,19 @@ public class GameManager : MonoBehaviour
 	private int cheatRotation = 0;
 	private int rotationBuff = 0;
 
+	private Dictionary<int, GimmickDBEntity> dic_gimmicks;
+	private Dictionary<int, Sprite> dic_gimmickSprites;
 
 	[SerializeField] private GameObject btnRetry;
 	[SerializeField] private GameObject labelClear;
 	[SerializeField] private GameObject labelFailure;
 	[SerializeField] private LevelDB levelDB;
+	[SerializeField] private GimmickDB gimmickDB;
 
 	[SerializeField] private Color green;
 	[SerializeField] private Color red;
 
-	[SerializeField] private GameObject gimmickHitObject;
-	[SerializeField] private GameObject targetHitObject;
+	[SerializeField] private GameObject gimmickObject;
 
 	// Start is called once before the first execution of Update after the MonoBehaviour is created
 
@@ -49,7 +53,15 @@ public class GameManager : MonoBehaviour
         if (instance == null)
         {
             instance = this;
-        }
+			dic_gimmicks = new Dictionary<int, GimmickDBEntity>();
+			dic_gimmickSprites = new Dictionary<int, Sprite>();
+			foreach(GimmickDBEntity gimmickDbEntity in gimmickDB.gimmicks)
+			{
+				dic_gimmicks.Add(gimmickDbEntity.id, gimmickDbEntity);
+				if(gimmickDbEntity.sprite.Length > 0)
+					dic_gimmickSprites.Add(gimmickDbEntity.id, Resources.Load<Sprite>(gimmickDbEntity.sprite));
+			}
+		}
 	}
 
 	void Start()
@@ -338,13 +350,14 @@ public class GameManager : MonoBehaviour
 		int hp = gimmickValue % 100;
 
 		GimmickType gimmickType = (GimmickType)(gimmickValue - hp);
+		GimmickDBEntity gimmickInfo = GetGimmickInfo(gimmickType);
 
 		Color color = GetGimmickColor(gimmickType, hp);
 		for (int i = 1; i < numInfo.Length; i++)
 		{
 			int angle = numInfo[i];
-			Vector3 gimmickPos = GetGimmickPos(angle);
-			CreateGimmick(gimmickType, hp, color, gimmickPos);
+			Vector3 gimmickPos = GetGimmickPos(angle, gimmickInfo.distance);
+			CreateGimmick(gimmickType, hp, color, gimmickPos, angle);
 		}
 	}
 
@@ -357,9 +370,9 @@ public class GameManager : MonoBehaviour
 			case GimmickType.TARGET_RECOVER:
 				return Color.green;
 			case GimmickType.ROTATION_DOWN:
-				return new Color(0.0f, 0.9f, 0f);
+				return new Color(0f, 1f, 0f);
 			case GimmickType.ROTATION_UP:
-				return new Color(0.0f, 0.5f, 0f);
+				return new Color(1f, 0f, 0f);
 			case GimmickType.ADD_SHOT:
 				return new Color(0.0f, 0f, 0.9f);
 		}
@@ -376,11 +389,11 @@ public class GameManager : MonoBehaviour
 		return Color.black;
 	}
 
-	public Vector3 GetGimmickPos(int angle)
+	public Vector3 GetGimmickPos(int angle, float gimmickDistance)
 	{
 		float radians = angle * Mathf.Deg2Rad;
 		float curTargetScale = Define.TARGET_BASE_SCALE * targetScale / 100f;
-		float distance = curTargetScale/2f + 0.5f;  // 타겟으로부터 떨어진 거리
+		float distance = curTargetScale/2f + gimmickDistance;  // 타겟으로부터 떨어진 거리
 
 		// 새 위치 계산
 		Vector3 targetPosition = targetCircle.transform.position; // 타겟 위치
@@ -392,22 +405,24 @@ public class GameManager : MonoBehaviour
 		return newPosition;
 	}
 
-	public void CreateGimmick(GimmickType gimmickType, int hp, Color color, Vector3 gimmickPos)
+	public void CreateGimmick(GimmickType gimmickType, int hp, Color color, Vector3 gimmickPos, int angle)
 	{
-		GameObject gimmickGameObject = Instantiate(gimmickHitObject, gimmickPos, Quaternion.identity);
+		GameObject gimmickGameObject = Instantiate(gimmickObject, gimmickPos, Quaternion.identity);
 		gimmickGameObject.transform.SetParent(targetCircle.transform);
 		Gimmick gameObjectGimmick = gimmickGameObject.GetComponent<Gimmick>();
-		gameObjectGimmick.SetGimmick(gimmickType, hp, color);
+		gameObjectGimmick.SetGimmick(gimmickType, hp, color, angle);
 	}
 
 	private void GimmickHpMinusWork(GameObject gameObject, Gimmick gameObjectGimmick)
 	{
+		if (gameObjectGimmick.hp <= 0)
+			return;
 		gameObjectGimmick.hp--;
 		gameObjectGimmick.SetColor(GetGimmickColor(gameObjectGimmick.gimmickType, gameObjectGimmick.hp));
 		if (gameObjectGimmick.hp <= 0)
 		{
 			// 기믹 제거
-			Destroy(gameObject);
+			gameObject.transform.DOScale(Vector3.zero, 0.1f).SetEase(Ease.InBack).OnComplete(() => Destroy(gameObject));
 		}
 	}
 
@@ -415,6 +430,7 @@ public class GameManager : MonoBehaviour
 	{
 		bool destroyPin = true;
 		Gimmick gameObjectGimmick = gameObject.GetComponent<Gimmick>();
+		GimmickDBEntity gimmickInfo = GetGimmickInfo(gameObjectGimmick.gimmickType);
 
 		switch (gameObjectGimmick.gimmickType)
 		{
@@ -422,17 +438,23 @@ public class GameManager : MonoBehaviour
 			case GimmickType.SHIELD:
 				{
 					GimmickHpMinusWork(gameObject, gameObjectGimmick);
-					break;
 				}
-				
+				break;
+
 			case GimmickType.TARGET_RECOVER:
 				{
-					hp++;
+					hp += gimmickInfo.value1;
 					SetHPText();
 					GimmickHpMinusWork(gameObject, gameObjectGimmick);
 				}
 				break;
-
+			case GimmickType.DAMAGE_N:
+				{
+					hp -= gimmickInfo.value1;
+					SetHPText();
+					GimmickHpMinusWork(gameObject, gameObjectGimmick);
+				}
+				break;
 
 			// 타겟 히트형 destroyPin = false;
 			case GimmickType.ROTATION_UP:
@@ -452,7 +474,7 @@ public class GameManager : MonoBehaviour
 			case GimmickType.ADD_SHOT:
 				{
 					destroyPin = false;
-					shot += Define.ADD_SHOT_COUNT;
+					shot += gimmickInfo.value1;
 					SetShotText();
 					GimmickHpMinusWork(gameObject, gameObjectGimmick);
 				}
@@ -468,7 +490,7 @@ public class GameManager : MonoBehaviour
 			return rotation;
 		}
 
-		float addValue = Define.ROTATION_BUFF_VALUE * rotationBuff;
+		float addValue = GetGimmickInfo(GimmickType.ROTATION_UP).value1 * rotationBuff;
 		if(rotation > 0)
 		{
 			float resultValue = rotation + addValue;
@@ -483,5 +505,19 @@ public class GameManager : MonoBehaviour
 				resultValue = -10f;
 			return resultValue;
 		}
+	}
+
+	public GimmickDBEntity GetGimmickInfo(GimmickType type)
+	{
+		if (dic_gimmicks.TryGetValue((int)type, out GimmickDBEntity gimmick))
+			return gimmick;
+		return null;
+	}
+
+	public Sprite GetGimmickSprite(GimmickType type)
+	{
+		if (dic_gimmickSprites.TryGetValue((int)type, out Sprite sprite))
+			return sprite;
+		return null;
 	}
 }

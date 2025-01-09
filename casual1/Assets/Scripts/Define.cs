@@ -11,8 +11,7 @@ public class Define
 	public const int ROTATE_SEC = 10;
 	public const float TARGET_BASE_SCALE = 3f;
 
-	public const float ROTATION_BUFF_VALUE = 50f; // 회전속도 증강 값
-	public const int ADD_SHOT_COUNT = 3; // 발사체 추가 수량
+	public const float BASE_GIMMICK_SCALE = 1 / 3f;
 
 	// 타겟
 	// 10000 자리 값 : 외형. 일단 색으로 구분(1-GREEN, 2-BLUE,3-RED)
@@ -43,14 +42,15 @@ public class Define
 		TARGET_RECOVER = 10500, // 히트시 타겟 회복
 		CONTINUE_HIT = 10600, // 연속해서 히트하지 못할 경우, HP가 원복됨 (=로얄매치 두더지)
 		HELP1 = 10700, // 소거 시, 타겟에 붙어있는 모든 발사체 소거 (도움형 기믹)
-		HELP2 = 10800, // 소거 시, 타겟에 데미지 2 적용
+		DAMAGE_N = 10800, // 소거 시, 타겟에 데미지 2 적용
+		ONOFF = 10900, // 턴마다 제거 가능 여부가 바뀜 (로얄매치의 나비넥타이)
 
 
 		// 타겟 히트형
 		ROTATION_UP = 20100, // 히트 시 회전속도 증가
 		ROTATION_DOWN = 20200, // 히트 시 회전속도 감소
 		ADD_SHOT = 20300, // 히트 시 발사체 수량 N 증가
-		WARP = 20400, // 히트 시 히트 위치의 180도 반대쪽에 발사체가 꽂힘
+		WARP = 20400, // 히트 시 히트 위치의 180도 반대쪽에 발사체가 꽂힘(보류)
 
 
 		// 기믹 통과형
