@@ -9,4 +9,6 @@ public class GimmickDBEntity
 	public float objectscale;
 	public float distance;
 	public int value1;
+	public string sprite2;
+	public string sprite3;
 }

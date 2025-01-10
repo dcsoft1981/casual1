@@ -59,7 +59,7 @@ MonoBehaviour:
     target: 10100
     rotation: 100
     gimmick1: 10102:0
-    gimmick2: 
+    gimmick2: 10301:30:270:180
     gimmick3: 
     gimmick4: 
     gimmick5: 

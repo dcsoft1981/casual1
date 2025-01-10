@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
@@ -9,6 +10,8 @@ public class Gimmick : MonoBehaviour
 	private GameObject spriteObject;
 	private float objectScale = 1f;
 	private float spriteScale = 1f;
+	private bool isChecked = false;
+	private List<GameObject> listGimmick = null;
 	// Start is called once before the first execution of Update after the MonoBehaviour is created
 	void Awake()
     {
@@ -29,33 +32,52 @@ public class Gimmick : MonoBehaviour
         
     }
 
-    public void SetGimmick(Define.GimmickType _type, int _hp, Color _color, int inputAngle)
-    {
-		this.hp = _hp;
-		this.gimmickType = _type;
-        spriteRenderer.color = _color;
-
-		GimmickDBEntity gimmickInfo = GameManager.instance.GetGimmickInfo(_type);
+	public void SetGimmickSprite(int index)
+	{
+		GimmickDBEntity gimmickInfo = GameManager.instance.GetGimmickInfo(gimmickType);
 		// Sprite Load
-		Sprite heartSprite = GameManager.instance.GetGimmickSprite(_type);
+		Sprite gimmickSprite = null;
+		if(index == 1)
+		{
+			gimmickSprite = GameManager.instance.GetGimmickSprite(gimmickType);
+		}
+		else if(index == 2)
+		{
+			gimmickSprite = GameManager.instance.GetGimmickSprite2(gimmickType);
+		}
+		else if (index == 3)
+		{
+			gimmickSprite = GameManager.instance.GetGimmickSprite3(gimmickType);
+		}
 
 		// 스프라이트가 성공적으로 로드되었는지 확인합니다.
-		if (heartSprite != null)
+		if (gimmickSprite != null)
 		{
 			// SpriteRenderer의 스프라이트를 설정합니다.
-			spriteRenderer.sprite = heartSprite;
+			spriteRenderer.sprite = gimmickSprite;
 		}
 		else
 		{
-			Debug.LogError($"{_type} 스프라이트를 로드할 수 없습니다. 경로를 확인하세요.");
+			Debug.LogError($"{gimmickType} 스프라이트를 로드할 수 없습니다. 경로를 확인하세요.");
 		}
+	}
 
+    public void SetGimmick(Define.GimmickType _type, int _hp, Color _color, int _inputAngle, List<GameObject> _listGimmick, bool _isChecked)
+    {
+		this.hp = _hp;
+		this.gimmickType = _type;
+		this.listGimmick = _listGimmick;
+		this.isChecked = _isChecked;
+
+		SetColor(_color);
+		SetGimmickSprite(1);
+		GimmickDBEntity gimmickInfo = GameManager.instance.GetGimmickInfo(gimmickType);
 		// 원하는 크기에 맞게 로컬 스케일을 조정합니다.
 		spriteScale = gimmickInfo.spritescale;
 		spriteObject.transform.localScale = new Vector3(spriteScale, spriteScale, 1);
 
 		// 입력 각도를 0~359도로 제한
-		float angle = (inputAngle+270)%360;
+		float angle = (_inputAngle + 270)%360;
 
 		// 현재 회전 값을 가져옴
 		Vector3 currentRotation = transform.eulerAngles;
@@ -74,5 +96,25 @@ public class Gimmick : MonoBehaviour
     public void SetColor(Color _color)
     {
 		spriteRenderer.color = _color;
+	}
+
+	public void SetChecked()
+	{
+		isChecked = true;
+	}
+
+	public void SetUnChecked()
+	{
+		isChecked = false;
+	}
+
+	public bool GetChecked()
+	{
+		return isChecked;
+	}
+
+	public List<GameObject> GetListGimmick()
+	{
+		return this.listGimmick;
 	}
 }

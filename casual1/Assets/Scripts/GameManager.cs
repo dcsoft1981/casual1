@@ -34,6 +34,14 @@ public class GameManager : MonoBehaviour
 
 	private Dictionary<int, GimmickDBEntity> dic_gimmicks;
 	private Dictionary<int, Sprite> dic_gimmickSprites;
+	private Dictionary<int, Sprite> dic_gimmickSprites2;
+	private Dictionary<int, Sprite> dic_gimmickSprites3;
+
+	private List<GameObject> listGimmick1;
+	private List<GameObject> listGimmick2;
+	private List<GameObject> listGimmick3;
+	private List<GameObject> listGimmick4;
+	private List<GameObject> listGimmick5;
 
 	[SerializeField] private GameObject btnRetry;
 	[SerializeField] private GameObject labelClear;
@@ -55,12 +63,23 @@ public class GameManager : MonoBehaviour
             instance = this;
 			dic_gimmicks = new Dictionary<int, GimmickDBEntity>();
 			dic_gimmickSprites = new Dictionary<int, Sprite>();
-			foreach(GimmickDBEntity gimmickDbEntity in gimmickDB.gimmicks)
+			dic_gimmickSprites2 = new Dictionary<int, Sprite>();
+			dic_gimmickSprites3 = new Dictionary<int, Sprite>();
+			foreach (GimmickDBEntity gimmickDbEntity in gimmickDB.gimmicks)
 			{
 				dic_gimmicks.Add(gimmickDbEntity.id, gimmickDbEntity);
 				if(gimmickDbEntity.sprite.Length > 0)
 					dic_gimmickSprites.Add(gimmickDbEntity.id, Resources.Load<Sprite>(gimmickDbEntity.sprite));
+				if (gimmickDbEntity.sprite2.Length > 0)
+					dic_gimmickSprites2.Add(gimmickDbEntity.id, Resources.Load<Sprite>(gimmickDbEntity.sprite2));
+				if (gimmickDbEntity.sprite3.Length > 0)
+					dic_gimmickSprites3.Add(gimmickDbEntity.id, Resources.Load<Sprite>(gimmickDbEntity.sprite3));
 			}
+			listGimmick1 = new List<GameObject>();
+			listGimmick2 = new List<GameObject>();
+			listGimmick3 = new List<GameObject>();
+			listGimmick4 = new List<GameObject>();
+			listGimmick5 = new List<GameObject>();
 		}
 	}
 
@@ -327,14 +346,14 @@ public class GameManager : MonoBehaviour
 	void PrepareGimmickAll()
 	{
 		// 기믹 정보를 보며 기믹 생성
-		PrepareGimmick(levelData.gimmick1);
-		PrepareGimmick(levelData.gimmick2);
-		PrepareGimmick(levelData.gimmick3);
-		PrepareGimmick(levelData.gimmick4);
-		PrepareGimmick(levelData.gimmick5);
+		PrepareGimmick(levelData.gimmick1, listGimmick1);
+		PrepareGimmick(levelData.gimmick2, listGimmick2);
+		PrepareGimmick(levelData.gimmick3, listGimmick3);
+		PrepareGimmick(levelData.gimmick4, listGimmick4);
+		PrepareGimmick(levelData.gimmick5, listGimmick5);
 	}
 
-	void PrepareGimmick(string gimmick)
+	void PrepareGimmick(string gimmick, List<GameObject> listGimmick)
 	{
 		if (gimmick.Length == 0)
 			return;
@@ -352,16 +371,20 @@ public class GameManager : MonoBehaviour
 		GimmickType gimmickType = (GimmickType)(gimmickValue - hp);
 		GimmickDBEntity gimmickInfo = GetGimmickInfo(gimmickType);
 
-		Color color = GetGimmickColor(gimmickType, hp);
 		for (int i = 1; i < numInfo.Length; i++)
 		{
 			int angle = numInfo[i];
 			Vector3 gimmickPos = GetGimmickPos(angle, gimmickInfo.distance);
-			CreateGimmick(gimmickType, hp, color, gimmickPos, angle);
+			CreateGimmick(gimmickType, hp, gimmickPos, angle, listGimmick);
 		}
 	}
 
-	public Color GetGimmickColor(GimmickType type, int hp)
+	public Color GetGimmickColor(Gimmick gameObjectGimmick)
+	{
+		return GetGimmickColor(gameObjectGimmick.gimmickType, gameObjectGimmick.hp, gameObjectGimmick.GetChecked());
+	}
+
+	public Color GetGimmickColor(GimmickType type, int hp, bool isChecked)
 	{
 		switch (type)
 		{
@@ -375,6 +398,13 @@ public class GameManager : MonoBehaviour
 				return new Color(1f, 0f, 0f);
 			case GimmickType.ADD_SHOT:
 				return new Color(0.0f, 0f, 0.9f);
+			case GimmickType.SEQUENCE:
+				{
+					if (!isChecked)
+						return new Color(0f, 0f, 0f);
+					else
+						return Color.cyan;
+				}
 		}
 
 		if (hp > 3)
@@ -405,12 +435,36 @@ public class GameManager : MonoBehaviour
 		return newPosition;
 	}
 
-	public void CreateGimmick(GimmickType gimmickType, int hp, Color color, Vector3 gimmickPos, int angle)
+	public void CreateGimmick(GimmickType gimmickType, int hp, Vector3 gimmickPos, int angle, List<GameObject> listGimmick)
 	{
 		GameObject gimmickGameObject = Instantiate(gimmickObject, gimmickPos, Quaternion.identity);
 		gimmickGameObject.transform.SetParent(targetCircle.transform);
 		Gimmick gameObjectGimmick = gimmickGameObject.GetComponent<Gimmick>();
-		gameObjectGimmick.SetGimmick(gimmickType, hp, color, angle);
+		bool isChecked = GetGimmickInitChecked(gimmickType, listGimmick);
+		Color color = GetGimmickColor(gimmickType, hp, isChecked);
+		gameObjectGimmick.SetGimmick(gimmickType, hp, color, angle, listGimmick, isChecked);
+		listGimmick.Add(gimmickGameObject);
+	}
+
+	public bool GetGimmickInitChecked(GimmickType gimmickType, List<GameObject> listGimmick)
+	{
+		bool result = false;
+		switch (gimmickType)
+		{
+			// 순서
+			case GimmickType.SEQUENCE:
+				{
+					if (listGimmick != null && listGimmick.Count == 0)
+						result = true;
+				}
+				break;
+		}
+		return result;
+	}
+
+	private void GimmickHpMinusWork(GameObject gameObject)
+	{
+		GimmickHpMinusWork(gameObject, gameObject.GetComponent<Gimmick>());
 	}
 
 	private void GimmickHpMinusWork(GameObject gameObject, Gimmick gameObjectGimmick)
@@ -418,11 +472,49 @@ public class GameManager : MonoBehaviour
 		if (gameObjectGimmick.hp <= 0)
 			return;
 		gameObjectGimmick.hp--;
-		gameObjectGimmick.SetColor(GetGimmickColor(gameObjectGimmick.gimmickType, gameObjectGimmick.hp));
+		gameObjectGimmick.SetColor(GetGimmickColor(gameObjectGimmick));
 		if (gameObjectGimmick.hp <= 0)
 		{
 			// 기믹 제거
 			gameObject.transform.DOScale(Vector3.zero, 0.1f).SetEase(Ease.InBack).OnComplete(() => Destroy(gameObject));
+		}
+	}
+
+	private void GimmickListWork(GameObject gameObject, Gimmick gameObjectGimmick)
+	{
+		List<GameObject> gimmickList = gameObjectGimmick.GetListGimmick();
+		if (gimmickList == null)
+			return;
+
+		switch (gameObjectGimmick.gimmickType)
+		{
+			// 순서
+			case GimmickType.SEQUENCE:
+				{
+					// 타겟 체크 안되어 있으면 무 반응
+					if (!gameObjectGimmick.GetChecked())
+						return;
+					// 스프라이트 교체
+					gameObjectGimmick.SetUnChecked();
+					gameObjectGimmick.SetColor(GetGimmickColor(gameObjectGimmick));
+					gameObjectGimmick.SetGimmickSprite(2);
+					
+					Gimmick nextGameObjectGimmick = GetNextGameObject(gimmickList, gameObject);
+					if(nextGameObjectGimmick != null)
+					{
+						// 다음 오브젝트 활성화
+						nextGameObjectGimmick.SetChecked();
+						nextGameObjectGimmick.SetColor(GetGimmickColor(nextGameObjectGimmick));
+					}
+					else
+					{
+						// 해당 리스트의 기믹들 모두 체크 제거
+						RemoveAllGimmicks(gimmickList);
+					}
+
+
+				}
+				break;
 		}
 	}
 
@@ -453,6 +545,11 @@ public class GameManager : MonoBehaviour
 					hp -= gimmickInfo.value1;
 					SetHPText();
 					GimmickHpMinusWork(gameObject, gameObjectGimmick);
+				}
+				break;
+			case GimmickType.SEQUENCE:
+				{
+					GimmickListWork(gameObject, gameObjectGimmick);
 				}
 				break;
 
@@ -519,5 +616,42 @@ public class GameManager : MonoBehaviour
 		if (dic_gimmickSprites.TryGetValue((int)type, out Sprite sprite))
 			return sprite;
 		return null;
+	}
+
+	public Sprite GetGimmickSprite2(GimmickType type)
+	{
+		if (dic_gimmickSprites2.TryGetValue((int)type, out Sprite sprite))
+			return sprite;
+		return null;
+	}
+
+	public Sprite GetGimmickSprite3(GimmickType type)
+	{
+		if (dic_gimmickSprites3.TryGetValue((int)type, out Sprite sprite))
+			return sprite;
+		return null;
+	}
+
+	public Gimmick GetNextGameObject(List<GameObject> gimmickList, GameObject gameObject)
+	{
+		bool found = false;
+		foreach(GameObject go in gimmickList)
+		{
+			if (found)
+			{
+				return go.GetComponent<Gimmick>();
+			}
+
+			if(go == gameObject) found = true;
+		}
+		return null;
+	}
+
+	public void RemoveAllGimmicks(List<GameObject> list)
+	{
+		foreach(GameObject go in list)
+		{
+			GimmickHpMinusWork(go);
+		}
 	}
 }
