@@ -54,6 +54,10 @@ public class GameManager : MonoBehaviour
 
 	[SerializeField] private GameObject gimmickObject;
 
+	private bool inShield = false;
+	private GameObject curHitGimmick = null;
+	private List<GameObject> listPinnedShot = null;
+
 	// Start is called once before the first execution of Update after the MonoBehaviour is created
 
 	private void Awake()
@@ -80,6 +84,8 @@ public class GameManager : MonoBehaviour
 			listGimmick3 = new List<GameObject>();
 			listGimmick4 = new List<GameObject>();
 			listGimmick5 = new List<GameObject>();
+
+			listPinnedShot = new List<GameObject>();
 		}
 	}
 
@@ -400,10 +406,17 @@ public class GameManager : MonoBehaviour
 				return new Color(0.0f, 0f, 0.9f);
 			case GimmickType.SEQUENCE:
 				{
-					if (!isChecked)
-						return new Color(0f, 0f, 0f);
+					if (isChecked)
+						return Color.green;
 					else
-						return Color.cyan;
+						return new Color(0f, 0f, 0f);
+				}
+			case GimmickType.KEY_CHAIN:
+				{
+					if (isChecked)
+						return Color.green;
+					else
+						return new Color(0f, 0f, 0f);
 				}
 		}
 
@@ -440,10 +453,23 @@ public class GameManager : MonoBehaviour
 		GameObject gimmickGameObject = Instantiate(gimmickObject, gimmickPos, Quaternion.identity);
 		gimmickGameObject.transform.SetParent(targetCircle.transform);
 		Gimmick gameObjectGimmick = gimmickGameObject.GetComponent<Gimmick>();
+		SetTargetStateByGimmickInit(gimmickType);
 		bool isChecked = GetGimmickInitChecked(gimmickType, listGimmick);
 		Color color = GetGimmickColor(gimmickType, hp, isChecked);
 		gameObjectGimmick.SetGimmick(gimmickType, hp, color, angle, listGimmick, isChecked);
 		listGimmick.Add(gimmickGameObject);
+	}
+
+	public void SetTargetStateByGimmickInit(GimmickType gimmickType)
+	{
+		switch (gimmickType)
+		{
+			case GimmickType.KEY_CHAIN:
+				{
+					inShield = true;
+				}
+				break;
+		}
 	}
 
 	public bool GetGimmickInitChecked(GimmickType gimmickType, List<GameObject> listGimmick)
@@ -477,6 +503,28 @@ public class GameManager : MonoBehaviour
 		{
 			// 기믹 제거
 			gameObject.transform.DOScale(Vector3.zero, 0.1f).SetEase(Ease.InBack).OnComplete(() => Destroy(gameObject));
+		}
+	}
+
+	private void GimmickCheckWork(GameObject gameObject, Gimmick gameObjectGimmick)
+	{
+		switch (gameObjectGimmick.gimmickType)
+		{
+			case GimmickType.CONTINUE_HIT:
+				{
+					if (gameObjectGimmick.GetChecked())
+					{
+						// 데미지 추가
+						GimmickHpMinusWork(gameObject, gameObjectGimmick);
+					}
+					else
+					{
+						// 체크 상태로 변경
+						gameObjectGimmick.SetChecked();
+						gameObjectGimmick.SetGimmickSprite(2);
+					}
+				}
+				break;
 		}
 	}
 
@@ -515,6 +563,23 @@ public class GameManager : MonoBehaviour
 
 				}
 				break;
+
+			// 고리
+			case GimmickType.KEY_CHAIN:
+				{
+					// 체크 되어있으면 무시
+					if (gameObjectGimmick.GetChecked())
+						return;
+					// 체크 처리
+					gameObjectGimmick.SetChecked();
+					gameObjectGimmick.SetColor(GetGimmickColor(gameObjectGimmick));
+					if (CheckAllChecked(gimmickList))
+					{
+						RemoveAllGimmicks(gimmickList);
+						inShield = false;
+					}
+				}
+				break;
 		}
 	}
 
@@ -550,6 +615,23 @@ public class GameManager : MonoBehaviour
 			case GimmickType.SEQUENCE:
 				{
 					GimmickListWork(gameObject, gameObjectGimmick);
+				}
+				break;
+			case GimmickType.KEY_CHAIN:
+				{
+					GimmickListWork(gameObject, gameObjectGimmick);
+				}
+				break;
+			case GimmickType.CONTINUE_HIT:
+				{
+					this.curHitGimmick = gameObject;
+					GimmickCheckWork(gameObject, gameObjectGimmick);
+				}
+				break;
+			case GimmickType.REMOVE_SHOT:
+				{
+					RemoveAllShop();
+					GimmickHpMinusWork(gameObject, gameObjectGimmick);
 				}
 				break;
 
@@ -652,6 +734,94 @@ public class GameManager : MonoBehaviour
 		foreach(GameObject go in list)
 		{
 			GimmickHpMinusWork(go);
+		}
+	}
+
+	public bool IsInShield()
+	{
+		return inShield;
+	}
+
+	public bool CheckAllChecked(List<GameObject> list)
+	{
+		foreach (GameObject go in list)
+		{
+			if (go.IsDestroyed())
+				continue;
+			Gimmick gameObjectGimmick = go.GetComponent<Gimmick>();
+			if (gameObjectGimmick == null)
+				return false;
+			if(!gameObjectGimmick.GetChecked())
+				return false;
+		}
+
+		return true;
+	}
+
+	public void ResetHitGimmick()
+	{
+		Debug.Log("리셋 ResetHitGimmick");
+		curHitGimmick = null;
+	}
+
+	public void CheckListGimmickStatus()
+	{
+		CheckListGimmickStatus(listGimmick1);
+		CheckListGimmickStatus(listGimmick2);
+		CheckListGimmickStatus(listGimmick3);
+		CheckListGimmickStatus(listGimmick4);
+		CheckListGimmickStatus(listGimmick5);
+	}
+
+	private void CheckListGimmickStatus(List<GameObject> list)
+	{
+		if (list == null || list.Count == 0)
+			return;
+		foreach (GameObject go in list)
+		{
+			if(go.IsDestroyed())
+				continue;
+			Gimmick gameObjectGimmick = go.GetComponent<Gimmick>();
+			if(gameObjectGimmick != null)
+			{
+				switch(gameObjectGimmick.gimmickType)
+				{
+					case GimmickType.CONTINUE_HIT:
+						{
+							Debug.Log($"리셋 체크 GimmickType.CONTINUE_HIT: {curHitGimmick}");
+							if (go == curHitGimmick)
+							{
+								// 리셋 스킵
+							}
+							else
+							{
+								if (gameObjectGimmick.GetChecked())
+								{
+									// 상태 리셋
+									gameObjectGimmick.SetUnChecked();
+									gameObjectGimmick.SetGimmickSprite(1);
+								}
+							}
+						}
+						break;
+				}
+			}
+		}
+	}
+
+	public void AddPinnedShot(GameObject go)
+	{
+		listPinnedShot.Add(go);
+	}
+
+	private void RemoveAllShop()
+	{
+		foreach(GameObject go in listPinnedShot)
+		{
+			if(!go.IsDestroyed())
+			{
+				go.transform.DOScale(Vector3.zero, 0.1f).SetEase(Ease.InBack).OnComplete(() => Destroy(go));
+			}
 		}
 	}
 }

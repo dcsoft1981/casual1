@@ -38,23 +38,37 @@ public class Pin : MonoBehaviour
 
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
+		bool checkGimmickStatus = true;
 		if(collision.gameObject.tag == "Target")
 		{
-			isPinned = true;
-			GameObject childObject = transform.Find("Square").gameObject;
-			//GameObject childObject = transform.GetChild(0).gameObject;
-			//SpriteRenderer childSprite = childObject.GetComponent<SpriteRenderer>();
-			//childSprite.enabled = true;
-			// 부착
-			transform.SetParent(collision.gameObject.transform);
-			AudioManager.instance.PlaySfx(AudioManager.Sfx.shoot_good);
-			GameManager.instance.DecreaseHP();
+			if(GameManager.instance.IsInShield())
+			{
+				// 데미지 없음
+				AudioManager.instance.PlaySfx(AudioManager.Sfx.shoot_failure);
+				ReflectPin(collision);
+				Debug.Log("OnTriggerEnter2D Target InShield");
+			}
+			else
+			{
+				isPinned = true;
+				GameObject childObject = transform.Find("Square").gameObject;
+				//GameObject childObject = transform.GetChild(0).gameObject;
+				//SpriteRenderer childSprite = childObject.GetComponent<SpriteRenderer>();
+				//childSprite.enabled = true;
+				// 부착
+				transform.SetParent(collision.gameObject.transform);
+				AudioManager.instance.PlaySfx(AudioManager.Sfx.shoot_good);
+				GameManager.instance.DecreaseHP();
+				GameManager.instance.AddPinnedShot(this.gameObject);
+				Debug.Log("OnTriggerEnter2D Target HIT");
+			}
 		}
 		else if(collision.gameObject.tag == "Pin")
 		{
 			if(isPinned)
 			{
 				// 이미 고정된 핀
+				Debug.Log("OnTriggerEnter2D Pin Pinned");
 			}
 			else
 			{
@@ -62,8 +76,9 @@ public class Pin : MonoBehaviour
 				AudioManager.instance.PlaySfx(AudioManager.Sfx.shoot_failure);
 				//GameManager.instance.SetGameOver(false);
 				ReflectPin(collision);
+				Debug.Log("OnTriggerEnter2D Pin ReflectPin");
+				checkGimmickStatus = false; // 움직이거나, 새로 생성된 발사체와 충돌시 체크하지 않는다.
 			}
-			Debug.Log("OnTriggerEnter2D : " + isPinned);
 		}
 		else if (collision.gameObject.tag == "Gimmick")
 		{
@@ -72,8 +87,20 @@ public class Pin : MonoBehaviour
 			if (destroyPin)
 			{
 				ReflectPin(collision);
+				Debug.Log("OnTriggerEnter2D Gimmick ReflectPin");
+			}
+			else
+			{
+				Debug.Log("OnTriggerEnter2D Gimmick Hit");
 			}
 		}
+		else
+		{
+			Debug.Log("OnTriggerEnter2D STRANGE NO WORK");
+		}
+		
+		if(checkGimmickStatus)
+			GameManager.instance.CheckListGimmickStatus();
 	}
 
 	public void Launch()

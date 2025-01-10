@@ -32,7 +32,7 @@ MonoBehaviour:
     sprite2: 
     sprite3: 
   - id: 10300
-    desc: "\uC21C\uC11C(\uAD6C\uD604 \uC804)"
+    desc: "\uC21C\uC11C(1\uCC28 \uAD6C\uD604 \uC644)"
     sprite: Warning
     spritescale: 0.4
     objectscale: 1
@@ -66,8 +66,8 @@ MonoBehaviour:
     objectscale: 1
     distance: 0.5
     value1: 0
-    sprite2: PotionHalf
-    sprite3: PotionFull
+    sprite2: PotionFull
+    sprite3: 
   - id: 10700
     desc: "\uD0C0\uAC9F\uC5D0 \uBD99\uC740 \uBAA8\uB4E0 \uBC1C\uC0AC\uCCB4 \uC18C\uAC70"
     sprite: AimStar

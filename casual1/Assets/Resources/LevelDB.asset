@@ -69,7 +69,7 @@ MonoBehaviour:
     target: 10100
     rotation: 100
     gimmick1: 10102:0
-    gimmick2: 
+    gimmick2: 10401:90:150:220:270
     gimmick3: 
     gimmick4: 
     gimmick5: 
@@ -79,7 +79,7 @@ MonoBehaviour:
     target: 10100
     rotation: 100
     gimmick1: 10102:0
-    gimmick2: 
+    gimmick2: 10601:90:150
     gimmick3: 
     gimmick4: 
     gimmick5: 
@@ -90,7 +90,7 @@ MonoBehaviour:
     rotation: 100
     gimmick1: 10102:0
     gimmick2: 20301:130
-    gimmick3: 
+    gimmick3: 10701:180
     gimmick4: 
     gimmick5: 
   - id: 9

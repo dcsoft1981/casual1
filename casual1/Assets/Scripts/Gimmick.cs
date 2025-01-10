@@ -60,6 +60,8 @@ public class Gimmick : MonoBehaviour
 		{
 			Debug.LogError($"{gimmickType} 스프라이트를 로드할 수 없습니다. 경로를 확인하세요.");
 		}
+
+		//spriteRenderer.material = Resources.Load<Material>("Materials/ice");
 	}
 
     public void SetGimmick(Define.GimmickType _type, int _hp, Color _color, int _inputAngle, List<GameObject> _listGimmick, bool _isChecked)
