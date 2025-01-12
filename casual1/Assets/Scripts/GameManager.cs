@@ -335,7 +335,7 @@ public class GameManager : MonoBehaviour
 	public void CheckFailure()
 	{
 		// shot == 0 이면 실패
-		if (shot == 0)
+		if (shot == 0 && hp > 0)
 			SetGameOver(false);
 	}
 

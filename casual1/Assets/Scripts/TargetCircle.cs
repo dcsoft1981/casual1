@@ -104,15 +104,12 @@ public class TargetCircle : MonoBehaviour
 		float startAngle = _startAngle; // 추가 점수 범위 시작 각도
 		float endAngle = _endAngle; // 추가 점수 범위 끝 각도
 		float segments = 50f; // 세그먼트 수
-		float radius = 0.5f* scalePercent / 100f; // 원의 반지름
-		Color bonusColor = Color.blue; // 추가 점수 범위 색상
+		float radius = 0.5f;
 
 		lineRenderer.positionCount = (int)segments + 1;
 		lineRenderer.useWorldSpace = false;
 		lineRenderer.startWidth = 0.2f;
 		lineRenderer.endWidth = 0.2f;
-		//lineRenderer.startColor = bonusColor;
-		//lineRenderer.endColor = bonusColor;
 
 		float angle = startAngle;
 		for (int i = 0; i <= segments; i++)
@@ -122,5 +119,6 @@ public class TargetCircle : MonoBehaviour
 			lineRenderer.SetPosition(i, new Vector3(x, y, 0));
 			angle += (endAngle - startAngle) / segments;
 		}
+		Debug.Log("DrawDamageLine radius :" + radius);
 	}
 }

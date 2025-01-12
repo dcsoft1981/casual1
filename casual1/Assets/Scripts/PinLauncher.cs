@@ -28,12 +28,17 @@ public class PinLauncher : MonoBehaviour
 
 	void PreparePin()
     {
-        GameManager.instance.CheckFailure();
-        if(GameManager.instance.isGameOver == false)
+		Invoke("CheckFailure", 0.2f);
+		if (GameManager.instance.isGameOver == false)
         {
 			GameObject pin = Instantiate(pinObject, transform.position, Quaternion.identity);
 			currPin = pin.GetComponent<Pin>();
             GameManager.instance.ResetHitGimmick();
 		}
+	}
+
+    void CheckFailure()
+    {
+		GameManager.instance.CheckFailure();
 	}
 }
