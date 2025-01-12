@@ -41,7 +41,7 @@ MonoBehaviour:
     sprite2: Checked
     sprite3: 
   - id: 10400
-    desc: "\uACE0\uB9AC(\uAD6C\uD604 \uC804)"
+    desc: "\uACE0\uB9AC(1\uCC28 \uAD6C\uD604 \uC644)"
     sprite: Protect
     spritescale: 0.4
     objectscale: 1
@@ -60,7 +60,7 @@ MonoBehaviour:
     sprite2: 
     sprite3: 
   - id: 10600
-    desc: "\uC5F0\uC18D \uD788\uD2B8"
+    desc: "\uC5F0\uC18D \uD788\uD2B8(1\uCC28 \uAD6C\uD604 \uC644)"
     sprite: PotionEmpty
     spritescale: 0.4
     objectscale: 1
@@ -69,7 +69,8 @@ MonoBehaviour:
     sprite2: PotionFull
     sprite3: 
   - id: 10700
-    desc: "\uD0C0\uAC9F\uC5D0 \uBD99\uC740 \uBAA8\uB4E0 \uBC1C\uC0AC\uCCB4 \uC18C\uAC70"
+    desc: "\uD0C0\uAC9F\uC5D0 \uBD99\uC740 \uBAA8\uB4E0 \uBC1C\uC0AC\uCCB4 \uC18C\uAC70(1\uCC28
+      \uAD6C\uD604 \uC644)"
     sprite: AimStar
     spritescale: 0.4
     objectscale: 1
@@ -87,7 +88,18 @@ MonoBehaviour:
     sprite2: 
     sprite3: 
   - id: 10900
-    desc: "\uD134\uB9C8\uB2E4 \uC81C\uAC70 \uAC00\uB2A5 \uC5EC\uBD80\uAC00 \uBC14\uB01C"
+    desc: "\uD134\uB9C8\uB2E4 \uC81C\uAC70 \uAC00\uB2A5 \uC5EC\uBD80\uAC00 \uBC14\uB01C
+      \uD788\uD2B8 \uAC00\uB2A5 \uC2DC\uC791(1\uCC28 \uAD6C\uD604 \uC644)"
+    sprite: Lock
+    spritescale: 0.4
+    objectscale: 1
+    distance: 0.5
+    value1: 0
+    sprite2: LockOpened
+    sprite3: 
+  - id: 11000
+    desc: "\uD134\uB9C8\uB2E4 \uC81C\uAC70 \uAC00\uB2A5 \uC5EC\uBD80\uAC00 \uBC14\uB01C
+      \uD788\uD2B8 \uBD88\uAC00 \uC2DC\uC791(1\uCC28 \uAD6C\uD604 \uC644)"
     sprite: Lock
     spritescale: 0.4
     objectscale: 1
@@ -96,7 +108,8 @@ MonoBehaviour:
     sprite2: LockOpened
     sprite3: 
   - id: 20100
-    desc: "\uD788\uD2B8 \uC2DC \uD68C\uC804\uC18D\uB3C4 \uC99D\uAC00"
+    desc: "\uD788\uD2B8 \uC2DC \uD68C\uC804\uC18D\uB3C4 \uC99D\uAC00(1\uCC28 \uAD6C\uD604
+      \uC644)"
     sprite: Reload
     spritescale: 0.4
     objectscale: 1
@@ -105,7 +118,8 @@ MonoBehaviour:
     sprite2: 
     sprite3: 
   - id: 20200
-    desc: "\uD788\uD2B8 \uC2DC \uD68C\uC804\uC18D\uB3C4 \uAC10\uC18C"
+    desc: "\uD788\uD2B8 \uC2DC \uD68C\uC804\uC18D\uB3C4 \uAC10\uC18C(1\uCC28 \uAD6C\uD604
+      \uC644)"
     sprite: Reload
     spritescale: 0.4
     objectscale: 1
@@ -114,7 +128,8 @@ MonoBehaviour:
     sprite2: 
     sprite3: 
   - id: 20300
-    desc: "\uD788\uD2B8 \uC2DC \uBC1C\uC0AC\uCCB4 \uC218\uB7C9 N \uC99D\uAC00"
+    desc: "\uD788\uD2B8 \uC2DC \uBC1C\uC0AC\uCCB4 \uC218\uB7C9 N \uC99D\uAC00(1\uCC28
+      \uAD6C\uD604 \uC644)"
     sprite: BulletSingle
     spritescale: 0.4
     objectscale: 1
@@ -124,7 +139,7 @@ MonoBehaviour:
     sprite3: 
   - id: 30100
     desc: "\uD574\uB2F9 \uC601\uC5ED\uC744 \uD1B5\uACFC\uD574\uC11C \uD788\uD2B8
-      \uC2DC, \uB370\uBBF8\uC9C0\uAC00 N\uBC30"
+      \uC2DC, \uB370\uBBF8\uC9C0\uAC00 N\uBC30(1\uCC28 \uAD6C\uD604 \uC644)"
     sprite: 
     spritescale: 0.4
     objectscale: 1

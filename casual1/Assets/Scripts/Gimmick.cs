@@ -72,7 +72,7 @@ public class Gimmick : MonoBehaviour
 		this.isChecked = _isChecked;
 
 		SetColor(_color);
-		SetGimmickSprite(1);
+		SetGimmickSprite(GetSpriteNoAtInit(_type, _isChecked));
 		GimmickDBEntity gimmickInfo = GameManager.instance.GetGimmickInfo(gimmickType);
 		// 원하는 크기에 맞게 로컬 스케일을 조정합니다.
 		spriteScale = gimmickInfo.spritescale;
@@ -118,5 +118,20 @@ public class Gimmick : MonoBehaviour
 	public List<GameObject> GetListGimmick()
 	{
 		return this.listGimmick;
+	}
+
+	public int GetSpriteNoAtInit(Define.GimmickType _type, bool _checked)
+	{
+		switch(_type)
+		{
+			case Define.GimmickType.ONOFF_ON:
+			case Define.GimmickType.ONOFF_OFF:
+				{
+					if (_checked)
+						return 2;
+				}
+				break;
+		}
+		return 1;
 	}
 }

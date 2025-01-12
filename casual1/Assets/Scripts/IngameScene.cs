@@ -1,6 +1,7 @@
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class IngameScene : MonoBehaviour
 {
@@ -29,5 +30,10 @@ public class IngameScene : MonoBehaviour
 	public void OnCloseIngameCheat()
 	{
 		popupIngameCheat.SetActive(false);
+	}
+
+	public void OnClickHome()
+	{
+		SceneManager.LoadScene("LobbyScene");
 	}
 }

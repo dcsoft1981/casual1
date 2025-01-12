@@ -510,8 +510,14 @@ public class GameManager : MonoBehaviour
 			// 순서
 			case GimmickType.SEQUENCE:
 				{
-					if (listGimmick != null && listGimmick.Count == 0)
+					if (listGimmick != null && listGimmick.Count == 0) // 순서 기믹의 첫 기믹
 						result = true;
+				}
+				break;
+			// ONOFF_ON
+			case GimmickType.ONOFF_ON: // ONOFF 히트가능 시작
+				{
+					result = true;
 				}
 				break;
 		}
@@ -552,6 +558,17 @@ public class GameManager : MonoBehaviour
 						// 체크 상태로 변경
 						gameObjectGimmick.SetChecked();
 						gameObjectGimmick.SetGimmickSprite(2);
+					}
+				}
+				break;
+
+			case GimmickType.ONOFF_ON:
+			case GimmickType.ONOFF_OFF:
+				{
+					if (gameObjectGimmick.GetChecked())
+					{
+						// 데미지 추가
+						GimmickHpMinusWork(gameObject, gameObjectGimmick);
 					}
 				}
 				break;
@@ -640,6 +657,10 @@ public class GameManager : MonoBehaviour
 					hp -= gimmickInfo.value1;
 					SetHPText();
 					GimmickHpMinusWork(gameObject, gameObjectGimmick);
+					if (hp <= 0)
+					{
+						SetGameOver(true);
+					}
 				}
 				break;
 			case GimmickType.SEQUENCE:
@@ -660,8 +681,14 @@ public class GameManager : MonoBehaviour
 				break;
 			case GimmickType.REMOVE_SHOT:
 				{
-					RemoveAllShop();
+					RemoveAllShot();
 					GimmickHpMinusWork(gameObject, gameObjectGimmick);
+				}
+				break;
+			case GimmickType.ONOFF_ON:
+			case GimmickType.ONOFF_OFF:
+				{
+					GimmickCheckWork(gameObject, gameObjectGimmick);
 				}
 				break;
 
@@ -834,6 +861,22 @@ public class GameManager : MonoBehaviour
 							}
 						}
 						break;
+
+					case GimmickType.ONOFF_ON:
+					case GimmickType.ONOFF_OFF:
+						{
+							if (gameObjectGimmick.GetChecked())
+							{
+								gameObjectGimmick.SetUnChecked();
+								gameObjectGimmick.SetGimmickSprite(1);
+							}
+							else
+							{
+								gameObjectGimmick.SetChecked();
+								gameObjectGimmick.SetGimmickSprite(2);
+							}
+						}
+						break;
 				}
 			}
 		}
@@ -844,7 +887,7 @@ public class GameManager : MonoBehaviour
 		listPinnedShot.Add(go);
 	}
 
-	private void RemoveAllShop()
+	private void RemoveAllShot()
 	{
 		foreach(GameObject go in listPinnedShot)
 		{
