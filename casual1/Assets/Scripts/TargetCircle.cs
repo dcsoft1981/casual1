@@ -14,6 +14,12 @@ public class TargetCircle : MonoBehaviour
 	private float totalTime = 0f;
 
 	private LevelDBEntity levelDBEntity;
+	private LineRenderer lineRenderer;
+
+	private void Awake()
+	{
+		lineRenderer = GetComponent<LineRenderer>();
+	}
 
 	public void StartAnimation(AnimationCurve animationCurve)
 	{
@@ -40,7 +46,6 @@ public class TargetCircle : MonoBehaviour
 			totalTime = levelDBEntity.time4;
 		*/
 		totalTime = Define.ROTATE_SEC;
-
 	}
 
 	private float GetCurRotationSpeed(float curTime)
@@ -92,5 +97,30 @@ public class TargetCircle : MonoBehaviour
 			//Debug.Log("TargetCircle : " + elapsedTime + " - " + curTime + " - " + rotationSpeed);
 		}
 
+	}
+
+	public void DrawDamageLine(int scalePercent, int _startAngle, int _endAngle)
+	{
+		float startAngle = _startAngle; // 추가 점수 범위 시작 각도
+		float endAngle = _endAngle; // 추가 점수 범위 끝 각도
+		float segments = 50f; // 세그먼트 수
+		float radius = 0.5f* scalePercent / 100f; // 원의 반지름
+		Color bonusColor = Color.blue; // 추가 점수 범위 색상
+
+		lineRenderer.positionCount = (int)segments + 1;
+		lineRenderer.useWorldSpace = false;
+		lineRenderer.startWidth = 0.2f;
+		lineRenderer.endWidth = 0.2f;
+		//lineRenderer.startColor = bonusColor;
+		//lineRenderer.endColor = bonusColor;
+
+		float angle = startAngle;
+		for (int i = 0; i <= segments; i++)
+		{
+			float x = Mathf.Cos(angle * Mathf.Deg2Rad) * radius;
+			float y = Mathf.Sin(angle * Mathf.Deg2Rad) * radius;
+			lineRenderer.SetPosition(i, new Vector3(x, y, 0));
+			angle += (endAngle - startAngle) / segments;
+		}
 	}
 }

@@ -58,6 +58,10 @@ public class GameManager : MonoBehaviour
 	private GameObject curHitGimmick = null;
 	private List<GameObject> listPinnedShot = null;
 
+	private int damageAreaStartAngle = 0;
+	private int damageAreaEndAngle = 0;
+	private int damageAreaBonus = 0;
+
 	// Start is called once before the first execution of Update after the MonoBehaviour is created
 
 	private void Awake()
@@ -151,9 +155,11 @@ public class GameManager : MonoBehaviour
 		textShot.SetText("x" + shot.ToString());
 	}
 
-	public void DecreaseHP()
+	public void DecreaseHP(int damage)
     {
-        hp--;
+		hp -= damage;
+		if (hp < 0)
+			hp = 0;
 		SetHPText();
 
         if(hp <= 0)
@@ -377,11 +383,24 @@ public class GameManager : MonoBehaviour
 		GimmickType gimmickType = (GimmickType)(gimmickValue - hp);
 		GimmickDBEntity gimmickInfo = GetGimmickInfo(gimmickType);
 
-		for (int i = 1; i < numInfo.Length; i++)
+		if(gimmickType == GimmickType.DAMAGE_AREA)
 		{
-			int angle = numInfo[i];
-			Vector3 gimmickPos = GetGimmickPos(angle, gimmickInfo.distance);
-			CreateGimmick(gimmickType, hp, gimmickPos, angle, listGimmick);
+			// 单固瘤 瘤开 积己
+			damageAreaBonus = numInfo[1];
+			damageAreaStartAngle = numInfo[2];
+			damageAreaEndAngle = numInfo[3];
+			Debug.Log($"DAMAGE_AREA: {targetScale}, {damageAreaBonus}, {damageAreaStartAngle}, {damageAreaEndAngle}");
+			targetCircle.DrawDamageLine(targetScale, damageAreaStartAngle, damageAreaEndAngle);
+		}
+		else
+		{
+			// 扁雇 积己
+			for (int i = 1; i < numInfo.Length; i++)
+			{
+				int angle = numInfo[i];
+				Vector3 gimmickPos = GetGimmickPos(angle, gimmickInfo.distance);
+				CreateGimmick(gimmickType, hp, gimmickPos, angle, listGimmick);
+			}
 		}
 	}
 
@@ -822,6 +841,21 @@ public class GameManager : MonoBehaviour
 			{
 				go.transform.DOScale(Vector3.zero, 0.1f).SetEase(Ease.InBack).OnComplete(() => Destroy(go));
 			}
+		}
+	}
+
+	public int GetHpAmountByTargetAngle(int angle)
+	{
+		if(damageAreaBonus == 0)
+			return 1;
+
+		if(angle >= damageAreaStartAngle && angle <= damageAreaEndAngle)
+		{
+			return (1 + damageAreaBonus);
+		}
+		else
+		{
+			return 1;
 		}
 	}
 }

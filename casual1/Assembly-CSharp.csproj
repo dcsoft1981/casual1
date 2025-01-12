@@ -94,7 +94,6 @@
     <Compile Include="Assets\UltimateCleanGUIPack\Common\Scripts\Core\ProgressBarAmountText.cs" />
     <Compile Include="Assets\UltimateCleanGUIPack\Common\Scripts\Core\PopupOpener.cs" />
     <Compile Include="Assets\UltimateCleanGUIPack\Common\Scripts\Core\NotificationPositionType.cs" />
-    <Compile Include="Assets\Scripts\LevelData.cs" />
     <Compile Include="Assets\UltimateCleanGUIPack\Common\Scripts\Core\QueuedNotification.cs" />
     <Compile Include="Assets\Scripts\LobbyScene.cs" />
     <Compile Include="Assets\UltimateCleanGUIPack\Common\Scripts\Core\Gradient.cs" />

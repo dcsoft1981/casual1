@@ -88,10 +88,10 @@ MonoBehaviour:
     shot: 4
     target: 10100
     rotation: 100
-    gimmick1: 10102:0
-    gimmick2: 20301:130
+    gimmick1: 10102:0:90
+    gimmick2: 20301:270
     gimmick3: 10701:180
-    gimmick4: 
+    gimmick4: 30100:2:0:90
     gimmick5: 
   - id: 9
     hp: 5

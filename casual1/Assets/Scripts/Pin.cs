@@ -51,6 +51,18 @@ public class Pin : MonoBehaviour
 			else
 			{
 				isPinned = true;
+				// 접착된 지점의 각도
+				float angle = collision.gameObject.transform.rotation.eulerAngles.z;
+				if (angle < 0f)
+				{
+					angle = 360f - angle;
+				}
+				angle = 360f - angle;
+				if (angle >= 90f)
+					angle -= 90f;
+				else
+					angle += 270f;
+
 				GameObject childObject = transform.Find("Square").gameObject;
 				//GameObject childObject = transform.GetChild(0).gameObject;
 				//SpriteRenderer childSprite = childObject.GetComponent<SpriteRenderer>();
@@ -58,9 +70,11 @@ public class Pin : MonoBehaviour
 				// 부착
 				transform.SetParent(collision.gameObject.transform);
 				AudioManager.instance.PlaySfx(AudioManager.Sfx.shoot_good);
-				GameManager.instance.DecreaseHP();
+				int damage = GameManager.instance.GetHpAmountByTargetAngle((int)angle);
+				GameManager.instance.DecreaseHP(damage);
 				GameManager.instance.AddPinnedShot(this.gameObject);
-				Debug.Log("OnTriggerEnter2D Target HIT");
+
+				Debug.Log("OnTriggerEnter2D Target HIT Angle : " + angle + " , DAMAGE : " + damage);
 			}
 		}
 		else if(collision.gameObject.tag == "Pin")
