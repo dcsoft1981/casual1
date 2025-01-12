@@ -9,6 +9,7 @@ using static Define;
 using Unity.VisualScripting;
 using System.Collections.Generic;
 using DG.Tweening;
+using Unity.Burst.Intrinsics;
 
 public class GameManager : MonoBehaviour
 {
@@ -22,6 +23,7 @@ public class GameManager : MonoBehaviour
 	[SerializeField] private TextMeshProUGUI textHP;
     [SerializeField] private TextMeshProUGUI textLevel;
 	[SerializeField] private TextMeshProUGUI textShot;
+	[SerializeField] private TextMeshProUGUI textCombo;
 
 	private int hp;
 	private int targetId;
@@ -31,6 +33,7 @@ public class GameManager : MonoBehaviour
 	private int shot;
 	private int cheatRotation = 0;
 	private int rotationBuff = 0;
+	private int combo = 0;
 
 	private Dictionary<int, GimmickDBEntity> dic_gimmicks;
 	private Dictionary<int, Sprite> dic_gimmickSprites;
@@ -61,6 +64,8 @@ public class GameManager : MonoBehaviour
 	private int damageAreaStartAngle = 0;
 	private int damageAreaEndAngle = 0;
 	private int damageAreaBonus = 0;
+	private bool shotAddDamage = false;
+	private Pin currPin = null;
 
 	// Start is called once before the first execution of Update after the MonoBehaviour is created
 
@@ -96,6 +101,7 @@ public class GameManager : MonoBehaviour
 	void Start()
     {
 		int level = LocalDataManager.instance.GetCurLevel();
+		combo = 0;
 		//levelData = gameDataManager.GetLevelData(level);
 		levelData = levelDB.levels[level-1];
 
@@ -153,6 +159,11 @@ public class GameManager : MonoBehaviour
 	void SetShotText()
 	{
 		textShot.SetText("x" + shot.ToString());
+	}
+
+	void SetComboText()
+	{
+		textCombo.SetText(combo.ToString());
 	}
 
 	public void DecreaseHP(int damage)
@@ -844,18 +855,48 @@ public class GameManager : MonoBehaviour
 		}
 	}
 
-	public int GetHpAmountByTargetAngle(int angle)
+	public int GetHpAmountByTargetAngle(int angle, bool upgradeShot)
 	{
-		if(damageAreaBonus == 0)
-			return 1;
-
+		int baseDamage = 1;
+		int shotUpgradeDamage = 0;
+		int areaBonusDamage = 0;
+		
+		if (upgradeShot)
+			shotUpgradeDamage = 1;
 		if(angle >= damageAreaStartAngle && angle <= damageAreaEndAngle)
+			areaBonusDamage = damageAreaBonus;
+
+		return (baseDamage + shotUpgradeDamage + areaBonusDamage);
+	}
+
+	public void AddCombo()
+	{
+		combo++;
+		SetComboText();
+		if(combo >= Define.MAX_COMBO)
 		{
-			return (1 + damageAreaBonus);
+			shotAddDamage = true;
+			Invoke("ResetCombo", 0.1f);
 		}
-		else
+	}
+
+	public void ResetCombo()
+	{
+		combo = 0;
+		SetComboText();
+	}
+
+	public void SetCreatedPin(Pin _currPin)
+	{
+		currPin = _currPin;
+	}
+
+	public void CheckUpgradePin()
+	{
+		if(currPin != null && currPin.isAbleUpgrade() && shotAddDamage)
 		{
-			return 1;
+			currPin.Upgrade();
+			shotAddDamage = false;
 		}
 	}
 }

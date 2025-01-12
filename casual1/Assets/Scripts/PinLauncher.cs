@@ -33,7 +33,8 @@ public class PinLauncher : MonoBehaviour
         {
 			GameObject pin = Instantiate(pinObject, transform.position, Quaternion.identity);
 			currPin = pin.GetComponent<Pin>();
-            GameManager.instance.ResetHitGimmick();
+			GameManager.instance.SetCreatedPin(currPin);
+			GameManager.instance.ResetHitGimmick();
 		}
 	}
 

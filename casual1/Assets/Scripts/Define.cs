@@ -12,6 +12,7 @@ public class Define
 	public const float TARGET_BASE_SCALE = 3f;
 
 	public const float BASE_GIMMICK_SCALE = 1 / 3f;
+	public const int MAX_COMBO = 5;
 
 	// 타겟
 	// 10000 자리 값 : 외형. 일단 색으로 구분(1-GREEN, 2-BLUE,3-RED)

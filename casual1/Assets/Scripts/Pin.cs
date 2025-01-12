@@ -11,7 +11,13 @@ public class Pin : MonoBehaviour
 	private bool isLaunched = false;
 	private bool isReflecteded = false;
 	private Vector3 reflectVec = Vector3.zero;
-	// Start is called once before the first execution of Update after the MonoBehaviour is created
+	private bool isUpgraded = false;
+	private SpriteRenderer spriteRenderer;
+
+	private void Awake()
+	{
+		spriteRenderer = GetComponent<SpriteRenderer>();
+	}
 	void Start()
     {
         
@@ -34,6 +40,8 @@ public class Pin : MonoBehaviour
 				}
 			}
 		}
+
+		GameManager.instance.CheckUpgradePin();
 	}
 
 	private void OnTriggerEnter2D(Collider2D collision)
@@ -46,6 +54,7 @@ public class Pin : MonoBehaviour
 				// 데미지 없음
 				AudioManager.instance.PlaySfx(AudioManager.Sfx.shoot_failure);
 				ReflectPin(collision);
+				GameManager.instance.ResetCombo();
 				Debug.Log("OnTriggerEnter2D Target InShield");
 			}
 			else
@@ -70,9 +79,10 @@ public class Pin : MonoBehaviour
 				// 부착
 				transform.SetParent(collision.gameObject.transform);
 				AudioManager.instance.PlaySfx(AudioManager.Sfx.shoot_good);
-				int damage = GameManager.instance.GetHpAmountByTargetAngle((int)angle);
+				int damage = GameManager.instance.GetHpAmountByTargetAngle((int)angle, isUpgraded);
 				GameManager.instance.DecreaseHP(damage);
 				GameManager.instance.AddPinnedShot(this.gameObject);
+				GameManager.instance.AddCombo();
 
 				Debug.Log("OnTriggerEnter2D Target HIT Angle : " + angle + " , DAMAGE : " + damage);
 			}
@@ -81,6 +91,7 @@ public class Pin : MonoBehaviour
 		{
 			if(isPinned)
 			{
+				GameManager.instance.ResetCombo();
 				// 이미 고정된 핀
 				Debug.Log("OnTriggerEnter2D Pin Pinned");
 			}
@@ -107,9 +118,11 @@ public class Pin : MonoBehaviour
 			{
 				Debug.Log("OnTriggerEnter2D Gimmick Hit");
 			}
+			GameManager.instance.ResetCombo();
 		}
 		else
 		{
+			GameManager.instance.ResetCombo();
 			Debug.Log("OnTriggerEnter2D STRANGE NO WORK");
 		}
 		
@@ -169,5 +182,21 @@ public class Pin : MonoBehaviour
 	public bool isReflected()
 	{
 		return isReflecteded;
+	}
+
+	public bool isAbleUpgrade()
+	{
+		if(!isPinned && !isLaunched && !isReflecteded)
+		{
+			return true;
+		}
+
+		return false;
+	}
+
+	public void Upgrade()
+	{
+		isUpgraded = true;
+		spriteRenderer.color = Color.red;
 	}
 }
