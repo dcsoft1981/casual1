@@ -112,14 +112,16 @@ public class GameManager : MonoBehaviour
 		targetScale = levelData.target % 100;
 		if (targetScale == 0)
 			targetScale = 100;
+		float targetScaleRate = targetScale / 100f;
 		targetId = levelData.target - targetScale;
-		float curTargetScale = Define.TARGET_BASE_SCALE * targetScale / 100f;
-		targetCircle.transform.localScale = new Vector3(curTargetScale, curTargetScale, curTargetScale);
+		//float curTargetScale = Define.TARGET_BASE_SCALE;
+		//targetCircle.transform.localScale = new Vector3(curTargetScale, curTargetScale, curTargetScale);
 
 		// Target 색상 지정
 		targetColor = GetTargetColor(targetId);
-		SpriteRenderer objectRenderer = targetCircle.GetComponent<SpriteRenderer>();
-		objectRenderer.color = targetColor;
+		targetCircle.SetSprite(targetScaleRate, targetColor);
+		CircleCollider2D collider2D = targetCircle.GetComponent<CircleCollider2D>();
+		collider2D.radius = collider2D.radius * targetScaleRate;
 
 		// Pin SIZE 지정
 		pinScale = 1f;
@@ -182,6 +184,8 @@ public class GameManager : MonoBehaviour
 	public void DecreaseShot()
 	{
 		shot--;
+		if(shot < 0)
+			shot = 0;
 		SetShotText();
 	}
 
@@ -401,7 +405,7 @@ public class GameManager : MonoBehaviour
 			damageAreaStartAngle = numInfo[2];
 			damageAreaEndAngle = numInfo[3];
 			Debug.Log($"DAMAGE_AREA: {targetScale}, {damageAreaBonus}, {damageAreaStartAngle}, {damageAreaEndAngle}");
-			targetCircle.DrawDamageLine(targetScale, damageAreaStartAngle, damageAreaEndAngle);
+			targetCircle.DrawDamageLine(damageAreaStartAngle, damageAreaEndAngle);
 		}
 		else
 		{
@@ -655,6 +659,7 @@ public class GameManager : MonoBehaviour
 			case GimmickType.DAMAGE_N:
 				{
 					hp -= gimmickInfo.value1;
+					if(hp < 0) hp = 0;
 					SetHPText();
 					GimmickHpMinusWork(gameObject, gameObjectGimmick);
 					if (hp <= 0)

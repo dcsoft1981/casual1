@@ -46,7 +46,10 @@ public class Pin : MonoBehaviour
 
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
-		bool checkGimmickStatus = true;
+		// 이미 결과처리된(고정된, 반사된) 발사체는 아무 동작을 하지 않는다.
+		if (isPinned || isReflecteded)
+			return;
+
 		if(collision.gameObject.tag == "Target")
 		{
 			if(GameManager.instance.IsInShield())
@@ -89,20 +92,25 @@ public class Pin : MonoBehaviour
 		}
 		else if(collision.gameObject.tag == "Pin")
 		{
-			if(isPinned)
+			Pin pin = collision.gameObject.GetComponent<Pin>();
+			if(pin == null)
 			{
-				GameManager.instance.ResetCombo();
+				Debug.LogError("OnTriggerEnter2D No Pin");
+				return;
+			}
+
+			if(pin.GetPinned())
+			{
 				// 이미 고정된 핀
-				Debug.Log("OnTriggerEnter2D Pin Pinned");
+				GameManager.instance.ResetCombo();
+				AudioManager.instance.PlaySfx(AudioManager.Sfx.shoot_failure);
+				ReflectPin(collision);
+				Debug.Log("OnTriggerEnter2D to Pinned -> ReflectPin");
 			}
 			else
 			{
-				//AudioManager.instance.StopBgm();
-				AudioManager.instance.PlaySfx(AudioManager.Sfx.shoot_failure);
-				//GameManager.instance.SetGameOver(false);
-				ReflectPin(collision);
-				Debug.Log("OnTriggerEnter2D Pin ReflectPin");
-				checkGimmickStatus = false; // 움직이거나, 새로 생성된 발사체와 충돌시 체크하지 않는다.
+				// 고정되지 않은 핀(생성되거나 움직이는핀)과의 충돌은 무시한다.
+				return;
 			}
 		}
 		else if (collision.gameObject.tag == "Gimmick")
@@ -125,9 +133,8 @@ public class Pin : MonoBehaviour
 			GameManager.instance.ResetCombo();
 			Debug.Log("OnTriggerEnter2D STRANGE NO WORK");
 		}
-		
-		if(checkGimmickStatus)
-			GameManager.instance.CheckListGimmickStatus();
+
+		GameManager.instance.CheckListGimmickStatus();
 	}
 
 	public void Launch()
@@ -182,6 +189,11 @@ public class Pin : MonoBehaviour
 	public bool isReflected()
 	{
 		return isReflecteded;
+	}
+
+	public bool GetPinned()
+	{
+		return isPinned;
 	}
 
 	public bool isAbleUpgrade()
