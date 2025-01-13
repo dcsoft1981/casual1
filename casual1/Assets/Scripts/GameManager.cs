@@ -490,7 +490,7 @@ public class GameManager : MonoBehaviour
 		SetTargetStateByGimmickInit(gimmickType);
 		bool isChecked = GetGimmickInitChecked(gimmickType, listGimmick);
 		Color color = GetGimmickColor(gimmickType, hp, isChecked);
-		gameObjectGimmick.SetGimmick(gimmickType, hp, color, angle, listGimmick, isChecked);
+		gameObjectGimmick.SetGimmick(gimmickType, hp, color, angle, listGimmick, isChecked, targetCircle.gameObject);
 		listGimmick.Add(gimmickGameObject);
 	}
 
@@ -541,6 +541,8 @@ public class GameManager : MonoBehaviour
 		gameObjectGimmick.SetColor(GetGimmickColor(gameObjectGimmick));
 		if (gameObjectGimmick.hp <= 0)
 		{
+			// 가이드라인 제거
+			gameObjectGimmick.DisableGuideLine();
 			// 기믹 제거
 			gameObject.transform.DOScale(Vector3.zero, 0.1f).SetEase(Ease.InBack).OnComplete(() => Destroy(gameObject));
 		}

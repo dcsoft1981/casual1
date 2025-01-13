@@ -12,6 +12,9 @@ public class Gimmick : MonoBehaviour
 	private float spriteScale = 1f;
 	private bool isChecked = false;
 	private List<GameObject> listGimmick = null;
+
+	private LineRenderer lineRenderer1;
+	private LineRenderer lineRenderer2;
 	// Start is called once before the first execution of Update after the MonoBehaviour is created
 	void Awake()
     {
@@ -64,7 +67,7 @@ public class Gimmick : MonoBehaviour
 		//spriteRenderer.material = Resources.Load<Material>("Materials/ice");
 	}
 
-    public void SetGimmick(Define.GimmickType _type, int _hp, Color _color, int _inputAngle, List<GameObject> _listGimmick, bool _isChecked)
+    public void SetGimmick(Define.GimmickType _type, int _hp, Color _color, int _inputAngle, List<GameObject> _listGimmick, bool _isChecked, GameObject targetCircle)
     {
 		this.hp = _hp;
 		this.gimmickType = _type;
@@ -93,6 +96,9 @@ public class Gimmick : MonoBehaviour
 		// 기믹 스케일 변경
 		objectScale = gimmickInfo.objectscale*Define.BASE_GIMMICK_SCALE;
 		transform.localScale = new Vector3(objectScale, objectScale, 1);
+
+		//법선 그리기
+		DrawGuideLine(targetCircle);
 	}
 
     public void SetColor(Color _color)
@@ -133,5 +139,66 @@ public class Gimmick : MonoBehaviour
 				break;
 		}
 		return 1;
+	}
+
+	void DrawGuideLine(GameObject targetCircle)
+	{
+		float lineLength = 0.35f; // 법선의 길이
+								 // LineRenderer 컴포넌트 초기화
+		lineRenderer1 = CreateLineRenderer("NormalLine1", targetCircle);
+		lineRenderer2 = CreateLineRenderer("NormalLine2", targetCircle);
+
+		Vector3 bigCenter = targetCircle.transform.position;
+		Vector3 smallCenter = transform.position;
+
+		// TargetCircle의 중심에서 SmallCircle의 중심으로의 벡터
+		Vector3 direction = (smallCenter - bigCenter).normalized;
+
+		// SmallCircle의 반지름 (가정: SpriteRenderer의 bounds를 사용)
+		float smallRadius = GetComponent<SpriteRenderer>().bounds.extents.x*1.20f;
+		Debug.Log($"DrawGuideLine smallRadius : {smallRadius}");
+
+		// 접점 계산
+		Vector3 tangentPoint1 = smallCenter + Quaternion.Euler(0, 0, 90) * direction * smallRadius;
+		Vector3 tangentPoint2 = smallCenter + Quaternion.Euler(0, 0, -90) * direction * smallRadius;
+
+		// 법선 끝점 계산
+		Vector3 normalEndPoint1 = tangentPoint1 + direction * lineLength;
+		Vector3 normalEndPoint2 = tangentPoint2 + direction * lineLength;
+
+		// LineRenderer를 사용하여 선 그리기
+		lineRenderer1.SetPosition(0, bigCenter);
+		lineRenderer1.SetPosition(1, normalEndPoint1);
+
+		lineRenderer2.SetPosition(0, bigCenter);
+		lineRenderer2.SetPosition(1, normalEndPoint2);
+
+		lineRenderer1.sortingOrder = -10;
+		lineRenderer2.sortingOrder = -10;
+	}
+
+	LineRenderer CreateLineRenderer(string name, GameObject targetCircle)
+	{
+		GameObject lineObj = new GameObject(name);
+		lineObj.transform.parent = targetCircle.transform;
+		LineRenderer lr = lineObj.AddComponent<LineRenderer>();
+		lr.startWidth = 0.03f;
+		lr.endWidth = 0.03f;
+		lr.material = new Material(Shader.Find("Sprites/Default"));
+		lr.positionCount = 2;
+		lr.startColor = Define.COLOR_BLACK;
+		lr.endColor = Define.COLOR_BLACK_ALPHA10;
+		lr.numCapVertices = 10; // 끝부분을 둥글게 만들기 위해 추가할 버텍스 수
+		lr.useWorldSpace = false;
+		//lineObj.transform.SetParent(targetCircle.transform);
+		return lr;
+	}
+
+	public void DisableGuideLine()
+	{
+		if(lineRenderer1 != null)
+			lineRenderer1.enabled = false;
+		if (lineRenderer2 != null)
+			lineRenderer2.enabled = false;
 	}
 }
