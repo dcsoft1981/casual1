@@ -16,9 +16,30 @@ public class TargetCircle : MonoBehaviour
 	private LevelDBEntity levelDBEntity;
 	private LineRenderer lineRenderer;
 
+	private SpriteRenderer spriteRenderer;
+	private GameObject spriteObject;
+	private float spriteScale = 1f;
+
 	private void Awake()
 	{
 		lineRenderer = GetComponent<LineRenderer>();
+
+		spriteObject = new GameObject("ChildObject");
+		spriteObject.transform.SetParent(this.transform);
+
+		// 자식 오브젝트의 위치를 부모와 동일하게 설정합니다.
+		spriteObject.transform.localPosition = Vector3.zero;
+
+		// SpriteRenderer 컴포넌트를 추가합니다.
+		spriteRenderer = spriteObject.AddComponent<SpriteRenderer>();
+	}
+
+	public void SetSprite(float _spriteScale, Color _targetColor)
+	{
+		spriteScale = _spriteScale;
+		spriteRenderer.sprite = Resources.Load<Sprite>("Circle");
+		spriteRenderer.color = _targetColor;
+		spriteObject.transform.localScale = new Vector3(spriteScale, spriteScale, 1);
 	}
 
 	public void StartAnimation(AnimationCurve animationCurve)
@@ -99,12 +120,12 @@ public class TargetCircle : MonoBehaviour
 
 	}
 
-	public void DrawDamageLine(int scalePercent, int _startAngle, int _endAngle)
+	public void DrawDamageLine(int _startAngle, int _endAngle)
 	{
 		float startAngle = _startAngle; // 추가 점수 범위 시작 각도
 		float endAngle = _endAngle; // 추가 점수 범위 끝 각도
 		float segments = 50f; // 세그먼트 수
-		float radius = 0.5f;
+		float radius = 0.5f* spriteScale;
 
 		lineRenderer.positionCount = (int)segments + 1;
 		lineRenderer.useWorldSpace = false;
