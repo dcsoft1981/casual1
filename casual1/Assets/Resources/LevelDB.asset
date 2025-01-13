@@ -317,7 +317,7 @@ MonoBehaviour:
     hp: 5
     shot: 10
     target: 10100
-    rotation: 30
+    rotation: 50
     gimmick1: 
     gimmick2: 
     gimmick3: 
