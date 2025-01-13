@@ -182,6 +182,8 @@ public class GameManager : MonoBehaviour
 	public void DecreaseShot()
 	{
 		shot--;
+		if(shot < 0)
+			shot = 0;
 		SetShotText();
 	}
 
