@@ -655,6 +655,7 @@ public class GameManager : MonoBehaviour
 			case GimmickType.DAMAGE_N:
 				{
 					hp -= gimmickInfo.value1;
+					if(hp < 0) hp = 0;
 					SetHPText();
 					GimmickHpMinusWork(gameObject, gameObjectGimmick);
 					if (hp <= 0)
