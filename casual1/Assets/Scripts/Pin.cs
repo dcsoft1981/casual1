@@ -221,6 +221,9 @@ public class Pin : MonoBehaviour
 		float shakeMagnitude = 0.025f; // 흔들림 강도
 		float elapsed = 0.0f;
 		Transform childTransform = gameObject.transform.Find(Define.CHILD_SPRITE_OBJECT);
+		SpriteRenderer spriteRenderer = childTransform.gameObject.GetComponent<SpriteRenderer>();
+		Color originColor = spriteRenderer.color;
+		spriteRenderer.color = new Color(0.2f, 0.2f, 0.2f, 1f);
 
 		while (elapsed < shakeDuration)
 		{
@@ -240,5 +243,6 @@ public class Pin : MonoBehaviour
 
 		// 흔들림 종료 후 원래 위치로 복귀
 		childTransform.localPosition = Vector3.zero;
+		spriteRenderer.color = originColor;
 	}
 }
