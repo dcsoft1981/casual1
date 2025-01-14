@@ -394,7 +394,6 @@ public class GameManager : MonoBehaviour
 
 		int gimmickValue = numInfo[0];
 		int hp = gimmickValue % 100;
-
 		GimmickType gimmickType = (GimmickType)(gimmickValue - hp);
 		GimmickDBEntity gimmickInfo = GetGimmickInfo(gimmickType);
 

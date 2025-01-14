@@ -115,10 +115,10 @@ public class Pin : MonoBehaviour
 		}
 		else if (collision.gameObject.tag == "Gimmick")
 		{
-			AudioManager.instance.PlaySfx(AudioManager.Sfx.shoot_good);
 			bool destroyPin = GameManager.instance.GimmickHitWork(collision.gameObject);
 			if (destroyPin)
 			{
+				AudioManager.instance.PlaySfx(AudioManager.Sfx.shoot_good);
 				ReflectPin(collision);
 				Debug.Log("OnTriggerEnter2D Gimmick ReflectPin");
 			}

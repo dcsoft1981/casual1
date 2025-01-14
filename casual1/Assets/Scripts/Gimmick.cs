@@ -70,6 +70,8 @@ public class Gimmick : MonoBehaviour
     public void SetGimmick(Define.GimmickType _type, int _hp, Color _color, int _inputAngle, List<GameObject> _listGimmick, bool _isChecked, GameObject targetCircle)
     {
 		this.hp = _hp;
+		if (this.hp == 0)
+			this.hp = 1;
 		this.gimmickType = _type;
 		this.listGimmick = _listGimmick;
 		this.isChecked = _isChecked;
