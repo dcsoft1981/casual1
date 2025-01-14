@@ -10,6 +10,7 @@ using Unity.VisualScripting;
 using System.Collections.Generic;
 using DG.Tweening;
 using Unity.Burst.Intrinsics;
+using System.Collections;
 
 public class GameManager : MonoBehaviour
 {
@@ -164,8 +165,18 @@ public class GameManager : MonoBehaviour
 		textCombo.SetText(combo.ToString());
 	}
 
+	public void IncreaseHP(int amount)
+	{
+		hp += amount;
+		SetHPText();
+	}
+
 	public void DecreaseHP(int damage)
     {
+		if(hp > 0)
+		{
+			StartCoroutine(Shake(targetCircle.gameObject));
+		}
 		hp -= damage;
 		if (hp < 0)
 			hp = 0;
@@ -189,7 +200,8 @@ public class GameManager : MonoBehaviour
     {
         if(isGameOver == false)
         {
-            isGameOver = true;
+			ClearLines();
+			isGameOver = true;
             if(success)
             {
                 Camera.main.backgroundColor = green;
@@ -203,6 +215,16 @@ public class GameManager : MonoBehaviour
 			}
 		}
     }
+
+	public void ClearLines()
+	{
+		LineRenderer[] array = targetCircle.gameObject.GetComponentsInChildren<LineRenderer>();
+		for (int i = 0; i < array.Length; i++)
+		{
+			if(array[i].positionCount < 10)
+				array[i].enabled = false;
+		}
+	}
 
 	private  void StageClear()
     {
@@ -534,6 +556,7 @@ public class GameManager : MonoBehaviour
 			return;
 		gameObjectGimmick.hp--;
 		gameObjectGimmick.SetColor(GetGimmickColor(gameObjectGimmick));
+		StartCoroutine(Shake(gameObject));
 		if (gameObjectGimmick.hp <= 0)
 		{
 			// 가이드라인 제거
@@ -648,16 +671,13 @@ public class GameManager : MonoBehaviour
 
 			case GimmickType.TARGET_RECOVER:
 				{
-					hp += gimmickInfo.value1;
-					SetHPText();
+					IncreaseHP(gimmickInfo.value1);
 					GimmickHpMinusWork(gameObject, gameObjectGimmick);
 				}
 				break;
 			case GimmickType.DAMAGE_N:
 				{
-					hp -= gimmickInfo.value1;
-					if(hp < 0) hp = 0;
-					SetHPText();
+					DecreaseHP(gimmickInfo.value1);
 					GimmickHpMinusWork(gameObject, gameObjectGimmick);
 					if (hp <= 0)
 					{
@@ -943,5 +963,36 @@ public class GameManager : MonoBehaviour
 			currPin.Upgrade();
 			shotAddDamage = false;
 		}
+	}
+
+	private IEnumerator Shake(GameObject gameObject)
+	{
+		float shakeDuration = 0.04f; // 흔들림 지속 시간
+		float shakeMagnitude = 0.025f; // 흔들림 강도
+		float elapsed = 0.0f;
+		Transform childTransform = gameObject.transform.Find(Define.CHILD_SPRITE_OBJECT);
+		SpriteRenderer spriteRenderer = childTransform.gameObject.GetComponent<SpriteRenderer>();
+		Color originColor = spriteRenderer.color;
+		spriteRenderer.color = new Color(0.2f, 0.2f, 0.2f, 1f);
+
+		while (elapsed < shakeDuration)
+		{
+			// 임의의 위치 생성
+			float offsetX = UnityEngine.Random.Range(-1f, 1f) * shakeMagnitude;
+			float offsetY = UnityEngine.Random.Range(-1f, 1f) * shakeMagnitude;
+
+			// 오브젝트의 Sprite 위치 변경
+			childTransform.localPosition = new Vector3(offsetX, offsetY, 0);
+
+			// 경과 시간 증가
+			elapsed += Time.deltaTime;
+
+			// 다음 프레임까지 대기
+			yield return null;
+		}
+
+		// 흔들림 종료 후 원래 위치로 복귀
+		childTransform.localPosition = Vector3.zero;
+		spriteRenderer.color = originColor;
 	}
 }

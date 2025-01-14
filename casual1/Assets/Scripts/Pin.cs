@@ -87,7 +87,6 @@ public class Pin : MonoBehaviour
 				GameManager.instance.DecreaseHP(damage);
 				GameManager.instance.AddPinnedShot(this.gameObject);
 				GameManager.instance.AddCombo();
-				StartCoroutine(Shake(collision.gameObject));
 
 				Debug.Log("OnTriggerEnter2D Target HIT Angle : " + angle + " , DAMAGE : " + damage);
 			}
@@ -129,7 +128,6 @@ public class Pin : MonoBehaviour
 				Debug.Log("OnTriggerEnter2D Gimmick Hit");
 			}
 			GameManager.instance.ResetCombo();
-			StartCoroutine(Shake(collision.gameObject));
 		}
 		else
 		{
@@ -213,36 +211,5 @@ public class Pin : MonoBehaviour
 	{
 		isUpgraded = true;
 		spriteRenderer.color = Color.red;
-	}
-
-	private IEnumerator Shake(GameObject gameObject)
-	{
-		float shakeDuration = 0.04f; // 흔들림 지속 시간
-		float shakeMagnitude = 0.025f; // 흔들림 강도
-		float elapsed = 0.0f;
-		Transform childTransform = gameObject.transform.Find(Define.CHILD_SPRITE_OBJECT);
-		SpriteRenderer spriteRenderer = childTransform.gameObject.GetComponent<SpriteRenderer>();
-		Color originColor = spriteRenderer.color;
-		spriteRenderer.color = new Color(0.2f, 0.2f, 0.2f, 1f);
-
-		while (elapsed < shakeDuration)
-		{
-			// 임의의 위치 생성
-			float offsetX = Random.Range(-1f, 1f) * shakeMagnitude;
-			float offsetY = Random.Range(-1f, 1f) * shakeMagnitude;
-
-			// 오브젝트의 Sprite 위치 변경
-			childTransform.localPosition = new Vector3(offsetX, offsetY, 0);
-
-			// 경과 시간 증가
-			elapsed += Time.deltaTime;
-
-			// 다음 프레임까지 대기
-			yield return null;
-		}
-
-		// 흔들림 종료 후 원래 위치로 복귀
-		childTransform.localPosition = Vector3.zero;
-		spriteRenderer.color = originColor;
 	}
 }
