@@ -16,6 +16,7 @@ public class Define
 	public const int MAX_COMBO = 5;
 	public static Color COLOR_BLACK = new Color(0f, 0f, 0f, 1f);
 	public static Color COLOR_BLACK_ALPHA10 = new Color(0f, 0f, 0f, 0.4f);
+	public static Color GREEN2 = new Color(0f, 0.8f, 0f, 1f);
 
 	// 타겟
 	// 10000 자리 값 : 외형. 일단 색으로 구분(1-GREEN, 2-BLUE,3-RED)

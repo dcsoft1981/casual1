@@ -861,8 +861,8 @@ MonoBehaviour:
   labelFailure: {fileID: 1759744454}
   levelDB: {fileID: 11400000, guid: 100d04b51f9336e4496841486b9b7d3b, type: 2}
   gimmickDB: {fileID: 11400000, guid: e41c75628e2f84d4c888db1e7a79deb3, type: 2}
-  green: {r: 0.21568628, g: 1, b: 0, a: 0}
-  red: {r: 1, g: 0, b: 0.23529412, a: 0}
+  clearColor: {r: 0.7254902, g: 1, b: 0.84313726, a: 0}
+  failureColor: {r: 1, g: 0.18396229, b: 0.18396229, a: 0}
   gimmickObject: {fileID: 8814631178483852103, guid: d05dd2984c6552347b8792a358c88c89, type: 3}
 --- !u!4 &208536165
 Transform:

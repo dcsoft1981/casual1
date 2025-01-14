@@ -52,8 +52,8 @@ public class GameManager : MonoBehaviour
 	[SerializeField] private LevelDB levelDB;
 	[SerializeField] private GimmickDB gimmickDB;
 
-	[SerializeField] private Color green;
-	[SerializeField] private Color red;
+	[SerializeField] private Color clearColor;
+	[SerializeField] private Color failureColor;
 
 	[SerializeField] private GameObject gimmickObject;
 
@@ -200,23 +200,23 @@ public class GameManager : MonoBehaviour
     {
         if(isGameOver == false)
         {
-			ClearLines();
+			ClearGuideLines();
 			isGameOver = true;
             if(success)
             {
-                Camera.main.backgroundColor = green;
+                Camera.main.backgroundColor = clearColor;
 				AudioManager.instance.OnEffectBgm();
 				Invoke("StageClear", 0.3f);
 			}
             else
             {
-				Camera.main.backgroundColor = red;
+				Camera.main.backgroundColor = failureColor;
 				Invoke("StageFailure", 0.7f);
 			}
 		}
     }
 
-	public void ClearLines()
+	public void ClearGuideLines()
 	{
 		LineRenderer[] array = targetCircle.gameObject.GetComponentsInChildren<LineRenderer>();
 		for (int i = 0; i < array.Length; i++)
@@ -228,6 +228,7 @@ public class GameManager : MonoBehaviour
 
 	private  void StageClear()
     {
+		targetCircle.GRADIENT_ON();
 		int level = LocalDataManager.instance.GetCurLevel();
         int nextLevel = level + 1;
 		LocalDataManager.instance.SetCurLevel(nextLevel);
@@ -448,7 +449,7 @@ public class GameManager : MonoBehaviour
 			case GimmickType.SUPER_SHIELD:
 				return Color.gray;
 			case GimmickType.TARGET_RECOVER:
-				return Color.green;
+				return Define.GREEN2;
 			case GimmickType.ROTATION_DOWN:
 				return new Color(0f, 1f, 0f);
 			case GimmickType.ROTATION_UP:
@@ -458,14 +459,14 @@ public class GameManager : MonoBehaviour
 			case GimmickType.SEQUENCE:
 				{
 					if (isChecked)
-						return Color.green;
+						return Define.GREEN2;
 					else
 						return new Color(0f, 0f, 0f);
 				}
 			case GimmickType.KEY_CHAIN:
 				{
 					if (isChecked)
-						return Color.green;
+						return Define.GREEN2;
 					else
 						return new Color(0f, 0f, 0f);
 				}
@@ -518,6 +519,7 @@ public class GameManager : MonoBehaviour
 			case GimmickType.KEY_CHAIN:
 				{
 					inShield = true;
+					targetCircle.BLUR_ON();
 				}
 				break;
 		}
@@ -648,6 +650,7 @@ public class GameManager : MonoBehaviour
 					{
 						RemoveAllGimmicks(gimmickList);
 						inShield = false;
+						targetCircle.BLUR_OFF();
 					}
 				}
 				break;

@@ -1,3 +1,4 @@
+using AllIn1SpriteShader;
 using UnityEngine;
 
 public class TargetCircle : MonoBehaviour
@@ -32,6 +33,8 @@ public class TargetCircle : MonoBehaviour
 
 		// SpriteRenderer 컴포넌트를 추가합니다.
 		spriteRenderer = spriteObject.AddComponent<SpriteRenderer>();
+		spriteObject.AddComponent<AllIn1Shader>();
+		spriteRenderer.material = new Material(Shader.Find("AllIn1SpriteShader/AllIn1SpriteShader"));
 	}
 
 	public void SetSprite(float _spriteScale, Color _targetColor)
@@ -141,5 +144,34 @@ public class TargetCircle : MonoBehaviour
 			angle += (endAngle - startAngle) / segments;
 		}
 		Debug.Log("DrawDamageLine radius :" + radius);
+	}
+
+	// 쉐이더 함수
+/*
+	FISHEYE_ON - 다각형 됨
+	PINCH_ON - 솜뭉치 효과
+	SHAKEUV_ON - 우글우글 효과
+	ROUNDWAVEUV_ON - 원이 휙휙도는 효과
+	DOODLE_ON - 우글우글 효과
+	ZOOMUV_ON - 다각형 됨
+	GRADIENT_ON - 무지개색 그라데이션
+	BLUR_ON - 블러효과
+	PIXELATE_ON - 픽셀효과
+	GLITCH_ON - 지지직 효과
+	OVERLAY_ON - 용암효과
+*/
+	public void BLUR_ON()
+	{
+		spriteRenderer.material.EnableKeyword("BLUR_ON");
+	}
+
+	public void BLUR_OFF()
+	{
+		spriteRenderer.material.DisableKeyword("BLUR_ON");
+	}
+
+	public void GRADIENT_ON()
+	{
+		spriteRenderer.material.EnableKeyword("GRADIENT_ON");
 	}
 }
