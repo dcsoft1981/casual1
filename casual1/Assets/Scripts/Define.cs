@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class Define
 {
+	public const string CHILD_SPRITE_OBJECT = "ChildSpriteObject";
 	public const string CUR_LEVEL = "CUR_LEVEL";
 	public const string LOCALE_RETRY = "RETRY";
 	public const string LOCALE_NEXT = "NEXT";

@@ -19,7 +19,7 @@ public class Gimmick : MonoBehaviour
 	void Awake()
     {
 		// 새로운 게임 오브젝트를 생성하고, 현재 오브젝트의 자식으로 설정합니다.
-		spriteObject = new GameObject("ChildObject");
+		spriteObject = new GameObject(Define.CHILD_SPRITE_OBJECT);
 		spriteObject.transform.SetParent(this.transform);
 
 		// 자식 오브젝트의 위치를 부모와 동일하게 설정합니다.

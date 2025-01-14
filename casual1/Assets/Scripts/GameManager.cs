@@ -29,7 +29,6 @@ public class GameManager : MonoBehaviour
 	private int targetId;
 	private int targetScale;
 	private Color targetColor;
-	private float pinScale;
 	private int shot;
 	private int cheatRotation = 0;
 	private int rotationBuff = 0;
@@ -122,9 +121,6 @@ public class GameManager : MonoBehaviour
 		targetCircle.SetSprite(targetScaleRate, targetColor);
 		CircleCollider2D collider2D = targetCircle.GetComponent<CircleCollider2D>();
 		collider2D.radius = collider2D.radius * targetScaleRate;
-
-		// Pin SIZE 지정
-		pinScale = 1f;
 
 		// Shot 지정
 		shot = levelData.shot;
