@@ -61,6 +61,8 @@ public class GameManager : MonoBehaviour
 	private bool shotAddDamage = false;
 	private Pin currPin = null;
 	private bool checkFinalShot = false;
+	private int skillPosY = 0;
+
 
 	// Start is called once before the first execution of Update after the MonoBehaviour is created
 
@@ -84,6 +86,7 @@ public class GameManager : MonoBehaviour
 		int level = LocalDataManager.instance.GetCurLevel();
 		combo = 0;
 		levelData = LocalDataManager.instance.GetLevelDBEntity();
+		SetOrthographicSize();
 
 		// HP 지정
 		hp = levelData.hp;
@@ -929,7 +932,6 @@ public class GameManager : MonoBehaviour
 		float shakeDuration = 0.04f; // 흔들림 지속 시간
 		float shakeMagnitude = 0.025f; // 흔들림 강도
 		float elapsed = 0.0f;
-		bool errorOccured = false;
 		Transform childTransform = gameObject.transform.Find(Define.CHILD_SPRITE_OBJECT);
 		SpriteRenderer spriteRenderer = childTransform.gameObject.GetComponent<SpriteRenderer>();
 		Color originColor = spriteRenderer.color;
@@ -941,16 +943,8 @@ public class GameManager : MonoBehaviour
 			float offsetX = UnityEngine.Random.Range(-1f, 1f) * shakeMagnitude;
 			float offsetY = UnityEngine.Random.Range(-1f, 1f) * shakeMagnitude;
 
-			try
-			{
-				// 오브젝트의 Sprite 위치 변경
-				childTransform.localPosition = new Vector3(offsetX, offsetY, 0);
-			}
-			catch(Exception e)
-			{
-				elapsed += shakeDuration;
-				errorOccured = true;
-			}
+			// 오브젝트의 Sprite 위치 변경
+			childTransform.localPosition = new Vector3(offsetX, offsetY, 0);
 
 			// 경과 시간 증가
 			elapsed += Time.deltaTime;
@@ -960,11 +954,8 @@ public class GameManager : MonoBehaviour
 		}
 
 		// 흔들림 종료 후 원래 위치로 복귀
-		if (errorOccured = false && gameObject != null && !gameObject.IsDestroyed())
-		{
-			childTransform.localPosition = Vector3.zero;
-			spriteRenderer.color = originColor;
-		}
+		childTransform.localPosition = Vector3.zero;
+		spriteRenderer.color = originColor;
 	}
 
 	public int Random100()
@@ -1034,19 +1025,19 @@ public class GameManager : MonoBehaviour
 		// 사운드 발생
 		AudioManager.instance.PlaySfx(AudioManager.Sfx.buff);
 		// 텍스트를 화면 아래로 배치
-		textSkill.rectTransform.anchoredPosition = new Vector2(0, -1500);
+		textSkill.rectTransform.anchoredPosition = new Vector2(0, -300);
 
 		// 시퀀스 생성
 		DG.Tweening.Sequence sequence = DOTween.Sequence();
 
 		// 화면 하단에서 위로 이동 (예: y = 0) - 0.5초 동안
-		sequence.Append(textSkill.rectTransform.DOAnchorPosY(-700, 0.03f).SetEase(Ease.OutQuad));
+		sequence.Append(textSkill.rectTransform.DOAnchorPosY(skillPosY, 0.03f).SetEase(Ease.OutQuad));
 
 		// 0.3초 대기
 		sequence.AppendInterval(0.3f);
 
 		// 다시 아래로 이동 - 0.5초 동안
-		sequence.Append(textSkill.rectTransform.DOAnchorPosY(-1500, 0.1f).SetEase(Ease.InQuad));
+		sequence.Append(textSkill.rectTransform.DOAnchorPosY(-300, 0.1f).SetEase(Ease.InQuad));
 
 		// 시퀀스 실행
 		sequence.Play();
@@ -1062,5 +1053,37 @@ public class GameManager : MonoBehaviour
 			checkFinalShot = true;
 			CheckTriggerSkill(PassiveType.FAILURE_BONUS_SHOT);
 		}
+	}
+
+	private void SetOrthographicSize()
+	{
+		int screenWidth = Screen.width;
+		int screenHeight = Screen.height;
+		float aspectRatio = (float)screenWidth / screenHeight;
+		float orthographicSize = 5f;
+		if(aspectRatio > 0.56f)
+		{
+			orthographicSize = 5f;
+		}
+		else if(aspectRatio < 0.36)
+		{
+			orthographicSize = 7f;
+		}
+		else
+		{
+			orthographicSize = (0.56f - aspectRatio)*10f + 5f;
+		}
+		Camera.main.orthographicSize = orthographicSize;
+
+		if (aspectRatio > 0.65f)
+		{
+			skillPosY = 200;
+		}
+		else
+		{
+			skillPosY = 300;
+		}
+		
+		Debug.Log($"SetOrthographicSize: {screenWidth}, {screenHeight}, {aspectRatio}, {skillPosY}");
 	}
 }

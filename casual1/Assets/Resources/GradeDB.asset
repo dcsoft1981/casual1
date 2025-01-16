@@ -25,8 +25,8 @@ MonoBehaviour:
     minLevel: 11
     maxLevel: 30
     color: 205:127:50
-    doubleDamage: 5
-    bonusShot: 0
+    doubleDamage: 50
+    bonusShot: 50
   - id: 3
     grade: Silver
     minLevel: 31
