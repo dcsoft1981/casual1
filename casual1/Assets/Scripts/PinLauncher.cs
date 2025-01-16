@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
+using static Define;
 
 public class PinLauncher : MonoBehaviour
 {
@@ -35,6 +36,7 @@ public class PinLauncher : MonoBehaviour
 			currPin = pin.GetComponent<Pin>();
 			GameManager.instance.SetCreatedPin(currPin);
 			GameManager.instance.ResetHitGimmick();
+			GameManager.instance.CheckTriggerSkill(PassiveType.SHOT_DOUBLE_DAMAGE);
 		}
 	}
 

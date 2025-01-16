@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI textLevel;
 	[SerializeField] private TextMeshProUGUI textShot;
 	[SerializeField] private TextMeshProUGUI textCombo;
+	[SerializeField] private TextMeshProUGUI textSkill;
 
 	private int hp;
 	private int targetId;
@@ -35,11 +36,6 @@ public class GameManager : MonoBehaviour
 	private int rotationBuff = 0;
 	private int combo = 0;
 
-	private Dictionary<int, GimmickDBEntity> dic_gimmicks;
-	private Dictionary<int, Sprite> dic_gimmickSprites;
-	private Dictionary<int, Sprite> dic_gimmickSprites2;
-	private Dictionary<int, Sprite> dic_gimmickSprites3;
-
 	private List<GameObject> listGimmick1;
 	private List<GameObject> listGimmick2;
 	private List<GameObject> listGimmick3;
@@ -49,8 +45,6 @@ public class GameManager : MonoBehaviour
 	[SerializeField] private GameObject btnRetry;
 	[SerializeField] private GameObject labelClear;
 	[SerializeField] private GameObject labelFailure;
-	[SerializeField] private LevelDB levelDB;
-	[SerializeField] private GimmickDB gimmickDB;
 
 	[SerializeField] private Color clearColor;
 	[SerializeField] private Color failureColor;
@@ -66,6 +60,7 @@ public class GameManager : MonoBehaviour
 	private int damageAreaBonus = 0;
 	private bool shotAddDamage = false;
 	private Pin currPin = null;
+	private bool checkFinalShot = false;
 
 	// Start is called once before the first execution of Update after the MonoBehaviour is created
 
@@ -74,20 +69,6 @@ public class GameManager : MonoBehaviour
         if (instance == null)
         {
             instance = this;
-			dic_gimmicks = new Dictionary<int, GimmickDBEntity>();
-			dic_gimmickSprites = new Dictionary<int, Sprite>();
-			dic_gimmickSprites2 = new Dictionary<int, Sprite>();
-			dic_gimmickSprites3 = new Dictionary<int, Sprite>();
-			foreach (GimmickDBEntity gimmickDbEntity in gimmickDB.gimmicks)
-			{
-				dic_gimmicks.Add(gimmickDbEntity.id, gimmickDbEntity);
-				if(gimmickDbEntity.sprite.Length > 0)
-					dic_gimmickSprites.Add(gimmickDbEntity.id, Resources.Load<Sprite>(gimmickDbEntity.sprite));
-				if (gimmickDbEntity.sprite2.Length > 0)
-					dic_gimmickSprites2.Add(gimmickDbEntity.id, Resources.Load<Sprite>(gimmickDbEntity.sprite2));
-				if (gimmickDbEntity.sprite3.Length > 0)
-					dic_gimmickSprites3.Add(gimmickDbEntity.id, Resources.Load<Sprite>(gimmickDbEntity.sprite3));
-			}
 			listGimmick1 = new List<GameObject>();
 			listGimmick2 = new List<GameObject>();
 			listGimmick3 = new List<GameObject>();
@@ -102,8 +83,7 @@ public class GameManager : MonoBehaviour
     {
 		int level = LocalDataManager.instance.GetCurLevel();
 		combo = 0;
-		//levelData = gameDataManager.GetLevelData(level);
-		levelData = levelDB.levels[level-1];
+		levelData = LocalDataManager.instance.GetLevelDBEntity();
 
 		// HP 지정
 		hp = levelData.hp;
@@ -357,17 +337,18 @@ public class GameManager : MonoBehaviour
 	public Color GetTargetColor(int targetId)
 	{
 		if (targetId == (int)Define.TargetType.BLACK)
-			return Color.black;
+			return Define.COLOR_TARGET_BASE;
 		else if (targetId == (int)Define.TargetType.BLUE)
 			return Color.blue;
 		else if (targetId == (int)Define.TargetType.RED)
 			return Color.red;
 		else
-			return Color.black;
+			return Define.COLOR_TARGET_BASE;
 	}
 
 	public void CheckFailure()
 	{
+		CheckFinalShot();
 		// shot == 0 이면 실패
 		if (shot == 0 && hp > 0)
 			SetGameOver(false);
@@ -414,7 +395,7 @@ public class GameManager : MonoBehaviour
 		int gimmickValue = numInfo[0];
 		int hp = gimmickValue % 100;
 		GimmickType gimmickType = (GimmickType)(gimmickValue - hp);
-		GimmickDBEntity gimmickInfo = GetGimmickInfo(gimmickType);
+		GimmickDBEntity gimmickInfo = LocalDataManager.instance.GetGimmickInfo(gimmickType);
 
 		if(gimmickType == GimmickType.DAMAGE_AREA)
 		{
@@ -451,9 +432,9 @@ public class GameManager : MonoBehaviour
 			case GimmickType.TARGET_RECOVER:
 				return Define.GREEN2;
 			case GimmickType.ROTATION_DOWN:
-				return new Color(0f, 1f, 0f);
+				return Color.green;
 			case GimmickType.ROTATION_UP:
-				return new Color(1f, 0f, 0f);
+				return Color.red;
 			case GimmickType.ADD_SHOT:
 				return new Color(0.0f, 0f, 0.9f);
 			case GimmickType.SEQUENCE:
@@ -461,25 +442,25 @@ public class GameManager : MonoBehaviour
 					if (isChecked)
 						return Define.GREEN2;
 					else
-						return new Color(0f, 0f, 0f);
+						return Color.black;
 				}
 			case GimmickType.KEY_CHAIN:
 				{
 					if (isChecked)
 						return Define.GREEN2;
 					else
-						return new Color(0f, 0f, 0f);
+						return Color.black;
 				}
 		}
 
 		if (hp > 3)
-			return new Color(0.9f, 0f, 0f);
+			return Define.HP_OVER4;
 		if (hp == 3)
-			return new Color(0.7f, 0f, 0f);
+			return Define.HP_3;
 		else if (hp == 2)
-			return new Color(0.4f, 0f, 0f);
+			return Define.HP_2;
 		else if (hp == 1)
-			return new Color(0.2f, 0f, 0f);
+			return Define.HP_1;
 
 		return Color.black;
 	}
@@ -661,7 +642,7 @@ public class GameManager : MonoBehaviour
 	{
 		bool destroyPin = true;
 		Gimmick gameObjectGimmick = gameObject.GetComponent<Gimmick>();
-		GimmickDBEntity gimmickInfo = GetGimmickInfo(gameObjectGimmick.gimmickType);
+		GimmickDBEntity gimmickInfo = LocalDataManager.instance.GetGimmickInfo(gameObjectGimmick.gimmickType);
 
 		switch (gameObjectGimmick.gimmickType)
 		{
@@ -751,7 +732,7 @@ public class GameManager : MonoBehaviour
 			return rotation;
 		}
 
-		float addValue = GetGimmickInfo(GimmickType.ROTATION_UP).value1 * rotationBuff;
+		float addValue = LocalDataManager.instance.GetGimmickInfo(GimmickType.ROTATION_UP).value1 * rotationBuff;
 		if(rotation > 0)
 		{
 			float resultValue = rotation + addValue;
@@ -766,34 +747,6 @@ public class GameManager : MonoBehaviour
 				resultValue = -10f;
 			return resultValue;
 		}
-	}
-
-	public GimmickDBEntity GetGimmickInfo(GimmickType type)
-	{
-		if (dic_gimmicks.TryGetValue((int)type, out GimmickDBEntity gimmick))
-			return gimmick;
-		return null;
-	}
-
-	public Sprite GetGimmickSprite(GimmickType type)
-	{
-		if (dic_gimmickSprites.TryGetValue((int)type, out Sprite sprite))
-			return sprite;
-		return null;
-	}
-
-	public Sprite GetGimmickSprite2(GimmickType type)
-	{
-		if (dic_gimmickSprites2.TryGetValue((int)type, out Sprite sprite))
-			return sprite;
-		return null;
-	}
-
-	public Sprite GetGimmickSprite3(GimmickType type)
-	{
-		if (dic_gimmickSprites3.TryGetValue((int)type, out Sprite sprite))
-			return sprite;
-		return null;
 	}
 
 	public Gimmick GetNextGameObject(List<GameObject> gimmickList, GameObject gameObject)
@@ -959,9 +912,12 @@ public class GameManager : MonoBehaviour
 		currPin = _currPin;
 	}
 
-	public void CheckUpgradePin()
+	public void CheckUpgradePin(bool forced)
 	{
-		if(currPin != null && currPin.isAbleUpgrade() && shotAddDamage)
+		if (forced)
+			shotAddDamage = true;
+
+		if (currPin != null && currPin.isAbleUpgrade() && shotAddDamage)
 		{
 			currPin.Upgrade();
 			shotAddDamage = false;
@@ -973,6 +929,7 @@ public class GameManager : MonoBehaviour
 		float shakeDuration = 0.04f; // 흔들림 지속 시간
 		float shakeMagnitude = 0.025f; // 흔들림 강도
 		float elapsed = 0.0f;
+		bool errorOccured = false;
 		Transform childTransform = gameObject.transform.Find(Define.CHILD_SPRITE_OBJECT);
 		SpriteRenderer spriteRenderer = childTransform.gameObject.GetComponent<SpriteRenderer>();
 		Color originColor = spriteRenderer.color;
@@ -984,8 +941,16 @@ public class GameManager : MonoBehaviour
 			float offsetX = UnityEngine.Random.Range(-1f, 1f) * shakeMagnitude;
 			float offsetY = UnityEngine.Random.Range(-1f, 1f) * shakeMagnitude;
 
-			// 오브젝트의 Sprite 위치 변경
-			childTransform.localPosition = new Vector3(offsetX, offsetY, 0);
+			try
+			{
+				// 오브젝트의 Sprite 위치 변경
+				childTransform.localPosition = new Vector3(offsetX, offsetY, 0);
+			}
+			catch(Exception e)
+			{
+				elapsed += shakeDuration;
+				errorOccured = true;
+			}
 
 			// 경과 시간 증가
 			elapsed += Time.deltaTime;
@@ -995,7 +960,107 @@ public class GameManager : MonoBehaviour
 		}
 
 		// 흔들림 종료 후 원래 위치로 복귀
-		childTransform.localPosition = Vector3.zero;
-		spriteRenderer.color = originColor;
+		if (errorOccured = false && gameObject != null && !gameObject.IsDestroyed())
+		{
+			childTransform.localPosition = Vector3.zero;
+			spriteRenderer.color = originColor;
+		}
+	}
+
+	public int Random100()
+	{
+		return UnityEngine.Random.Range(1, 101);
+	}
+
+	public bool TriggerSkill(PassiveType passiveType)
+	{
+		GradeDBEntity entity = LocalDataManager.instance.GetCurGradeDBEntity();
+		if (entity == null)
+			return false;
+
+		int curRate = 0;
+		switch(passiveType)
+		{
+			case PassiveType.SHOT_DOUBLE_DAMAGE:
+				curRate = entity.doubleDamage;
+				if (checkFinalShot) // 추가 발사체 생성시에는 스킬 발동 되지 않도록
+					curRate = 0;
+				break;
+
+			case PassiveType.FAILURE_BONUS_SHOT:
+				curRate = entity.bonusShot;
+				break;
+		}
+
+		int randValue = Random100();
+		if (randValue <= curRate)
+			return true;
+
+		return false;
+	}
+
+	public void CheckTriggerSkill(PassiveType passiveType)
+	{
+		if (!TriggerSkill(passiveType)) // 스킬에 따라 랜덤값 , 스킬명 구현
+			return;
+
+		SkillWork(passiveType); // 스킬에 따라 추가 기능 구현
+		ShowPopupSkill(passiveType);
+	}
+
+	private void SkillWork(PassiveType passiveType)
+	{
+		switch(passiveType)
+		{
+			case PassiveType.SHOT_DOUBLE_DAMAGE:
+				{
+					CheckUpgradePin(true);
+					textSkill.SetText("Double Damage");
+				}
+				break;
+			case PassiveType.FAILURE_BONUS_SHOT:
+				{
+					this.shot = 1;
+					SetShotText();
+					textShot.color = Color.red;
+					textSkill.SetText("Final Shot");
+				}
+				break;
+		}
+	}
+
+	public void ShowPopupSkill(PassiveType passiveType)
+	{
+		// 사운드 발생
+		AudioManager.instance.PlaySfx(AudioManager.Sfx.buff);
+		// 텍스트를 화면 아래로 배치
+		textSkill.rectTransform.anchoredPosition = new Vector2(0, -1500);
+
+		// 시퀀스 생성
+		DG.Tweening.Sequence sequence = DOTween.Sequence();
+
+		// 화면 하단에서 위로 이동 (예: y = 0) - 0.5초 동안
+		sequence.Append(textSkill.rectTransform.DOAnchorPosY(-700, 0.03f).SetEase(Ease.OutQuad));
+
+		// 0.3초 대기
+		sequence.AppendInterval(0.3f);
+
+		// 다시 아래로 이동 - 0.5초 동안
+		sequence.Append(textSkill.rectTransform.DOAnchorPosY(-1500, 0.1f).SetEase(Ease.InQuad));
+
+		// 시퀀스 실행
+		sequence.Play();
+	}
+
+	public void CheckFinalShot()
+	{
+		if(shot == 0)
+		{
+			if (checkFinalShot)
+				return;
+
+			checkFinalShot = true;
+			CheckTriggerSkill(PassiveType.FAILURE_BONUS_SHOT);
+		}
 	}
 }

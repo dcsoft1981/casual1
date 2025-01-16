@@ -363,8 +363,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 3358732850
-  m_fontColor: {r: 0.19607845, g: 0.19607845, b: 0.19607845, a: 0.78431374}
+    rgba: 3361956707
+  m_fontColor: {r: 0.38679248, g: 0.38679248, b: 0.38679248, a: 0.78431374}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1321,7 +1321,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 0.8352941, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1612,7 +1612,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   btnPlay: {fileID: 1097208484}
-  popupShare: {fileID: 1569847578}
+  btnPlayer: {fileID: 469929364}
+  btnMenu: {fileID: 1595703915}
+  popupPlayer: {fileID: 1569847578}
   popupMenu: {fileID: 1249999799}
   popupCheat: {fileID: 909339515}
 --- !u!4 &534193850
@@ -1959,7 +1961,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: TAPTOK
+  m_text: TapTok
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1968,8 +1970,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281479730
-  m_fontColor: {r: 0.19607845, g: 0.19607845, b: 0.19607845, a: 1}
+    rgba: 4292214783
+  m_fontColor: {r: 1, g: 1, b: 0.8352941, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -3593,7 +3595,7 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 0.9960785, b: 0.8352942, a: 1}
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 1, g: 0.9960785, b: 0.8352942, a: 1}
     m_PressedColor: {r: 0.8207547, g: 0.8173441, b: 0.6775098, a: 1}
     m_SelectedColor: {r: 1, g: 0.9960785, b: 0.8352942, a: 1}
@@ -3640,7 +3642,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -4699,7 +4701,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 0.8352941, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -5474,7 +5476,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 0.8352941, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -6363,7 +6365,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 1, g: 0.99607843, b: 0.8352941, a: 0}
+  m_BackGroundColor: {r: 0.15686275, g: 0.15686275, b: 0.15686275, a: 1}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -6932,6 +6934,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 158e7a46d6f85af4b84fd11824df0034, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levelDB: {fileID: 11400000, guid: 100d04b51f9336e4496841486b9b7d3b, type: 2}
+  gimmickDB: {fileID: 11400000, guid: e41c75628e2f84d4c888db1e7a79deb3, type: 2}
+  gradeDB: {fileID: 11400000, guid: 0552b850e4694c74d8fb069aec0058c0, type: 2}
 --- !u!1001 &4732757796607898380
 PrefabInstance:
   m_ObjectHideFlags: 0

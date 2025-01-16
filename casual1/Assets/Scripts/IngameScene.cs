@@ -8,7 +8,7 @@ public class IngameScene : MonoBehaviour
 	private bool isInit = false;
 	[SerializeField] private GameObject popupIngameCheat;
 
-	void Start()
+	void Start() 
 	{
 		if (isInit == false)
 		{

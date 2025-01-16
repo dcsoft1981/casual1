@@ -42,7 +42,7 @@ public class Pin : MonoBehaviour
 			}
 		}
 
-		GameManager.instance.CheckUpgradePin();
+		GameManager.instance.CheckUpgradePin(false);
 	}
 
 	private void OnTriggerEnter2D(Collider2D collision)

@@ -132,8 +132,8 @@ public class TargetCircle : MonoBehaviour
 
 		lineRenderer.positionCount = (int)segments + 1;
 		lineRenderer.useWorldSpace = false;
-		lineRenderer.startWidth = 0.2f;
-		lineRenderer.endWidth = 0.2f;
+		lineRenderer.startWidth = 0.1f;
+		lineRenderer.endWidth = 0.1f;
 
 		float angle = startAngle;
 		for (int i = 0; i <= segments; i++)

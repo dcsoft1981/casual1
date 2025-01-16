@@ -37,20 +37,20 @@ public class Gimmick : MonoBehaviour
 
 	public void SetGimmickSprite(int index)
 	{
-		GimmickDBEntity gimmickInfo = GameManager.instance.GetGimmickInfo(gimmickType);
+		GimmickDBEntity gimmickInfo = LocalDataManager.instance.GetGimmickInfo(gimmickType);
 		// Sprite Load
 		Sprite gimmickSprite = null;
 		if(index == 1)
 		{
-			gimmickSprite = GameManager.instance.GetGimmickSprite(gimmickType);
+			gimmickSprite = LocalDataManager.instance.GetGimmickSprite(gimmickType);
 		}
 		else if(index == 2)
 		{
-			gimmickSprite = GameManager.instance.GetGimmickSprite2(gimmickType);
+			gimmickSprite = LocalDataManager.instance.GetGimmickSprite2(gimmickType);
 		}
 		else if (index == 3)
 		{
-			gimmickSprite = GameManager.instance.GetGimmickSprite3(gimmickType);
+			gimmickSprite = LocalDataManager.instance.GetGimmickSprite3(gimmickType);
 		}
 
 		// 스프라이트가 성공적으로 로드되었는지 확인합니다.
@@ -78,7 +78,7 @@ public class Gimmick : MonoBehaviour
 
 		SetColor(_color);
 		SetGimmickSprite(GetSpriteNoAtInit(_type, _isChecked));
-		GimmickDBEntity gimmickInfo = GameManager.instance.GetGimmickInfo(gimmickType);
+		GimmickDBEntity gimmickInfo = LocalDataManager.instance.GetGimmickInfo(gimmickType);
 		// 원하는 크기에 맞게 로컬 스케일을 조정합니다.
 		spriteScale = gimmickInfo.spritescale;
 		spriteObject.transform.localScale = new Vector3(spriteScale, spriteScale, 1);

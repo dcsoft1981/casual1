@@ -17,7 +17,7 @@ public class AudioManager : MonoBehaviour
 	AudioSource[] sfxPlayers;
 	int channelIndex;
 
-	public enum Sfx { clear , shoot_failure  , shoot_good }
+	public enum Sfx { clear , shoot_failure , shoot_good , buff }
 
 	private void Awake()
 	{

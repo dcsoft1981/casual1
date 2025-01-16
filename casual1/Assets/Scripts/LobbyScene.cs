@@ -2,14 +2,28 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using DG.Tweening;
+using UnityEngine.UI;
 
 public class LobbyScene : MonoBehaviour
 {
 	private bool isInit = false;
 	[SerializeField] private GameObject btnPlay;
-	[SerializeField] private GameObject popupShare;
+	[SerializeField] private GameObject btnPlayer;
+	[SerializeField] private GameObject btnMenu;
+	[SerializeField] private GameObject popupPlayer;
 	[SerializeField] private GameObject popupMenu;
 	[SerializeField] private GameObject popupCheat;
+
+	private Image buttonPlayImage;
+	private Image buttonPlayerImage;
+	private Image buttonMenuImage;
+
+	private void Awake()
+	{
+		buttonPlayImage = btnPlay.transform.Find("Image").GetComponent<Image>();
+		buttonPlayerImage = btnPlayer.GetComponent<Image>();
+		buttonMenuImage = btnMenu.GetComponent<Image>();
+	}
 
 	void Start()
     {
@@ -27,6 +41,10 @@ public class LobbyScene : MonoBehaviour
 			int level = LocalDataManager.instance.GetCurLevel();
 			buttonText.text = level.ToString();
 		}
+		Color curGradeColor = LocalDataManager.instance.GetCurColor();
+		buttonPlayImage.color = curGradeColor;
+		buttonPlayerImage.color = curGradeColor;
+		buttonMenuImage.color = curGradeColor;
 	}
 
     public void LoadLevelScene()
@@ -36,15 +54,15 @@ public class LobbyScene : MonoBehaviour
 
 	public void OnClickShare()
 	{
-		popupShare.SetActive(true);
-		popupShare.transform.localScale = Vector3.zero;
-		popupShare.transform.DOScale(Vector3.one, 0.2f).SetEase(Ease.OutCirc);
+		popupPlayer.SetActive(true);
+		popupPlayer.transform.localScale = Vector3.zero;
+		popupPlayer.transform.DOScale(Vector3.one, 0.2f).SetEase(Ease.OutCirc);
 	}
 
 	public void OnCloseShare()
 	{
 		//popupShare.SetActive(false);
-		popupShare.transform.DOScale(Vector3.zero, 0.2f).SetEase(Ease.InBack).OnComplete(() => popupShare.SetActive(false));
+		popupPlayer.transform.DOScale(Vector3.zero, 0.2f).SetEase(Ease.InBack).OnComplete(() => popupPlayer.SetActive(false));
 	}
 
 	public void OnClickMenu()

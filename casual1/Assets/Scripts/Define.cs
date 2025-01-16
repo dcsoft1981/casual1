@@ -14,9 +14,14 @@ public class Define
 
 	public const float BASE_GIMMICK_SCALE = 1 / 3f;
 	public const int MAX_COMBO = 5;
+	public static Color COLOR_TARGET_BASE = new Color(40f/255f, 40f / 255f, 40f / 255f, 1f);
 	public static Color COLOR_BLACK = new Color(0f, 0f, 0f, 1f);
 	public static Color COLOR_BLACK_ALPHA10 = new Color(0f, 0f, 0f, 0.4f);
 	public static Color GREEN2 = new Color(0f, 0.8f, 0f, 1f);
+	public static Color HP_OVER4 = new Color(0.9f, 0f, 0f);
+	public static Color HP_3 = new Color(0.7f, 0f, 0f);
+	public static Color HP_2 = new Color(0.4f, 0f, 0f);
+	public static Color HP_1 = new Color(0.1f, 0f, 0f);
 
 	// 타겟
 	// 10000 자리 값 : 외형. 일단 색으로 구분(1-GREEN, 2-BLUE,3-RED)
@@ -63,5 +68,16 @@ public class Define
 		DAMAGE_AREA = 30100, //해당 영역을 통과해서 히트 시, 데미지가 N배로 들어감 (N=2~5?)
 
 		// alex notebook commit
+	}
+
+	// 효과가 너무 좋지 않은것으로 타입들 잡아야됨
+	public enum PassiveType
+	{
+		NONE = 0,
+		SHOT_DOUBLE_DAMAGE = 1, // 2배 데미지
+		FAILURE_BONUS_SHOT = 2, // 실패 시 추가 발사체
+
+		// 보류
+		SHOT_ROTATION_DOWN = 101, // 히트 시 회전속도 감소
 	}
 }

@@ -1,0 +1,85 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 8
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5df727ed0e989d4bbc390accaea398a, type: 3}
+  m_Name: GradeDB
+  m_EditorClassIdentifier: 
+  grades:
+  - id: 1
+    grade: Beginner
+    minLevel: 1
+    maxLevel: 10
+    color: 255:255:213
+    doubleDamage: 0
+    bonusShot: 0
+  - id: 2
+    grade: Bronze
+    minLevel: 11
+    maxLevel: 30
+    color: 205:127:50
+    doubleDamage: 50
+    bonusShot: 50
+  - id: 3
+    grade: Silver
+    minLevel: 31
+    maxLevel: 50
+    color: 192:192:192
+    doubleDamage: 5
+    bonusShot: 5
+  - id: 4
+    grade: Gold
+    minLevel: 51
+    maxLevel: 100
+    color: 255:215:0
+    doubleDamage: 6
+    bonusShot: 5
+  - id: 5
+    grade: Platinum
+    minLevel: 101
+    maxLevel: 150
+    color: 229:228:226
+    doubleDamage: 6
+    bonusShot: 6
+  - id: 6
+    grade: Emerald
+    minLevel: 151
+    maxLevel: 200
+    color: 80:200:120
+    doubleDamage: 7
+    bonusShot: 6
+  - id: 7
+    grade: Diamond
+    minLevel: 201
+    maxLevel: 300
+    color: 185:242:255
+    doubleDamage: 7
+    bonusShot: 7
+  - id: 8
+    grade: Master
+    minLevel: 301
+    maxLevel: 400
+    color: 128:0:128
+    doubleDamage: 8
+    bonusShot: 7
+  - id: 9
+    grade: GrandMaster
+    minLevel: 401
+    maxLevel: 500
+    color: 102:0:102
+    doubleDamage: 8
+    bonusShot: 8
+  - id: 10
+    grade: Challenger
+    minLevel: 501
+    maxLevel: 9999
+    color: 0:0:255
+    doubleDamage: 10
+    bonusShot: 10
