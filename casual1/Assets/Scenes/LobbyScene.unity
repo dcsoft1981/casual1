@@ -585,7 +585,7 @@ MonoBehaviour:
   typewriterStartsAutomatically: 0
   animationLoop: 0
   timeScale: 0
-  _text: <bounce a=3> TapTok
+  _text: <incr a=1 f=3>TapTok
   useDynamicScaling: 1
   referenceFontSize: 70
   isResettingTimeOnNewText: 1

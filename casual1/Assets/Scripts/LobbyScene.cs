@@ -28,7 +28,7 @@ public class LobbyScene : MonoBehaviour
 		buttonPlayerImage = btnPlayer.GetComponent<Image>();
 		buttonMenuImage = btnMenu.GetComponent<Image>();
 		titlePrefix = new List<string>();
-		titlePrefix.Add("<rainb>");
+		titlePrefix.Add("<rainb f=3>");
 		titlePrefix.Add("<pend>");
 		titlePrefix.Add("<dangle>");
 		titlePrefix.Add("<fade d=1>");
@@ -37,7 +37,7 @@ public class LobbyScene : MonoBehaviour
 		titlePrefix.Add("<slide>");
 		titlePrefix.Add("<swing>");
 		titlePrefix.Add("<wave>");
-		titlePrefix.Add("<incr a=1 f=4>");
+		titlePrefix.Add("<incr a=1 f=3>");
 		titlePrefix.Add("<shake a=3>");
 		titlePrefix.Add("<wiggle>");
 		titlePrefix.Add("");
