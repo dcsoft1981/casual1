@@ -3,6 +3,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using DG.Tweening;
 using UnityEngine.UI;
+using NUnit.Framework;
+using System.Collections.Generic;
 
 public class LobbyScene : MonoBehaviour
 {
@@ -13,16 +15,32 @@ public class LobbyScene : MonoBehaviour
 	[SerializeField] private GameObject popupPlayer;
 	[SerializeField] private GameObject popupMenu;
 	[SerializeField] private GameObject popupCheat;
+	[SerializeField] private TextMeshProUGUI textTitle1;
 
 	private Image buttonPlayImage;
 	private Image buttonPlayerImage;
 	private Image buttonMenuImage;
+	private List<string> titlePrefix;
 
 	private void Awake()
 	{
 		buttonPlayImage = btnPlay.transform.Find("Image").GetComponent<Image>();
 		buttonPlayerImage = btnPlayer.GetComponent<Image>();
 		buttonMenuImage = btnMenu.GetComponent<Image>();
+		titlePrefix = new List<string>();
+		titlePrefix.Add("<rainb>");
+		titlePrefix.Add("<pend>");
+		titlePrefix.Add("<dangle>");
+		titlePrefix.Add("<fade d=1>");
+		titlePrefix.Add("<rot>");
+		titlePrefix.Add("<bounce a=3>");
+		titlePrefix.Add("<slide>");
+		titlePrefix.Add("<swing>");
+		titlePrefix.Add("<wave>");
+		titlePrefix.Add("<incr a=1 f=4>");
+		titlePrefix.Add("<shake a=3>");
+		titlePrefix.Add("<wiggle>");
+		titlePrefix.Add("");
 	}
 
 	void Start()
@@ -45,6 +63,7 @@ public class LobbyScene : MonoBehaviour
 		buttonPlayImage.color = curGradeColor;
 		buttonPlayerImage.color = curGradeColor;
 		buttonMenuImage.color = curGradeColor;
+		SetTitleText();
 	}
 
     public void LoadLevelScene()
@@ -88,5 +107,15 @@ public class LobbyScene : MonoBehaviour
 	public void OnCloseCheat()
 	{
 		popupCheat.SetActive(false);
+	}
+
+	void SetTitleText()
+	{
+		// 정보 링크
+		// https://docs.febucci.com/text-animator-unity/effects/built-in-effects-list
+		int randValue = Random.Range(0, titlePrefix.Count);
+		string str = titlePrefix[randValue] + "TapTok";
+		textTitle1.SetText(str);
+		Debug.Log("SetTitleText : " + str);
 	}
 }
