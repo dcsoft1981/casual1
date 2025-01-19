@@ -1006,7 +1006,7 @@ public class GameManager : MonoBehaviour
 			case PassiveType.SHOT_DOUBLE_DAMAGE:
 				{
 					CheckUpgradePin(true);
-					textSkill.SetText("Double Damage");
+					textSkill.SetText(Define.SKILL_DOUBLE_DAMAGE);
 				}
 				break;
 			case PassiveType.FAILURE_BONUS_SHOT:
@@ -1014,7 +1014,7 @@ public class GameManager : MonoBehaviour
 					this.shot = 1;
 					SetShotText();
 					textShot.color = Color.red;
-					textSkill.SetText("Final Shot");
+					textSkill.SetText(Define.SKILL_FINAL_SHOT);
 				}
 				break;
 		}

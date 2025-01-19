@@ -4,8 +4,13 @@ public class Define
 {
 	public const string CHILD_SPRITE_OBJECT = "ChildSpriteObject";
 	public const string CUR_LEVEL = "CUR_LEVEL";
+	public const string OPTION_SOUND_OFF = "OPTION_SOUND_OFF";
+	public const string OPTION_VIBRATE_OFF = "OPTION_VIBRATE_OFF";
 	public const string LOCALE_RETRY = "RETRY";
 	public const string LOCALE_NEXT = "NEXT";
+
+	public const string SKILL_DOUBLE_DAMAGE = "Double Damage";
+	public const string SKILL_FINAL_SHOT = "Final Shot";
 
 	//public const int MAX_LEVEL_KEYFRAME_COUNT = 5; // 회전값 복수개 사용시 사용 현재 미사용
 

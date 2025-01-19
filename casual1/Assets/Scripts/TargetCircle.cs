@@ -20,11 +20,16 @@ public class TargetCircle : MonoBehaviour
 	private SpriteRenderer spriteRenderer;
 	private GameObject spriteObject;
 	private float spriteScale = 1f;
+	private bool shaderLoaded = false;
 
 	private void Awake()
 	{
 		lineRenderer = GetComponent<LineRenderer>();
+		spriteObject = transform.Find(Define.CHILD_SPRITE_OBJECT).gameObject;
+		spriteRenderer = spriteObject.GetComponent<SpriteRenderer>();
+		shaderLoaded = true;
 
+		/*
 		spriteObject = new GameObject(Define.CHILD_SPRITE_OBJECT);
 		spriteObject.transform.SetParent(this.transform);
 
@@ -33,14 +38,27 @@ public class TargetCircle : MonoBehaviour
 
 		// SpriteRenderer 컴포넌트를 추가합니다.
 		spriteRenderer = spriteObject.AddComponent<SpriteRenderer>();
-		spriteObject.AddComponent<AllIn1Shader>();
-		spriteRenderer.material = new Material(Shader.Find("AllIn1SpriteShader/AllIn1SpriteShader"));
+		Shader shader = Shader.Find("AllIn1SpriteShader/AllIn1SpriteShader");
+		shader = null;
+		if (shader != null)
+		{
+			spriteObject.AddComponent<AllIn1Shader>();
+			spriteRenderer.material = new Material(shader);
+			shaderLoaded = true;
+			Debug.Log("AllIn1SpriteShader Shader Exist");
+		}
+		else
+		{
+			spriteRenderer.material = new Material(Shader.Find("Sprites/Default"));
+			Debug.LogError("AllIn1SpriteShader Shader Not Exist");
+		}
+		*/
 	}
 
 	public void SetSprite(float _spriteScale, Color _targetColor)
 	{
 		spriteScale = _spriteScale;
-		spriteRenderer.sprite = Resources.Load<Sprite>("Circle");
+		//spriteRenderer.sprite = Resources.Load<Sprite>("Circle");
 		spriteRenderer.color = _targetColor;
 		spriteObject.transform.localScale = new Vector3(spriteScale, spriteScale, 1);
 	}
@@ -162,16 +180,25 @@ public class TargetCircle : MonoBehaviour
 */
 	public void BLUR_ON()
 	{
-		spriteRenderer.material.EnableKeyword("BLUR_ON");
+		if(shaderLoaded)
+			spriteRenderer.material.EnableKeyword("BLUR_ON");
 	}
 
 	public void BLUR_OFF()
 	{
-		spriteRenderer.material.DisableKeyword("BLUR_ON");
+		if (shaderLoaded)
+			spriteRenderer.material.DisableKeyword("BLUR_ON");
 	}
 
 	public void GRADIENT_ON()
 	{
-		spriteRenderer.material.EnableKeyword("GRADIENT_ON");
+		if (shaderLoaded)
+			spriteRenderer.material.EnableKeyword("GRADIENT_ON");
+	}
+
+	public void GRADIENT_OFF()
+	{
+		if (shaderLoaded)
+			spriteRenderer.material.DisableKeyword("GRADIENT_ON");
 	}
 }

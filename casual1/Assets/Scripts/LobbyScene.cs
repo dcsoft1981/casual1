@@ -5,10 +5,11 @@ using DG.Tweening;
 using UnityEngine.UI;
 using NUnit.Framework;
 using System.Collections.Generic;
+using static Define;
+using System.Text;
 
 public class LobbyScene : MonoBehaviour
 {
-	private bool isInit = false;
 	[SerializeField] private GameObject btnPlay;
 	[SerializeField] private GameObject btnPlayer;
 	[SerializeField] private GameObject btnMenu;
@@ -17,10 +18,21 @@ public class LobbyScene : MonoBehaviour
 	[SerializeField] private GameObject popupCheat;
 	[SerializeField] private TextMeshProUGUI textTitle1;
 
+	[SerializeField] private GameObject gradeScroll;
+	[SerializeField] private GameObject gradeCurrent;
+	[SerializeField] private GameObject gradeEtc;
+	[SerializeField] private GameObject scrollbar;
+
+
 	private Image buttonPlayImage;
 	private Image buttonPlayerImage;
 	private Image buttonMenuImage;
 	private List<string> titlePrefix;
+
+	public float scrollBarValue = 0;
+
+	public Toggle soundOntoggle;
+	public Toggle vibrateOntoggle;
 
 	private void Awake()
 	{
@@ -37,7 +49,7 @@ public class LobbyScene : MonoBehaviour
 		titlePrefix.Add("<slide>");
 		titlePrefix.Add("<swing>");
 		titlePrefix.Add("<wave>");
-		titlePrefix.Add("<incr a=1 f=3>");
+		titlePrefix.Add("<incr a=0.9 f=3>");
 		titlePrefix.Add("<shake a=3>");
 		titlePrefix.Add("<wiggle>");
 		titlePrefix.Add("");
@@ -45,14 +57,6 @@ public class LobbyScene : MonoBehaviour
 
 	void Start()
     {
-		if (isInit == false)
-		{
-			// 60 FPS로 고정
-			Application.targetFrameRate = 60;
-			QualitySettings.vSyncCount = 0; // vSync를 비활성화하여 targetFrameRate가 적용되도록 설정
-			Time.fixedDeltaTime = 0.01f; // 원하는 고정 시간 스텝 설정
-			isInit = true;
-		}
 		TextMeshProUGUI buttonText = btnPlay.GetComponentInChildren<TextMeshProUGUI>();
 		if (buttonText != null)
 		{
@@ -64,6 +68,7 @@ public class LobbyScene : MonoBehaviour
 		buttonPlayerImage.color = curGradeColor;
 		buttonMenuImage.color = curGradeColor;
 		SetTitleText();
+		SetGradeScrollInfo();
 	}
 
     public void LoadLevelScene()
@@ -74,27 +79,29 @@ public class LobbyScene : MonoBehaviour
 	public void OnClickShare()
 	{
 		popupPlayer.SetActive(true);
-		popupPlayer.transform.localScale = Vector3.zero;
-		popupPlayer.transform.DOScale(Vector3.one, 0.2f).SetEase(Ease.OutCirc);
+		SetGradeScrollValue();
+		//popupPlayer.transform.localScale = Vector3.zero;
+		//popupPlayer.transform.DOScale(Vector3.one, 0.2f).SetEase(Ease.OutCirc);
 	}
 
 	public void OnCloseShare()
 	{
-		//popupShare.SetActive(false);
-		popupPlayer.transform.DOScale(Vector3.zero, 0.2f).SetEase(Ease.InBack).OnComplete(() => popupPlayer.SetActive(false));
+		popupPlayer.SetActive(false);
+		//popupPlayer.transform.DOScale(Vector3.zero, 0.2f).SetEase(Ease.InBack).OnComplete(() => popupPlayer.SetActive(false));
 	}
 
 	public void OnClickMenu()
 	{
 		popupMenu.SetActive(true);
-		popupMenu.transform.localScale = Vector3.zero;
-		popupMenu.transform.DOScale(Vector3.one, 0.2f).SetEase(Ease.OutCirc);
+		SetSetting();
+		//popupMenu.transform.localScale = Vector3.zero;
+		//popupMenu.transform.DOScale(Vector3.one, 0.2f).SetEase(Ease.OutCirc);
 	}
 
 	public void OnCloseMenu()
 	{
-		//popupShare.SetActive(false);
-		popupMenu.transform.DOScale(Vector3.zero, 0.2f).SetEase(Ease.InBack).OnComplete(() => popupMenu.SetActive(false));
+		popupMenu.SetActive(false);
+		//popupMenu.transform.DOScale(Vector3.zero, 0.2f).SetEase(Ease.InBack).OnComplete(() => popupMenu.SetActive(false));
 	}
 
 	public void OnClickCheat()
@@ -117,5 +124,108 @@ public class LobbyScene : MonoBehaviour
 		string str = titlePrefix[randValue] + "TapTok";
 		textTitle1.SetText(str);
 		Debug.Log("SetTitleText : " + str);
+	}
+
+	void SetGradeScrollInfo()
+	{
+		float gradeCount = 0;
+		foreach(GradeDBEntity entity in LocalDataManager.instance.GetGradeEntity())
+		{
+			if(entity.minLevel < LocalDataManager.instance.GetMaxLevel())
+			{
+				CreateGrade(entity);
+				gradeCount++;
+			}
+		}
+		float curGrade = (float)LocalDataManager.instance.GetCurGrade();
+		if(curGrade == 1f)
+		{
+			scrollBarValue = 1f;
+		}
+		else
+		{
+			scrollBarValue = 1f - (curGrade / gradeCount);
+		}
+		Debug.Log("SetGradeScrollInfo : " + scrollBarValue);
+	}
+
+	void SetGradeScrollValue()
+	{
+		scrollbar.GetComponent<Scrollbar>().value = scrollBarValue;
+	}
+
+	void CreateGrade(GradeDBEntity entity)
+	{
+		GameObject gradeGameObject = null;
+		GameObject createGrade = null;
+		if (entity.id == LocalDataManager.instance.GetCurGrade())
+		{
+			createGrade = gradeCurrent;
+		}
+		else
+		{
+			createGrade = gradeEtc;
+		}
+		gradeGameObject = Instantiate(createGrade, Vector3.zero, Quaternion.identity);
+		gradeGameObject.transform.SetParent(gradeScroll.transform);
+		gradeGameObject.transform.localScale = Vector3.one;
+
+		Transform iconTransform = gradeGameObject.transform.Find("Content/Icon/Mask/Image");
+		Transform nameTransform = gradeGameObject.transform.Find("Content/NameText");
+		Transform messageTransform = gradeGameObject.transform.Find("Content/MessageText");
+		// 아이콘 색상 변경
+		iconTransform.gameObject.GetComponent<Image>().color = LocalDataManager.instance.GetGradeColor(entity.id);
+		nameTransform.gameObject.GetComponent<TextMeshProUGUI>().SetText(entity.grade);
+		messageTransform.gameObject.GetComponent<TextMeshProUGUI>().SetText(GetGradeInfoStr(entity));
+
+		/*
+		Gimmick gameObjectGimmick = gimmickGameObject.GetComponent<Gimmick>();
+		SetTargetStateByGimmickInit(gimmickType);
+		bool isChecked = GetGimmickInitChecked(gimmickType, listGimmick);
+		Color color = GetGimmickColor(gimmickType, hp, isChecked);
+		gameObjectGimmick.SetGimmick(gimmickType, hp, color, angle, listGimmick, isChecked, targetCircle.gameObject);
+		listGimmick.Add(gimmickGameObject);
+		*/
+	}
+
+	public string GetGradeInfoStr(GradeDBEntity entity)
+	{
+		if(entity.id == 1)
+		{
+			return "Clear the Level to earn a Grade.";
+		}
+
+		StringBuilder sb = new StringBuilder();
+		sb.Append(entity.minLevel - 1).Append(" Level Clear");
+		if(entity.doubleDamage > 0)
+		{
+			sb.Append("\n").Append(Define.SKILL_DOUBLE_DAMAGE).Append(" : ").Append(entity.doubleDamage).Append("%");
+		}
+		if (entity.bonusShot > 0)
+		{
+			sb.Append("\n").Append(Define.SKILL_FINAL_SHOT).Append(" : ").Append(entity.bonusShot).Append("%");
+		}
+		return sb.ToString();
+	}
+
+	public void SetSetting()
+	{
+		bool soundOff = LocalDataManager.instance.GetSoundOff();
+		if(soundOff)
+		{
+			// 사운드 꺼짐
+			soundOntoggle.isOn = false;
+		}
+		else
+		{
+			// 사운드 켜짐
+			soundOntoggle.isOn = true;
+		}
+	}
+
+	public void SoundOn(bool value)
+	{
+		soundOntoggle.isOn = value;
+		LocalDataManager.instance.SetSoundOff(!value);
 	}
 }

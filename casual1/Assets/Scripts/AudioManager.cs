@@ -50,6 +50,8 @@ public class AudioManager : MonoBehaviour
 
 	public void PlaySfx(Sfx sfx)
 	{
+		if (LocalDataManager.instance.GetSoundOff())
+			return;
 		for( int index = 0; index < channels; ++index) {
 			int loopIndex = (index + channelIndex) % sfxPlayers.Length;
 
@@ -64,6 +66,8 @@ public class AudioManager : MonoBehaviour
 
 	public void PlayBgm()
 	{
+		if (LocalDataManager.instance.GetSoundOff())
+			return;
 		bgmPlayer.Play();
 	}
 

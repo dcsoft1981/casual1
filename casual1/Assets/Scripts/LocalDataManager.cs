@@ -6,6 +6,8 @@ public class LocalDataManager : MonoBehaviour
 {
 	public static LocalDataManager instance = null;
 	private int curLevel = 0;
+	private int optionSoundOff = 0;
+	private int optionVibrateOff = 0;
 
 	[SerializeField] private LevelDB levelDB;
 	[SerializeField] private GimmickDB gimmickDB;
@@ -19,12 +21,22 @@ public class LocalDataManager : MonoBehaviour
 	private Dictionary<int, Color> dic_gradeColor;
 	private Dictionary<int, int> dic_levelGrade;
 
+	private int maxLevel = 0;
+
 	private void Awake()
 	{
 		if (instance == null)
 		{
+			// 시스템 설정
+			// 60 FPS로 고정
+			Application.targetFrameRate = 60;
+			QualitySettings.vSyncCount = 0; // vSync를 비활성화하여 targetFrameRate가 적용되도록 설정
+			Time.fixedDeltaTime = 0.01f; // 원하는 고정 시간 스텝 설정
+
 			instance = this;
 			curLevel = PlayerPrefs.GetInt(Define.CUR_LEVEL, 1);
+			optionSoundOff = PlayerPrefs.GetInt(Define.OPTION_SOUND_OFF, 0);
+			optionVibrateOff = PlayerPrefs.GetInt(Define.OPTION_VIBRATE_OFF, 0);
 
 			dic_gimmicks = new Dictionary<int, GimmickDBEntity>();
 			dic_gimmickSprites = new Dictionary<int, Sprite>();
@@ -55,6 +67,8 @@ public class LocalDataManager : MonoBehaviour
 				{
 					dic_levelGrade.Add(levelDBEntity.id, grade);
 				}
+				if (levelDBEntity.id > maxLevel)
+					maxLevel = levelDBEntity.id;
 			}
 		}
 	}
@@ -148,12 +162,45 @@ public class LocalDataManager : MonoBehaviour
 
 	public Color GetCurColor()
 	{
-		int grade = GetCurGrade();
+		return GetGradeColor(GetCurGrade());
+	}
+
+	public Color GetGradeColor(int grade)
+	{
 		if (grade == 0)
 			return Color.black;
 
 		if (dic_gradeColor.TryGetValue(grade, out Color color))
 			return color;
 		return Color.black;
+	}
+
+	public int GetMaxLevel()
+	{
+		return maxLevel;
+	}
+
+	public List<GradeDBEntity> GetGradeEntity()
+	{
+		return gradeDB.grades;
+	}
+
+	public bool GetSoundOff()
+	{
+		if(optionSoundOff == 0)
+			return false;
+		else
+			return true;
+	}
+
+	public void SetSoundOff(bool soundOff)
+	{
+		int value = 0;
+		if (soundOff)
+		{
+			value = 1;
+		}
+		optionSoundOff = value;
+		PlayerPrefs.SetInt(Define.OPTION_SOUND_OFF, optionSoundOff);
 	}
 }
