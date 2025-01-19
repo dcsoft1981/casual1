@@ -85,4 +85,11 @@ public class AudioManager : MonoBehaviour
 	{
 		bgmHighPassFilter.enabled = false;
 	}
+
+	public void Vibrate()
+	{
+		if (LocalDataManager.instance.GetVibrateOff())
+			return;
+		Handheld.Vibrate();
+	}
 }

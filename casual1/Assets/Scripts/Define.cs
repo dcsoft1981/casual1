@@ -27,6 +27,7 @@ public class Define
 	public static Color HP_3 = new Color(0.7f, 0f, 0f);
 	public static Color HP_2 = new Color(0.4f, 0f, 0f);
 	public static Color HP_1 = new Color(0.1f, 0f, 0f);
+	public static Color BASE = new Color(255f, 254f, 213f);
 
 	// 타겟
 	// 10000 자리 값 : 외형. 일단 색으로 구분(1-GREEN, 2-BLUE,3-RED)
@@ -84,5 +85,13 @@ public class Define
 
 		// 보류
 		SHOT_ROTATION_DOWN = 101, // 히트 시 회전속도 감소
+	}
+
+	// 인게임 모드
+	public enum IngameType
+	{
+		NONE = 0,
+		NORMAL = 1,
+		INFINITY = 2,
 	}
 }

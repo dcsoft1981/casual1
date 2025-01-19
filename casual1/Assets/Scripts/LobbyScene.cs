@@ -33,6 +33,7 @@ public class LobbyScene : MonoBehaviour
 
 	public Toggle soundOntoggle;
 	public Toggle vibrateOntoggle;
+	public Sprite spriteInfinity;
 
 	private void Awake()
 	{
@@ -53,6 +54,8 @@ public class LobbyScene : MonoBehaviour
 		titlePrefix.Add("<shake a=3>");
 		titlePrefix.Add("<wiggle>");
 		titlePrefix.Add("");
+
+		spriteInfinity = Resources.Load<Sprite>("Infinity");
 	}
 
 	void Start()
@@ -67,6 +70,13 @@ public class LobbyScene : MonoBehaviour
 		buttonPlayImage.color = curGradeColor;
 		buttonPlayerImage.color = curGradeColor;
 		buttonMenuImage.color = curGradeColor;
+		IngameType ingameType = LocalDataManager.instance.GetIngameType();
+		if(ingameType == IngameType.INFINITY)
+		{
+			buttonPlayImage.sprite = spriteInfinity;
+			if(buttonText != null)
+				buttonText.gameObject.SetActive(false);
+		}
 		SetTitleText();
 		SetGradeScrollInfo();
 	}
@@ -221,11 +231,29 @@ public class LobbyScene : MonoBehaviour
 			// »ç¿îµå ÄÑÁü
 			soundOntoggle.isOn = true;
 		}
+
+		bool vibrateOff = LocalDataManager.instance.GetVibrateOff();
+		if (vibrateOff)
+		{
+			// Áøµ¿ ²¨Áü
+			vibrateOntoggle.isOn = false;
+		}
+		else
+		{
+			// Áøµ¿ ÄÑÁü
+			vibrateOntoggle.isOn = true;
+		}
 	}
 
 	public void SoundOn(bool value)
 	{
 		soundOntoggle.isOn = value;
 		LocalDataManager.instance.SetSoundOff(!value);
+	}
+
+	public void VibrateOn(bool value)
+	{
+		vibrateOntoggle.isOn = value;
+		LocalDataManager.instance.SetVibrateOff(!value);
 	}
 }

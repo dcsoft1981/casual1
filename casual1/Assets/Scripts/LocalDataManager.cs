@@ -84,9 +84,8 @@ public class LocalDataManager : MonoBehaviour
 		curLevel = level;
 	}
 
-	public LevelDBEntity GetLevelDBEntity()
+	public LevelDBEntity GetLevelDBEntity(int level)
 	{
-		int level = GetCurLevel();
 		return levelDB.levels[level - 1];
 	}
 
@@ -143,7 +142,10 @@ public class LocalDataManager : MonoBehaviour
 
 	public int GetCurGrade()
 	{
-		if(dic_levelGrade.TryGetValue(GetCurLevel(), out int grade))
+		int curLevel = GetCurLevel();
+		if (curLevel > GetMaxLevel())
+			curLevel = GetMaxLevel();
+		if (dic_levelGrade.TryGetValue(curLevel, out int grade))
 		{  return grade; }
 
 		return 0;
@@ -202,5 +204,33 @@ public class LocalDataManager : MonoBehaviour
 		}
 		optionSoundOff = value;
 		PlayerPrefs.SetInt(Define.OPTION_SOUND_OFF, optionSoundOff);
+	}
+
+	public bool GetVibrateOff()
+	{
+		if (optionVibrateOff == 0)
+			return false;
+		else
+			return true;
+	}
+
+	public void SetVibrateOff(bool off)
+	{
+		int value = 0;
+		if (off)
+		{
+			value = 1;
+		}
+		optionVibrateOff = value;
+		PlayerPrefs.SetInt(Define.OPTION_VIBRATE_OFF, optionVibrateOff);
+	}
+
+	public IngameType GetIngameType()
+	{
+		int level = GetCurLevel();
+		if (level > GetMaxLevel())
+			return IngameType.INFINITY;
+
+		return IngameType.NORMAL;
 	}
 }

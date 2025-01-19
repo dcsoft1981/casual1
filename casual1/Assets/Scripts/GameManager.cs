@@ -62,6 +62,9 @@ public class GameManager : MonoBehaviour
 	private Pin currPin = null;
 	private bool checkFinalShot = false;
 	private int skillPosY = 0;
+	private IngameType ingameType;
+
+	[SerializeField] private GameObject popupResult;
 
 
 	// Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -83,9 +86,24 @@ public class GameManager : MonoBehaviour
 
 	void Start()
     {
-		int level = LocalDataManager.instance.GetCurLevel();
+		int level = 0;
+		ingameType = LocalDataManager.instance.GetIngameType();
+		switch(ingameType)
+		{
+			case IngameType.NORMAL:
+				{
+					level = LocalDataManager.instance.GetCurLevel();
+				}
+				break;
+			case IngameType.INFINITY:
+				{
+					level = 1;
+				}
+				break;
+		}
+
+		levelData = LocalDataManager.instance.GetLevelDBEntity(level);
 		combo = 0;
-		levelData = LocalDataManager.instance.GetLevelDBEntity();
 		SetOrthographicSize();
 
 		// HP 지정
@@ -145,7 +163,7 @@ public class GameManager : MonoBehaviour
 
 	void SetComboText()
 	{
-		textCombo.SetText(combo.ToString());
+		textCombo.SetText(combo.ToString()+ "/5");
 	}
 
 	public void IncreaseHP(int amount)
@@ -158,6 +176,7 @@ public class GameManager : MonoBehaviour
     {
 		if(hp > 0)
 		{
+			AudioManager.instance.Vibrate();
 			StartCoroutine(Shake(targetCircle.gameObject));
 		}
 		hp -= damage;
@@ -187,14 +206,14 @@ public class GameManager : MonoBehaviour
 			isGameOver = true;
             if(success)
             {
-                Camera.main.backgroundColor = clearColor;
+                Camera.main.backgroundColor = LocalDataManager.instance.GetCurColor();
 				AudioManager.instance.OnEffectBgm();
 				Invoke("StageClear", 0.3f);
 			}
             else
             {
 				Camera.main.backgroundColor = failureColor;
-				Invoke("StageFailure", 0.7f);
+				Invoke("StageFailure", 1.0f);
 			}
 		}
     }
@@ -204,22 +223,40 @@ public class GameManager : MonoBehaviour
 		LineRenderer[] array = targetCircle.gameObject.GetComponentsInChildren<LineRenderer>();
 		for (int i = 0; i < array.Length; i++)
 		{
-			if(array[i].positionCount < 10)
-				array[i].enabled = false;
+			//if(array[i].positionCount < 10)
+			array[i].enabled = false;
 		}
 	}
 
 	private  void StageClear()
     {
-		targetCircle.GRADIENT_ON();
-		int level = LocalDataManager.instance.GetCurLevel();
-        int nextLevel = level + 1;
-		LocalDataManager.instance.SetCurLevel(nextLevel);
+		//targetCircle.GRADIENT_ON();
+		switch (ingameType)
+		{
+			case IngameType.NORMAL:
+				{
+					int level = LocalDataManager.instance.GetCurLevel();
+					int nextLevel = level + 1;
+					LocalDataManager.instance.SetCurLevel(nextLevel);
+				}
+				break;
+			case IngameType.INFINITY:
+				{
+					// 무한스테이지값 증가
+				}
+				break;
+		}
+		
+
+		/*
 		TextMeshProUGUI buttonText = btnRetry.GetComponentInChildren<TextMeshProUGUI>();
 		if(buttonText != null)
 			buttonText.text = Define.LOCALE_NEXT;
 		btnRetry.SetActive(true);
         labelClear.SetActive(true);
+		*/
+
+		PopupResultSuccess();
 		AudioManager.instance.PlaySfx(AudioManager.Sfx.clear);
 	}
 
@@ -929,8 +966,8 @@ public class GameManager : MonoBehaviour
 
 	private IEnumerator Shake(GameObject gameObject)
 	{
-		float shakeDuration = 0.04f; // 흔들림 지속 시간
-		float shakeMagnitude = 0.025f; // 흔들림 강도
+		float shakeDuration = 0.06f; // 흔들림 지속 시간
+		float shakeMagnitude = 0.05f; // 흔들림 강도
 		float elapsed = 0.0f;
 		Transform childTransform = gameObject.transform.Find(Define.CHILD_SPRITE_OBJECT);
 		SpriteRenderer spriteRenderer = childTransform.gameObject.GetComponent<SpriteRenderer>();
@@ -1025,19 +1062,19 @@ public class GameManager : MonoBehaviour
 		// 사운드 발생
 		AudioManager.instance.PlaySfx(AudioManager.Sfx.buff);
 		// 텍스트를 화면 아래로 배치
-		textSkill.rectTransform.anchoredPosition = new Vector2(0, -300);
+		textSkill.rectTransform.anchoredPosition = new Vector2(-800, 600);
 
 		// 시퀀스 생성
 		DG.Tweening.Sequence sequence = DOTween.Sequence();
 
 		// 화면 하단에서 위로 이동 (예: y = 0) - 0.5초 동안
-		sequence.Append(textSkill.rectTransform.DOAnchorPosY(skillPosY, 0.03f).SetEase(Ease.OutQuad));
+		sequence.Append(textSkill.rectTransform.DOAnchorPosX(0f, 0.03f).SetEase(Ease.OutQuad));
 
 		// 0.3초 대기
 		sequence.AppendInterval(0.3f);
 
-		// 다시 아래로 이동 - 0.5초 동안
-		sequence.Append(textSkill.rectTransform.DOAnchorPosY(-300, 0.1f).SetEase(Ease.InQuad));
+		// 다시 이동 - 0.5초 동안
+		sequence.Append(textSkill.rectTransform.DOAnchorPosX(-800, 0.1f).SetEase(Ease.InQuad));
 
 		// 시퀀스 실행
 		sequence.Play();
@@ -1085,5 +1122,10 @@ public class GameManager : MonoBehaviour
 		}
 		
 		Debug.Log($"SetOrthographicSize: {screenWidth}, {screenHeight}, {aspectRatio}, {skillPosY}");
+	}
+
+	public void PopupResultSuccess()
+	{
+		popupResult.SetActive(true);
 	}
 }
