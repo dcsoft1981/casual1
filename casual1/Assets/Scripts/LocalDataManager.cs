@@ -8,6 +8,7 @@ public class LocalDataManager : MonoBehaviour
 	private int curLevel = 0;
 	private int optionSoundOff = 0;
 	private int optionVibrateOff = 0;
+	private int infinityStage = 0;
 
 	[SerializeField] private LevelDB levelDB;
 	[SerializeField] private GimmickDB gimmickDB;
@@ -37,6 +38,7 @@ public class LocalDataManager : MonoBehaviour
 			curLevel = PlayerPrefs.GetInt(Define.CUR_LEVEL, 1);
 			optionSoundOff = PlayerPrefs.GetInt(Define.OPTION_SOUND_OFF, 0);
 			optionVibrateOff = PlayerPrefs.GetInt(Define.OPTION_VIBRATE_OFF, 0);
+			infinityStage = PlayerPrefs.GetInt(Define.INFINITY_STAGE, 0);
 
 			dic_gimmicks = new Dictionary<int, GimmickDBEntity>();
 			dic_gimmickSprites = new Dictionary<int, Sprite>();
@@ -232,5 +234,16 @@ public class LocalDataManager : MonoBehaviour
 			return IngameType.INFINITY;
 
 		return IngameType.NORMAL;
+	}
+
+	public int GetInfinityStage()
+	{
+		return infinityStage;
+	}
+
+	public void SetInfinityStage(int _infinityStage)
+	{
+		PlayerPrefs.SetInt(Define.INFINITY_STAGE, _infinityStage);
+		infinityStage = _infinityStage;
 	}
 }

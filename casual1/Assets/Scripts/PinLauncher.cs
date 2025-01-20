@@ -23,7 +23,7 @@ public class PinLauncher : MonoBehaviour
             currPin.Launch();
 			GameManager.instance.DecreaseShot();
 			currPin = null;
-            Invoke("PreparePin", 0.15f);
+            Invoke("PreparePin", 0.10f);
 		}
     }
 
