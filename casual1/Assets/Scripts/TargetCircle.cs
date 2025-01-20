@@ -20,14 +20,12 @@ public class TargetCircle : MonoBehaviour
 	private SpriteRenderer spriteRenderer;
 	private GameObject spriteObject;
 	private float spriteScale = 1f;
-	private bool shaderLoaded = false;
 
 	private void Awake()
 	{
 		lineRenderer = GetComponent<LineRenderer>();
 		spriteObject = transform.Find(Define.CHILD_SPRITE_OBJECT).gameObject;
 		spriteRenderer = spriteObject.GetComponent<SpriteRenderer>();
-		shaderLoaded = true;
 
 		/*
 		spriteObject = new GameObject(Define.CHILD_SPRITE_OBJECT);
@@ -55,12 +53,26 @@ public class TargetCircle : MonoBehaviour
 		*/
 	}
 
-	public void SetSprite(float _spriteScale, Color _targetColor)
+	public void SetSprite(float _spriteScale, int _targetId)
 	{
 		spriteScale = _spriteScale;
 		//spriteRenderer.sprite = Resources.Load<Sprite>("Circle");
-		spriteRenderer.color = _targetColor;
+		spriteRenderer.color = Define.COLOR_TARGET_BASE;
 		spriteObject.transform.localScale = new Vector3(spriteScale, spriteScale, 1);
+		Define.TargetType targetType = (Define.TargetType)_targetId;
+		switch(targetType)
+		{
+			case Define.TargetType.SILVER:
+				{
+					spriteObject.transform.Find("Sprite1").gameObject.SetActive(true);
+				}
+				break;
+			case Define.TargetType.GOLD:
+				{
+					spriteObject.transform.Find("Sprite2").gameObject.SetActive(true);
+				}
+				break;
+		}
 	}
 
 	public void StartAnimation(AnimationCurve animationCurve)
@@ -164,41 +176,13 @@ public class TargetCircle : MonoBehaviour
 		Debug.Log("DrawDamageLine radius :" + radius);
 	}
 
-	// 쉐이더 함수
-/*
-	FISHEYE_ON - 다각형 됨
-	PINCH_ON - 솜뭉치 효과
-	SHAKEUV_ON - 우글우글 효과
-	ROUNDWAVEUV_ON - 원이 휙휙도는 효과
-	DOODLE_ON - 우글우글 효과
-	ZOOMUV_ON - 다각형 됨
-	GRADIENT_ON - 무지개색 그라데이션
-	BLUR_ON - 블러효과
-	PIXELATE_ON - 픽셀효과
-	GLITCH_ON - 지지직 효과
-	OVERLAY_ON - 용암효과
-*/
-	public void BLUR_ON()
+	public void ShieldColorON()
 	{
-		if(shaderLoaded)
-			spriteRenderer.material.EnableKeyword("BLUR_ON");
+		spriteRenderer.color = Define.COLOR_TARGET_SHIELD;
 	}
 
-	public void BLUR_OFF()
+	public void ShieldColorOFF()
 	{
-		if (shaderLoaded)
-			spriteRenderer.material.DisableKeyword("BLUR_ON");
-	}
-
-	public void GRADIENT_ON()
-	{
-		if (shaderLoaded)
-			spriteRenderer.material.EnableKeyword("GRADIENT_ON");
-	}
-
-	public void GRADIENT_OFF()
-	{
-		if (shaderLoaded)
-			spriteRenderer.material.DisableKeyword("GRADIENT_ON");
+		spriteRenderer.color = Define.COLOR_TARGET_BASE;
 	}
 }

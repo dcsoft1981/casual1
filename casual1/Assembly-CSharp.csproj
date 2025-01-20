@@ -123,6 +123,7 @@
     <Compile Include="Assets\UltimateCleanGUIPack\Common\Scripts\Extra\BackgroundMusic.cs" />
     <Compile Include="Assets\Scripts\PopupCheat.cs" />
     <Compile Include="Assets\UltimateCleanGUIPack\Common\Scripts\Core\Switch.cs" />
+    <Compile Include="Assets\Scripts\ListShuffler.cs" />
     <Compile Include="Assets\Scripts\Define.cs" />
     <Compile Include="Assets\UltimateCleanGUIPack\Common\Scripts\Core\SpriteSwapper.cs" />
     <Compile Include="Assets\UltimateCleanGUIPack\Common\Scripts\Core\Tooltip.cs" />

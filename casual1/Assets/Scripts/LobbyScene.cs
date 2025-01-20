@@ -33,7 +33,7 @@ public class LobbyScene : MonoBehaviour
 
 	public Toggle soundOntoggle;
 	public Toggle vibrateOntoggle;
-	public Sprite spriteInfinity;
+	private Sprite spriteInfinity;
 
 	private void Awake()
 	{

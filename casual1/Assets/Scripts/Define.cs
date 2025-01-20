@@ -28,7 +28,9 @@ public class Define
 	public static Color HP_3 = new Color(0.7f, 0f, 0f);
 	public static Color HP_2 = new Color(0.4f, 0f, 0f);
 	public static Color HP_1 = new Color(0.1f, 0f, 0f);
-	public static Color BASE = new Color(255f, 254f, 213f);
+	public static Color BASE_YELLOW = new Color(255f/255f, 254f / 255f, 213f / 255f);
+	public static Color DARK_RED = new Color(75f / 255f, 25f / 255f, 25f / 255f);
+	public static Color COLOR_TARGET_SHIELD = new Color(192f / 255f, 192f / 255f, 192f / 255f);
 
 	// 타겟
 	// 10000 자리 값 : 외형. 일단 색으로 구분(1-GREEN, 2-BLUE,3-RED)
@@ -38,8 +40,8 @@ public class Define
 	{
 		None = 0,
 		BLACK = 10000,
-		BLUE = 20000,
-		RED = 30000,
+		SILVER = 20000,
+		GOLD = 30000,
 	}
 
 	// 기믹

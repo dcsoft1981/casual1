@@ -21,6 +21,7 @@ public class LocalDataManager : MonoBehaviour
 	private Dictionary<int, GradeDBEntity> dic_grades;
 	private Dictionary<int, Color> dic_gradeColor;
 	private Dictionary<int, int> dic_levelGrade;
+	private List<int> listStage;
 
 	private int maxLevel = 0;
 
@@ -47,6 +48,7 @@ public class LocalDataManager : MonoBehaviour
 			dic_grades = new Dictionary<int, GradeDBEntity>();
 			dic_gradeColor = new Dictionary<int, Color>();
 			dic_levelGrade = new Dictionary<int, int>();
+			listStage = new List<int>();
 			foreach (GimmickDBEntity gimmickDbEntity in gimmickDB.gimmicks)
 			{
 				dic_gimmicks.Add(gimmickDbEntity.id, gimmickDbEntity);
@@ -57,21 +59,25 @@ public class LocalDataManager : MonoBehaviour
 				if (gimmickDbEntity.sprite3.Length > 0)
 					dic_gimmickSprites3.Add(gimmickDbEntity.id, Resources.Load<Sprite>(gimmickDbEntity.sprite3));
 			}
-			foreach(GradeDBEntity gradeDBEntity in gradeDB.grades)
+			foreach (GradeDBEntity gradeDBEntity in gradeDB.grades)
 			{
 				dic_grades.Add(gradeDBEntity.id, gradeDBEntity);
 				dic_gradeColor.Add(gradeDBEntity.id, GetColorFromRGB(gradeDBEntity.color));
 			}
-			foreach(LevelDBEntity levelDBEntity in levelDB.levels)
+			foreach (LevelDBEntity levelDBEntity in levelDB.levels)
 			{
 				int grade = GetGradeFromLevel(levelDBEntity.id);
-				if( grade != 0)
+				if (grade != 0)
 				{
 					dic_levelGrade.Add(levelDBEntity.id, grade);
 				}
 				if (levelDBEntity.id > maxLevel)
 					maxLevel = levelDBEntity.id;
+				listStage.Add(levelDBEntity.id);
 			}
+
+			ListShuffler.ShuffleList(listStage, maxLevel);
+			LocalDataManager.instance.CheckInfinityStage();
 		}
 	}
 
@@ -128,7 +134,7 @@ public class LocalDataManager : MonoBehaviour
 			rgbInfo[i] = float.Parse(strInfo[i]);
 		}
 
-		return new Color(rgbInfo[0]/255f, rgbInfo[1]/255f, rgbInfo[2]/255f);
+		return new Color(rgbInfo[0] / 255f, rgbInfo[1] / 255f, rgbInfo[2] / 255f);
 	}
 
 	private int GetGradeFromLevel(int level)
@@ -148,7 +154,7 @@ public class LocalDataManager : MonoBehaviour
 		if (curLevel > GetMaxLevel())
 			curLevel = GetMaxLevel();
 		if (dic_levelGrade.TryGetValue(curLevel, out int grade))
-		{  return grade; }
+		{ return grade; }
 
 		return 0;
 	}
@@ -191,7 +197,7 @@ public class LocalDataManager : MonoBehaviour
 
 	public bool GetSoundOff()
 	{
-		if(optionSoundOff == 0)
+		if (optionSoundOff == 0)
 			return false;
 		else
 			return true;
@@ -245,5 +251,38 @@ public class LocalDataManager : MonoBehaviour
 	{
 		PlayerPrefs.SetInt(Define.INFINITY_STAGE, _infinityStage);
 		infinityStage = _infinityStage;
+	}
+
+	public void CheckInfinityStage()
+	{
+		int level = GetCurLevel();
+		if (level > GetMaxLevel())
+		{
+			// 올클 상황
+			if (infinityStage == 0)
+			{
+				SetInfinityStage(1);
+			}
+		}
+		else
+		{
+			// 올클 전 상황
+			if (infinityStage != 0)
+			{
+				SetInfinityStage(0);
+			}
+		}
+	}
+
+	public int GetInfinityStageLevel()
+	{
+		int stage = GetInfinityStage();
+		return GetInfinityStageLevel(stage);
+	}
+
+	public int GetInfinityStageLevel(int stage)
+	{
+		int index = (stage-1)%GetMaxLevel();
+		return listStage[index];
 	}
 }

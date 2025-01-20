@@ -26,6 +26,7 @@ public class GameManager : MonoBehaviour
 	[SerializeField] private TextMeshProUGUI textShot;
 	[SerializeField] private TextMeshProUGUI textCombo;
 	[SerializeField] private TextMeshProUGUI textSkill;
+	[SerializeField] private TextMeshProUGUI textStageLevel;
 
 	private int hp;
 	private int targetId;
@@ -42,11 +43,6 @@ public class GameManager : MonoBehaviour
 	private List<GameObject> listGimmick4;
 	private List<GameObject> listGimmick5;
 
-	[SerializeField] private GameObject btnRetry;
-	[SerializeField] private GameObject labelClear;
-	[SerializeField] private GameObject labelFailure;
-
-	[SerializeField] private Color clearColor;
 	[SerializeField] private Color failureColor;
 
 	[SerializeField] private GameObject gimmickObject;
@@ -87,6 +83,7 @@ public class GameManager : MonoBehaviour
 	void Start()
     {
 		int level = 0;
+		LocalDataManager.instance.CheckInfinityStage();
 		ingameType = LocalDataManager.instance.GetIngameType();
 		switch(ingameType)
 		{
@@ -97,7 +94,8 @@ public class GameManager : MonoBehaviour
 				break;
 			case IngameType.INFINITY:
 				{
-					level = 1;
+					level = LocalDataManager.instance.GetInfinityStageLevel();
+					SetStageText();
 				}
 				break;
 		}
@@ -118,9 +116,8 @@ public class GameManager : MonoBehaviour
 		//float curTargetScale = Define.TARGET_BASE_SCALE;
 		//targetCircle.transform.localScale = new Vector3(curTargetScale, curTargetScale, curTargetScale);
 
-		// Target 색상 지정
-		targetColor = GetTargetColor(targetId);
-		targetCircle.SetSprite(targetScaleRate, targetColor);
+		// Target 지정
+		targetCircle.SetSprite(targetScaleRate, targetId);
 		CircleCollider2D collider2D = targetCircle.GetComponent<CircleCollider2D>();
 		collider2D.radius = collider2D.radius * targetScaleRate;
 
@@ -152,8 +149,26 @@ public class GameManager : MonoBehaviour
 
 	void SetLevelText()
 	{
-        int level = LocalDataManager.instance.GetCurLevel();
-		textLevel.SetText(level.ToString());
+		int value = 0;
+		switch(ingameType)
+		{
+			case IngameType.NORMAL:
+				{
+					value = LocalDataManager.instance.GetCurLevel();
+				}
+				break;
+			case IngameType.INFINITY:
+				{
+					value = LocalDataManager.instance.GetInfinityStage();
+				}
+				break;
+		}
+		textLevel.SetText(value.ToString());
+	}
+
+	void SetStageText()
+	{
+		textStageLevel.SetText("Stage");
 	}
 
 	void SetShotText()
@@ -243,6 +258,9 @@ public class GameManager : MonoBehaviour
 			case IngameType.INFINITY:
 				{
 					// 무한스테이지값 증가
+					int stage = LocalDataManager.instance.GetInfinityStage();
+					int nextStage = stage + 1;
+					LocalDataManager.instance.SetInfinityStage(nextStage);
 				}
 				break;
 		}
@@ -372,18 +390,6 @@ public class GameManager : MonoBehaviour
 			AnimationUtility.SetAnimationClipSettings(clip, settings);
 		}
 #endif
-	}
-
-	public Color GetTargetColor(int targetId)
-	{
-		if (targetId == (int)Define.TargetType.BLACK)
-			return Define.COLOR_TARGET_BASE;
-		else if (targetId == (int)Define.TargetType.BLUE)
-			return Color.blue;
-		else if (targetId == (int)Define.TargetType.RED)
-			return Color.red;
-		else
-			return Define.COLOR_TARGET_BASE;
 	}
 
 	public void CheckFailure()
@@ -540,7 +546,7 @@ public class GameManager : MonoBehaviour
 			case GimmickType.KEY_CHAIN:
 				{
 					inShield = true;
-					targetCircle.BLUR_ON();
+					targetCircle.ShieldColorON();
 				}
 				break;
 		}
@@ -671,7 +677,7 @@ public class GameManager : MonoBehaviour
 					{
 						RemoveAllGimmicks(gimmickList);
 						inShield = false;
-						targetCircle.BLUR_OFF();
+						targetCircle.ShieldColorOFF();
 					}
 				}
 				break;
@@ -1070,8 +1076,8 @@ public class GameManager : MonoBehaviour
 		// 화면 하단에서 위로 이동 (예: y = 0) - 0.5초 동안
 		sequence.Append(textSkill.rectTransform.DOAnchorPosX(0f, 0.03f).SetEase(Ease.OutQuad));
 
-		// 0.3초 대기
-		sequence.AppendInterval(0.3f);
+		// 0.7초 대기
+		sequence.AppendInterval(0.7f);
 
 		// 다시 이동 - 0.5초 동안
 		sequence.Append(textSkill.rectTransform.DOAnchorPosX(-800, 0.1f).SetEase(Ease.InQuad));
