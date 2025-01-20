@@ -32,7 +32,7 @@ public class PinLauncher : MonoBehaviour
 		Invoke("CheckFailure", 0.2f);
 		if (GameManager.instance.isGameOver == false)
         {
-			GameObject pin = Instantiate(pinObject, transform.position, Quaternion.identity);
+			GameObject pin = Instantiate(pinObject, transform.position, Quaternion.Euler(0, 0, 0));
 			currPin = pin.GetComponent<Pin>();
 			GameManager.instance.SetCreatedPin(currPin);
 			GameManager.instance.ResetHitGimmick();

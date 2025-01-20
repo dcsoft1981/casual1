@@ -61,6 +61,9 @@ public class GameManager : MonoBehaviour
 	private IngameType ingameType;
 
 	[SerializeField] private GameObject popupResult;
+	[SerializeField] private float pinPositionY100;
+	[SerializeField] private float pinPositionY80;
+	[SerializeField] private float pinPositionY50;
 
 
 	// Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -1133,5 +1136,16 @@ public class GameManager : MonoBehaviour
 	public void PopupResultSuccess()
 	{
 		popupResult.SetActive(true);
+	}
+
+	public Vector3 GetTargetPinnedPosition()
+	{
+		float y = pinPositionY100;
+		if (targetScale == 80)
+			y = pinPositionY80;
+		else if (targetScale == 50)
+			y = pinPositionY50;
+
+		return new Vector3(0f, y, 0f);
 	}
 }

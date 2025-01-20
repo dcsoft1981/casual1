@@ -860,6 +860,9 @@ MonoBehaviour:
   failureColor: {r: 0.3137255, g: 0.3137255, b: 0.3137255, a: 1}
   gimmickObject: {fileID: 8814631178483852103, guid: d05dd2984c6552347b8792a358c88c89, type: 3}
   popupResult: {fileID: 5763476579256476361}
+  pinPositionY100: -0.22
+  pinPositionY80: 0.04
+  pinPositionY50: 0.5
 --- !u!4 &208536165
 Transform:
   m_ObjectHideFlags: 0
@@ -4629,7 +4632,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fca7c72379d089c4f9a7b65129c91ebf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pinObject: {fileID: 8814631178483852103, guid: eb71f01866daf5e41850bfb79e0f67aa, type: 3}
+  pinObject: {fileID: 1078342239161880866, guid: 1ad25a77c1d6e9444b8105708c374692, type: 3}
 --- !u!1 &1298331928
 GameObject:
   m_ObjectHideFlags: 0

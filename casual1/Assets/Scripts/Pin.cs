@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class Pin : MonoBehaviour
 {
-	[SerializeField]
-	private float moveSpeed = 10f;
+	[SerializeField] private float moveSpeed = 10f;
+	[SerializeField] private float rotateSpeed = 10f;
 
 	private bool isPinned = false;
 	private bool isLaunched = false;
@@ -14,6 +14,7 @@ public class Pin : MonoBehaviour
 	private Vector3 reflectVec = Vector3.zero;
 	private bool isUpgraded = false;
 	private SpriteRenderer spriteRenderer;
+	private float reflectRotateSpeed = 0f;
 
 	private void Awake()
 	{
@@ -34,6 +35,8 @@ public class Pin : MonoBehaviour
 				if (isReflecteded)
 				{
 					transform.position += reflectVec * moveSpeed * Time.deltaTime;
+					// È¸Àü
+					transform.Rotate(0, 0, reflectRotateSpeed * Time.deltaTime);
 				}
 				else
 				{
@@ -64,6 +67,10 @@ public class Pin : MonoBehaviour
 			else
 			{
 				isPinned = true;
+				// À§Ä¡ Á¶Á¤
+				transform.position = GameManager.instance.GetTargetPinnedPosition();
+				// ºÎÂø
+				transform.SetParent(collision.gameObject.transform);
 				// Á¢ÂøµÈ ÁöÁ¡ÀÇ °¢µµ
 				float angle = collision.gameObject.transform.rotation.eulerAngles.z;
 				if (angle < 0f)
@@ -76,19 +83,13 @@ public class Pin : MonoBehaviour
 				else
 					angle += 270f;
 
-				GameObject childObject = transform.Find("Square").gameObject;
-				//GameObject childObject = transform.GetChild(0).gameObject;
-				//SpriteRenderer childSprite = childObject.GetComponent<SpriteRenderer>();
-				//childSprite.enabled = true;
-				// ºÎÂø
-				transform.SetParent(collision.gameObject.transform);
 				AudioManager.instance.PlaySfx(AudioManager.Sfx.shoot_good);
-				int damage = GameManager.instance.GetHpAmountByTargetAngle((int)angle, isUpgraded);
+				int damage = GameManager.instance.GetHpAmountByTargetAngle((int)angle, isUpgraded); // µ¥¹ÌÁö ¿µ¿ª °è»ê
 				GameManager.instance.DecreaseHP(damage);
 				GameManager.instance.AddPinnedShot(this.gameObject);
 				GameManager.instance.AddCombo();
 
-				Debug.Log("OnTriggerEnter2D Target HIT Angle : " + angle + " , DAMAGE : " + damage);
+				Debug.Log("OnTriggerEnter2D Target HIT Angle : " + angle + " , DAMAGE : " + damage + " , Position : " + transform.position);
 			}
 		}
 		else if(collision.gameObject.tag == "Pin")
@@ -176,7 +177,8 @@ public class Pin : MonoBehaviour
 		}
 
 		reflectVec = new Vector3(reflectX, -1f, 0f);
-		Debug.Log($"Æ¨±è ¹æÇâ: {reflectVec}");
+		reflectRotateSpeed = reflectX*rotateSpeed*10;
+		Debug.Log($"Æ¨±è ¹æÇâ: {reflectVec} , {reflectRotateSpeed}");
 
 		isReflecteded = true;
 		Invoke("DestroyPin", 0.3f);
@@ -210,6 +212,6 @@ public class Pin : MonoBehaviour
 	public void Upgrade()
 	{
 		isUpgraded = true;
-		spriteRenderer.color = Color.red;
+		transform.Find("Square").gameObject.GetComponent<SpriteRenderer>().color = Color.red;
 	}
 }
