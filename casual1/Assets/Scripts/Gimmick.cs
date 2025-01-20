@@ -99,8 +99,9 @@ public class Gimmick : MonoBehaviour
 		objectScale = gimmickInfo.objectscale*Define.BASE_GIMMICK_SCALE;
 		transform.localScale = new Vector3(objectScale, objectScale, 1);
 
-		//법선 그리기
-		DrawGuideLine(targetCircle);
+		//가이드라인 그리기
+		if(!LocalDataManager.instance.GetGuideLineOff())
+			DrawGuideLine(targetCircle);
 	}
 
     public void SetColor(Color _color)

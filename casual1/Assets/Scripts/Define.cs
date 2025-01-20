@@ -6,6 +6,7 @@ public class Define
 	public const string CUR_LEVEL = "CUR_LEVEL";
 	public const string OPTION_SOUND_OFF = "OPTION_SOUND_OFF";
 	public const string OPTION_VIBRATE_OFF = "OPTION_VIBRATE_OFF";
+	public const string OPTION_GUIDELINE_OFF = "OPTION_GUIDELINE_OFF";
 	public const string INFINITY_STAGE = "INFINITY_STAGE";
 	public const string LOCALE_RETRY = "RETRY";
 	public const string LOCALE_NEXT = "NEXT";

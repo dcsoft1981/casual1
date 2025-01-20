@@ -33,6 +33,7 @@ public class LobbyScene : MonoBehaviour
 
 	public Toggle soundOntoggle;
 	public Toggle vibrateOntoggle;
+	public Toggle guidelineOntoggle;
 	private Sprite spriteInfinity;
 
 	private void Awake()
@@ -243,6 +244,18 @@ public class LobbyScene : MonoBehaviour
 			// 진동 켜짐
 			vibrateOntoggle.isOn = true;
 		}
+
+		bool guidelineOff = LocalDataManager.instance.GetGuideLineOff();
+		if (guidelineOff)
+		{
+			// 가이드라인 꺼짐
+			guidelineOntoggle.isOn = false;
+		}
+		else
+		{
+			// 가이드라인 켜짐
+			guidelineOntoggle.isOn = true;
+		}
 	}
 
 	public void SoundOn(bool value)
@@ -255,5 +268,11 @@ public class LobbyScene : MonoBehaviour
 	{
 		vibrateOntoggle.isOn = value;
 		LocalDataManager.instance.SetVibrateOff(!value);
+	}
+
+	public void GuideLineOn(bool value)
+	{
+		guidelineOntoggle.isOn = value;
+		LocalDataManager.instance.SetGuideLineOff(!value);
 	}
 }
