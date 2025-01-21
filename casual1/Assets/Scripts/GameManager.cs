@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using DG.Tweening;
 using Unity.Burst.Intrinsics;
 using System.Collections;
+using Febucci.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -66,7 +67,8 @@ public class GameManager : MonoBehaviour
 	[SerializeField] private float pinPositionY100;
 	[SerializeField] private float pinPositionY80;
 	[SerializeField] private float pinPositionY50;
-
+	[SerializeField] private GameObject ComboEffect;
+	[SerializeField] private GameObject ComboEffects;
 
 	// Start is called once before the first execution of Update after the MonoBehaviour is created
 
@@ -950,11 +952,12 @@ public class GameManager : MonoBehaviour
 		return (baseDamage + shotUpgradeDamage + areaBonusDamage);
 	}
 
-	public void AddCombo()
+	public void AddCombo(Vector3 position)
 	{
 		combo++;
 		SetComboText();
-		if(combo >= Define.MAX_COMBO)
+		ShowComboLabel(position, combo);
+		if (combo >= Define.MAX_COMBO)
 		{
 			shotAddDamage = true;
 			Invoke("ResetCombo", 0.1f);
@@ -1158,5 +1161,37 @@ public class GameManager : MonoBehaviour
 			y = pinPositionY50;
 
 		return new Vector3(0f, y, 0f);
+	}
+
+	public void ShowComboLabel(Vector3 position, int combo)
+	{
+		float magnitude = 0.15f;
+		// 임의의 위치 생성
+		float offsetX = UnityEngine.Random.Range(-0.6f, 1.4f) * magnitude;
+		float offsetY = UnityEngine.Random.Range(3f, 5f) * magnitude;
+		//ComboEffect
+		Vector3 newPosition = new Vector3(position.x+offsetX, position.y+offsetY, 0f);
+		Vector3 screenPos = Camera.main.WorldToScreenPoint(newPosition);
+		GameObject comboEffectGameObject = Instantiate(ComboEffect, screenPos, Quaternion.identity);
+		comboEffectGameObject.GetComponent<TextMeshProUGUI>().color = new Color(0.5f+0.1f*combo, 0f, 0f);
+		comboEffectGameObject.transform.SetParent(ComboEffects.transform);
+		StartCoroutine(DisappearText(comboEffectGameObject));
+	}
+
+	private IEnumerator DisappearText(GameObject gameObject)
+	{
+		TypewriterByCharacter typewriter = gameObject.GetComponent<TypewriterByCharacter>();
+		float duration = 0.2f; // 유지시간
+		float elapsed = 0.0f;
+		while (elapsed < duration)
+		{
+			// 경과 시간 증가
+			elapsed += Time.deltaTime;
+
+			// 다음 프레임까지 대기
+			yield return null;
+		}
+
+		typewriter.StartDisappearingText();
 	}
 }

@@ -69,6 +69,7 @@ public class Pin : MonoBehaviour
 				isPinned = true;
 				// 위치 조정
 				transform.position = GameManager.instance.GetTargetPinnedPosition();
+				
 				// 부착
 				transform.SetParent(collision.gameObject.transform);
 				// 접착된 지점의 각도
@@ -87,7 +88,7 @@ public class Pin : MonoBehaviour
 				int damage = GameManager.instance.GetHpAmountByTargetAngle((int)angle, isUpgraded); // 데미지 영역 계산
 				GameManager.instance.DecreaseHP(damage);
 				GameManager.instance.AddPinnedShot(this.gameObject);
-				GameManager.instance.AddCombo();
+				GameManager.instance.AddCombo(transform.position);
 
 				Debug.Log("OnTriggerEnter2D Target HIT Angle : " + angle + " , DAMAGE : " + damage + " , Position : " + transform.position);
 			}
