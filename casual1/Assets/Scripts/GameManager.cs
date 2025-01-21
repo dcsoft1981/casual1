@@ -483,15 +483,18 @@ public class GameManager : MonoBehaviour
 		switch (type)
 		{
 			case GimmickType.SUPER_SHIELD:
-				return Color.gray;
+				return Define.COLOR_TARGET_SHIELD;
 			case GimmickType.TARGET_RECOVER:
-				return Define.GREEN2;
+				return Define.GIMMICKHIT_DEBUFF;
+			case GimmickType.DAMAGE_N:
+			case GimmickType.REMOVE_SHOT:
+				return Define.GIMMICKHIT_BUFF;
 			case GimmickType.ROTATION_DOWN:
-				return Color.green;
+				return Define.TARGETHIT_BUFF;
 			case GimmickType.ROTATION_UP:
-				return Color.red;
+				return Define.TARGETHIT_DEBUFF;
 			case GimmickType.ADD_SHOT:
-				return new Color(0.0f, 0f, 0.9f);
+				return Define.TARGETHIT_BUFF;
 			case GimmickType.SEQUENCE:
 				{
 					if (isChecked)

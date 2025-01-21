@@ -80,7 +80,7 @@ MonoBehaviour:
     sprite3: 
   - id: 10800
     desc: "\uB370\uBBF8\uC9C0N (1\uCC28 \uAD6C\uD604 \uC644) - value1(\uB370\uBBF8\uC9C0)"
-    sprite: StarBomb
+    sprite: Blade
     spritescale: 0.4
     objectscale: 0.8
     distance: 0.4
@@ -120,7 +120,7 @@ MonoBehaviour:
   - id: 20200
     desc: "\uD788\uD2B8 \uC2DC \uD68C\uC804\uC18D\uB3C4 \uAC10\uC18C(1\uCC28 \uAD6C\uD604
       \uC644)"
-    sprite: Reload
+    sprite: Undo
     spritescale: 0.4
     objectscale: 0.8
     distance: 0.4

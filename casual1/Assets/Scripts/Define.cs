@@ -24,15 +24,19 @@ public class Define
 	public static Color COLOR_TARGET_BASE = new Color(40f/255f, 40f / 255f, 40f / 255f, 1f);
 	public static Color COLOR_BLACK = new Color(0f, 0f, 0f, 1f);
 	public static Color COLOR_BLACK_ALPHA10 = new Color(0f, 0f, 0f, 0.4f);
-	public static Color GREEN2 = new Color(0f, 0.8f, 0f, 1f);
+	public static Color GREEN2 = new Color(0f, 0.5f, 0f);
 	public static Color HP_OVER4 = new Color(0.9f, 0f, 0f);
 	public static Color HP_3 = new Color(0.7f, 0f, 0f);
 	public static Color HP_2 = new Color(0.4f, 0f, 0f);
 	public static Color HP_1 = new Color(0.1f, 0f, 0f);
 	public static Color BASE_YELLOW = new Color(255f/255f, 254f / 255f, 213f / 255f);
 	public static Color DARK_RED = new Color(75f / 255f, 25f / 255f, 25f / 255f);
-	public static Color COLOR_TARGET_SHIELD = new Color(192f / 255f, 192f / 255f, 192f / 255f);
+	public static Color COLOR_TARGET_SHIELD = Color.gray;
 	public static Color DAMAGE_LINE_COLOR = new Color(183f / 255f, 88f / 255f, 255f / 255f, 200f/255f);
+	public static Color GIMMICKHIT_DEBUFF = new Color(0.1f, 0f, 0f);
+	public static Color GIMMICKHIT_BUFF = new Color(0.9f, 0f, 0f);
+	public static Color TARGETHIT_DEBUFF = new Color(0f, 0f, 0.3f);
+	public static Color TARGETHIT_BUFF = new Color(0f, 0f, 1f);
 
 	// 타겟
 	// 10000 자리 값 : 외형. 일단 색으로 구분(1-GREEN, 2-BLUE,3-RED)
