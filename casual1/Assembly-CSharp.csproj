@@ -86,7 +86,6 @@
     <Compile Include="Assets\UltimateCleanGUIPack\Common\Scripts\Core\InfoPopupOpener.cs" />
     <Compile Include="Assets\UltimateCleanGUIPack\Common\Scripts\Core\FadeButton.cs" />
     <Compile Include="Assets\Scripts\PopupIngameCheat.cs" />
-    <Compile Include="Assets\Scripts\LevelGimmickData.cs" />
     <Compile Include="Assets\UltimateCleanGUIPack\Common\Scripts\Core\LoopableSelectionSlider.cs" />
     <Compile Include="Assets\UltimateCleanGUIPack\Common\Scripts\Extra\InitialPlayerPrefs.cs" />
     <Compile Include="Assets\UltimateCleanGUIPack\Common\Scripts\Core\Popup.cs" />
@@ -107,7 +106,6 @@
     <Compile Include="Assets\UltimateCleanGUIPack\Common\Scripts\Core\Notification.cs" />
     <Compile Include="Assets\UltimateCleanGUIPack\Common\Scripts\Core\MessagesPopup.cs" />
     <Compile Include="Assets\Scripts\LevelDBEntity.cs" />
-    <Compile Include="Assets\Scripts\LevelRotateData.cs" />
     <Compile Include="Assets\Scripts\PinLauncher.cs" />
     <Compile Include="Assets\Scripts\GimmickDB.cs" />
     <Compile Include="Assets\UltimateCleanGUIPack\Common\Scripts\Core\SliderColorSwap.cs" />

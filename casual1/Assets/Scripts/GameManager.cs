@@ -42,6 +42,8 @@ public class GameManager : MonoBehaviour
 	private List<GameObject> listGimmick3;
 	private List<GameObject> listGimmick4;
 	private List<GameObject> listGimmick5;
+	private List<GameObject> listGimmick6;
+	private List<GameObject> listGimmick7;
 
 	[SerializeField] private Color failureColor;
 
@@ -78,6 +80,8 @@ public class GameManager : MonoBehaviour
 			listGimmick3 = new List<GameObject>();
 			listGimmick4 = new List<GameObject>();
 			listGimmick5 = new List<GameObject>();
+			listGimmick6 = new List<GameObject>();
+			listGimmick7 = new List<GameObject>();
 
 			listPinnedShot = new List<GameObject>();
 		}
@@ -427,6 +431,8 @@ public class GameManager : MonoBehaviour
 		PrepareGimmick(levelData.gimmick3, listGimmick3);
 		PrepareGimmick(levelData.gimmick4, listGimmick4);
 		PrepareGimmick(levelData.gimmick5, listGimmick5);
+		PrepareGimmick(levelData.gimmick6, listGimmick6);
+		PrepareGimmick(levelData.gimmick7, listGimmick7);
 	}
 
 	void PrepareGimmick(string gimmick, List<GameObject> listGimmick)
@@ -855,6 +861,8 @@ public class GameManager : MonoBehaviour
 		CheckListGimmickStatus(listGimmick3);
 		CheckListGimmickStatus(listGimmick4);
 		CheckListGimmickStatus(listGimmick5);
+		CheckListGimmickStatus(listGimmick6);
+		CheckListGimmickStatus(listGimmick7);
 	}
 
 	private void CheckListGimmickStatus(List<GameObject> list)

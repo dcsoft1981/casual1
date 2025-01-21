@@ -32,6 +32,7 @@ public class Define
 	public static Color BASE_YELLOW = new Color(255f/255f, 254f / 255f, 213f / 255f);
 	public static Color DARK_RED = new Color(75f / 255f, 25f / 255f, 25f / 255f);
 	public static Color COLOR_TARGET_SHIELD = new Color(192f / 255f, 192f / 255f, 192f / 255f);
+	public static Color DAMAGE_LINE_COLOR = new Color(183f / 255f, 88f / 255f, 255f / 255f, 200f/255f);
 
 	// 타겟
 	// 10000 자리 값 : 외형. 일단 색으로 구분(1-GREEN, 2-BLUE,3-RED)
