@@ -1,12 +1,14 @@
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using static Define;
 
 public class Gimmick : MonoBehaviour
 {
     public Define.GimmickType gimmickType;
     public int hp;
     private SpriteRenderer spriteRenderer;
+	private CircleCollider2D circleCollider;
 	private GameObject spriteObject;
 	private float objectScale = 1f;
 	private float spriteScale = 1f;
@@ -15,6 +17,7 @@ public class Gimmick : MonoBehaviour
 
 	private LineRenderer lineRenderer1;
 	private LineRenderer lineRenderer2;
+	private List<int> listWorkedPin = null;
 	// Start is called once before the first execution of Update after the MonoBehaviour is created
 	void Awake()
     {
@@ -27,6 +30,8 @@ public class Gimmick : MonoBehaviour
 
 		// SpriteRenderer 컴포넌트를 추가합니다.
 		spriteRenderer = spriteObject.AddComponent<SpriteRenderer>();
+		circleCollider = GetComponent<CircleCollider2D>();
+		listWorkedPin = new List<int>();
 	}
 
     // Update is called once per frame
@@ -99,8 +104,15 @@ public class Gimmick : MonoBehaviour
 		objectScale = gimmickInfo.objectscale*Define.BASE_GIMMICK_SCALE;
 		transform.localScale = new Vector3(objectScale, objectScale, 1);
 
+		// 타겟 히트형 기믹 충돌영역 살짝 늘리기
+		GimmickCathegory cathegory = Define.GetGimmickCathegory(_type);
+		if(cathegory == GimmickCathegory.TargetHit)
+		{
+			//circleCollider.radius = 0.52f;
+		}
+
 		//가이드라인 그리기
-		if(!LocalDataManager.instance.GetGuideLineOff())
+		if (!LocalDataManager.instance.GetGuideLineOff())
 			DrawGuideLine(targetCircle);
 	}
 
@@ -203,5 +215,17 @@ public class Gimmick : MonoBehaviour
 			lineRenderer1.enabled = false;
 		if (lineRenderer2 != null)
 			lineRenderer2.enabled = false;
+	}
+
+	public bool PinWork(int _pinID)
+	{
+		// 이미 처리한 핀인지 확인
+		foreach(int pinID in listWorkedPin)
+		{
+			if (pinID == _pinID) return false;
+		}
+		// 처리한 핀에 추가
+		listWorkedPin.Add(_pinID);
+		return true;
 	}
 }

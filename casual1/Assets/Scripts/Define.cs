@@ -1,3 +1,4 @@
+using System.Runtime.InteropServices;
 using UnityEngine;
 
 public class Define
@@ -48,6 +49,14 @@ public class Define
 		BLACK = 10000,
 		SILVER = 20000,
 		GOLD = 30000,
+	}
+
+	public enum GimmickCathegory
+	{
+		NONE = 0,
+		GimmickHit = 1,
+		TargetHit = 2,
+		GimmickPass = 3,
 	}
 
 	// 기믹
@@ -102,5 +111,28 @@ public class Define
 		NONE = 0,
 		NORMAL = 1,
 		INFINITY = 2,
+	}
+
+	// 발사체 기믹 히트 결과 타입
+	public enum ShotGimmickHitResult
+	{
+		NONE = 0,
+		ALEADY_COMPLETED = 1, // 이미 해당 핀에 대한 히트 처리 완료
+		HIT_THROUTH =  2, // 히트하고 진행
+		HIT_REFLECT = 3, // 히트하고 반사
+	}
+
+
+	// Static 함수들
+	public static GimmickCathegory GetGimmickCathegory(GimmickType type)
+	{
+		int typeValue = (int)type;
+		if (typeValue >= 10000 && typeValue < 20000)
+			return GimmickCathegory.GimmickHit;
+		else if (typeValue >= 20000 && typeValue < 30000)
+			return GimmickCathegory.TargetHit;
+		else if (typeValue >= 30000 && typeValue < 40000)
+			return GimmickCathegory.GimmickPass;
+		return GimmickCathegory.NONE;
 	}
 }

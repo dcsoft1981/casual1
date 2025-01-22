@@ -70,6 +70,10 @@ public class GameManager : MonoBehaviour
 	[SerializeField] private GameObject ComboEffect;
 	[SerializeField] private GameObject ComboEffects;
 
+	private int nextPinId = 0;
+	private Dictionary<int, List<GameObject>> dic_AngleGimmicks;
+	private Dictionary<GameObject, GameObject> dic_PairGimmick;
+
 	// Start is called once before the first execution of Update after the MonoBehaviour is created
 
 	private void Awake()
@@ -86,6 +90,8 @@ public class GameManager : MonoBehaviour
 			listGimmick7 = new List<GameObject>();
 
 			listPinnedShot = new List<GameObject>();
+			dic_AngleGimmicks = new Dictionary<int, List<GameObject>>();
+			dic_PairGimmick = new Dictionary<GameObject, GameObject>();
 		}
 	}
 
@@ -435,6 +441,8 @@ public class GameManager : MonoBehaviour
 		PrepareGimmick(levelData.gimmick5, listGimmick5);
 		PrepareGimmick(levelData.gimmick6, listGimmick6);
 		PrepareGimmick(levelData.gimmick7, listGimmick7);
+		// 페어기믹 세팅
+		SetPairGimmick();
 	}
 
 	void PrepareGimmick(string gimmick, List<GameObject> listGimmick)
@@ -551,6 +559,7 @@ public class GameManager : MonoBehaviour
 		Color color = GetGimmickColor(gimmickType, hp, isChecked);
 		gameObjectGimmick.SetGimmick(gimmickType, hp, color, angle, listGimmick, isChecked, targetCircle.gameObject);
 		listGimmick.Add(gimmickGameObject);
+		AddAngleGimmick(angle, gimmickGameObject);
 	}
 
 	public void SetTargetStateByGimmickInit(GimmickType gimmickType)
@@ -700,7 +709,7 @@ public class GameManager : MonoBehaviour
 
 	public bool GimmickHitWork(GameObject gameObject)
 	{
-		bool destroyPin = true;
+		bool reflectPin = true;
 		Gimmick gameObjectGimmick = gameObject.GetComponent<Gimmick>();
 		GimmickDBEntity gimmickInfo = LocalDataManager.instance.GetGimmickInfo(gameObjectGimmick.gimmickType);
 
@@ -758,31 +767,31 @@ public class GameManager : MonoBehaviour
 				}
 				break;
 
-			// 타겟 히트형 destroyPin = false;
+			// 타겟 히트형 reflectPin = false;
 			case GimmickType.ROTATION_UP:
 				{
-					destroyPin = false;
+					reflectPin = false;
 					rotationBuff++;
 					GimmickHpMinusWork(gameObject, gameObjectGimmick);
 				}
 				break;
 			case GimmickType.ROTATION_DOWN:
 				{
-					destroyPin = false;
+					reflectPin = false;
 					rotationBuff--;
 					GimmickHpMinusWork(gameObject, gameObjectGimmick);
 				}
 				break;
 			case GimmickType.ADD_SHOT:
 				{
-					destroyPin = false;
+					reflectPin = false;
 					shot += gimmickInfo.value1;
 					SetShotText();
 					GimmickHpMinusWork(gameObject, gameObjectGimmick);
 				}
 				break;
 		}
-		return destroyPin;
+		return reflectPin;
 	}
 
 	public float GetRotationValue(float rotation)
@@ -1093,8 +1102,8 @@ public class GameManager : MonoBehaviour
 		// 화면 하단에서 위로 이동 (예: y = 0) - 0.5초 동안
 		sequence.Append(textSkill.rectTransform.DOAnchorPosX(0f, 0.03f).SetEase(Ease.OutQuad));
 
-		// 0.7초 대기
-		sequence.AppendInterval(0.7f);
+		// 대기
+		sequence.AppendInterval(0.85f);
 
 		// 다시 이동 - 0.5초 동안
 		sequence.Append(textSkill.rectTransform.DOAnchorPosX(-800, 0.1f).SetEase(Ease.InQuad));
@@ -1193,5 +1202,101 @@ public class GameManager : MonoBehaviour
 		}
 
 		typewriter.StartDisappearingText();
+	}
+
+	public int GetNextPinID()
+	{
+		nextPinId++;
+		return nextPinId;
+	}
+
+	public bool CheckGimmickShotWorked(Pin _pin, GameObject _gimmickObject)
+	{
+		Gimmick gimmick = _gimmickObject.GetComponent<Gimmick>();
+		if (!gimmick.PinWork(_pin.GetPinID()))
+		{
+			// 이미 처리한 핀
+			Debug.Log("OnTriggerEnter2D Gimmick Aleady WORKED : " + _pin.GetPinID());
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	public ShotGimmickHitResult ShotGimmickHit(Pin _pin, GameObject _gimmickObject)
+	{
+		if(CheckGimmickShotWorked(_pin, _gimmickObject))
+			return ShotGimmickHitResult.ALEADY_COMPLETED;
+		bool reflectPin = GimmickHitWork(_gimmickObject);
+		GameObject pair = GetPairGimmick(_gimmickObject);
+		if (pair != null && !pair.IsDestroyed())
+		{
+			if(!CheckGimmickShotWorked(_pin, pair))
+			{
+				// 페어기믹 데미지 처리
+				GimmickHitWork(pair);
+			}
+			// 페어 처리후 항상 튕김
+			reflectPin = true;
+		}
+
+		if(reflectPin)
+		{
+			return ShotGimmickHitResult.HIT_REFLECT;
+		}
+		else
+		{
+			return ShotGimmickHitResult.HIT_THROUTH;
+		}
+	}
+
+	private void AddAngleGimmick(int angle, GameObject gimmickObject)
+	{
+		if (dic_AngleGimmicks.TryGetValue(angle, out List<GameObject> list))
+		{
+			
+		}
+		else
+		{
+			list = new List<GameObject>();
+			dic_AngleGimmicks.Add(angle, list);
+		}
+		list.Add(gimmickObject);
+	}
+
+	private void SetPairGimmick()
+	{
+		// 각도에 2개의 기믹이 있고 하나는 기믹히트형, 하나는 타겟히트형이면 페어기믹세팅
+		foreach(List<GameObject> list in dic_AngleGimmicks.Values)
+		{
+			if (list.Count == 2)
+			{
+				Gimmick gimmick1 = list[0].GetComponent<Gimmick>();
+				Gimmick gimmick2 = list[1].GetComponent<Gimmick>();
+				GimmickCathegory gimmickCathegory1 = Define.GetGimmickCathegory(gimmick1.gimmickType);
+				GimmickCathegory gimmickCathegory2 = Define.GetGimmickCathegory(gimmick2.gimmickType);
+				if((gimmickCathegory1 == GimmickCathegory.GimmickHit && gimmickCathegory2 == GimmickCathegory.TargetHit) ||
+					(gimmickCathegory2 == GimmickCathegory.GimmickHit && gimmickCathegory1 == GimmickCathegory.TargetHit))
+				{
+					// 페어기믹
+					dic_PairGimmick.Add(list[0], list[1]);
+					dic_PairGimmick.Add(list[1], list[0]);
+				}
+			}
+		}
+	}
+
+	public GameObject GetPairGimmick(GameObject go)
+	{
+		if (dic_PairGimmick.TryGetValue(go, out GameObject pair))
+		{
+			return pair;
+		}
+		else
+		{
+			return null; ;
+		}
 	}
 }

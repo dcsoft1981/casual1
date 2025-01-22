@@ -34,6 +34,7 @@ public class PinLauncher : MonoBehaviour
         {
 			GameObject pin = Instantiate(pinObject, transform.position, Quaternion.Euler(0, 0, 0));
 			currPin = pin.GetComponent<Pin>();
+			currPin.SetPinId(GameManager.instance.GetNextPinID());
 			GameManager.instance.SetCreatedPin(currPin);
 			GameManager.instance.ResetHitGimmick();
 			GameManager.instance.CheckTriggerSkill(PassiveType.SHOT_DOUBLE_DAMAGE);

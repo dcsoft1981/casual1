@@ -15,6 +15,7 @@ public class Pin : MonoBehaviour
 	private bool isUpgraded = false;
 	private SpriteRenderer spriteRenderer;
 	private float reflectRotateSpeed = 0f;
+	private int pinId = 0;
 
 	private void Awake()
 	{
@@ -118,18 +119,31 @@ public class Pin : MonoBehaviour
 		}
 		else if (collision.gameObject.tag == "Gimmick")
 		{
-			bool destroyPin = GameManager.instance.GimmickHitWork(collision.gameObject);
-			if (destroyPin)
+			Define.ShotGimmickHitResult shotGimmickHitResult = GameManager.instance.ShotGimmickHit(this, collision.gameObject);
+			Debug.Log("OnTriggerEnter2D Gimmick : " + this.GetPinID() + " , " + shotGimmickHitResult);
+			switch (shotGimmickHitResult)
 			{
-				AudioManager.instance.PlaySfx(AudioManager.Sfx.shoot_good);
-				ReflectPin(collision);
-				Debug.Log("OnTriggerEnter2D Gimmick ReflectPin");
+				case Define.ShotGimmickHitResult.NONE:
+					{
+						return;
+					}
+				case Define.ShotGimmickHitResult.ALEADY_COMPLETED:
+					{
+						return;
+					}
+				case Define.ShotGimmickHitResult.HIT_THROUTH:
+					{
+						GameManager.instance.ResetCombo();
+					}
+					break;
+				case Define.ShotGimmickHitResult.HIT_REFLECT:
+					{
+						AudioManager.instance.PlaySfx(AudioManager.Sfx.shoot_good);
+						ReflectPin(collision);
+						GameManager.instance.ResetCombo();
+					}
+					break;
 			}
-			else
-			{
-				Debug.Log("OnTriggerEnter2D Gimmick Hit");
-			}
-			GameManager.instance.ResetCombo();
 		}
 		else
 		{
@@ -214,5 +228,15 @@ public class Pin : MonoBehaviour
 	{
 		isUpgraded = true;
 		transform.Find("Square").gameObject.GetComponent<SpriteRenderer>().color = Color.red;
+	}
+
+	public int GetPinID()
+	{
+		return pinId;
+	}
+
+	public void SetPinId(int id)
+	{
+		pinId = id;
 	}
 }
