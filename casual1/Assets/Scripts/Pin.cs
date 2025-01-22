@@ -56,6 +56,7 @@ public class Pin : MonoBehaviour
 		if (isPinned || isReflecteded)
 			return;
 
+		bool listGimmickWork = true;
 		if(collision.gameObject.tag == "Target")
 		{
 			if(GameManager.instance.IsInShield())
@@ -136,7 +137,8 @@ public class Pin : MonoBehaviour
 					}
 				case Define.ShotGimmickHitResult.HIT_THROUTH:
 					{
-						GameManager.instance.ResetCombo();
+						//GameManager.instance.ResetCombo();
+						listGimmickWork = false; // 타겟 히트할떼 동작함
 					}
 					break;
 				case Define.ShotGimmickHitResult.HIT_REFLECT:
@@ -155,7 +157,11 @@ public class Pin : MonoBehaviour
 			Debug.Log("OnTriggerEnter2D STRANGE NO WORK");
 		}
 
-		GameManager.instance.CheckListGimmickStatus();
+		// 모든 기믹들 상태 변환 체크
+		if(listGimmickWork)
+		{
+			GameManager.instance.CheckListGimmickStatus();
+		}
 	}
 
 	public void Launch()

@@ -1023,7 +1023,10 @@ public class GameManager : MonoBehaviour
 		}
 
 		// 흔들림 종료 후 원래 위치로 복귀
-		childTransform.localPosition = Vector3.zero;
+		if (!childTransform.gameObject.IsDestroyed())
+		{
+			childTransform.localPosition = Vector3.zero;
+		}
 		spriteRenderer.color = originColor;
 	}
 
