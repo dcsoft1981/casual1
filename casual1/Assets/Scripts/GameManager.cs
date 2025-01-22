@@ -13,6 +13,7 @@ using Unity.Burst.Intrinsics;
 using System.Collections;
 using Febucci.UI;
 using DG.Tweening.Core.Easing;
+using VibrationUtility;
 
 public class GameManager : MonoBehaviour
 {
@@ -93,6 +94,7 @@ public class GameManager : MonoBehaviour
 			listPinnedShot = new List<GameObject>();
 			dic_AngleGimmicks = new Dictionary<int, List<GameObject>>();
 			dic_PairGimmick = new Dictionary<GameObject, GameObject>();
+			VibrationUtil.Init();
 		}
 	}
 
@@ -208,7 +210,10 @@ public class GameManager : MonoBehaviour
     {
 		if(hp > 0)
 		{
-			AudioManager.instance.Vibrate();
+			if (damage == 2)
+				Vibrate2();
+			else
+				Vibrate1();
 			StartCoroutine(Shake(targetCircle.gameObject));
 		}
 		hp -= damage;
@@ -299,6 +304,7 @@ public class GameManager : MonoBehaviour
 
 		PopupResultSuccess();
 		AudioManager.instance.PlaySfx(AudioManager.Sfx.clear);
+		Vibrate3();
 	}
 
 	private void StageFailure()
@@ -606,8 +612,11 @@ public class GameManager : MonoBehaviour
 	{
 		if (gameObjectGimmick.hp <= 0)
 			return;
+		GimmickCathegory gimmickCathegory = Define.GetGimmickCathegory(gameObjectGimmick.gimmickType);
 		gameObjectGimmick.hp--;
 		gameObjectGimmick.SetColor(GetGimmickColor(gameObjectGimmick));
+		if (gimmickCathegory == GimmickCathegory.GimmickHit)
+			Vibrate1();
 		StartCoroutine(Shake(gameObject));
 		if (gameObjectGimmick.hp <= 0)
 		{
@@ -1316,5 +1325,31 @@ public class GameManager : MonoBehaviour
 			if (shot == 0 && hp > 0 && (currPin != null && currPin.GetWorked()) && checkFinalShot)
 				SetGameOver(false);
 		}
+	}
+
+	private void Vibrate(VibrationType type)
+	{
+		if (LocalDataManager.instance.GetVibrateOff())
+			return;
+		VibrationUtil.Vibrate(type);
+	}
+	public void Vibrate1()
+	{
+		Vibrate(VibrationType.Nope);
+	}
+
+	public void Vibrate2()
+	{
+		Vibrate(VibrationType.Success);
+	}
+
+	public void Vibrate3()
+	{
+		Vibrate(VibrationType.Error);
+	}
+
+	public void Vibrate4()
+	{
+		Vibrate(VibrationType.Default);
 	}
 }

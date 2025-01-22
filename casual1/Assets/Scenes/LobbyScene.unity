@@ -6405,6 +6405,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inputFieldStage: {fileID: 280424893}
+  inputFieldVibrate: {fileID: 551545035}
 --- !u!1 &918087709
 GameObject:
   m_ObjectHideFlags: 0
@@ -7519,7 +7520,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Temp1
+  m_text: Vibration
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -7851,7 +7852,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1127419423}
   m_Layer: 5
-  m_Name: ButtonCheat
+  m_Name: ButtonCheatStage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10734,7 +10735,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1655884807}
   m_Layer: 5
-  m_Name: ButtonCheat 1
+  m_Name: ButtonCheatVibrate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12242,7 +12243,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1963954334}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 909339517}
+        m_TargetAssemblyTypeName: PopupCheat, Assembly-CSharp
+        m_MethodName: OnClickCheatVibrate
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1963954334
 MonoBehaviour:
   m_ObjectHideFlags: 0

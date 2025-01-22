@@ -69,7 +69,9 @@
     <Compile Include="Assets\UltimateCleanGUIPack\Common\Scripts\Extra\SoundButton.cs" />
     <Compile Include="Assets\UltimateCleanGUIPack\Common\Scripts\Extra\MusicButton.cs" />
     <Compile Include="Assets\UltimateCleanGUIPack\Common\Scripts\Core\ToggleWithLabel.cs" />
+    <Compile Include="Assets\Scripts\VibrationIOS.cs" />
     <Compile Include="Assets\UltimateCleanGUIPack\Common\Scripts\Core\SceneTransition.cs" />
+    <Compile Include="Assets\Scripts\VibrationAndroid.cs" />
     <Compile Include="Assets\ExcelImporter\Example\Scripts\Example.cs" />
     <Compile Include="Assets\Scripts\GradeDB.cs" />
     <Compile Include="Assets\UltimateCleanGUIPack\Common\Scripts\Core\ProgressBarAnimation.cs" />
@@ -78,6 +80,7 @@
     <Compile Include="Assets\Scripts\IngameScene.cs" />
     <Compile Include="Assets\Scripts\AudioManager.cs" />
     <Compile Include="Assets\ExcelImporter\Example\Scripts\Entity\MstItemEntity.cs" />
+    <Compile Include="Assets\Scripts\VibrationEditor.cs" />
     <Compile Include="Assets\UltimateCleanGUIPack\Common\Scripts\Core\SlicedFilledImage.cs" />
     <Compile Include="Assets\Scripts\GradeDBEntity.cs" />
     <Compile Include="Assets\UltimateCleanGUIPack\Common\Scripts\Core\ButtonSounds.cs" />
@@ -89,8 +92,10 @@
     <Compile Include="Assets\UltimateCleanGUIPack\Common\Scripts\Core\LoopableSelectionSlider.cs" />
     <Compile Include="Assets\UltimateCleanGUIPack\Common\Scripts\Extra\InitialPlayerPrefs.cs" />
     <Compile Include="Assets\UltimateCleanGUIPack\Common\Scripts\Core\Popup.cs" />
+    <Compile Include="Assets\Scripts\VibrationUtil.cs" />
     <Compile Include="Assets\UltimateCleanGUIPack\Common\Scripts\Core\URLOpener.cs" />
     <Compile Include="Assets\Scripts\TargetCircle.cs" />
+    <Compile Include="Assets\Scripts\VibrationInstance.cs" />
     <Compile Include="Assets\Scripts\PopupSkill.cs" />
     <Compile Include="Assets\UltimateCleanGUIPack\Common\Scripts\Core\NotificationLauncher.cs" />
     <Compile Include="Assets\Scripts\GimmickDBEntity.cs" />
