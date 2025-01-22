@@ -12,6 +12,7 @@ using DG.Tweening;
 using Unity.Burst.Intrinsics;
 using System.Collections;
 using Febucci.UI;
+using DG.Tweening.Core.Easing;
 
 public class GameManager : MonoBehaviour
 {
@@ -155,6 +156,7 @@ public class GameManager : MonoBehaviour
 		PrepareGimmickAll();
 		AudioManager.instance.OffEffectBgm();
 		AudioManager.instance.PlayBgm();
+		InvokeRepeating("CheckStageFailure", 0f, 0.3f);
 	}
 
     void SetHPText()
@@ -226,6 +228,12 @@ public class GameManager : MonoBehaviour
 		if(shot < 0)
 			shot = 0;
 		SetShotText();
+		CheckFinalShot();
+	}
+
+	public int GetShotCount()
+	{
+		return shot;
 	}
 
 	public void SetGameOver(bool success)
@@ -243,7 +251,7 @@ public class GameManager : MonoBehaviour
             else
             {
 				Camera.main.backgroundColor = failureColor;
-				Invoke("StageFailure", 1.0f);
+				Invoke("StageFailure", 0.7f);
 			}
 		}
     }
@@ -405,14 +413,6 @@ public class GameManager : MonoBehaviour
 			AnimationUtility.SetAnimationClipSettings(clip, settings);
 		}
 #endif
-	}
-
-	public void CheckFailure()
-	{
-		CheckFinalShot();
-		// shot == 0 이면 실패
-		if (shot == 0 && hp > 0)
-			SetGameOver(false);
 	}
 
 	public void SetCheatRotation(int rotation)
@@ -1112,6 +1112,11 @@ public class GameManager : MonoBehaviour
 		sequence.Play();
 	}
 
+	public bool GetCheckFinalShot()
+	{
+		return checkFinalShot;
+	}
+
 	public void CheckFinalShot()
 	{
 		if(shot == 0)
@@ -1119,8 +1124,8 @@ public class GameManager : MonoBehaviour
 			if (checkFinalShot)
 				return;
 
-			checkFinalShot = true;
 			CheckTriggerSkill(PassiveType.FAILURE_BONUS_SHOT);
+			checkFinalShot = true;
 		}
 	}
 
@@ -1297,6 +1302,16 @@ public class GameManager : MonoBehaviour
 		else
 		{
 			return null; ;
+		}
+	}
+
+	private void CheckStageFailure()
+	{
+		if (!isGameOver)
+		{
+			// shot == 0 , hp > 0 , 샷이 동작, 파이날샷 체크 했으면 이면 실패
+			if (shot == 0 && hp > 0 && (currPin != null && currPin.GetWorked()) && checkFinalShot)
+				SetGameOver(false);
 		}
 	}
 }

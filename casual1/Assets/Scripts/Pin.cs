@@ -13,6 +13,7 @@ public class Pin : MonoBehaviour
 	private bool isReflecteded = false;
 	private Vector3 reflectVec = Vector3.zero;
 	private bool isUpgraded = false;
+	private bool isWorked = false;
 	private SpriteRenderer spriteRenderer;
 	private float reflectRotateSpeed = 0f;
 	private int pinId = 0;
@@ -93,6 +94,7 @@ public class Pin : MonoBehaviour
 
 				Debug.Log("OnTriggerEnter2D Target HIT Angle : " + angle + " , DAMAGE : " + damage + " , Position : " + transform.position);
 			}
+			isWorked = true;
 		}
 		else if(collision.gameObject.tag == "Pin")
 		{
@@ -110,6 +112,7 @@ public class Pin : MonoBehaviour
 				AudioManager.instance.PlaySfx(AudioManager.Sfx.shoot_failure);
 				ReflectPin(collision);
 				Debug.Log("OnTriggerEnter2D to Pinned -> ReflectPin");
+				isWorked = true;
 			}
 			else
 			{
@@ -144,6 +147,7 @@ public class Pin : MonoBehaviour
 					}
 					break;
 			}
+			isWorked = true;
 		}
 		else
 		{
@@ -238,5 +242,10 @@ public class Pin : MonoBehaviour
 	public void SetPinId(int id)
 	{
 		pinId = id;
+	}
+
+	public bool GetWorked()
+	{
+		return isWorked;
 	}
 }

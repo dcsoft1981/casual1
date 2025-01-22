@@ -20,18 +20,23 @@ public class PinLauncher : MonoBehaviour
     {
 		if (currPin != null && (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space)) && !EventSystem.current.IsPointerOverGameObject() && GameManager.instance.isGameOver == false)
         {
-            currPin.Launch();
+			currPin.Launch();
 			GameManager.instance.DecreaseShot();
 			currPin = null;
-            Invoke("PreparePin", 0.10f);
+			//Invoke("CheckFinalShot", 0.06f);
+			Invoke("PreparePin", 0.1f);
 		}
     }
 
 	void PreparePin()
     {
-		Invoke("CheckFailure", 0.2f);
 		if (GameManager.instance.isGameOver == false)
         {
+			if (GameManager.instance.GetCheckFinalShot() && GameManager.instance.GetShotCount() == 0)
+			{
+				return;
+			}
+
 			GameObject pin = Instantiate(pinObject, transform.position, Quaternion.Euler(0, 0, 0));
 			currPin = pin.GetComponent<Pin>();
 			currPin.SetPinId(GameManager.instance.GetNextPinID());
@@ -41,8 +46,8 @@ public class PinLauncher : MonoBehaviour
 		}
 	}
 
-    void CheckFailure()
+    void CheckFinalShot()
     {
-		GameManager.instance.CheckFailure();
+		GameManager.instance.CheckFinalShot();
 	}
 }
