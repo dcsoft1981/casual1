@@ -86,6 +86,10 @@ public class GameManager : MonoBehaviour
 	[SerializeField] private ParticleSystem effectPrab;
 	[SerializeField] private Transform effectGroup;
 
+	[SerializeField] private GameObject buttonTab;
+	private TextMeshProUGUI buttonTabText;
+	public bool tutorialButtonTab = false;
+
 	// Start is called once before the first execution of Update after the MonoBehaviour is created
 
 	private void Awake()
@@ -119,6 +123,10 @@ public class GameManager : MonoBehaviour
 			case IngameType.NORMAL:
 				{
 					level = LocalDataManager.instance.GetCurLevel();
+					if(level < 4)
+					{
+						tutorialButtonTab = true;
+					}
 				}
 				break;
 			case IngameType.INFINITY:
@@ -173,6 +181,13 @@ public class GameManager : MonoBehaviour
 		// 플레이 기록 갱신
 		LocalDataManager.instance.StartLevelPlayData();
 		InvokeRepeating("CheckStageFailure", 0f, 0.3f);
+
+		if(tutorialButtonTab)
+		{
+			buttonTab.SetActive(true);
+			buttonTabText = buttonTab.GetComponentInChildren<TextMeshProUGUI>();
+			buttonTabText.DOFade(0f, 0.5f).SetLoops(-1, LoopType.Yoyo);
+		}
 	}
 
     void SetHPText()
@@ -1444,5 +1459,13 @@ public class GameManager : MonoBehaviour
 	public void Vibrate4()
 	{
 		Vibrate(VibrationType.Default);
+	}
+
+	public void TutorialButtonClick()
+	{
+		if(tutorialButtonTab)
+		{
+			buttonTab.SetActive(false);
+		}
 	}
 }

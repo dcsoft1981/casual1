@@ -25,36 +25,36 @@ MonoBehaviour:
     minLevel: 11
     maxLevel: 30
     color: 205:127:50
-    doubleDamage: 50
-    bonusShot: 50
+    doubleDamage: 3
+    bonusShot: 0
   - id: 3
     grade: Silver
     minLevel: 31
     maxLevel: 50
     color: 192:192:192
     doubleDamage: 5
-    bonusShot: 5
+    bonusShot: 0
   - id: 4
     grade: Gold
     minLevel: 51
     maxLevel: 100
     color: 255:215:0
-    doubleDamage: 6
-    bonusShot: 5
+    doubleDamage: 5
+    bonusShot: 3
   - id: 5
     grade: Platinum
     minLevel: 101
     maxLevel: 150
     color: 229:228:226
-    doubleDamage: 6
-    bonusShot: 6
+    doubleDamage: 5
+    bonusShot: 5
   - id: 6
     grade: Emerald
     minLevel: 151
     maxLevel: 200
     color: 80:200:120
     doubleDamage: 7
-    bonusShot: 6
+    bonusShot: 5
   - id: 7
     grade: Diamond
     minLevel: 201

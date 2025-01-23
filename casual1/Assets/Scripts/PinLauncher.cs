@@ -19,16 +19,24 @@ public class PinLauncher : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-		if (currPin != null && (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space)) && !EventSystem.current.IsPointerOverGameObject() && GameManager.instance.isGameOver == false)
+		if (currPin != null && 
+			(Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space)) && 
+			!EventSystem.current.IsPointerOverGameObject() && 
+			GameManager.instance.isGameOver == false)
         {
-			currPin.Launch();
-			LocalDataManager.instance.AddShotPlayData();
-			GameManager.instance.DecreaseShot();
-			currPin = null;
-			//Invoke("CheckFinalShot", 0.06f);
-			Invoke("PreparePin", 0.1f);
+			LaunchPin();
 		}
     }
+
+	public void LaunchPin()
+	{
+		currPin.Launch();
+		LocalDataManager.instance.AddShotPlayData();
+		GameManager.instance.TutorialButtonClick();
+		GameManager.instance.DecreaseShot();
+		currPin = null;
+		Invoke("PreparePin", 0.1f);
+	}
 
 	void PreparePin()
     {

@@ -203,7 +203,7 @@ public class Pin : MonoBehaviour
 		}
 
 		reflectVec = new Vector3(reflectX, -1f, 0f);
-		reflectRotateSpeed = reflectX*rotateSpeed*10;
+		reflectRotateSpeed = reflectX*rotateSpeed*20;
 		Debug.Log($"∆®±Ë πÊ«‚: {reflectVec} , {reflectRotateSpeed}");
 
 		isReflecteded = true;
