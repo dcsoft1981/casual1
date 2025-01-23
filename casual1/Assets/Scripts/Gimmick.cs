@@ -18,6 +18,7 @@ public class Gimmick : MonoBehaviour
 	private LineRenderer lineRenderer1;
 	private LineRenderer lineRenderer2;
 	private List<int> listWorkedPin = null;
+	public ParticleSystem effect = null;
 	// Start is called once before the first execution of Update after the MonoBehaviour is created
 	void Awake()
     {
@@ -227,5 +228,14 @@ public class Gimmick : MonoBehaviour
 		// 처리한 핀에 추가
 		listWorkedPin.Add(_pinID);
 		return true;
+	}
+
+	public void EffectPlay()
+	{
+		float scale = 0.05f;
+		effect.transform.position = transform.position;
+		effect.transform.localScale = new Vector3(scale, scale, scale);
+		Debug.Log("EffectPlay Gimmick Scale : " + effect.transform.localScale);
+		effect.Play();
 	}
 }

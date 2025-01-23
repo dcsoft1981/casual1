@@ -17,6 +17,7 @@ public class Pin : MonoBehaviour
 	private SpriteRenderer spriteRenderer;
 	private float reflectRotateSpeed = 0f;
 	private int pinId = 0;
+	public ParticleSystem effect = null;
 
 	private void Awake()
 	{
@@ -253,5 +254,14 @@ public class Pin : MonoBehaviour
 	public bool GetWorked()
 	{
 		return isWorked;
+	}
+
+	public void EffectPlay()
+	{
+		float scale = 0.05f;
+		effect.transform.position = transform.position;
+		effect.transform.localScale = new Vector3(scale, scale, scale);
+		Debug.Log("EffectPlay Pin Scale : " + effect.transform.localScale);
+		effect.Play();
 	}
 }

@@ -762,6 +762,8 @@ MonoBehaviour:
   ComboEffects: {fileID: 611241933}
   gradeUp: {fileID: 3825070848482105431, guid: 4473e065f2270db46b06d453b9f8d3b8, type: 3}
   clearText: {fileID: 6796523536882461309}
+  effectPrab: {fileID: 658761075008837597, guid: b770c85bdc33b4949a6b8250113918fd, type: 3}
+  effectGroup: {fileID: 1591660162}
 --- !u!4 &208536165
 Transform:
   m_ObjectHideFlags: 0
@@ -4464,6 +4466,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pinObject: {fileID: 1078342239161880866, guid: 1ad25a77c1d6e9444b8105708c374692, type: 3}
+  effectPrab: {fileID: 658761075008837597, guid: 4f9208e377a3247499a8476e90c4db93, type: 3}
+  effectGroup: {fileID: 1591660162}
 --- !u!1 &1298331928
 GameObject:
   m_ObjectHideFlags: 0
@@ -5069,6 +5073,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1552433857}
   m_CullTransparentMesh: 1
+--- !u!1 &1591660161
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1591660162}
+  m_Layer: 0
+  m_Name: EffectGroup
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1591660162
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1591660161}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1626551837
 GameObject:
   m_ObjectHideFlags: 0
@@ -8454,3 +8489,4 @@ SceneRoots:
   - {fileID: 337006302}
   - {fileID: 1488891698}
   - {fileID: 2110583168}
+  - {fileID: 1591660162}

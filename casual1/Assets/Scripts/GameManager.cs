@@ -17,6 +17,7 @@ using VibrationUtility;
 using static UnityEngine.EventSystems.EventTrigger;
 using System.Text;
 using UnityEngine.UI;
+using Object = UnityEngine.Object;
 
 public class GameManager : MonoBehaviour
 {
@@ -82,6 +83,8 @@ public class GameManager : MonoBehaviour
 	private int lastGrade = 0;
 	[SerializeField] private GameObject gradeUp;
 	[SerializeField] private TextMeshProUGUI clearText;
+	[SerializeField] private ParticleSystem effectPrab;
+	[SerializeField] private Transform effectGroup;
 
 	// Start is called once before the first execution of Update after the MonoBehaviour is created
 
@@ -284,6 +287,8 @@ public class GameManager : MonoBehaviour
 
 	private  void StageClear()
     {
+		DestroyAllGimmicks();
+		DestroyAllShots();
 		//targetCircle.GRADIENT_ON();
 		switch (ingameType)
 		{
@@ -585,6 +590,7 @@ public class GameManager : MonoBehaviour
 
 	public void CreateGimmick(GimmickType gimmickType, int hp, Vector3 gimmickPos, int angle, List<GameObject> listGimmick)
 	{
+		// 기믹 생성
 		GameObject gimmickGameObject = Instantiate(gimmickObject, gimmickPos, Quaternion.identity);
 		gimmickGameObject.transform.SetParent(targetCircle.transform);
 		Gimmick gameObjectGimmick = gimmickGameObject.GetComponent<Gimmick>();
@@ -592,6 +598,7 @@ public class GameManager : MonoBehaviour
 		bool isChecked = GetGimmickInitChecked(gimmickType, listGimmick);
 		Color color = GetGimmickColor(gimmickType, hp, isChecked);
 		gameObjectGimmick.SetGimmick(gimmickType, hp, color, angle, listGimmick, isChecked, targetCircle.gameObject);
+		gameObjectGimmick.effect = Instantiate(effectPrab, effectGroup);// 이펙트 생성
 		listGimmick.Add(gimmickGameObject);
 		AddAngleGimmick(angle, gimmickGameObject);
 	}
@@ -648,11 +655,47 @@ public class GameManager : MonoBehaviour
 		StartCoroutine(Shake(gameObject));
 		if (gameObjectGimmick.hp <= 0)
 		{
-			// 가이드라인 제거
-			gameObjectGimmick.DisableGuideLine();
-			// 기믹 제거
-			gameObject.transform.DOScale(Vector3.zero, 0.1f).SetEase(Ease.InBack).OnComplete(() => Destroy(gameObject));
+			DestroyGimmick(gameObject, gameObjectGimmick, false);
 		}
+	}
+
+	private void DestroyShot(GameObject gameObject, Pin pin)
+	{
+		if (gameObject.IsDestroyed())
+			return;
+
+		// 기믹 제거
+		gameObject.transform.DOScale(Vector3.zero, 0.3f).SetEase(Ease.InBack).OnComplete(() =>
+		{
+			pin.EffectPlay();
+		});
+	}
+
+	private void DestroyGimmick(GameObject gameObject, Gimmick gameObjectGimmick, bool afterClear)
+	{
+		if (gameObject.IsDestroyed())
+			return;
+
+		if(gameObjectGimmick != null)
+		{
+			if (afterClear)
+			{
+				// 이펙트 재생
+				gameObjectGimmick.EffectPlay();
+			}
+			else
+			{
+				// 가이드라인 제거
+				gameObjectGimmick.DisableGuideLine();
+			}
+		}
+		
+		// 기믹 제거
+		gameObject.transform.DOScale(Vector3.zero, 0.1f).SetEase(Ease.InBack).OnComplete(() =>
+		{
+			if(!afterClear)
+				Destroy(gameObject);
+		});
 	}
 
 	private void GimmickCheckWork(GameObject gameObject, Gimmick gameObjectGimmick)
@@ -870,6 +913,24 @@ public class GameManager : MonoBehaviour
 		return null;
 	}
 
+	public void DestroyAllGimmicks()
+	{
+		Gimmick[] gimmicks = Object.FindObjectsByType<Gimmick>(FindObjectsSortMode.None);
+		for (int i = 0; i < gimmicks.Length; i++)
+		{
+			DestroyGimmick(gimmicks[i].gameObject, gimmicks[i], true);
+		}
+	}
+
+	public void DestroyAllShots()
+	{
+		Pin[] pins = Object.FindObjectsByType<Pin>(FindObjectsSortMode.None);
+		for (int i = 0; i < pins.Length; i++)
+		{
+			DestroyShot(pins[i].gameObject, pins[i]);
+		}
+	}
+
 	public void RemoveAllGimmicks(List<GameObject> list)
 	{
 		foreach(GameObject go in list)
@@ -1050,7 +1111,10 @@ public class GameManager : MonoBehaviour
 			float offsetY = UnityEngine.Random.Range(-1f, 1f) * shakeMagnitude;
 
 			// 오브젝트의 Sprite 위치 변경
-			childTransform.localPosition = new Vector3(offsetX, offsetY, 0);
+			if (!childTransform.IsDestroyed())
+			{
+				childTransform.localPosition = new Vector3(offsetX, offsetY, 0);
+			}
 
 			// 경과 시간 증가
 			elapsed += Time.deltaTime;
@@ -1060,11 +1124,12 @@ public class GameManager : MonoBehaviour
 		}
 
 		// 흔들림 종료 후 원래 위치로 복귀
-		if (!childTransform.gameObject.IsDestroyed())
+		if (!childTransform.IsDestroyed() && !childTransform.gameObject.IsDestroyed())
 		{
 			childTransform.localPosition = Vector3.zero;
 		}
-		spriteRenderer.color = originColor;
+		if(!spriteRenderer.IsDestroyed())
+			spriteRenderer.color = originColor;
 	}
 
 	public int Random100()

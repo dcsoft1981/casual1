@@ -4,10 +4,11 @@ using static Define;
 
 public class PinLauncher : MonoBehaviour
 {
-	[SerializeField]
-    private GameObject pinObject;
+	[SerializeField] private GameObject pinObject;
+	[SerializeField] private ParticleSystem effectPrab;
+	[SerializeField] private Transform effectGroup;
 
-    private Pin currPin;
+	private Pin currPin;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -41,6 +42,7 @@ public class PinLauncher : MonoBehaviour
 			GameObject pin = Instantiate(pinObject, transform.position, Quaternion.Euler(0, 0, 0));
 			currPin = pin.GetComponent<Pin>();
 			currPin.SetPinId(GameManager.instance.GetNextPinID());
+			currPin.effect = Instantiate(effectPrab, effectGroup);
 			GameManager.instance.SetCreatedPin(currPin);
 			GameManager.instance.ResetHitGimmick();
 			GameManager.instance.CheckTriggerSkill(PassiveType.SHOT_DOUBLE_DAMAGE);
