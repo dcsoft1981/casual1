@@ -167,7 +167,6 @@ public class LobbyScene : MonoBehaviour
 
 	void CreateGrade(GradeDBEntity entity)
 	{
-		GameObject gradeGameObject = null;
 		GameObject createGrade = null;
 		if (entity.id == LocalDataManager.instance.GetCurGrade())
 		{
@@ -177,46 +176,7 @@ public class LobbyScene : MonoBehaviour
 		{
 			createGrade = gradeEtc;
 		}
-		gradeGameObject = Instantiate(createGrade, Vector3.zero, Quaternion.identity);
-		gradeGameObject.transform.SetParent(gradeScroll.transform);
-		gradeGameObject.transform.localScale = Vector3.one;
-
-		Transform iconTransform = gradeGameObject.transform.Find("Content/Icon/Mask/Image");
-		Transform nameTransform = gradeGameObject.transform.Find("Content/NameText");
-		Transform messageTransform = gradeGameObject.transform.Find("Content/MessageText");
-		// 아이콘 색상 변경
-		iconTransform.gameObject.GetComponent<Image>().color = LocalDataManager.instance.GetGradeColor(entity.id);
-		nameTransform.gameObject.GetComponent<TextMeshProUGUI>().SetText(entity.grade);
-		messageTransform.gameObject.GetComponent<TextMeshProUGUI>().SetText(GetGradeInfoStr(entity));
-
-		/*
-		Gimmick gameObjectGimmick = gimmickGameObject.GetComponent<Gimmick>();
-		SetTargetStateByGimmickInit(gimmickType);
-		bool isChecked = GetGimmickInitChecked(gimmickType, listGimmick);
-		Color color = GetGimmickColor(gimmickType, hp, isChecked);
-		gameObjectGimmick.SetGimmick(gimmickType, hp, color, angle, listGimmick, isChecked, targetCircle.gameObject);
-		listGimmick.Add(gimmickGameObject);
-		*/
-	}
-
-	public string GetGradeInfoStr(GradeDBEntity entity)
-	{
-		if(entity.id == 1)
-		{
-			return "Clear the Level to earn a Grade.";
-		}
-
-		StringBuilder sb = new StringBuilder();
-		sb.Append(entity.minLevel - 1).Append(" Level Clear");
-		if(entity.doubleDamage > 0)
-		{
-			sb.Append("\n").Append(Define.SKILL_DOUBLE_DAMAGE).Append(" : ").Append(entity.doubleDamage).Append("%");
-		}
-		if (entity.bonusShot > 0)
-		{
-			sb.Append("\n").Append(Define.SKILL_FINAL_SHOT).Append(" : ").Append(entity.bonusShot).Append("%");
-		}
-		return sb.ToString();
+		LocalDataManager.instance.CreateGradeInfo(entity, createGrade, gradeScroll.transform);
 	}
 
 	public void SetSetting()

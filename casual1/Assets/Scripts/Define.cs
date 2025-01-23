@@ -1,14 +1,21 @@
+using System;
 using System.Runtime.InteropServices;
 using UnityEngine;
 
 public class Define
 {
+	// Local Save Data
 	public const string CHILD_SPRITE_OBJECT = "ChildSpriteObject";
 	public const string CUR_LEVEL = "CUR_LEVEL";
 	public const string OPTION_SOUND_OFF = "OPTION_SOUND_OFF";
 	public const string OPTION_VIBRATE_OFF = "OPTION_VIBRATE_OFF";
 	public const string OPTION_GUIDELINE_OFF = "OPTION_GUIDELINE_OFF";
 	public const string INFINITY_STAGE = "INFINITY_STAGE";
+	public const string LEVEL_PLAY_DATA_STARTSEC = "LEVEL_PLAY_DATA_STARTSEC";
+	public const string LEVEL_PLAY_DATA_TRYCOUNT = "LEVEL_PLAY_DATA_TRYCOUNT";
+	public const string LEVEL_PLAY_DATA_SHOTCOUNT = "LEVEL_PLAY_DATA_SHOTCOUNT";
+
+
 	public const string LOCALE_RETRY = "RETRY";
 	public const string LOCALE_NEXT = "NEXT";
 
@@ -134,5 +141,16 @@ public class Define
 		else if (typeValue >= 30000 && typeValue < 40000)
 			return GimmickCathegory.GimmickPass;
 		return GimmickCathegory.NONE;
+	}
+
+	public static int GetCurrentUnixTimestamp()
+	{
+		return (int)DateTimeOffset.UtcNow.ToUnixTimeSeconds();
+	}
+
+	public static string ConvertSecondsToTimeString(long totalSeconds)
+	{
+		TimeSpan timeSpan = TimeSpan.FromSeconds(totalSeconds);
+		return timeSpan.ToString(@"hh\:mm\:ss");
 	}
 }

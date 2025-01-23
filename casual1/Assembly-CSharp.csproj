@@ -93,9 +93,9 @@
     <Compile Include="Assets\UltimateCleanGUIPack\Common\Scripts\Extra\InitialPlayerPrefs.cs" />
     <Compile Include="Assets\UltimateCleanGUIPack\Common\Scripts\Core\Popup.cs" />
     <Compile Include="Assets\Scripts\VibrationUtil.cs" />
+    <Compile Include="Assets\Scripts\VibrationInstance.cs" />
     <Compile Include="Assets\UltimateCleanGUIPack\Common\Scripts\Core\URLOpener.cs" />
     <Compile Include="Assets\Scripts\TargetCircle.cs" />
-    <Compile Include="Assets\Scripts\VibrationInstance.cs" />
     <Compile Include="Assets\Scripts\PopupSkill.cs" />
     <Compile Include="Assets\UltimateCleanGUIPack\Common\Scripts\Core\NotificationLauncher.cs" />
     <Compile Include="Assets\Scripts\GimmickDBEntity.cs" />

@@ -1,5 +1,8 @@
 using System.Collections.Generic;
+using System.Text;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 using static Define;
 
 public class LocalDataManager : MonoBehaviour
@@ -10,6 +13,9 @@ public class LocalDataManager : MonoBehaviour
 	private int optionVibrateOff = 0;
 	private int optionGuideLineOff = 0;
 	private int infinityStage = 0;
+	private int levelPlayDataStartSec = 0;
+	private int levelPlayDataTryCount = 0;
+	private int levelPlayDataShotCount = 0;
 
 	[SerializeField] private LevelDB levelDB;
 	[SerializeField] private GimmickDB gimmickDB;
@@ -37,11 +43,17 @@ public class LocalDataManager : MonoBehaviour
 			Time.fixedDeltaTime = 0.01f; // 원하는 고정 시간 스텝 설정
 
 			instance = this;
+
+			// 로컬 저장 데이터
 			curLevel = PlayerPrefs.GetInt(Define.CUR_LEVEL, 1);
 			optionSoundOff = PlayerPrefs.GetInt(Define.OPTION_SOUND_OFF, 0);
 			optionVibrateOff = PlayerPrefs.GetInt(Define.OPTION_VIBRATE_OFF, 0);
 			optionGuideLineOff = PlayerPrefs.GetInt(Define.OPTION_GUIDELINE_OFF, 0);
 			infinityStage = PlayerPrefs.GetInt(Define.INFINITY_STAGE, 0);
+			levelPlayDataStartSec = PlayerPrefs.GetInt(Define.LEVEL_PLAY_DATA_STARTSEC, 0);
+			levelPlayDataTryCount = PlayerPrefs.GetInt(Define.LEVEL_PLAY_DATA_TRYCOUNT, 0);
+			levelPlayDataShotCount = PlayerPrefs.GetInt(Define.LEVEL_PLAY_DATA_SHOTCOUNT, 0);
+
 
 			dic_gimmicks = new Dictionary<int, GimmickDBEntity>();
 			dic_gimmickSprites = new Dictionary<int, Sprite>();
@@ -305,5 +317,81 @@ public class LocalDataManager : MonoBehaviour
 	{
 		int index = (stage-1)%GetMaxLevel();
 		return listStage[index];
+	}
+
+	public void ClearLevelPlayData()
+	{
+		PlayerPrefs.SetInt(Define.LEVEL_PLAY_DATA_STARTSEC, 0);
+		levelPlayDataStartSec = 0;
+		PlayerPrefs.SetInt(Define.LEVEL_PLAY_DATA_TRYCOUNT, 0);
+		levelPlayDataTryCount = 0;
+		PlayerPrefs.SetInt(Define.LEVEL_PLAY_DATA_SHOTCOUNT, 0);
+		levelPlayDataShotCount = 0;
+	}
+
+	public void StartLevelPlayData()
+	{
+		if(levelPlayDataStartSec == 0)
+		{
+			levelPlayDataStartSec = Define.GetCurrentUnixTimestamp();
+			PlayerPrefs.SetInt(Define.LEVEL_PLAY_DATA_STARTSEC, levelPlayDataStartSec);
+		}
+		levelPlayDataTryCount++;
+		PlayerPrefs.SetInt(Define.LEVEL_PLAY_DATA_TRYCOUNT, levelPlayDataTryCount);
+	}
+
+	public void AddShotPlayData()
+	{
+		levelPlayDataShotCount++;
+		PlayerPrefs.SetInt(Define.LEVEL_PLAY_DATA_SHOTCOUNT, levelPlayDataShotCount);
+	}
+
+	public string GetLevelPlayDataText()
+	{
+		int startTime = levelPlayDataStartSec;
+		int curTime = Define.GetCurrentUnixTimestamp();
+		int sec = curTime - startTime;
+		if (sec < 0)
+			sec = 0;
+		string timeText = Define.ConvertSecondsToTimeString(sec);
+		StringBuilder sb = new StringBuilder();
+		sb.Append(timeText).Append(" Time Taken\\nTryCount : ").Append(levelPlayDataTryCount).Append(" ShotCount : ").Append(levelPlayDataShotCount);
+		return sb.ToString();
+	}
+
+	public GameObject CreateGradeInfo(GradeDBEntity entity, GameObject createGrade, Transform parentTransform)
+	{
+		GameObject gradeGameObject = Instantiate(createGrade, Vector3.zero, Quaternion.identity);
+		gradeGameObject.transform.SetParent(parentTransform);
+		gradeGameObject.transform.localScale = Vector3.one;
+
+		Transform iconTransform = gradeGameObject.transform.Find("Content/Icon/Mask/Image");
+		Transform nameTransform = gradeGameObject.transform.Find("Content/NameText");
+		Transform messageTransform = gradeGameObject.transform.Find("Content/MessageText");
+		// 아이콘 색상 변경
+		iconTransform.gameObject.GetComponent<Image>().color = LocalDataManager.instance.GetGradeColor(entity.id);
+		nameTransform.gameObject.GetComponent<TextMeshProUGUI>().SetText(entity.grade);
+		messageTransform.gameObject.GetComponent<TextMeshProUGUI>().SetText(GetGradeInfoStr(entity));
+		return gradeGameObject;
+	}
+
+	public string GetGradeInfoStr(GradeDBEntity entity)
+	{
+		if (entity.id == 1)
+		{
+			return "Clear the Level to earn a Tier.";
+		}
+
+		StringBuilder sb = new StringBuilder();
+		sb.Append(entity.minLevel - 1).Append(" Level Clear");
+		if (entity.doubleDamage > 0)
+		{
+			sb.Append("\n").Append(Define.SKILL_DOUBLE_DAMAGE).Append(" : ").Append(entity.doubleDamage).Append("%");
+		}
+		if (entity.bonusShot > 0)
+		{
+			sb.Append("\n").Append(Define.SKILL_FINAL_SHOT).Append(" : ").Append(entity.bonusShot).Append("%");
+		}
+		return sb.ToString();
 	}
 }

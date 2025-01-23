@@ -14,6 +14,9 @@ using System.Collections;
 using Febucci.UI;
 using DG.Tweening.Core.Easing;
 using VibrationUtility;
+using static UnityEngine.EventSystems.EventTrigger;
+using System.Text;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -30,6 +33,7 @@ public class GameManager : MonoBehaviour
 	[SerializeField] private TextMeshProUGUI textCombo;
 	[SerializeField] private TextMeshProUGUI textSkill;
 	[SerializeField] private TextMeshProUGUI textStageLevel;
+	[SerializeField] private TextMeshProUGUI textLevelPlayData;
 
 	private int hp;
 	private int targetId;
@@ -75,6 +79,9 @@ public class GameManager : MonoBehaviour
 	private int nextPinId = 0;
 	private Dictionary<int, List<GameObject>> dic_AngleGimmicks;
 	private Dictionary<GameObject, GameObject> dic_PairGimmick;
+	private int lastGrade = 0;
+	[SerializeField] private GameObject gradeUp;
+	[SerializeField] private TextMeshProUGUI clearText;
 
 	// Start is called once before the first execution of Update after the MonoBehaviour is created
 
@@ -103,7 +110,8 @@ public class GameManager : MonoBehaviour
 		int level = 0;
 		LocalDataManager.instance.CheckInfinityStage();
 		ingameType = LocalDataManager.instance.GetIngameType();
-		switch(ingameType)
+		lastGrade = LocalDataManager.instance.GetCurGrade();
+		switch (ingameType)
 		{
 			case IngameType.NORMAL:
 				{
@@ -158,6 +166,9 @@ public class GameManager : MonoBehaviour
 		PrepareGimmickAll();
 		AudioManager.instance.OffEffectBgm();
 		AudioManager.instance.PlayBgm();
+
+		// 플레이 기록 갱신
+		LocalDataManager.instance.StartLevelPlayData();
 		InvokeRepeating("CheckStageFailure", 0f, 0.3f);
 	}
 
@@ -292,7 +303,7 @@ public class GameManager : MonoBehaviour
 				}
 				break;
 		}
-		
+
 
 		/*
 		TextMeshProUGUI buttonText = btnRetry.GetComponentInChildren<TextMeshProUGUI>();
@@ -302,7 +313,24 @@ public class GameManager : MonoBehaviour
         labelClear.SetActive(true);
 		*/
 
+		if(lastGrade != LocalDataManager.instance.GetCurGrade())
+		{
+			clearText.text = "New Tier achieved!";
+			// 등급 변경
+			textLevelPlayData.text = "";
+			GameObject gradeGameObject = popupResult.transform.Find("Grade").gameObject;
+			GradeDBEntity entity = LocalDataManager.instance.GetCurGradeDBEntity();
+			GameObject gradeInfoGameObject = LocalDataManager.instance.CreateGradeInfo(entity, gradeUp, gradeGameObject.transform);
+			gradeInfoGameObject.transform.localPosition = Vector3.one;
+		}
+		else
+		{
+			clearText.text = "Success!";
+			// 등급 유지
+			textLevelPlayData.text = LocalDataManager.instance.GetLevelPlayDataText();
+		}
 		PopupResultSuccess();
+		LocalDataManager.instance.ClearLevelPlayData();
 		AudioManager.instance.PlaySfx(AudioManager.Sfx.clear);
 		Vibrate3();
 	}

@@ -21,6 +21,7 @@ public class PinLauncher : MonoBehaviour
 		if (currPin != null && (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space)) && !EventSystem.current.IsPointerOverGameObject() && GameManager.instance.isGameOver == false)
         {
 			currPin.Launch();
+			LocalDataManager.instance.AddShotPlayData();
 			GameManager.instance.DecreaseShot();
 			currPin = null;
 			//Invoke("CheckFinalShot", 0.06f);
