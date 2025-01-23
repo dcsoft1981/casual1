@@ -258,7 +258,7 @@ public class Pin : MonoBehaviour
 
 	public void EffectPlay()
 	{
-		float scale = 0.05f;
+		float scale = 0.035f;
 		effect.transform.position = transform.position;
 		effect.transform.localScale = new Vector3(scale, scale, scale);
 		Debug.Log("EffectPlay Pin Scale : " + effect.transform.localScale);
