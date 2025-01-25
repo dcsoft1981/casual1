@@ -163,7 +163,7 @@ public class GameManager : MonoBehaviour
 
 
 		CreateAndPlayAnimation();
-		Debug.Log("levelData : " + level + " - " + levelData.id + " - " + levelData.hp);
+		Debug.Log("levelData:" + level + " - " + levelData.id + " - " + levelData.hp);
 		Vector3 targetScreenPosition = Camera.main.WorldToScreenPoint(targetCircle.transform.position);
 		textHP.transform.position = targetScreenPosition;
 
