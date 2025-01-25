@@ -522,7 +522,7 @@ public class GameManager : MonoBehaviour
 			damageAreaBonus = numInfo[1];
 			damageAreaStartAngle = numInfo[2];
 			damageAreaEndAngle = numInfo[3];
-			Debug.Log($"DAMAGE_AREA:{targetScale}, {damageAreaBonus}, {damageAreaStartAngle}, {damageAreaEndAngle}");
+			Debug.Log($"DAMAGE_AREA :  {targetScale}, {damageAreaBonus}, {damageAreaStartAngle}, {damageAreaEndAngle}");
 			targetCircle.DrawDamageLine(damageAreaStartAngle, damageAreaEndAngle);
 		}
 		else
