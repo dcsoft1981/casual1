@@ -10,3 +10,6 @@ Logs/
 com.dcsoft1981.casual1_BurstDebugInformation_DoNotShip/
 DC Play_BurstDebugInformation_DoNotShip/
 UserSettings/
+*.csproj
+*.sln
+.vscode/
