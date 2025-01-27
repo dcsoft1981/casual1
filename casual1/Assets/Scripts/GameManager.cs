@@ -18,6 +18,7 @@ using static UnityEngine.EventSystems.EventTrigger;
 using System.Text;
 using UnityEngine.UI;
 using Object = UnityEngine.Object;
+using static System.Net.Mime.MediaTypeNames;
 
 public class GameManager : MonoBehaviour
 {
@@ -29,7 +30,8 @@ public class GameManager : MonoBehaviour
 	private LevelDBEntity levelData;
 
 	[SerializeField] private TextMeshProUGUI textHP;
-    [SerializeField] private TextMeshProUGUI textLevel;
+	[SerializeField] private TextMeshProUGUI textTapTok;
+	[SerializeField] private TextMeshProUGUI textLevel;
 	[SerializeField] private TextMeshProUGUI textShot;
 	[SerializeField] private TextMeshProUGUI textCombo;
 	[SerializeField] private TextMeshProUGUI textSkill;
@@ -165,6 +167,7 @@ public class GameManager : MonoBehaviour
 		Debug.Log("levelData:" + level + " - " + levelData.id + " - " + levelData.hp);
 		Vector3 targetScreenPosition = Camera.main.WorldToScreenPoint(targetCircle.transform.position);
 		textHP.transform.position = targetScreenPosition;
+		textTapTok.transform.position = targetScreenPosition;
 
 		Vector3 texpHPPostion = pinLauncher.transform.position + new Vector3(0.6f, 0f, 0f);
 		Vector3 pinLauncherScreenPosition = Camera.main.WorldToScreenPoint(texpHPPostion);
@@ -301,8 +304,10 @@ public class GameManager : MonoBehaviour
 
 	private  void StageClear()
     {
+		textHP.gameObject.SetActive(false);
 		DestroyAllGimmicks();
 		DestroyAllShots();
+		Invoke("TargetEffect", 0.5f);
 		//targetCircle.GRADIENT_ON();
 		switch (ingameType)
 		{
@@ -348,10 +353,9 @@ public class GameManager : MonoBehaviour
 			// 등급 유지
 			textLevelPlayData.text = LocalDataManager.instance.GetLevelPlayDataText();
 		}
-		PopupResultSuccess();
-		LocalDataManager.instance.ClearLevelPlayData();
 		AudioManager.instance.PlaySfx(AudioManager.Sfx.clear);
 		Vibrate3();
+		Invoke("PopupClearResult", 1f);
 	}
 
 	private void StageFailure()
@@ -1492,5 +1496,17 @@ public class GameManager : MonoBehaviour
 		{
 			buttonTab.SetActive(false);
 		}
+	}
+
+	public void TargetEffect()
+	{
+		targetCircle.EffectPlay();
+		textTapTok.gameObject.SetActive(true);
+	}
+
+	public void PopupClearResult()
+	{
+		PopupResultSuccess();
+		LocalDataManager.instance.ClearLevelPlayData();
 	}
 }

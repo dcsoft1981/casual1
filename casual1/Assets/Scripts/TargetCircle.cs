@@ -22,11 +22,16 @@ public class TargetCircle : MonoBehaviour
 	private float spriteScale = 1f;
 	private int damageLineCount = 0;
 
+	[SerializeField] private Transform effectGroup;
+	[SerializeField] private ParticleSystem effectPrab = null;
+
 	private void Awake()
 	{
 		lineRenderer = GetComponent<LineRenderer>();
 		spriteObject = transform.Find(Define.CHILD_SPRITE_OBJECT).gameObject;
 		spriteRenderer = spriteObject.GetComponent<SpriteRenderer>();
+
+		effectPrab = Instantiate(effectPrab, effectGroup);
 
 		/*
 		spriteObject = new GameObject(Define.CHILD_SPRITE_OBJECT);
@@ -199,5 +204,15 @@ public class TargetCircle : MonoBehaviour
 	public void ShieldColorOFF()
 	{
 		spriteRenderer.color = Define.COLOR_TARGET_BASE;
+	}
+
+	public void EffectPlay()
+	{
+		float scale = 0.7f;
+		effectPrab.transform.position = transform.position;
+		effectPrab.transform.localScale = new Vector3(scale, scale, scale);
+		Debug.Log("EffectPlay Target Scale : " + effectPrab.transform.localScale);
+		effectPrab.GetComponent<Renderer>().sortingOrder = -10;
+		effectPrab.Play();
 	}
 }

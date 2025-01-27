@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: RandomDirectionAppearance
   m_EditorClassIdentifier: 
   tagID: rdir
-  baseDuration: 0.1
-  baseAmount: 20
+  baseDuration: 1
+  baseAmount: 10
