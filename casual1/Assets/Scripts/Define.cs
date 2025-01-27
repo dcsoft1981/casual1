@@ -127,6 +127,15 @@ public class Define
 		ALEADY_COMPLETED = 1, // 이미 해당 핀에 대한 히트 처리 완료
 		HIT_THROUTH =  2, // 히트하고 진행
 		HIT_REFLECT = 3, // 히트하고 반사
+		HIT_PAIR_REFLECT = 4, // 페어기믹 히트하고 반사
+	}
+
+	// 흔들기 타입
+	public enum ShakeType
+	{
+		NONE = 0,
+		NORMAL = 1, 
+		STRONG = 2, // 강함(REMOVE_SHOT 타입)
 	}
 
 

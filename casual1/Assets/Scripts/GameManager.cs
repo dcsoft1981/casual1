@@ -61,9 +61,7 @@ public class GameManager : MonoBehaviour
 	private GameObject curHitGimmick = null;
 	private List<GameObject> listPinnedShot = null;
 
-	private int damageAreaStartAngle = 0;
-	private int damageAreaEndAngle = 0;
-	private int damageAreaBonus = 0;
+	private Dictionary<int, int> dic_doubleDamage;
 	private bool shotAddDamage = false;
 	private Pin currPin = null;
 	private bool checkFinalShot = false;
@@ -108,6 +106,7 @@ public class GameManager : MonoBehaviour
 			listPinnedShot = new List<GameObject>();
 			dic_AngleGimmicks = new Dictionary<int, List<GameObject>>();
 			dic_PairGimmick = new Dictionary<GameObject, GameObject>();
+			dic_doubleDamage = new Dictionary<int, int>();
 			VibrationUtil.Init();
 		}
 	}
@@ -243,7 +242,7 @@ public class GameManager : MonoBehaviour
 				Vibrate2();
 			else
 				Vibrate1();
-			StartCoroutine(Shake(targetCircle.gameObject));
+			StartCoroutine(Shake(targetCircle.gameObject, ShakeType.NORMAL));
 		}
 		hp -= damage;
 		if (hp < 0)
@@ -519,11 +518,28 @@ public class GameManager : MonoBehaviour
 		if(gimmickType == GimmickType.DAMAGE_AREA)
 		{
 			// 데미지 지역 생성
-			damageAreaBonus = numInfo[1];
-			damageAreaStartAngle = numInfo[2];
-			damageAreaEndAngle = numInfo[3];
-			Debug.Log($"DAMAGE_AREA :  {targetScale}, {damageAreaBonus}, {damageAreaStartAngle}, {damageAreaEndAngle}");
-			targetCircle.DrawDamageLine(damageAreaStartAngle, damageAreaEndAngle);
+			if(numInfo[2] >= 0)
+			{
+				// 1 line
+				for( int i = numInfo[2]; i <= numInfo[3]; i++)
+				{
+					dic_doubleDamage.Add(i,1); ;
+				}
+			}
+			else
+			{
+				// 2 line
+				for (int i = 0 ; i <= numInfo[3]; i++)
+				{
+					dic_doubleDamage.Add(i, 1); ;
+				}
+				for (int i = (360+numInfo[2]); i <= 359; i++)
+				{
+					dic_doubleDamage.Add(i, 1); ;
+				}
+			}
+			Debug.Log($"DAMAGE_AREA :  {targetScale}, {numInfo[2]}, {numInfo[3]}");
+			targetCircle.DrawDamageLine(numInfo[2], numInfo[3]);
 		}
 		else
 		{
@@ -667,7 +683,7 @@ public class GameManager : MonoBehaviour
 		gameObjectGimmick.SetColor(GetGimmickColor(gameObjectGimmick));
 		if (gimmickCathegory == GimmickCathegory.GimmickHit)
 			Vibrate1();
-		StartCoroutine(Shake(gameObject));
+		StartCoroutine(Shake(gameObject, ShakeType.NORMAL));
 		if (gameObjectGimmick.hp <= 0)
 		{
 			DestroyGimmick(gameObject, gameObjectGimmick, false);
@@ -1051,7 +1067,10 @@ public class GameManager : MonoBehaviour
 
 	private void RemoveAllShot()
 	{
-		foreach(GameObject go in listPinnedShot)
+		// 타겟 쉐이킹
+		StartCoroutine(Shake(targetCircle.gameObject, ShakeType.STRONG));
+		Vibrate4();
+		foreach (GameObject go in listPinnedShot)
 		{
 			if(!go.IsDestroyed())
 			{
@@ -1068,8 +1087,8 @@ public class GameManager : MonoBehaviour
 		
 		if (upgradeShot)
 			shotUpgradeDamage = 1;
-		if(angle >= damageAreaStartAngle && angle <= damageAreaEndAngle)
-			areaBonusDamage = damageAreaBonus;
+		if (dic_doubleDamage.ContainsKey(angle))
+			areaBonusDamage = 1;
 
 		return (baseDamage + shotUpgradeDamage + areaBonusDamage);
 	}
@@ -1109,11 +1128,17 @@ public class GameManager : MonoBehaviour
 		}
 	}
 
-	private IEnumerator Shake(GameObject gameObject)
+	private IEnumerator Shake(GameObject gameObject, Define.ShakeType shakeType)
 	{
 		float shakeDuration = 0.06f; // 흔들림 지속 시간
 		float shakeMagnitude = 0.05f; // 흔들림 강도
 		float elapsed = 0.0f;
+
+		if (shakeType == ShakeType.STRONG)
+		{
+			shakeDuration = 0.3f;
+		}
+			
 		Transform childTransform = gameObject.transform.Find(Define.CHILD_SPRITE_OBJECT);
 		SpriteRenderer spriteRenderer = childTransform.gameObject.GetComponent<SpriteRenderer>();
 		Color originColor = spriteRenderer.color;
@@ -1364,7 +1389,7 @@ public class GameManager : MonoBehaviour
 				GimmickHitWork(pair);
 			}
 			// 페어 처리후 항상 튕김
-			reflectPin = true;
+			return ShotGimmickHitResult.HIT_PAIR_REFLECT;
 		}
 
 		if(reflectPin)

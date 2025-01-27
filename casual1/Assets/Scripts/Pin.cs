@@ -149,6 +149,13 @@ public class Pin : MonoBehaviour
 						GameManager.instance.ResetCombo();
 					}
 					break;
+				case Define.ShotGimmickHitResult.HIT_PAIR_REFLECT:
+					{
+						AudioManager.instance.PlaySfx(AudioManager.Sfx.shoot_good);
+						ReflectPin(collision);
+						GameManager.instance.ResetCombo();
+					}
+					break;
 			}
 			isWorked = true;
 		}
