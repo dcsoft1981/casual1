@@ -2063,7 +2063,7 @@ MonoBehaviour:
   styleSheet: {fileID: 0}
   databaseActions: {fileID: 11400000, guid: 2b996af8896057341982b481620bfb7c, type: 2}
   defaultAppearancesTags:
-  - rdir
+  - size
   defaultDisappearancesTags: []
   defaultBehaviorsTags: []
   defaultTagsMode: 0

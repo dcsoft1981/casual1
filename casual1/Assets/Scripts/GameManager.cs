@@ -686,7 +686,16 @@ public class GameManager : MonoBehaviour
 		gameObjectGimmick.hp--;
 		gameObjectGimmick.SetColor(GetGimmickColor(gameObjectGimmick));
 		if (gimmickCathegory == GimmickCathegory.GimmickHit)
-			Vibrate1();
+		{
+			if(gameObjectGimmick.gimmickType == GimmickType.REMOVE_SHOT)
+			{
+				Vibrate4();
+			}
+			else
+			{
+				Vibrate1();
+			}
+		}
 		StartCoroutine(Shake(gameObject, ShakeType.NORMAL));
 		if (gameObjectGimmick.hp <= 0)
 		{
@@ -1073,7 +1082,6 @@ public class GameManager : MonoBehaviour
 	{
 		// Å¸°Ù ½¦ÀÌÅ·
 		StartCoroutine(Shake(targetCircle.gameObject, ShakeType.STRONG));
-		Vibrate4();
 		foreach (GameObject go in listPinnedShot)
 		{
 			if(!go.IsDestroyed())
