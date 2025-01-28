@@ -18,10 +18,14 @@ public class Pin : MonoBehaviour
 	private float reflectRotateSpeed = 0f;
 	private int pinId = 0;
 	public ParticleSystem effect = null;
+	private GameObject spriteObject;
+	private Vector3 originalScale;
 
 	private void Awake()
 	{
 		spriteRenderer = GetComponent<SpriteRenderer>();
+		spriteObject = gameObject.transform.Find(Define.CHILD_SPRITE_OBJECT).gameObject;
+		originalScale = spriteObject.transform.localScale;
 	}
 	void Start()
     {
@@ -96,6 +100,7 @@ public class Pin : MonoBehaviour
 
 				Debug.Log("OnTriggerEnter2D Target HIT Angle : " + angle + " , DAMAGE : " + damage + " , Position : " + transform.position);
 			}
+			this.SetDefaultSpriteScale();
 			isWorked = true;
 		}
 		else if(collision.gameObject.tag == "Pin")
@@ -245,7 +250,7 @@ public class Pin : MonoBehaviour
 	public void Upgrade()
 	{
 		isUpgraded = true;
-		transform.Find("Square").gameObject.GetComponent<SpriteRenderer>().color = Color.red;
+		transform.Find(Define.CHILD_SPRITE_OBJECT).gameObject.GetComponent<SpriteRenderer>().color = Color.red;
 	}
 
 	public int GetPinID()
@@ -270,5 +275,24 @@ public class Pin : MonoBehaviour
 		effect.transform.localScale = new Vector3(scale, scale, scale);
 		Debug.Log("EffectPlay Pin Scale : " + effect.transform.localScale);
 		effect.Play();
+	}
+
+	public void ScaleShake()
+	{
+		spriteObject.transform.localScale = originalScale;
+		spriteObject.transform.DOScale(originalScale * 2, 0.1f).SetLoops(2, LoopType.Yoyo);
+	}
+
+	public void CreateScaleChange()
+	{
+		GameObject spriteObject = gameObject.transform.Find(Define.CHILD_SPRITE_OBJECT).gameObject;
+		Vector3 originalScale = spriteObject.transform.localScale;
+		spriteObject.transform.localScale = Vector3.zero;
+		spriteObject.transform.DOScale(originalScale, 0.1f).SetEase(Ease.OutCirc);
+	}
+
+	public void SetDefaultSpriteScale()
+	{
+		spriteObject.transform.localScale = originalScale;
 	}
 }

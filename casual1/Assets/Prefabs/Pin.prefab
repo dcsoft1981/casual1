@@ -105,6 +105,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 20
   rotateSpeed: 100
+  effect: {fileID: 0}
 --- !u!50 &6555106628213671857
 Rigidbody2D:
   serializedVersion: 5
@@ -180,7 +181,7 @@ GameObject:
   - component: {fileID: 8367433747499041784}
   - component: {fileID: 5501805595396944428}
   m_Layer: 0
-  m_Name: Square
+  m_Name: ChildSpriteObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

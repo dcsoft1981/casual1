@@ -1,5 +1,6 @@
 using AllIn1SpriteShader;
 using UnityEngine;
+using static Define;
 
 public class TargetCircle : MonoBehaviour
 {
@@ -24,6 +25,7 @@ public class TargetCircle : MonoBehaviour
 
 	[SerializeField] private Transform effectGroup;
 	[SerializeField] private ParticleSystem effectPrab = null;
+	private Define.TargetColorType targetColorType;
 
 	private void Awake()
 	{
@@ -32,6 +34,7 @@ public class TargetCircle : MonoBehaviour
 		spriteRenderer = spriteObject.GetComponent<SpriteRenderer>();
 
 		effectPrab = Instantiate(effectPrab, effectGroup);
+		SetColorType();
 
 		/*
 		spriteObject = new GameObject(Define.CHILD_SPRITE_OBJECT);
@@ -214,5 +217,72 @@ public class TargetCircle : MonoBehaviour
 		Debug.Log("EffectPlay Target Scale : " + effectPrab.transform.localScale);
 		effectPrab.GetComponent<Renderer>().sortingOrder = -10;
 		effectPrab.Play();
+	}
+
+	private void SetColorType()
+	{
+		targetColorType = Define.GetRandomEnumValue<TargetColorType>();
+	}
+
+	public float GetColorValueByTargetHp(float maxHp, float curHp)
+	{
+		return (40f * curHp / maxHp);
+	}
+
+	public void GetColorByTargetHp(float maxHp, float curHp)
+	{
+		float r = 40;
+		float g = 40;
+		float b = 40;
+		float curValue = GetColorValueByTargetHp(maxHp, curHp);
+		switch (targetColorType)
+		{
+			case TargetColorType.RED:
+				{
+					r = curValue;
+				}
+				break;
+			case TargetColorType.GREEN:
+				{
+					g = curValue;
+				}
+				break;
+			case TargetColorType.BLUE:
+				{
+					b = curValue;
+				}
+				break;
+			case TargetColorType.GREEN_BLUE:
+				{
+					g = curValue;
+					b = curValue;
+				}
+				break;
+			case TargetColorType.RED_BLUE:
+				{
+					r = curValue;
+					b = curValue;
+				}
+				break;
+			case TargetColorType.RED_GREEN:
+				{
+					r = curValue;
+					g = curValue;
+				}
+				break;
+			case TargetColorType.ALL:
+				{
+					r = curValue;
+					g = curValue;
+					b = curValue;
+				}
+				break;
+			case TargetColorType.NONE:
+				{
+
+				}
+				break;
+		}
+		spriteRenderer.color = Define.GetRGBColor(r, g, b);
 	}
 }

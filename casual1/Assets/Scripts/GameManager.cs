@@ -38,6 +38,7 @@ public class GameManager : MonoBehaviour
 	[SerializeField] private TextMeshProUGUI textStageLevel;
 	[SerializeField] private TextMeshProUGUI textLevelPlayData;
 
+	private int maxHp = 100;
 	private int hp;
 	private int targetId;
 	private int targetScale;
@@ -143,7 +144,8 @@ public class GameManager : MonoBehaviour
 		SetOrthographicSize();
 
 		// HP 지정
-		hp = levelData.hp;
+		maxHp = levelData.hp;
+		hp = maxHp;
 
 		// Target SIZE 지정
 		targetScale = levelData.target % 100;
@@ -188,7 +190,7 @@ public class GameManager : MonoBehaviour
 		{
 			buttonTab.SetActive(true);
 			buttonTabText = buttonTab.GetComponentInChildren<TextMeshProUGUI>();
-			buttonTabText.DOFade(0f, 0.5f).SetLoops(-1, LoopType.Yoyo);
+			buttonTabText.DOFade(0f, 1.3f).SetLoops(-1, LoopType.Yoyo);
 		}
 	}
 
@@ -241,13 +243,14 @@ public class GameManager : MonoBehaviour
     {
 		if(hp > 0)
 		{
+			hp -= damage;
+			targetCircle.GetColorByTargetHp(maxHp, hp);
 			if (damage == 2)
 				Vibrate2();
 			else
 				Vibrate1();
 			StartCoroutine(Shake(targetCircle.gameObject, ShakeType.NORMAL));
 		}
-		hp -= damage;
 		if (hp < 0)
 			hp = 0;
 		SetHPText();
@@ -305,6 +308,7 @@ public class GameManager : MonoBehaviour
 	private  void StageClear()
     {
 		textHP.gameObject.SetActive(false);
+		textShot.gameObject.SetActive(false);
 		DestroyAllGimmicks();
 		DestroyAllShots();
 		Invoke("TargetEffect", 0.5f);
@@ -1081,7 +1085,7 @@ public class GameManager : MonoBehaviour
 	private void RemoveAllShot()
 	{
 		// 타겟 쉐이킹
-		StartCoroutine(Shake(targetCircle.gameObject, ShakeType.STRONG));
+		StartCoroutine(Shake(targetCircle.gameObject, ShakeType.LONG));
 		foreach (GameObject go in listPinnedShot)
 		{
 			if(!go.IsDestroyed())
@@ -1137,6 +1141,8 @@ public class GameManager : MonoBehaviour
 		{
 			currPin.Upgrade();
 			shotAddDamage = false;
+			currPin.ScaleShake();
+			//StartCoroutine(Shake(currPin.gameObject, ShakeType.IMPACK));
 		}
 	}
 
@@ -1146,11 +1152,15 @@ public class GameManager : MonoBehaviour
 		float shakeMagnitude = 0.05f; // 흔들림 강도
 		float elapsed = 0.0f;
 
-		if (shakeType == ShakeType.STRONG)
+		if (shakeType == ShakeType.LONG)
 		{
 			shakeDuration = 0.3f;
 		}
-			
+		else if (shakeType == ShakeType.IMPACK)
+		{
+			shakeMagnitude = 0.3f;
+		}
+
 		Transform childTransform = gameObject.transform.Find(Define.CHILD_SPRITE_OBJECT);
 		SpriteRenderer spriteRenderer = childTransform.gameObject.GetComponent<SpriteRenderer>();
 		Color originColor = spriteRenderer.color;
@@ -1216,13 +1226,14 @@ public class GameManager : MonoBehaviour
 		return false;
 	}
 
-	public void CheckTriggerSkill(PassiveType passiveType)
+	public bool CheckTriggerSkill(PassiveType passiveType)
 	{
 		if (!TriggerSkill(passiveType)) // 스킬에 따라 랜덤값 , 스킬명 구현
-			return;
+			return false;
 
 		SkillWork(passiveType); // 스킬에 따라 추가 기능 구현
 		ShowPopupSkill(passiveType);
+		return true;
 	}
 
 	private void SkillWork(PassiveType passiveType)
@@ -1346,6 +1357,14 @@ public class GameManager : MonoBehaviour
 		GameObject comboEffectGameObject = Instantiate(ComboEffect, screenPos, Quaternion.identity);
 		comboEffectGameObject.GetComponent<TextMeshProUGUI>().color = new Color(0.5f+0.1f*combo, 0f, 0f);
 		comboEffectGameObject.transform.SetParent(ComboEffects.transform);
+		float scale = 1f;
+		if (combo == 3)
+			scale = 1.2f;
+		else if (combo == 4)
+			scale = 1.5f;
+		else if (combo == 5)
+			scale = 2f;
+		comboEffectGameObject.transform.localScale = new Vector3(scale, scale, scale);
 		StartCoroutine(DisappearText(comboEffectGameObject));
 	}
 

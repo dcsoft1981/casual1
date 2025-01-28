@@ -3961,6 +3961,10 @@ MonoBehaviour:
   soundOntoggle: {fileID: 5232380509345145997}
   vibrateOntoggle: {fileID: 185407000}
   guidelineOntoggle: {fileID: 1714116513}
+  cam: {fileID: 1848905702}
+  topColor: {r: 0.15686275, g: 0.15686275, b: 0.15686275, a: 1}
+  bottomColor: {r: 0.08627451, g: 0.08627451, b: 0.09019608, a: 1}
+  duration: 2
 --- !u!4 &534193850
 Transform:
   m_ObjectHideFlags: 0

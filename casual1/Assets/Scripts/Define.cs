@@ -135,7 +135,21 @@ public class Define
 	{
 		NONE = 0,
 		NORMAL = 1, 
-		STRONG = 2, // 강함(REMOVE_SHOT 타입)
+		LONG = 2, // 김(REMOVE_SHOT 타입)
+		IMPACK = 3,
+	}
+
+	// 타겟 색 변경 타입
+	public enum TargetColorType
+	{
+		RED = 0,
+		GREEN = 1,
+		BLUE = 2,
+		RED_GREEN = 3,
+		RED_BLUE = 4,
+		GREEN_BLUE = 5,
+		ALL = 6,
+		NONE = 7
 	}
 
 
@@ -161,5 +175,17 @@ public class Define
 	{
 		TimeSpan timeSpan = TimeSpan.FromSeconds(totalSeconds);
 		return timeSpan.ToString(@"hh\:mm\:ss");
+	}
+
+	public static T GetRandomEnumValue<T>() where T : Enum
+    {
+        Array values = Enum.GetValues(typeof(T));
+        System.Random random = new System.Random();
+        return (T)values.GetValue(random.Next(values.Length));
+    }
+
+	public static Color GetRGBColor(float r , float g , float b )
+	{
+		return new Color(r / 255f, g / 255f, b / 255f);
 	}
 }

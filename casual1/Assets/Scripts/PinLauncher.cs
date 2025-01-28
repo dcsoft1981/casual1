@@ -53,7 +53,11 @@ public class PinLauncher : MonoBehaviour
 			currPin.effect = Instantiate(effectPrab, effectGroup);
 			GameManager.instance.SetCreatedPin(currPin);
 			GameManager.instance.ResetHitGimmick();
-			GameManager.instance.CheckTriggerSkill(PassiveType.SHOT_DOUBLE_DAMAGE);
+			bool skillTriggered = GameManager.instance.CheckTriggerSkill(PassiveType.SHOT_DOUBLE_DAMAGE);
+			if(!skillTriggered)
+			{
+				currPin.CreateScaleChange();
+			}
 		}
 	}
 

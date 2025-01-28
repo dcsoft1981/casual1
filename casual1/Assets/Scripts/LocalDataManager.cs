@@ -148,7 +148,7 @@ public class LocalDataManager : MonoBehaviour
 			rgbInfo[i] = float.Parse(strInfo[i]);
 		}
 
-		return new Color(rgbInfo[0] / 255f, rgbInfo[1] / 255f, rgbInfo[2] / 255f);
+		return Define.GetRGBColor(rgbInfo[0], rgbInfo[1], rgbInfo[2]);
 	}
 
 	private int GetGradeFromLevel(int level)

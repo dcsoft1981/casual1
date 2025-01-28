@@ -36,6 +36,13 @@ public class LobbyScene : MonoBehaviour
 	public Toggle guidelineOntoggle;
 	private Sprite spriteInfinity;
 
+	[SerializeField] private Camera cam;
+
+	private float time;
+	[SerializeField] private Color topColor = Color.blue;    // 그라데이션의 상단 색상
+	[SerializeField] private Color bottomColor = Color.green; // 그라데이션의 하단 색상
+	public float duration = 5.0f;           // 그라데이션 전환에 걸리는 시간
+
 	private void Awake()
 	{
 		buttonPlayImage = btnPlay.transform.Find("Image").GetComponent<Image>();
@@ -80,9 +87,18 @@ public class LobbyScene : MonoBehaviour
 		}
 		SetTitleText();
 		SetGradeScrollInfo();
+
+		time = 0.0f;
 	}
 
-    public void LoadLevelScene()
+	void Update()
+	{
+		time += Time.deltaTime;
+		float t = Mathf.PingPong(time / duration, 1.0f);
+		cam.backgroundColor = Color.Lerp(bottomColor, topColor, t);
+	}
+
+	public void LoadLevelScene()
     {
 		SceneManager.LoadScene("IngameScene");
 	}
