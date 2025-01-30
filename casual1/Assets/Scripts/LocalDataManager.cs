@@ -103,6 +103,7 @@ public class LocalDataManager : MonoBehaviour
 	public void SetCurLevel(int level)
 	{
 		PlayerPrefs.SetInt(Define.CUR_LEVEL, level);
+		PlayerPrefs.Save();
 		curLevel = level;
 	}
 
@@ -226,6 +227,7 @@ public class LocalDataManager : MonoBehaviour
 		}
 		optionSoundOff = value;
 		PlayerPrefs.SetInt(Define.OPTION_SOUND_OFF, optionSoundOff);
+		PlayerPrefs.Save();
 	}
 
 	public bool GetVibrateOff()
@@ -245,6 +247,7 @@ public class LocalDataManager : MonoBehaviour
 		}
 		optionVibrateOff = value;
 		PlayerPrefs.SetInt(Define.OPTION_VIBRATE_OFF, optionVibrateOff);
+		PlayerPrefs.Save();
 	}
 
 	public bool GetGuideLineOff()
@@ -264,6 +267,7 @@ public class LocalDataManager : MonoBehaviour
 		}
 		optionGuideLineOff = value;
 		PlayerPrefs.SetInt(Define.OPTION_GUIDELINE_OFF, optionGuideLineOff);
+		PlayerPrefs.Save();
 	}
 
 	public IngameType GetIngameType()
@@ -283,6 +287,7 @@ public class LocalDataManager : MonoBehaviour
 	public void SetInfinityStage(int _infinityStage)
 	{
 		PlayerPrefs.SetInt(Define.INFINITY_STAGE, _infinityStage);
+		PlayerPrefs.Save();
 		infinityStage = _infinityStage;
 	}
 
@@ -326,6 +331,7 @@ public class LocalDataManager : MonoBehaviour
 		PlayerPrefs.SetInt(Define.LEVEL_PLAY_DATA_TRYCOUNT, 0);
 		levelPlayDataTryCount = 0;
 		PlayerPrefs.SetInt(Define.LEVEL_PLAY_DATA_SHOTCOUNT, 0);
+		PlayerPrefs.Save();
 		levelPlayDataShotCount = 0;
 	}
 
