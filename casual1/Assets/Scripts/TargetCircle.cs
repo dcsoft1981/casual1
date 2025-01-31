@@ -1,4 +1,7 @@
 using AllIn1SpriteShader;
+using System.Collections.Generic;
+using System.Linq.Expressions;
+using Unity.VisualScripting;
 using UnityEngine;
 using static Define;
 
@@ -16,7 +19,6 @@ public class TargetCircle : MonoBehaviour
 	private float totalTime = 0f;
 
 	private LevelDBEntity levelDBEntity;
-	private LineRenderer lineRenderer;
 
 	private SpriteRenderer spriteRenderer;
 	private GameObject spriteObject;
@@ -26,15 +28,19 @@ public class TargetCircle : MonoBehaviour
 	[SerializeField] private Transform effectGroup;
 	[SerializeField] private ParticleSystem effectPrab = null;
 	private Define.TargetColorType targetColorType;
+	private Define.ExpressionType expressionType;
+	private List<LineRenderer> listExpression = null;
+	private Color gradeColor;
 
 	private void Awake()
 	{
-		lineRenderer = GetComponent<LineRenderer>();
 		spriteObject = transform.Find(Define.CHILD_SPRITE_OBJECT).gameObject;
 		spriteRenderer = spriteObject.GetComponent<SpriteRenderer>();
 
 		effectPrab = Instantiate(effectPrab, effectGroup);
 		SetColorType();
+		SetExpressionType();
+		listExpression = new List<LineRenderer>();
 
 		/*
 		spriteObject = new GameObject(Define.CHILD_SPRITE_OBJECT);
@@ -65,10 +71,13 @@ public class TargetCircle : MonoBehaviour
 	public void SetSprite(float _spriteScale, int _targetId)
 	{
 		spriteScale = _spriteScale;
+		gradeColor = LocalDataManager.instance.GetCurColor();
 		//spriteRenderer.sprite = Resources.Load<Sprite>("Circle");
 		spriteRenderer.color = Define.COLOR_TARGET_BASE;
 		spriteObject.transform.localScale = new Vector3(spriteScale, spriteScale, 1);
 		Define.TargetType targetType = (Define.TargetType)_targetId;
+		// 보류 일단 표정으로 처리
+		/*
 		switch(targetType)
 		{
 			case Define.TargetType.SILVER:
@@ -82,6 +91,7 @@ public class TargetCircle : MonoBehaviour
 				}
 				break;
 		}
+		*/
 	}
 
 	public void StartAnimation(AnimationCurve animationCurve)
@@ -179,7 +189,6 @@ public class TargetCircle : MonoBehaviour
 		lineRenderer.startColor = Define.DAMAGE_LINE_COLOR;
 		lineRenderer.endColor = Define.DAMAGE_LINE_COLOR;
 		lineRenderer.numCapVertices = 10; // 끝부분을 둥글게 만들기 위해 추가할 버텍스 수
-		lineRenderer.useWorldSpace = false;
 		lineRenderer.positionCount = (int)segments + 1;
 		lineRenderer.useWorldSpace = false;
 		lineRenderer.startWidth = 0.1f;
@@ -197,6 +206,124 @@ public class TargetCircle : MonoBehaviour
 		lineObj.transform.localPosition = Vector3.zero;
 		lineObj.transform.localScale = Vector3.one;
 		Debug.Log("DrawDamageLine radius :" + radius + " , position : " + lineObj.transform.position);
+	}
+
+	private void SetExpressionLine(string lineName, Vector3 position, Color color, Define.ExpressionType type, float scale)
+	{
+		switch (type)
+		{
+			case Define.ExpressionType.CIRCLE:
+				{
+					float radius = scale * 0.3f; // 원의 반지름
+					float segments = 50f; // 세그먼트 수
+					GameObject lineObj = new GameObject(lineName);
+					LineRenderer lineRenderer = lineObj.AddComponent<LineRenderer>();
+					lineRenderer.material = new Material(Shader.Find("Sprites/Default"));
+					lineRenderer.startColor = color;
+					lineRenderer.endColor = color;
+					lineRenderer.numCapVertices = 10; // 끝부분을 둥글게 만들기 위해 추가할 버텍스 수
+					lineRenderer.positionCount = (int)segments + 1;
+					lineRenderer.useWorldSpace = false;
+					lineRenderer.startWidth = 0.1f;
+					lineRenderer.endWidth = 0.1f;
+					lineRenderer.sortingOrder = 10;
+
+					float angle = 0f;
+					for (int i = 0; i <= segments; i++)
+					{
+						float x = Mathf.Cos(Mathf.Deg2Rad * angle) * radius;
+						float y = Mathf.Sin(Mathf.Deg2Rad * angle) * radius;
+
+						lineRenderer.SetPosition(i, new Vector3(x, y, 0f));
+						angle += 360f / segments;
+					}
+					lineObj.transform.localPosition = position;
+					lineObj.transform.localScale = Vector3.one;
+					listExpression.Add(lineRenderer);
+				}
+				break;
+		}
+	}
+
+	public void ClearExpressionLines()
+	{
+		// 기존 라인렌더러 off
+		foreach (LineRenderer line in listExpression)
+		{
+			if(!line.gameObject.IsDestroyed())
+				line.gameObject.SetActive(false);
+		}
+		listExpression.Clear();
+	}
+
+	private Vector3 GetExpressionPosition(Define.ExpressionType type, float scale, int index)
+	{
+		switch (type)
+		{
+			case Define.ExpressionType.CIRCLE:
+				{
+					float x = 0.6f * spriteScale;
+					float y = 2f;
+					if (scale == 1f)
+					{
+						y = 2f;
+					}
+					else if (scale == 0.8f)
+					{
+						y = 1.9f;
+					}
+					else if (scale == 0.5f)
+					{
+						y = 1.8f;
+					}
+					if(index == 0)
+					{
+						x = x * -1f;
+					}
+					return new Vector3 (x, y, 0f);
+				}
+				break;
+		}
+		return Vector3.zero;
+	}
+
+	public void DrawExpression(int maxHp, int hp)
+	{
+		ClearExpressionLines();
+
+		switch (expressionType)
+		{
+			case Define.ExpressionType.CIRCLE:
+				{
+					SetExpressionLine("ExpressionLine0", GetExpressionPosition(expressionType, spriteScale, 0), gradeColor, expressionType, spriteScale);
+					SetExpressionLine("ExpressionLine1", GetExpressionPosition(expressionType, spriteScale, 1), gradeColor, expressionType, spriteScale);
+				}
+				break;
+		}
+	}
+
+	public void SetExpressionLineScaleUp()
+	{
+		foreach (LineRenderer line in listExpression)
+		{
+			if (!line.gameObject.IsDestroyed())
+			{
+				line.startWidth = 0.15f;
+				line.endWidth = 0.15f;
+			}
+		}
+	}
+
+	public void SetExpressionLineScaleNormal()
+	{
+		foreach (LineRenderer line in listExpression)
+		{
+			if (!line.gameObject.IsDestroyed())
+			{
+				line.startWidth = 0.1f;
+				line.endWidth = 0.1f;
+			}
+		}
 	}
 
 	public void ShieldColorON()
@@ -222,6 +349,13 @@ public class TargetCircle : MonoBehaviour
 	private void SetColorType()
 	{
 		targetColorType = Define.GetRandomEnumValue<TargetColorType>();
+	}
+
+	private void SetExpressionType()
+	{
+		// ExpressionType 지정
+		//expressionType = Define.GetRandomEnumValue<Define.ExpressionType>();
+		expressionType = Define.ExpressionType.CIRCLE;
 	}
 
 	public float GetColorValueByTargetHp(float maxHp, float curHp)

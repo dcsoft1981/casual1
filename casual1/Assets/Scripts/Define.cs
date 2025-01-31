@@ -152,6 +152,23 @@ public class Define
 		NONE = 7
 	}
 
+	// 표정 타입
+	public enum ExpressionType
+	{
+		NONE = 0,
+		CIRCLE = 1, // O O
+		SMILE = 2, //  ^ ^
+		CRY = 3, // T T
+		CLOSE = 4, // > <
+		LINE = 5, // - -
+		X = 6, // X X
+		ONE_LINE = 7,
+		ONE_CAPSULE = 8, 
+		STAR = 9,
+		HEART = 10
+
+	}
+
 
 	// Static 함수들
 	public static GimmickCathegory GetGimmickCathegory(GimmickType type)

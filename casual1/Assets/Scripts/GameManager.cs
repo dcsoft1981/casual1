@@ -19,6 +19,7 @@ using System.Text;
 using UnityEngine.UI;
 using Object = UnityEngine.Object;
 using static System.Net.Mime.MediaTypeNames;
+using System.Linq.Expressions;
 
 public class GameManager : MonoBehaviour
 {
@@ -41,8 +42,7 @@ public class GameManager : MonoBehaviour
 	private int maxHp = 100;
 	private int hp;
 	private int targetId;
-	private int targetScale;
-	private Color targetColor;
+	private int targetScale;	
 	private int shot;
 	private int cheatRotation = 0;
 	private int rotationBuff = 0;
@@ -72,9 +72,14 @@ public class GameManager : MonoBehaviour
 	private IngameType ingameType;
 
 	[SerializeField] private GameObject popupResult;
+
 	[SerializeField] private float pinPositionY100;
 	[SerializeField] private float pinPositionY80;
 	[SerializeField] private float pinPositionY50;
+	[SerializeField] private float hpPositionY100;
+	[SerializeField] private float hpPositionY80;
+	[SerializeField] private float hpPositionY50;
+
 	[SerializeField] private GameObject ComboEffect;
 	[SerializeField] private GameObject ComboEffects;
 
@@ -158,17 +163,18 @@ public class GameManager : MonoBehaviour
 
 		// Target 지정
 		targetCircle.SetSprite(targetScaleRate, targetId);
+		// 표정 그리기
+		targetCircle.DrawExpression(maxHp, hp);
 		CircleCollider2D collider2D = targetCircle.GetComponent<CircleCollider2D>();
 		collider2D.radius = collider2D.radius * targetScaleRate;
 
 		// Shot 지정
 		shot = levelData.shot;
 
-
 		CreateAndPlayAnimation();
 		Debug.Log("levelData:" + level + " - " + levelData.id + " - " + levelData.hp);
 		Vector3 targetScreenPosition = Camera.main.WorldToScreenPoint(targetCircle.transform.position);
-		textHP.transform.position = targetScreenPosition;
+		textHP.transform.position = Camera.main.WorldToScreenPoint(new Vector3(0f, GetTargetHPPosition(), 0f));
 		textTapTok.transform.position = targetScreenPosition;
 
 		Vector3 texpHPPostion = pinLauncher.transform.position + new Vector3(0.6f, 0f, 0f);
@@ -309,6 +315,7 @@ public class GameManager : MonoBehaviour
     {
 		textHP.gameObject.SetActive(false);
 		textShot.gameObject.SetActive(false);
+		targetCircle.ClearExpressionLines();
 		DestroyAllGimmicks();
 		DestroyAllShots();
 		Invoke("TargetEffect", 0.5f);
@@ -1161,6 +1168,14 @@ public class GameManager : MonoBehaviour
 			shakeMagnitude = 0.3f;
 		}
 
+		bool expressionScaleUp = false;
+		TargetCircle targetCircle = gameObject.GetComponent<TargetCircle>();
+		if (targetCircle != null)
+		{
+			expressionScaleUp = true;
+			targetCircle.SetExpressionLineScaleUp();
+		}
+
 		Transform childTransform = gameObject.transform.Find(Define.CHILD_SPRITE_OBJECT);
 		SpriteRenderer spriteRenderer = childTransform.gameObject.GetComponent<SpriteRenderer>();
 		Color originColor = spriteRenderer.color;
@@ -1183,6 +1198,11 @@ public class GameManager : MonoBehaviour
 
 			// 다음 프레임까지 대기
 			yield return null;
+		}
+
+		if(expressionScaleUp)
+		{
+			targetCircle.SetExpressionLineScaleNormal();
 		}
 
 		// 흔들림 종료 후 원래 위치로 복귀
@@ -1345,23 +1365,37 @@ public class GameManager : MonoBehaviour
 		return new Vector3(0f, y, 0f);
 	}
 
+	public float GetTargetHPPosition()
+	{
+		float value = 0f;
+		if (targetScale == 100)
+			value = hpPositionY100;
+		else if (targetScale == 80)
+			value = hpPositionY80;
+		else if (targetScale == 50)
+			value = hpPositionY50;
+		return value;
+	}
+
 	public void ShowComboLabel(Vector3 position, int combo)
 	{
 		float magnitude = 0.15f;
 		// 임의의 위치 생성
 		float offsetX = UnityEngine.Random.Range(-0.6f, 1.4f) * magnitude;
-		float offsetY = UnityEngine.Random.Range(3f, 5f) * magnitude;
+		float offsetY = UnityEngine.Random.Range(5f, 7f) * magnitude;
 		//ComboEffect
 		Vector3 newPosition = new Vector3(position.x+offsetX, position.y+offsetY, 0f);
 		Vector3 screenPos = Camera.main.WorldToScreenPoint(newPosition);
 		GameObject comboEffectGameObject = Instantiate(ComboEffect, screenPos, Quaternion.identity);
-		comboEffectGameObject.GetComponent<TextMeshProUGUI>().color = new Color(0.5f+0.1f*combo, 0f, 0f);
+		TextMeshProUGUI textObject = comboEffectGameObject.GetComponent<TextMeshProUGUI>();
+		textObject.color = new Color(0.5f+0.1f*combo, 0f, 0f);
+		textObject.text = combo + "Combo";
 		comboEffectGameObject.transform.SetParent(ComboEffects.transform);
 		float scale = 1f;
 		if (combo == 3)
 			scale = 1.2f;
 		else if (combo == 4)
-			scale = 1.5f;
+			scale = 1.4f;
 		else if (combo == 5)
 			scale = 2f;
 		comboEffectGameObject.transform.localScale = new Vector3(scale, scale, scale);
