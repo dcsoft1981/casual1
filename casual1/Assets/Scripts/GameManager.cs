@@ -1202,7 +1202,8 @@ public class GameManager : MonoBehaviour
 
 		if(expressionScaleUp)
 		{
-			targetCircle.SetExpressionLineScaleNormal();
+			if(!targetCircle.IsDestroyed())
+				targetCircle.SetExpressionLineScaleNormal();
 		}
 
 		// 흔들림 종료 후 원래 위치로 복귀
