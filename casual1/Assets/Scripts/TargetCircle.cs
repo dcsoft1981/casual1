@@ -50,8 +50,6 @@ public class TargetCircle : MonoBehaviour
 		spriteRenderer = spriteObject.GetComponent<SpriteRenderer>();
 
 		effectPrab = Instantiate(effectPrab, effectGroup);
-		SetColorType();
-		SetExpressionType();
 		listExpression = new List<LineRenderer>();
 
 		/*
@@ -78,6 +76,12 @@ public class TargetCircle : MonoBehaviour
 			Debug.LogError("AllIn1SpriteShader Shader Not Exist");
 		}
 		*/
+	}
+
+	private void Start()
+	{
+		SetColorType();
+		SetExpressionType();
 	}
 
 	public void SetSprite(float _spriteScale, int _targetId)
@@ -379,7 +383,7 @@ public class TargetCircle : MonoBehaviour
 				break;
 			case Define.ExpressionType.ONE_LINE:
 				{
-					float length = scale * 0.7f; // 선 길이
+					float length = scale * 0.8f; // 선 길이
 					float segments = 2f; // 세그먼트 수
 
 					LineRenderer lineRenderer = GetExpressionLineBase(lineName, position, color, (int)segments);
@@ -392,7 +396,7 @@ public class TargetCircle : MonoBehaviour
 				break;
 			case Define.ExpressionType.ONE_CAPSULE:
 				{
-					float length = scale * scale *0.6f; // 선 길이
+					float length = scale * scale *0.7f; // 선 길이
 					float segments = 2f; // 세그먼트 수
 
 					LineRenderer lineRenderer = GetExpressionLineBase(lineName, position, color, (int)segments);
