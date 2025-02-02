@@ -17,10 +17,23 @@ public class AudioManager : MonoBehaviour
 	AudioSource[] sfxPlayers;
 	int channelIndex;
 
-	public enum Sfx { clear , shoot_failure , shoot_good , buff }
+	public AudioClip ticktockClip;
+	AudioSource ticktockPlayer = null;
+
+	public enum Sfx { clear , shoot_failure , shoot_good , buff, step_do , step_re, step_mi, step_pa, step_sol, step_hdo }
 
 	private void Awake()
 	{
+		/*
+		// 기존 인스턴스가 있으면 새로운 것을 삭제
+		if (instance != null && instance != this)
+		{
+			Destroy(gameObject);
+			return;
+		}
+		DontDestroyOnLoad(gameObject);
+		*/
+
 		instance = this;
 		Init();
 	}
@@ -46,19 +59,31 @@ public class AudioManager : MonoBehaviour
 			sfxPlayers[index].bypassListenerEffects = true;
 			sfxPlayers[index].volume = sfxVolume;
 		}
+
+		if(ticktockClip != null)
+		{
+			GameObject ticktockObject = new GameObject("TickTockPlayer");
+			ticktockObject.transform.parent = transform;
+			ticktockPlayer = ticktockObject.AddComponent<AudioSource>();
+			ticktockPlayer.playOnAwake = true;
+			ticktockPlayer.loop = true;
+			ticktockPlayer.volume = sfxVolume;
+			ticktockPlayer.clip = ticktockClip;
+		}
 	}
 
-	public void PlaySfx(Sfx sfx)
+	public void PlaySfx(Sfx sfx, float pitch = 1f)
 	{
 		if (LocalDataManager.instance.GetSoundOff())
 			return;
-		for( int index = 0; index < channels; ++index) {
+		for ( int index = 0; index < channels; ++index) {
 			int loopIndex = (index + channelIndex) % sfxPlayers.Length;
 
 			if (sfxPlayers[loopIndex].isPlaying)
 				continue;
 			channelIndex = loopIndex;
 			sfxPlayers[loopIndex].clip = sfxClips[(int)sfx];
+			sfxPlayers[loopIndex].pitch = pitch;
 			sfxPlayers[loopIndex].Play();
 			break;
 		}
@@ -91,5 +116,19 @@ public class AudioManager : MonoBehaviour
 		if (LocalDataManager.instance.GetVibrateOff())
 			return;
 		Handheld.Vibrate();
+	}
+
+	public void TickTockPlay()
+	{
+		if (LocalDataManager.instance.GetSoundOff())
+			return;
+		if(ticktockPlayer != null)
+			ticktockPlayer.Play();
+	}
+
+	public void TickTockStop()
+	{
+		if (ticktockPlayer != null)
+			ticktockPlayer.Stop();
 	}
 }

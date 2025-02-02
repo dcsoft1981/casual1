@@ -87,6 +87,7 @@ public class LobbyScene : MonoBehaviour
 		}
 		SetTitleText();
 		SetGradeScrollInfo();
+		AudioManager.instance.TickTockPlay();
 
 		time = 0.0f;
 	}

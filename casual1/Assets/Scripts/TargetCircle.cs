@@ -797,7 +797,7 @@ public class TargetCircle : MonoBehaviour
 		}
 		if(spriteScale == 0.5f)
 		{
-			expressionLineWidth = expressionLineWidth * 0.5f;
+			expressionLineWidth = expressionLineWidth * 0.25f;
 		}
 	}
 

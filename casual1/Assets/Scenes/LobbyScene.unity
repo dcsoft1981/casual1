@@ -1451,6 +1451,66 @@ MonoBehaviour:
   defaultDisappearancesTags: []
   defaultBehaviorsTags: []
   defaultTagsMode: 0
+--- !u!1 &141391063
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 141391065}
+  - component: {fileID: 141391064}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &141391064
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 141391063}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94fa1e42c44b14948b5b67e3d33d358d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bgmClip: {fileID: 8300000, guid: 2a384d9d48eca4a449278cde3cc89658, type: 3}
+  bgmVolume: 0.3
+  sfxClips:
+  - {fileID: 8300000, guid: 936856ab0d58c6e46934918e8e966f3a, type: 3}
+  - {fileID: 8300000, guid: d24151659c204264f9141a26e47ce03c, type: 3}
+  - {fileID: 8300000, guid: bd01196f6c5e09b4b8526de589536e27, type: 3}
+  - {fileID: 8300000, guid: 08b3a3d6da21b6d488fb58df0f368746, type: 3}
+  - {fileID: 8300000, guid: 09b2abee78abb8f48a64483c522e2353, type: 3}
+  - {fileID: 8300000, guid: 18259dff353dee449be3b9176a4e8fd3, type: 3}
+  - {fileID: 8300000, guid: 563d7c4f8be533f4c830573ead84321a, type: 3}
+  - {fileID: 8300000, guid: bd01196f6c5e09b4b8526de589536e27, type: 3}
+  - {fileID: 8300000, guid: 6cb1bf0183892c3489050c899617fa29, type: 3}
+  - {fileID: 8300000, guid: ec2cef56db732e2499d10b94fc0d6e9d, type: 3}
+  sfxVolume: 0.5
+  channels: 4
+  ticktockClip: {fileID: 8300000, guid: 86095f451f4161a4c86aa56a074502a7, type: 3}
+--- !u!4 &141391065
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 141391063}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &143737283
 GameObject:
   m_ObjectHideFlags: 0
@@ -16520,3 +16580,4 @@ SceneRoots:
   - {fileID: 2145522463}
   - {fileID: 315989012}
   - {fileID: 2089662831}
+  - {fileID: 141391065}

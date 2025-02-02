@@ -92,7 +92,7 @@ public class Pin : MonoBehaviour
 				else
 					angle += 270f;
 
-				AudioManager.instance.PlaySfx(AudioManager.Sfx.shoot_good);
+				//AudioManager.instance.PlaySfx(AudioManager.Sfx.shoot_good);
 				int damage = GameManager.instance.GetHpAmountByTargetAngle((int)angle, isUpgraded); // 데미지 영역 계산
 				GameManager.instance.DecreaseHP(damage);
 				GameManager.instance.AddPinnedShot(this.gameObject);

@@ -185,6 +185,8 @@ public class GameManager : MonoBehaviour
         SetLevelText();
 		SetShotText();
 		PrepareGimmickAll();
+
+		AudioManager.instance.TickTockStop();
 		AudioManager.instance.OffEffectBgm();
 		AudioManager.instance.PlayBgm();
 
@@ -856,6 +858,11 @@ public class GameManager : MonoBehaviour
 					GimmickHpMinusWork(gameObject, gameObjectGimmick);
 				}
 				break;
+			case GimmickType.SUPER_SHIELD:
+				{
+					AudioManager.instance.PlaySfx(AudioManager.Sfx.shoot_failure);
+				}
+				break;
 
 			case GimmickType.TARGET_RECOVER:
 				{
@@ -1116,9 +1123,27 @@ public class GameManager : MonoBehaviour
 		return (baseDamage + shotUpgradeDamage + areaBonusDamage);
 	}
 
+	public AudioManager.Sfx GetComboSFX(int combo)
+	{
+		if (combo == 0)
+			return AudioManager.Sfx.step_pa;
+		else if (combo == 1)
+			return AudioManager.Sfx.step_do;
+		else if (combo == 2)
+			return AudioManager.Sfx.step_re;
+		else if (combo == 3)
+			return AudioManager.Sfx.step_mi;
+		else if (combo == 4)
+			return AudioManager.Sfx.step_sol;
+		else
+			return AudioManager.Sfx.step_hdo;
+	}
+
 	public void AddCombo(Vector3 position)
 	{
 		combo++;
+		float pitch = 1.0f + ((combo-1) * 0.1f);
+		AudioManager.instance.PlaySfx(GetComboSFX(combo), pitch);
 		SetComboText();
 		ShowComboLabel(position, combo);
 		if (combo >= Define.MAX_COMBO)
