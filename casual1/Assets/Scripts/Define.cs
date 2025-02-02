@@ -34,9 +34,9 @@ public class Define
 	public static Color COLOR_BLACK_ALPHA10 = new Color(0f, 0f, 0f, 0.4f);
 	public static Color GREEN2 = new Color(0f, 0.5f, 0f);
 	public static Color HP_OVER4 = new Color(0.9f, 0f, 0f);
-	public static Color HP_3 = new Color(0.7f, 0f, 0f);
-	public static Color HP_2 = new Color(0.4f, 0f, 0f);
-	public static Color HP_1 = new Color(0.1f, 0f, 0f);
+	public static Color HP_3 = new Color(0.9f, 0f, 0f);
+	public static Color HP_2 = new Color(0.7f, 0f, 0f);
+	public static Color HP_1 = new Color(0.4f, 0f, 0f);
 	public static Color BASE_YELLOW = new Color(255f/255f, 254f / 255f, 213f / 255f);
 	public static Color DARK_RED = new Color(75f / 255f, 25f / 255f, 25f / 255f);
 	public static Color COLOR_TARGET_SHIELD = Color.gray;
@@ -128,6 +128,7 @@ public class Define
 		HIT_THROUTH =  2, // 히트하고 진행
 		HIT_REFLECT = 3, // 히트하고 반사
 		HIT_PAIR_REFLECT = 4, // 페어기믹 히트하고 반사
+		HIT_IRON_REFLECT = 5, // 무적기믹히트하고 반사
 	}
 
 	// 흔들기 타입

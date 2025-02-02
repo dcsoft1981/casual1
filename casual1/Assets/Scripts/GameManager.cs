@@ -844,7 +844,7 @@ public class GameManager : MonoBehaviour
 		}
 	}
 
-	public bool GimmickHitWork(GameObject gameObject)
+	public ShotGimmickHitResult GimmickHitWork(GameObject gameObject)
 	{
 		bool reflectPin = true;
 		Gimmick gameObjectGimmick = gameObject.GetComponent<Gimmick>();
@@ -860,9 +860,9 @@ public class GameManager : MonoBehaviour
 				break;
 			case GimmickType.SUPER_SHIELD:
 				{
-					AudioManager.instance.PlaySfx(AudioManager.Sfx.shoot_failure);
+					//AudioManager.instance.PlaySfx(AudioManager.Sfx.shoot_failure);
+					return ShotGimmickHitResult.HIT_IRON_REFLECT;
 				}
-				break;
 
 			case GimmickType.TARGET_RECOVER:
 				{
@@ -933,7 +933,10 @@ public class GameManager : MonoBehaviour
 				}
 				break;
 		}
-		return reflectPin;
+		if (reflectPin)
+			return ShotGimmickHitResult.HIT_REFLECT;
+		else
+			return ShotGimmickHitResult.HIT_THROUTH;
 	}
 
 	public float GetRotationValue(float rotation)
@@ -1470,7 +1473,7 @@ public class GameManager : MonoBehaviour
 	{
 		if(CheckGimmickShotWorked(_pin, _gimmickObject))
 			return ShotGimmickHitResult.ALEADY_COMPLETED;
-		bool reflectPin = GimmickHitWork(_gimmickObject);
+		ShotGimmickHitResult result = GimmickHitWork(_gimmickObject);
 		GameObject pair = GetPairGimmick(_gimmickObject);
 		if (pair != null && !pair.IsDestroyed())
 		{
@@ -1483,14 +1486,7 @@ public class GameManager : MonoBehaviour
 			return ShotGimmickHitResult.HIT_PAIR_REFLECT;
 		}
 
-		if(reflectPin)
-		{
-			return ShotGimmickHitResult.HIT_REFLECT;
-		}
-		else
-		{
-			return ShotGimmickHitResult.HIT_THROUTH;
-		}
+		return result;
 	}
 
 	private void AddAngleGimmick(int angle, GameObject gimmickObject)

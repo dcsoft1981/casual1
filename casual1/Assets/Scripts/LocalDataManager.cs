@@ -48,7 +48,7 @@ public class LocalDataManager : MonoBehaviour
 			curLevel = PlayerPrefs.GetInt(Define.CUR_LEVEL, 1);
 			optionSoundOff = PlayerPrefs.GetInt(Define.OPTION_SOUND_OFF, 0);
 			optionVibrateOff = PlayerPrefs.GetInt(Define.OPTION_VIBRATE_OFF, 0);
-			optionGuideLineOff = PlayerPrefs.GetInt(Define.OPTION_GUIDELINE_OFF, 0);
+			optionGuideLineOff = PlayerPrefs.GetInt(Define.OPTION_GUIDELINE_OFF, 1);
 			infinityStage = PlayerPrefs.GetInt(Define.INFINITY_STAGE, 0);
 			levelPlayDataStartSec = PlayerPrefs.GetInt(Define.LEVEL_PLAY_DATA_STARTSEC, 0);
 			levelPlayDataTryCount = PlayerPrefs.GetInt(Define.LEVEL_PLAY_DATA_TRYCOUNT, 0);

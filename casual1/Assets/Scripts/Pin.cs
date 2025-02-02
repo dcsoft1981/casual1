@@ -161,6 +161,13 @@ public class Pin : MonoBehaviour
 						GameManager.instance.ResetCombo();
 					}
 					break;
+				case Define.ShotGimmickHitResult.HIT_IRON_REFLECT:
+					{
+						AudioManager.instance.PlaySfx(AudioManager.Sfx.shoot_failure);
+						ReflectPin(collision);
+						GameManager.instance.ResetCombo();
+					}
+					break;
 			}
 			isWorked = true;
 		}
