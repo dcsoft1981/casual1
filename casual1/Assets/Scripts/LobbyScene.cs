@@ -167,7 +167,7 @@ public class LobbyScene : MonoBehaviour
 		float gradeCount = 0;
 		foreach(GradeDBEntity entity in LocalDataManager.instance.GetGradeEntity())
 		{
-			if(entity.minLevel < LocalDataManager.instance.GetMaxLevel())
+			if(entity.minLevel <= (LocalDataManager.instance.GetMaxLevel()+1))
 			{
 				CreateGrade(entity);
 				gradeCount++;
@@ -274,9 +274,6 @@ public class LobbyScene : MonoBehaviour
 		int markCount = 0;
 		foreach (GradeDBEntity entity in LocalDataManager.instance.GetGradeEntity())
 		{
-			if (entity.id == 1)
-				continue;
-
 			if (LocalDataManager.instance.GetCurLevel() >= entity.minLevel)
 			{
 				CreateMark(entity);

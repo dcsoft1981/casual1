@@ -94,6 +94,14 @@ public class LocalDataManager : MonoBehaviour
 					maxLevel = levelDBEntity.id;
 				listStage.Add(levelDBEntity.id);
 			}
+			// 올클 상황 등급 추가
+			{
+				int grade = GetGradeFromLevel(maxLevel+1);
+				if (grade != 0)
+				{
+					dic_levelGrade.Add(maxLevel + 1, grade);
+				}
+			}
 
 			ListShuffler.ShuffleList(listStage, maxLevel);
 			LocalDataManager.instance.CheckInfinityStage();
@@ -174,7 +182,9 @@ public class LocalDataManager : MonoBehaviour
 	{
 		int curLevel = GetCurLevel();
 		if (curLevel > GetMaxLevel())
-			curLevel = GetMaxLevel();
+		{
+			curLevel = GetMaxLevel()+1;
+		}
 		if (dic_levelGrade.TryGetValue(curLevel, out int grade))
 		{ return grade; }
 

@@ -75,6 +75,14 @@ public class PinLauncher : MonoBehaviour
 			}
 
 			GameObject pin = Instantiate(pinObject, transform.position, Quaternion.Euler(0, 0, 0));
+
+			/*
+			// 핀 색상 등급별 지정
+			Transform childTransform = pin.transform.Find(Define.CHILD_SPRITE_OBJECT);
+			SpriteRenderer spriteRenderer = childTransform.gameObject.GetComponent<SpriteRenderer>();
+			spriteRenderer.color = LocalDataManager.instance.GetCurColor();
+			*/
+
 			currPin = pin.GetComponent<Pin>();
 			currPin.SetPinId(GameManager.instance.GetNextPinID());
 			currPin.effect = Instantiate(effectPrab, effectGroup);
