@@ -97,6 +97,7 @@ public class Define
 
 		// 기믹 통과형
 		DAMAGE_AREA = 30100, //해당 영역을 통과해서 히트 시, 데미지가 N배로 들어감 (N=2~5?)
+		NODAMAGE_AREA = 30200, //해당 영역을 통과해서 히트 시, 데미지가 0
 
 		// alex notebook commit
 	}

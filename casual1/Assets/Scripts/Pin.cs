@@ -74,12 +74,6 @@ public class Pin : MonoBehaviour
 			}
 			else
 			{
-				isPinned = true;
-				// 위치 조정
-				transform.position = GameManager.instance.GetTargetPinnedPosition();
-				
-				// 부착
-				transform.SetParent(collision.gameObject.transform);
 				// 접착된 지점의 각도
 				float angle = collision.gameObject.transform.rotation.eulerAngles.z;
 				if (angle < 0f)
@@ -91,14 +85,28 @@ public class Pin : MonoBehaviour
 					angle -= 90f;
 				else
 					angle += 270f;
-
-				//AudioManager.instance.PlaySfx(AudioManager.Sfx.shoot_good);
 				int damage = GameManager.instance.GetHpAmountByTargetAngle((int)angle, isUpgraded); // 데미지 영역 계산
-				GameManager.instance.DecreaseHP(damage);
-				GameManager.instance.AddPinnedShot(this.gameObject);
-				GameManager.instance.AddCombo(transform.position);
+				if(damage == 0)
+				{
+					AudioManager.instance.PlaySfx(AudioManager.Sfx.shot_failure);
+					ReflectPin(collision);
+					GameManager.instance.ResetCombo();
+				}
+				else
+				{
+					isPinned = true;
+					// 위치 조정
+					transform.position = GameManager.instance.GetTargetPinnedPosition();
 
-				Debug.Log("OnTriggerEnter2D Target HIT Angle : " + angle + " , DAMAGE : " + damage + " , Position : " + transform.position);
+					// 부착
+					transform.SetParent(collision.gameObject.transform);
+
+					GameManager.instance.DecreaseHP(damage);
+					GameManager.instance.AddPinnedShot(this.gameObject);
+					GameManager.instance.AddCombo(transform.position);
+
+					Debug.Log("OnTriggerEnter2D Target HIT Angle : " + angle + " , DAMAGE : " + damage + " , Position : " + transform.position);
+				}
 			}
 			this.SetDefaultSpriteScale();
 			isWorked = true;

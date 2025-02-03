@@ -242,6 +242,42 @@ public class TargetCircle : MonoBehaviour
 		Debug.Log("DrawDamageLine radius :" + radius + " , position : " + lineObj.transform.position);
 	}
 
+	public void DrawNoDamageLine(int _startAngle, int _endAngle)
+	{
+		float startAngle = _startAngle; // 추가 점수 범위 시작 각도
+		float endAngle = _endAngle; // 추가 점수 범위 끝 각도
+		float segments = 50f; // 세그먼트 수
+		float radius = 0.5f * spriteScale;
+
+		// LineRenderer 생성
+		damageLineCount++;
+		string objectName = "DamageLine" + damageLineCount.ToString();
+		GameObject lineObj = new GameObject(objectName);
+		lineObj.transform.parent = gameObject.transform;
+		LineRenderer lineRenderer = lineObj.AddComponent<LineRenderer>();
+		lineRenderer.material = new Material(Shader.Find("Sprites/Default"));
+		lineRenderer.startColor = Define.COLOR_TARGET_SHIELD;
+		lineRenderer.endColor = Define.COLOR_TARGET_SHIELD;
+		lineRenderer.numCapVertices = 10; // 끝부분을 둥글게 만들기 위해 추가할 버텍스 수
+		lineRenderer.positionCount = (int)segments + 1;
+		lineRenderer.useWorldSpace = false;
+		lineRenderer.startWidth = 0.1f;
+		lineRenderer.endWidth = 0.1f;
+		lineRenderer.sortingOrder = -10;
+
+		float angle = startAngle;
+		for (int i = 0; i <= segments; i++)
+		{
+			float x = Mathf.Cos(angle * Mathf.Deg2Rad) * radius;
+			float y = Mathf.Sin(angle * Mathf.Deg2Rad) * radius;
+			lineRenderer.SetPosition(i, new Vector3(x, y, 0));
+			angle += (endAngle - startAngle) / segments;
+		}
+		lineObj.transform.localPosition = Vector3.zero;
+		lineObj.transform.localScale = Vector3.one;
+		Debug.Log("DrawNoDamageLine radius :" + radius + " , position : " + lineObj.transform.position);
+	}
+
 	private LineRenderer GetExpressionLineBase(string lineName, Vector3 position, Color color, int segments)
 	{
 		GameObject lineObj = new GameObject(lineName);

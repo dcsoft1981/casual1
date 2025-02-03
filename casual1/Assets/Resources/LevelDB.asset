@@ -681,7 +681,7 @@ MonoBehaviour:
     gimmick1: 30101:1:0:20
     gimmick2: 30101:1:90:110
     gimmick3: 30101:1:180:200
-    gimmick4: 30101:1:270:290
+    gimmick4: 30101:0:270:290
     gimmick5: 
     gimmick6: 
     gimmick7: 

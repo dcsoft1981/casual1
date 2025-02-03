@@ -65,6 +65,7 @@ public class GameManager : MonoBehaviour
 	private List<GameObject> listPinnedShot = null;
 
 	private Dictionary<int, int> dic_doubleDamage;
+	private Dictionary<int, int> dic_noDamage;
 	private bool shotAddDamage = false;
 	private Pin currPin = null;
 	private bool checkFinalShot = false;
@@ -115,6 +116,7 @@ public class GameManager : MonoBehaviour
 			dic_AngleGimmicks = new Dictionary<int, List<GameObject>>();
 			dic_PairGimmick = new Dictionary<GameObject, GameObject>();
 			dic_doubleDamage = new Dictionary<int, int>();
+			dic_noDamage = new Dictionary<int, int>();
 			VibrationUtil.Init();
 		}
 	}
@@ -561,6 +563,32 @@ public class GameManager : MonoBehaviour
 			}
 			Debug.Log($"DAMAGE_AREA :  {targetScale}, {numInfo[2]}, {numInfo[3]}");
 			targetCircle.DrawDamageLine(numInfo[2], numInfo[3]);
+		}
+		else if (gimmickType == GimmickType.NODAMAGE_AREA)
+		{
+			// 畴单固瘤 瘤开 积己
+			if (numInfo[2] >= 0)
+			{
+				// 1 line
+				for (int i = numInfo[2]; i <= numInfo[3]; i++)
+				{
+					dic_noDamage.Add(i, 1); ;
+				}
+			}
+			else
+			{
+				// 2 line
+				for (int i = 0; i <= numInfo[3]; i++)
+				{
+					dic_noDamage.Add(i, 1); ;
+				}
+				for (int i = (360 + numInfo[2]); i <= 359; i++)
+				{
+					dic_noDamage.Add(i, 1); ;
+				}
+			}
+			Debug.Log($"NODAMAGE_AREA :  {targetScale}, {numInfo[2]}, {numInfo[3]}");
+			targetCircle.DrawNoDamageLine(numInfo[2], numInfo[3]);
 		}
 		else
 		{
@@ -1147,6 +1175,8 @@ public class GameManager : MonoBehaviour
 			shotUpgradeDamage = 1;
 		if (dic_doubleDamage.ContainsKey(angle))
 			areaBonusDamage = 1;
+		else if (dic_noDamage.ContainsKey(angle))
+			return 0;
 
 		return (baseDamage + shotUpgradeDamage + areaBonusDamage);
 	}
