@@ -604,52 +604,7 @@ public class GameManager : MonoBehaviour
 
 	public Color GetGimmickColor(Gimmick gameObjectGimmick)
 	{
-		return GetGimmickColor(gameObjectGimmick.gimmickType, gameObjectGimmick.hp, gameObjectGimmick.GetChecked());
-	}
-
-	public Color GetGimmickColor(GimmickType type, int hp, bool isChecked)
-	{
-		switch (type)
-		{
-			case GimmickType.SUPER_SHIELD:
-				return Define.COLOR_TARGET_SHIELD;
-			case GimmickType.TARGET_RECOVER:
-				return Define.GIMMICKHIT_DEBUFF;
-			case GimmickType.DAMAGE_N:
-			case GimmickType.REMOVE_SHOT:
-				return Define.GIMMICKHIT_BUFF;
-			case GimmickType.ROTATION_DOWN:
-				return Define.TARGETHIT_BUFF;
-			case GimmickType.ROTATION_UP:
-				return Define.TARGETHIT_DEBUFF;
-			case GimmickType.ADD_SHOT:
-				return Define.TARGETHIT_BUFF;
-			case GimmickType.SEQUENCE:
-				{
-					if (isChecked)
-						return Define.GREEN2;
-					else
-						return Color.black;
-				}
-			case GimmickType.KEY_CHAIN:
-				{
-					if (isChecked)
-						return Define.GREEN2;
-					else
-						return Color.black;
-				}
-		}
-
-		if (hp > 3)
-			return Define.HP_OVER4;
-		if (hp == 3)
-			return Define.HP_3;
-		else if (hp == 2)
-			return Define.HP_2;
-		else if (hp == 1)
-			return Define.HP_1;
-
-		return Color.black;
+		return LocalDataManager.instance.GetGimmickColor(gameObjectGimmick.gimmickType, gameObjectGimmick.hp, gameObjectGimmick.GetChecked());
 	}
 
 	public Vector3 GetGimmickPos(int angle, float gimmickDistance)
@@ -676,7 +631,7 @@ public class GameManager : MonoBehaviour
 		Gimmick gameObjectGimmick = gimmickGameObject.GetComponent<Gimmick>();
 		SetTargetStateByGimmickInit(gimmickType);
 		bool isChecked = GetGimmickInitChecked(gimmickType, listGimmick);
-		Color color = GetGimmickColor(gimmickType, hp, isChecked);
+		Color color = LocalDataManager.instance.GetGimmickColor(gimmickType, hp, isChecked);
 		gameObjectGimmick.SetGimmick(gimmickType, hp, color, angle, listGimmick, isChecked, targetCircle.gameObject);
 		gameObjectGimmick.effect = Instantiate(effectPrab, effectGroup);// ÀÌÆåÆ® »ý¼º
 		listGimmick.Add(gimmickGameObject);

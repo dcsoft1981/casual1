@@ -23,6 +23,9 @@ public class LobbyScene : MonoBehaviour
 	[SerializeField] private GameObject gradeEtc;
 	[SerializeField] private GameObject scrollbar;
 
+	[SerializeField] private GameObject gimmickScroll;
+	[SerializeField] private GameObject gimmickPrefab;
+
 
 	private Image buttonPlayImage;
 	private Image buttonPlayerImage;
@@ -90,6 +93,7 @@ public class LobbyScene : MonoBehaviour
 		}
 		SetTitleText();
 		SetGradeScrollInfo();
+		SetGimmickScrollInfo();
 		SetMarksInfo();
 		AudioManager.instance.TickTockPlay();
 
@@ -198,6 +202,14 @@ public class LobbyScene : MonoBehaviour
 			createGrade = gradeEtc;
 		}
 		LocalDataManager.instance.CreateGradeInfo(entity, createGrade, gradeScroll.transform);
+	}
+
+	void SetGimmickScrollInfo()
+	{
+		foreach (GimmickDBEntity entity in LocalDataManager.instance.GetGimmickEntity())
+		{
+			LocalDataManager.instance.CreateGimmickInfo(entity, gimmickPrefab, gimmickScroll.transform);
+		}
 	}
 
 	public void SetSetting()
