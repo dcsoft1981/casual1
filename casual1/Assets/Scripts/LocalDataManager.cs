@@ -96,7 +96,7 @@ public class LocalDataManager : MonoBehaviour
 			}
 			// 올클 상황 등급 추가
 			{
-				int grade = GetGradeFromLevel(maxLevel+1);
+				int grade = GetGradeFromLevel(maxLevel + 1);
 				if (grade != 0)
 				{
 					dic_levelGrade.Add(maxLevel + 1, grade);
@@ -183,7 +183,7 @@ public class LocalDataManager : MonoBehaviour
 		int curLevel = GetCurLevel();
 		if (curLevel > GetMaxLevel())
 		{
-			curLevel = GetMaxLevel()+1;
+			curLevel = GetMaxLevel() + 1;
 		}
 		if (dic_levelGrade.TryGetValue(curLevel, out int grade))
 		{ return grade; }
@@ -342,7 +342,7 @@ public class LocalDataManager : MonoBehaviour
 
 	public int GetInfinityStageLevel(int stage)
 	{
-		int index = (stage-1)%GetMaxLevel();
+		int index = (stage - 1) % GetMaxLevel();
 		return listStage[index];
 	}
 
@@ -359,7 +359,7 @@ public class LocalDataManager : MonoBehaviour
 
 	public void StartLevelPlayData()
 	{
-		if(levelPlayDataStartSec == 0)
+		if (levelPlayDataStartSec == 0)
 		{
 			levelPlayDataStartSec = Define.GetCurrentUnixTimestamp();
 			PlayerPrefs.SetInt(Define.LEVEL_PLAY_DATA_STARTSEC, levelPlayDataStartSec);
@@ -403,8 +403,14 @@ public class LocalDataManager : MonoBehaviour
 		return gradeGameObject;
 	}
 
-	public GameObject CreateGimmickInfo(GimmickDBEntity entity, GameObject createGrade, Transform parentTransform)
+	public void CreateGimmickInfo(GimmickDBEntity entity, GameObject createGrade, Transform parentTransform)
 	{
+		int gimmickOpenLevel = GetGimmickOpenLevel(entity.id);
+		if (gimmickOpenLevel == 0)
+			return;
+
+		int curLevel = GetCurLevel();
+
 		GameObject gradeGameObject = Instantiate(createGrade, Vector3.zero, Quaternion.identity);
 		gradeGameObject.transform.SetParent(parentTransform);
 		gradeGameObject.transform.localScale = Vector3.one;
@@ -415,7 +421,7 @@ public class LocalDataManager : MonoBehaviour
 		// 아이콘 색상 변경
 		Image image = iconTransform.gameObject.GetComponent<Image>();
 		GimmickType gimmickType = (GimmickType)entity.id;
-		if(gimmickType == GimmickType.ONOFF_OFF)
+		if (gimmickType == GimmickType.ONOFF_OFF)
 		{
 			if (dic_gimmickSprites2.TryGetValue(entity.id, out Sprite sprite))
 			{
@@ -430,7 +436,7 @@ public class LocalDataManager : MonoBehaviour
 		}
 		else
 		{
-			if(gimmickType == GimmickType.DAMAGE_AREA)
+			if (gimmickType == GimmickType.DAMAGE_AREA)
 			{
 				image.color = Define.DAMAGE_LINE_COLOR;
 			}
@@ -439,12 +445,22 @@ public class LocalDataManager : MonoBehaviour
 				image.color = Define.NODAMAGE_LINE_COLOR;
 			}
 		}
-		
 
 		// 텍스트 설정
 		nameTransform.gameObject.GetComponent<TextMeshProUGUI>().SetText(entity.gimmick);
-		messageTransform.gameObject.GetComponent<TextMeshProUGUI>().SetText(entity.textinfo);
-		return gradeGameObject;
+		if(curLevel < gimmickOpenLevel)
+		{
+			// 오픈전
+			image.sprite = spriteQuestion;
+			string message = "Level " + gimmickOpenLevel + " Required";
+			messageTransform.gameObject.GetComponent<TextMeshProUGUI>().SetText(message);
+		}
+		else
+		{
+			// 오픈 후
+			messageTransform.gameObject.GetComponent<TextMeshProUGUI>().SetText(entity.textinfo);
+		}
+	
 	}
 
 	public string GetGradeInfoStr(GradeDBEntity entity)
@@ -510,5 +526,41 @@ public class LocalDataManager : MonoBehaviour
 			return Define.HP_1;
 
 		return Color.black;
+	}
+
+	public int GetGimmickOpenLevel(int gimmickId)
+	{
+		foreach (LevelDBEntity levelDBEntity in levelDB.levels)
+		{
+			if (LevelDataGimmickExist(levelDBEntity.gimmick1, gimmickId)) return levelDBEntity.id;
+			if (LevelDataGimmickExist(levelDBEntity.gimmick2, gimmickId)) return levelDBEntity.id;
+			if (LevelDataGimmickExist(levelDBEntity.gimmick3, gimmickId)) return levelDBEntity.id;
+			if (LevelDataGimmickExist(levelDBEntity.gimmick4, gimmickId)) return levelDBEntity.id;
+			if (LevelDataGimmickExist(levelDBEntity.gimmick5, gimmickId)) return levelDBEntity.id;
+			if (LevelDataGimmickExist(levelDBEntity.gimmick6, gimmickId)) return levelDBEntity.id;
+			if (LevelDataGimmickExist(levelDBEntity.gimmick7, gimmickId)) return levelDBEntity.id;
+		}
+
+		return 0;
+	}
+
+	public bool LevelDataGimmickExist(string gimmick, int gimmickId)
+	{
+		if (gimmick.Length == 0)
+			return false;
+
+		string[] strInfo = gimmick.Split(":");
+		int[] numInfo = new int[strInfo.Length];
+		for (int i = 0; i < numInfo.Length; i++)
+		{
+			numInfo[i] = int.Parse(strInfo[i]);
+		}
+
+		int gimmickValue = numInfo[0];
+		int hp = gimmickValue % 100;
+		if (gimmickId == (gimmickValue - hp))
+			return true;
+		else
+			return false;
 	}
 }
