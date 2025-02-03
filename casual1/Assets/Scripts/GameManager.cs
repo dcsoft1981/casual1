@@ -329,6 +329,12 @@ public class GameManager : MonoBehaviour
 			case IngameType.NORMAL:
 				{
 					int level = LocalDataManager.instance.GetCurLevel();
+					if(level == 10)
+					{
+						// 레드닷 활성화
+						LocalDataManager.instance.SetReddotPlayer(true);
+						LocalDataManager.instance.SetReddotMenu(true);
+					}
 					int nextLevel = level + 1;
 					LocalDataManager.instance.SetCurLevel(nextLevel);
 				}

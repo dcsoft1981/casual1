@@ -95,6 +95,7 @@ public class LobbyScene : MonoBehaviour
 		SetGradeScrollInfo();
 		SetGimmickScrollInfo();
 		SetMarksInfo();
+		SetReddot();
 		AudioManager.instance.TickTockPlay();
 
 		time = 0.0f;
@@ -115,6 +116,12 @@ public class LobbyScene : MonoBehaviour
 	public void OnClickShare()
 	{
 		popupPlayer.SetActive(true);
+		if (LocalDataManager.instance.GetReddotPlayer())
+		{
+			LocalDataManager.instance.SetReddotPlayer(false);
+			btnPlayer.transform.Find("Reddot").gameObject.SetActive(false);
+		}
+			
 		SetGradeScrollValue();
 		//popupPlayer.transform.localScale = Vector3.zero;
 		//popupPlayer.transform.DOScale(Vector3.one, 0.2f).SetEase(Ease.OutCirc);
@@ -129,6 +136,11 @@ public class LobbyScene : MonoBehaviour
 	public void OnClickMenu()
 	{
 		popupMenu.SetActive(true);
+		if (LocalDataManager.instance.GetReddotMenu())
+		{
+			LocalDataManager.instance.SetReddotMenu(false);
+			btnMenu.transform.Find("Reddot").gameObject.SetActive(false);
+		}
 		SetSetting();
 		//popupMenu.transform.localScale = Vector3.zero;
 		//popupMenu.transform.DOScale(Vector3.one, 0.2f).SetEase(Ease.OutCirc);
@@ -289,5 +301,17 @@ public class LobbyScene : MonoBehaviour
 		GameObject markGameObject = Instantiate(markPrefab, Vector3.zero, Quaternion.identity);
 		markGameObject.transform.SetParent(marks.transform);
 		markGameObject.GetComponent<Mark>().SetData(entity);
+	}
+
+	public void SetReddot()
+	{
+		if(LocalDataManager.instance.GetReddotPlayer())
+		{
+			btnPlayer.transform.Find("Reddot").gameObject.SetActive(true);
+		}
+		if (LocalDataManager.instance.GetReddotMenu())
+		{
+			btnMenu.transform.Find("Reddot").gameObject.SetActive(true);
+		}
 	}
 }

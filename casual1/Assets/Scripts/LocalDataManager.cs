@@ -19,6 +19,8 @@ public class LocalDataManager : MonoBehaviour
 	private int levelPlayDataStartSec = 0;
 	private int levelPlayDataTryCount = 0;
 	private int levelPlayDataShotCount = 0;
+	private int reddotPlayer = 0;
+	private int reddotMenu = 0;
 
 	[SerializeField] private LevelDB levelDB;
 	[SerializeField] private GimmickDB gimmickDB;
@@ -58,6 +60,8 @@ public class LocalDataManager : MonoBehaviour
 			levelPlayDataStartSec = PlayerPrefs.GetInt(Define.LEVEL_PLAY_DATA_STARTSEC, 0);
 			levelPlayDataTryCount = PlayerPrefs.GetInt(Define.LEVEL_PLAY_DATA_TRYCOUNT, 0);
 			levelPlayDataShotCount = PlayerPrefs.GetInt(Define.LEVEL_PLAY_DATA_SHOTCOUNT, 0);
+			reddotPlayer = PlayerPrefs.GetInt(Define.REDDOT_PLAYER, 0);
+			reddotMenu = PlayerPrefs.GetInt(Define.REDDOT_MENU, 0);
 
 
 			dic_gimmicks = new Dictionary<int, GimmickDBEntity>();
@@ -562,5 +566,45 @@ public class LocalDataManager : MonoBehaviour
 			return true;
 		else
 			return false;
+	}
+
+	public bool GetReddotPlayer()
+	{
+		if (reddotPlayer == 0)
+			return false;
+		else
+			return true;
+	}
+
+	public void SetReddotPlayer(bool on)
+	{
+		int value = 0;
+		if (on)
+		{
+			value = 1;
+		}
+		reddotPlayer = value;
+		PlayerPrefs.SetInt(Define.REDDOT_PLAYER, reddotPlayer);
+		PlayerPrefs.Save();
+	}
+
+	public bool GetReddotMenu()
+	{
+		if (reddotMenu == 0)
+			return false;
+		else
+			return true;
+	}
+
+	public void SetReddotMenu(bool on)
+	{
+		int value = 0;
+		if (on)
+		{
+			value = 1;
+		}
+		reddotMenu = value;
+		PlayerPrefs.SetInt(Define.REDDOT_MENU, reddotMenu);
+		PlayerPrefs.Save();
 	}
 }

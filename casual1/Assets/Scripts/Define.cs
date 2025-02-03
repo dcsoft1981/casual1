@@ -14,6 +14,8 @@ public class Define
 	public const string LEVEL_PLAY_DATA_STARTSEC = "LEVEL_PLAY_DATA_STARTSEC";
 	public const string LEVEL_PLAY_DATA_TRYCOUNT = "LEVEL_PLAY_DATA_TRYCOUNT";
 	public const string LEVEL_PLAY_DATA_SHOTCOUNT = "LEVEL_PLAY_DATA_SHOTCOUNT";
+	public const string REDDOT_PLAYER = "REDDOT_PLAYER";
+	public const string REDDOT_MENU = "REDDOT_MENU";
 
 
 	public const string LOCALE_RETRY = "RETRY";
