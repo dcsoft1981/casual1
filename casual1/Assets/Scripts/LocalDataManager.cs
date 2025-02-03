@@ -1,9 +1,12 @@
 using System.Collections.Generic;
+using System.Drawing;
 using System.Text;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using static Define;
+using Color = UnityEngine.Color;
+using Image = UnityEngine.UI.Image;
 
 public class LocalDataManager : MonoBehaviour
 {
@@ -26,11 +29,13 @@ public class LocalDataManager : MonoBehaviour
 	private Dictionary<int, Sprite> dic_gimmickSprites2;
 	private Dictionary<int, Sprite> dic_gimmickSprites3;
 	private Dictionary<int, GradeDBEntity> dic_grades;
-	private Dictionary<int, Color> dic_gradeColor;
+	private Dictionary<int, UnityEngine.Color> dic_gradeColor;
 	private Dictionary<int, int> dic_levelGrade;
 	private List<int> listStage;
 
 	private int maxLevel = 0;
+
+	public Sprite spriteQuestion = null;
 
 	private void Awake()
 	{
@@ -92,6 +97,8 @@ public class LocalDataManager : MonoBehaviour
 
 			ListShuffler.ShuffleList(listStage, maxLevel);
 			LocalDataManager.instance.CheckInfinityStage();
+
+			spriteQuestion = Resources.Load<Sprite>("Help");
 		}
 	}
 
@@ -208,6 +215,11 @@ public class LocalDataManager : MonoBehaviour
 	public List<GradeDBEntity> GetGradeEntity()
 	{
 		return gradeDB.grades;
+	}
+
+	public List<GimmickDBEntity> GetGimmickEntity()
+	{
+		return gimmickDB.gimmicks;
 	}
 
 	public bool GetSoundOff()
@@ -381,6 +393,50 @@ public class LocalDataManager : MonoBehaviour
 		return gradeGameObject;
 	}
 
+	public GameObject CreateGimmickInfo(GimmickDBEntity entity, GameObject createGrade, Transform parentTransform)
+	{
+		GameObject gradeGameObject = Instantiate(createGrade, Vector3.zero, Quaternion.identity);
+		gradeGameObject.transform.SetParent(parentTransform);
+		gradeGameObject.transform.localScale = Vector3.one;
+
+		Transform iconTransform = gradeGameObject.transform.Find("Content/Icon/Mask/Image");
+		Transform nameTransform = gradeGameObject.transform.Find("Content/NameText");
+		Transform messageTransform = gradeGameObject.transform.Find("Content/MessageText");
+		// 아이콘 색상 변경
+		Image image = iconTransform.gameObject.GetComponent<Image>();
+		GimmickType gimmickType = (GimmickType)entity.id;
+		if(gimmickType == GimmickType.ONOFF_OFF)
+		{
+			if (dic_gimmickSprites2.TryGetValue(entity.id, out Sprite sprite))
+			{
+				image.sprite = sprite;
+				image.color = GetGimmickColor(gimmickType, 1, false);
+			}
+		}
+		else if (dic_gimmickSprites.TryGetValue(entity.id, out Sprite sprite))
+		{
+			image.sprite = sprite;
+			image.color = GetGimmickColor(gimmickType, 1, false);
+		}
+		else
+		{
+			if(gimmickType == GimmickType.DAMAGE_AREA)
+			{
+				image.color = Define.DAMAGE_LINE_COLOR;
+			}
+			else if (gimmickType == GimmickType.NODAMAGE_AREA)
+			{
+				image.color = Define.NODAMAGE_LINE_COLOR;
+			}
+		}
+		
+
+		// 텍스트 설정
+		nameTransform.gameObject.GetComponent<TextMeshProUGUI>().SetText(entity.gimmick);
+		messageTransform.gameObject.GetComponent<TextMeshProUGUI>().SetText(entity.textinfo);
+		return gradeGameObject;
+	}
+
 	public string GetGradeInfoStr(GradeDBEntity entity)
 	{
 		if (entity.id == 1)
@@ -399,5 +455,50 @@ public class LocalDataManager : MonoBehaviour
 			sb.Append("\n").Append(Define.SKILL_FINAL_SHOT).Append(" : ").Append(entity.bonusShot).Append("%");
 		}
 		return sb.ToString();
+	}
+
+	public Color GetGimmickColor(GimmickType type, int hp, bool isChecked)
+	{
+		switch (type)
+		{
+			case GimmickType.SUPER_SHIELD:
+				return Define.COLOR_TARGET_SHIELD;
+			case GimmickType.TARGET_RECOVER:
+				return Define.GIMMICKHIT_DEBUFF;
+			case GimmickType.DAMAGE_N:
+			case GimmickType.REMOVE_SHOT:
+				return Define.GIMMICKHIT_BUFF;
+			case GimmickType.ROTATION_DOWN:
+				return Define.TARGETHIT_BUFF;
+			case GimmickType.ROTATION_UP:
+				return Define.TARGETHIT_DEBUFF;
+			case GimmickType.ADD_SHOT:
+				return Define.TARGETHIT_BUFF;
+			case GimmickType.SEQUENCE:
+				{
+					if (isChecked)
+						return Define.GREEN2;
+					else
+						return Color.black;
+				}
+			case GimmickType.KEY_CHAIN:
+				{
+					if (isChecked)
+						return Define.GREEN2;
+					else
+						return Color.black;
+				}
+		}
+
+		if (hp > 3)
+			return Define.HP_OVER4;
+		if (hp == 3)
+			return Define.HP_3;
+		else if (hp == 2)
+			return Define.HP_2;
+		else if (hp == 1)
+			return Define.HP_1;
+
+		return Color.black;
 	}
 }

@@ -256,8 +256,8 @@ public class TargetCircle : MonoBehaviour
 		lineObj.transform.parent = gameObject.transform;
 		LineRenderer lineRenderer = lineObj.AddComponent<LineRenderer>();
 		lineRenderer.material = new Material(Shader.Find("Sprites/Default"));
-		lineRenderer.startColor = Define.COLOR_TARGET_SHIELD;
-		lineRenderer.endColor = Define.COLOR_TARGET_SHIELD;
+		lineRenderer.startColor = Define.NODAMAGE_LINE_COLOR;
+		lineRenderer.endColor = Define.NODAMAGE_LINE_COLOR;
 		lineRenderer.numCapVertices = 10; // 끝부분을 둥글게 만들기 위해 추가할 버텍스 수
 		lineRenderer.positionCount = (int)segments + 1;
 		lineRenderer.useWorldSpace = false;
