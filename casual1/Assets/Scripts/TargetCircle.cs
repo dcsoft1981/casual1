@@ -41,7 +41,8 @@ public class TargetCircle : MonoBehaviour
 	public float expressionSpeed = 10f; // 물결의 이동 속도
 	public float expressionLength = 1f;
 	public int expressionSegments = 0; // 세그먼트 수
-	public LineRenderer expressionLineRenderer = null;
+	public LineRenderer expressionLineRenderer1 = null;
+	public LineRenderer expressionLineRenderer2 = null;
 
 
 	private void Awake()
@@ -187,14 +188,19 @@ public class TargetCircle : MonoBehaviour
 
 			if(expressionSegments != 0)
 			{
-				Vector3[] positions = new Vector3[expressionSegments + 1];
-				for (int i = 0; i <= expressionSegments; i++)
 				{
-					float x = (expressionLength / expressionSegments) * i;
-					float y = expressionAmplitude * Mathf.Sin((x * expressionFrequency) + (Time.time * expressionSpeed));
-					positions[i] = new Vector3(x, y, 0);
+					Vector3[] positions1 = new Vector3[expressionSegments + 1];
+					Vector3[] positions2 = new Vector3[expressionSegments + 1];
+					for (int i = 0; i <= expressionSegments; i++)
+					{
+						float x = (expressionLength / expressionSegments) * i;
+						float y = expressionAmplitude * Mathf.Sin((x * expressionFrequency) + (Time.time * expressionSpeed));
+						positions1[i] = new Vector3(-x, y, 0);
+						positions2[i] = new Vector3(x, y, 0);
+					}
+					expressionLineRenderer1.SetPositions(positions1);
+					expressionLineRenderer2.SetPositions(positions2);
 				}
-				expressionLineRenderer.SetPositions(positions);
 			}
 		}
 
@@ -381,6 +387,7 @@ public class TargetCircle : MonoBehaviour
 					lineRenderer.SetPositions(positions);
 				}
 				break;
+				/*
 			case Define.ExpressionType.ONE_LINE:
 				{
 					float length = scale * 0.8f; // 선 길이
@@ -394,6 +401,7 @@ public class TargetCircle : MonoBehaviour
 					lineRenderer.SetPositions(positions);
 				}
 				break;
+				*/
 			case Define.ExpressionType.ONE_CAPSULE:
 				{
 					float length = scale * scale *0.7f; // 선 길이
@@ -410,21 +418,15 @@ public class TargetCircle : MonoBehaviour
 				break;
 			case Define.ExpressionType.WAVE:
 				{
-					expressionLength = scale * scale * 1.6f; // 선 길이
+					expressionLength = scale * scale * 0.7f; // 선 길이
 					position = GetExpressionPosition(type, scale, index);
 					expressionSegments = 100;
 
 					LineRenderer lineRenderer = GetExpressionLineBase(lineName, position, color, expressionSegments + 1);
-					expressionLineRenderer = lineRenderer;
-					Vector3[] positions = new Vector3[expressionSegments + 1];
-					for (int i = 0; i <= expressionSegments; i++)
-					{
-						float x = (expressionLength / expressionSegments) * i;
-						float y = expressionAmplitude * Mathf.Sin((x * expressionFrequency) + (Time.time * expressionSpeed));
-						positions[i] = new Vector3(x, y, 0);
-					}
-					lineRenderer.positionCount = positions.Length;
-					lineRenderer.SetPositions(positions);
+					if(index == 0)
+						expressionLineRenderer1 = lineRenderer;
+					else
+						expressionLineRenderer2 = lineRenderer;
 				}
 				break;
 			case Define.ExpressionType.STAR:
@@ -571,7 +573,40 @@ public class TargetCircle : MonoBehaviour
 					}
 					return new Vector3(x, y, 0f);
 				}
-				
+			case Define.ExpressionType.WAVE:
+				{
+					float x = 0.6f;
+					if (scale == 1f)
+					{
+						x = 0.4f;
+					}
+					else if (scale == 0.8f)
+					{
+						x = 0.3f;
+					}
+					else if (scale == 0.5f)
+					{
+						x = 0.25f;
+					}
+					float y = 2f;
+					if (scale == 1f)
+					{
+						y = 2f;
+					}
+					else if (scale == 0.8f)
+					{
+						y = 1.9f;
+					}
+					else if (scale == 0.5f)
+					{
+						y = 1.8f;
+					}
+					if (index == 0)
+					{
+						x = x * -1f;
+					}
+					return new Vector3(x, y, 0f);
+				}
 			case Define.ExpressionType.CRY:
 				{
 					float x = 0.6f;
@@ -641,7 +676,7 @@ public class TargetCircle : MonoBehaviour
 					}
 					return new Vector3(x, y, 0f);
 				}
-			case Define.ExpressionType.ONE_LINE:
+			//case Define.ExpressionType.ONE_LINE:
 			case Define.ExpressionType.ONE_CAPSULE:
 				{
 					float y = 2f;
@@ -659,6 +694,7 @@ public class TargetCircle : MonoBehaviour
 					}
 					return new Vector3(0f, y, 0f);
 				}
+				/*
 			case Define.ExpressionType.WAVE:
 				{
 					float y = 2f;
@@ -676,6 +712,7 @@ public class TargetCircle : MonoBehaviour
 					}
 					return new Vector3(-expressionLength/2f, y, 0f);
 				}
+				*/
 		}
 		return Vector3.zero;
 	}
@@ -686,9 +723,8 @@ public class TargetCircle : MonoBehaviour
 
 		switch (expressionType)
 		{
-			case Define.ExpressionType.ONE_LINE:
+			//case Define.ExpressionType.ONE_LINE:
 			case Define.ExpressionType.ONE_CAPSULE:
-			case Define.ExpressionType.WAVE:
 			{
 					SetExpressionLine("ExpressionLine0", gradeColor, expressionType, spriteScale, 0);
 				}
@@ -700,6 +736,7 @@ public class TargetCircle : MonoBehaviour
 			case Define.ExpressionType.LINE:
 			case Define.ExpressionType.STAR:
 			case Define.ExpressionType.HEART:
+			case Define.ExpressionType.WAVE:
 				{
 					SetExpressionLine("ExpressionLine0", gradeColor, expressionType, spriteScale, 0);
 					SetExpressionLine("ExpressionLine1", gradeColor, expressionType, spriteScale, 1);
@@ -783,7 +820,7 @@ public class TargetCircle : MonoBehaviour
 		expressionLineWidth = 0.1f;
 		switch(expressionType)
 		{
-			case Define.ExpressionType.ONE_LINE:
+			//case Define.ExpressionType.ONE_LINE:
 			case Define.ExpressionType.ONE_CAPSULE:
 				{
 					expressionLineWidth = 0.35f;

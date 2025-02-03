@@ -156,7 +156,7 @@ public class Define
 	// 표정 타입
 	public enum ExpressionType
 	{
-		NONE = 0,
+		//NONE = 0,
 		CIRCLE = 1, // O O
 		SMILE = 2, //  ^ ^
 		CRY = 3, // T T
@@ -167,7 +167,7 @@ public class Define
 		ONE_CAPSULE = 8, 
 		STAR = 9,
 		HEART = 10,
-		ONE_LINE = 11,
+		//ONE_LINE = 11,
 	}
 
 

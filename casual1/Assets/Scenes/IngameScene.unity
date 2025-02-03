@@ -169,12 +169,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   effectGroup: {fileID: 1591660162}
   effectPrab: {fileID: 658761075008837597, guid: c9520ee6dac8293418e1b064ef037e43, type: 3}
-  expressionAmplitude: 0.05
-  expressionFrequency: 20
+  expressionAmplitude: 0.01
+  expressionFrequency: 10
   expressionSpeed: 10
   expressionLength: 1
   expressionSegments: 0
-  expressionLineRenderer: {fileID: 0}
+  expressionLineRenderer1: {fileID: 0}
+  expressionLineRenderer2: {fileID: 0}
 --- !u!95 &53747373
 Animator:
   serializedVersion: 7
@@ -6553,7 +6554,8 @@ MonoBehaviour:
   expressionSpeed: 1
   expressionLength: 1
   expressionSegments: 0
-  expressionLineRenderer: {fileID: 0}
+  expressionLineRenderer1: {fileID: 0}
+  expressionLineRenderer2: {fileID: 0}
 --- !u!212 &1952425558
 SpriteRenderer:
   m_ObjectHideFlags: 0

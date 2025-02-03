@@ -43,6 +43,9 @@ public class LobbyScene : MonoBehaviour
 	[SerializeField] private Color bottomColor = Color.green; // 그라데이션의 하단 색상
 	public float duration = 5.0f;           // 그라데이션 전환에 걸리는 시간
 
+	[SerializeField] private GameObject marks;
+	[SerializeField] private GameObject markPrefab;
+
 	private void Awake()
 	{
 		buttonPlayImage = btnPlay.transform.Find("Image").GetComponent<Image>();
@@ -87,6 +90,7 @@ public class LobbyScene : MonoBehaviour
 		}
 		SetTitleText();
 		SetGradeScrollInfo();
+		SetMarksInfo();
 		AudioManager.instance.TickTockPlay();
 
 		time = 0.0f;
@@ -251,5 +255,30 @@ public class LobbyScene : MonoBehaviour
 	{
 		guidelineOntoggle.isOn = value;
 		LocalDataManager.instance.SetGuideLineOff(!value);
+	}
+
+	public void SetMarksInfo()
+	{
+		int markCount = 0;
+		foreach (GradeDBEntity entity in LocalDataManager.instance.GetGradeEntity())
+		{
+			if (entity.id == 1)
+				continue;
+
+			if (LocalDataManager.instance.GetCurLevel() >= entity.minLevel)
+			{
+				CreateMark(entity);
+				markCount++;
+			}
+		}
+		RectTransform rectTransform = marks.GetComponent<RectTransform>();
+		rectTransform.sizeDelta = new Vector2(markCount*100, rectTransform.sizeDelta.y);
+	}
+
+	private void CreateMark(GradeDBEntity entity)
+	{
+		GameObject markGameObject = Instantiate(markPrefab, Vector3.zero, Quaternion.identity);
+		markGameObject.transform.SetParent(marks.transform);
+		markGameObject.GetComponent<Mark>().SetData(entity);
 	}
 }
