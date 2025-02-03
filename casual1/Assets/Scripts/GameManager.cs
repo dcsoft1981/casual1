@@ -829,6 +829,7 @@ public class GameManager : MonoBehaviour
 					gameObjectGimmick.SetColor(GetGimmickColor(gameObjectGimmick));
 					if (CheckAllChecked(gimmickList))
 					{
+						AudioManager.instance.PlaySfx(AudioManager.Sfx.shot_special);
 						RemoveAllGimmicks(gimmickList);
 						inShield = false;
 						targetCircle.ShieldColorOFF();
@@ -868,6 +869,7 @@ public class GameManager : MonoBehaviour
 				break;
 			case GimmickType.DAMAGE_N:
 				{
+					AudioManager.instance.PlaySfx(AudioManager.Sfx.shot_special);
 					DecreaseHP(gimmickInfo.value1);
 					GimmickHpMinusWork(gameObject, gameObjectGimmick);
 					if (hp <= 0)

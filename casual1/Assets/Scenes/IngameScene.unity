@@ -915,9 +915,9 @@ MonoBehaviour:
   sfxClips:
   - {fileID: 8300000, guid: 10f447cd2399b7043a549f808d4439db, type: 3}
   - {fileID: 8300000, guid: d24151659c204264f9141a26e47ce03c, type: 3}
-  - {fileID: 8300000, guid: c12cff8dec7463d49aaf8fc6755ba91f, type: 3}
+  - {fileID: 8300000, guid: 5c5f2b40ec0d87a4ba74137001d42eb4, type: 3}
   - {fileID: 8300000, guid: 08b3a3d6da21b6d488fb58df0f368746, type: 3}
-  - {fileID: 8300000, guid: b662d038fa345a949ba207bf89216817, type: 3}
+  - {fileID: 8300000, guid: 9fca03674ed09054b98f019d68211843, type: 3}
   - {fileID: 8300000, guid: 18bce64b8ae254448990c6941e1c1722, type: 3}
   sfxVolume: 0.5
   channels: 10
@@ -5347,6 +5347,7 @@ MonoBehaviour:
   levelDB: {fileID: 11400000, guid: 100d04b51f9336e4496841486b9b7d3b, type: 2}
   gimmickDB: {fileID: 11400000, guid: e41c75628e2f84d4c888db1e7a79deb3, type: 2}
   gradeDB: {fileID: 11400000, guid: 0552b850e4694c74d8fb069aec0058c0, type: 2}
+  spriteQuestion: {fileID: 0}
 --- !u!4 &1488891698
 Transform:
   m_ObjectHideFlags: 0
