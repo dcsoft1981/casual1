@@ -359,19 +359,23 @@ public class GameManager : MonoBehaviour
 			GradeDBEntity entity = LocalDataManager.instance.GetCurGradeDBEntity();
 			GameObject gradeInfoGameObject = LocalDataManager.instance.CreateGradeInfo(entity, gradeUp, gradeGameObject.transform);
 			gradeInfoGameObject.transform.localPosition = Vector3.one;
+			// Home 버튼 활성화
+			popupResult.transform.Find("ButtonHome").gameObject.SetActive(true);
 		}
 		else
 		{
 			clearText.text = "Success!";
 			// 등급 유지
 			textLevelPlayData.text = LocalDataManager.instance.GetLevelPlayDataText();
+			// Next 버튼 활성화
+			popupResult.transform.Find("ButtonNext").gameObject.SetActive(true);
 		}
 		AudioManager.instance.PlaySfx(AudioManager.Sfx.clear);
 		Vibrate3();
 		Invoke("PopupClearResult", 1f);
 	}
 
-	private void StageFailure()
+	public void StageFailure()
 	{
 		/*
 		TextMeshProUGUI buttonText = btnRetry.GetComponentInChildren<TextMeshProUGUI>();
@@ -755,8 +759,9 @@ public class GameManager : MonoBehaviour
 		});
 	}
 
-	private void GimmickCheckWork(GameObject gameObject, Gimmick gameObjectGimmick)
+	private bool GimmickCheckWork(GameObject gameObject, Gimmick gameObjectGimmick)
 	{
+		bool noDamage = false;
 		switch (gameObjectGimmick.gimmickType)
 		{
 			case GimmickType.CONTINUE_HIT:
@@ -771,6 +776,7 @@ public class GameManager : MonoBehaviour
 						// 체크 상태로 변경
 						gameObjectGimmick.SetChecked();
 						gameObjectGimmick.SetGimmickSprite(2);
+						noDamage = true;
 					}
 				}
 				break;
@@ -783,9 +789,14 @@ public class GameManager : MonoBehaviour
 						// 데미지 추가
 						GimmickHpMinusWork(gameObject, gameObjectGimmick);
 					}
+					else
+					{
+						noDamage = true;
+					}
 				}
 				break;
 		}
+		return noDamage;
 	}
 
 	private void GimmickListWork(GameObject gameObject, Gimmick gameObjectGimmick)
@@ -849,6 +860,7 @@ public class GameManager : MonoBehaviour
 		bool reflectPin = true;
 		Gimmick gameObjectGimmick = gameObject.GetComponent<Gimmick>();
 		GimmickDBEntity gimmickInfo = LocalDataManager.instance.GetGimmickInfo(gameObjectGimmick.gimmickType);
+		bool ironGimmick = false;
 
 		switch (gameObjectGimmick.gimmickType)
 		{
@@ -861,8 +873,9 @@ public class GameManager : MonoBehaviour
 			case GimmickType.SUPER_SHIELD:
 				{
 					//AudioManager.instance.PlaySfx(AudioManager.Sfx.shoot_failure);
-					return ShotGimmickHitResult.HIT_IRON_REFLECT;
+					ironGimmick = true;
 				}
+				break;
 
 			case GimmickType.TARGET_RECOVER:
 				{
@@ -900,12 +913,17 @@ public class GameManager : MonoBehaviour
 				{
 					RemoveAllShot();
 					GimmickHpMinusWork(gameObject, gameObjectGimmick);
+					AudioManager.instance.PlaySfx(AudioManager.Sfx.shot_special);
 				}
 				break;
 			case GimmickType.ONOFF_ON:
 			case GimmickType.ONOFF_OFF:
 				{
-					GimmickCheckWork(gameObject, gameObjectGimmick);
+					bool noDamage = GimmickCheckWork(gameObject, gameObjectGimmick);
+					if(noDamage)
+					{
+						ironGimmick = true;
+					}
 				}
 				break;
 
@@ -934,9 +952,16 @@ public class GameManager : MonoBehaviour
 				break;
 		}
 		if (reflectPin)
-			return ShotGimmickHitResult.HIT_REFLECT;
+		{
+			if (ironGimmick)
+				return ShotGimmickHitResult.HIT_IRON_REFLECT;
+			else
+				return ShotGimmickHitResult.HIT_REFLECT;
+		}
 		else
+		{
 			return ShotGimmickHitResult.HIT_THROUTH;
+		}
 	}
 
 	public float GetRotationValue(float rotation)
@@ -1128,18 +1153,7 @@ public class GameManager : MonoBehaviour
 
 	public AudioManager.Sfx GetComboSFX(int combo)
 	{
-		if (combo == 0)
-			return AudioManager.Sfx.step_pa;
-		else if (combo == 1)
-			return AudioManager.Sfx.step_do;
-		else if (combo == 2)
-			return AudioManager.Sfx.step_re;
-		else if (combo == 3)
-			return AudioManager.Sfx.step_mi;
-		else if (combo == 4)
-			return AudioManager.Sfx.step_sol;
-		else
-			return AudioManager.Sfx.step_hdo;
+		return AudioManager.Sfx.shot_good;
 	}
 
 	public void AddCombo(Vector3 position)

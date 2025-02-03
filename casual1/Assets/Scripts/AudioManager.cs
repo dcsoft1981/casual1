@@ -20,7 +20,15 @@ public class AudioManager : MonoBehaviour
 	public AudioClip ticktockClip;
 	AudioSource ticktockPlayer = null;
 
-	public enum Sfx { clear , shoot_failure , shoot_good , buff, step_do , step_re, step_mi, step_pa, step_sol, step_hdo }
+	public enum Sfx 
+	{
+		clear , 
+		shot_failure , 
+		shot_good , 
+		buff, 
+		shot_special,
+		shot_gimmick
+	}
 
 	private void Awake()
 	{

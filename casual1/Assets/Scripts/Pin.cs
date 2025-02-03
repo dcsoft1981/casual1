@@ -67,7 +67,7 @@ public class Pin : MonoBehaviour
 			if(GameManager.instance.IsInShield())
 			{
 				// 데미지 없음
-				AudioManager.instance.PlaySfx(AudioManager.Sfx.shoot_failure);
+				AudioManager.instance.PlaySfx(AudioManager.Sfx.shot_failure);
 				ReflectPin(collision);
 				GameManager.instance.ResetCombo();
 				Debug.Log("OnTriggerEnter2D Target InShield");
@@ -116,7 +116,7 @@ public class Pin : MonoBehaviour
 			{
 				// 이미 고정된 핀
 				GameManager.instance.ResetCombo();
-				AudioManager.instance.PlaySfx(AudioManager.Sfx.shoot_failure);
+				AudioManager.instance.PlaySfx(AudioManager.Sfx.shot_failure);
 				ReflectPin(collision);
 				Debug.Log("OnTriggerEnter2D to Pinned -> ReflectPin");
 				isWorked = true;
@@ -149,21 +149,21 @@ public class Pin : MonoBehaviour
 					break;
 				case Define.ShotGimmickHitResult.HIT_REFLECT:
 					{
-						AudioManager.instance.PlaySfx(AudioManager.Sfx.shoot_good);
+						AudioManager.instance.PlaySfx(AudioManager.Sfx.shot_gimmick);
 						ReflectPin(collision);
 						GameManager.instance.ResetCombo();
 					}
 					break;
 				case Define.ShotGimmickHitResult.HIT_PAIR_REFLECT:
 					{
-						AudioManager.instance.PlaySfx(AudioManager.Sfx.shoot_good);
+						AudioManager.instance.PlaySfx(AudioManager.Sfx.shot_gimmick);
 						ReflectPin(collision);
 						GameManager.instance.ResetCombo();
 					}
 					break;
 				case Define.ShotGimmickHitResult.HIT_IRON_REFLECT:
 					{
-						AudioManager.instance.PlaySfx(AudioManager.Sfx.shoot_failure);
+						AudioManager.instance.PlaySfx(AudioManager.Sfx.shot_failure);
 						ReflectPin(collision);
 						GameManager.instance.ResetCombo();
 					}

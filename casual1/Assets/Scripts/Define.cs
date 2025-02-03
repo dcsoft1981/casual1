@@ -163,11 +163,11 @@ public class Define
 		CLOSE = 4, // > <
 		LINE = 5, // - -
 		X = 6, // X X
-		ONE_LINE = 7,
+		WAVE = 7,
 		ONE_CAPSULE = 8, 
 		STAR = 9,
 		HEART = 10,
-		WAVE = 11,
+		ONE_LINE = 11,
 	}
 
 

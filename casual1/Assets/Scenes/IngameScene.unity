@@ -912,18 +912,14 @@ MonoBehaviour:
   bgmClip: {fileID: 8300000, guid: a84ab37f175b2c64c9e407c2fc972498, type: 3}
   bgmVolume: 0.3
   sfxClips:
-  - {fileID: 8300000, guid: 82f35aa7d369d6241b6d6dd0ca56daa4, type: 3}
+  - {fileID: 8300000, guid: 10f447cd2399b7043a549f808d4439db, type: 3}
   - {fileID: 8300000, guid: d24151659c204264f9141a26e47ce03c, type: 3}
-  - {fileID: 8300000, guid: c2c738c57d4d11044aa85758c325cabe, type: 3}
+  - {fileID: 8300000, guid: c12cff8dec7463d49aaf8fc6755ba91f, type: 3}
   - {fileID: 8300000, guid: 08b3a3d6da21b6d488fb58df0f368746, type: 3}
-  - {fileID: 8300000, guid: c2c738c57d4d11044aa85758c325cabe, type: 3}
-  - {fileID: 8300000, guid: c2c738c57d4d11044aa85758c325cabe, type: 3}
-  - {fileID: 8300000, guid: c2c738c57d4d11044aa85758c325cabe, type: 3}
-  - {fileID: 8300000, guid: c2c738c57d4d11044aa85758c325cabe, type: 3}
-  - {fileID: 8300000, guid: c2c738c57d4d11044aa85758c325cabe, type: 3}
-  - {fileID: 8300000, guid: c2c738c57d4d11044aa85758c325cabe, type: 3}
+  - {fileID: 8300000, guid: b662d038fa345a949ba207bf89216817, type: 3}
+  - {fileID: 8300000, guid: 18bce64b8ae254448990c6941e1c1722, type: 3}
   sfxVolume: 0.5
-  channels: 4
+  channels: 10
   ticktockClip: {fileID: 8300000, guid: 2cffe95ce007b104296cecaf58aa8f50, type: 3}
 --- !u!4 &337006302
 Transform:
@@ -7438,7 +7434,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 208536164}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: Retry
+        m_MethodName: StageFailure
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7652,12 +7648,12 @@ GameObject:
   - component: {fileID: 2185347853369168629}
   - component: {fileID: 1914871319815191460}
   m_Layer: 5
-  m_Name: ButtonSuccess
+  m_Name: ButtonNext
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!222 &2185347853369168632
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -8595,7 +8591,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Retry
+  m_text: Home
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -8729,7 +8725,7 @@ GameObject:
   - component: {fileID: 8688404864930623888}
   - component: {fileID: 1251157785186978347}
   m_Layer: 5
-  m_Name: ButtonFail
+  m_Name: ButtonHome
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
