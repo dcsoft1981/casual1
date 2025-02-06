@@ -21,6 +21,7 @@ using Object = UnityEngine.Object;
 using static System.Net.Mime.MediaTypeNames;
 using System.Linq.Expressions;
 using static AudioManager;
+using UltimateClean;
 
 public class GameManager : MonoBehaviour
 {
@@ -98,6 +99,11 @@ public class GameManager : MonoBehaviour
 	private TextMeshProUGUI buttonTabText;
 	public bool tutorialButtonTab = false;
 
+	[SerializeField] private SlicedFilledImage slicedFilledImage;
+	public float animationDuration = 1.0f; // 애니메이션 지속 시간
+	private float currentHP = 1.0f; // 현재 HP (0 ~ 1 사이 값)
+	private Coroutine hpCoroutine;
+
 	// Start is called once before the first execution of Update after the MonoBehaviour is created
 
 	private void Awake()
@@ -154,6 +160,7 @@ public class GameManager : MonoBehaviour
 		// HP 지정
 		maxHp = levelData.hp;
 		hp = maxHp;
+		slicedFilledImage.fillAmount = 1f;
 
 		// Target SIZE 지정
 		targetScale = levelData.target % 100;
@@ -208,6 +215,12 @@ public class GameManager : MonoBehaviour
     void SetHPText()
     {
 		textHP.SetText(hp.ToString());
+		if (hpCoroutine != null)
+		{
+			StopCoroutine(hpCoroutine);
+		}
+		float amount = (float)hp / (float)maxHp;
+		hpCoroutine = StartCoroutine(AnimateHPChange(amount));
 	}
 
 	void SetLevelText()
@@ -1595,5 +1608,22 @@ public class GameManager : MonoBehaviour
 	{
 		PopupResultSuccess();
 		LocalDataManager.instance.ClearLevelPlayData();
+	}
+
+	private IEnumerator AnimateHPChange(float targetHP)
+	{
+		float startHP = currentHP;
+		float elapsedTime = 0f;
+
+		while (elapsedTime < animationDuration)
+		{
+			elapsedTime += Time.deltaTime;
+			currentHP = Mathf.Lerp(startHP, targetHP, elapsedTime / animationDuration);
+			slicedFilledImage.fillAmount = currentHP;
+			yield return null;
+		}
+
+		currentHP = targetHP;
+		slicedFilledImage.fillAmount = currentHP;
 	}
 }
