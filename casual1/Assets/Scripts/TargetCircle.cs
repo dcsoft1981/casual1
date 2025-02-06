@@ -938,6 +938,13 @@ public class TargetCircle : MonoBehaviour
 				}
 				break;
 		}
-		spriteRenderer.color = Define.GetRGBColor(r, g, b);
+		if(GameManager.instance.IsInShield())
+		{
+			ShieldColorON();
+		}
+		else
+		{
+			spriteRenderer.color = Define.GetRGBColor(r, g, b);
+		}
 	}
 }

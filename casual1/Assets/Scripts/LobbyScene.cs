@@ -267,6 +267,14 @@ public class LobbyScene : MonoBehaviour
 	{
 		soundOntoggle.isOn = value;
 		LocalDataManager.instance.SetSoundOff(!value);
+		if (value)
+		{
+			AudioManager.instance.TickTockPlay();
+		}
+		else
+		{
+			AudioManager.instance.TickTockStop();
+		}
 	}
 
 	public void VibrateOn(bool value)

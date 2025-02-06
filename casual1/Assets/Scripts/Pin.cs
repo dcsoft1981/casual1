@@ -19,13 +19,14 @@ public class Pin : MonoBehaviour
 	private int pinId = 0;
 	public ParticleSystem effect = null;
 	private GameObject spriteObject;
-	private Vector3 originalScale;
+	private Vector3 spriteOriginalScale;
+	private Tweener scaleTween;
 
 	private void Awake()
 	{
 		spriteRenderer = GetComponent<SpriteRenderer>();
 		spriteObject = gameObject.transform.Find(Define.CHILD_SPRITE_OBJECT).gameObject;
-		originalScale = spriteObject.transform.localScale;
+		spriteOriginalScale = spriteObject.transform.localScale;
 	}
 	void Start()
     {
@@ -294,20 +295,25 @@ public class Pin : MonoBehaviour
 
 	public void ScaleShake()
 	{
-		spriteObject.transform.localScale = originalScale;
-		spriteObject.transform.DOScale(originalScale * 2, 0.1f).SetLoops(2, LoopType.Yoyo);
+		spriteObject.transform.localScale = spriteOriginalScale;
+		scaleTween = spriteObject.transform.DOScale(spriteOriginalScale * 2, 0.1f).SetLoops(2, LoopType.Yoyo);
 	}
 
 	public void CreateScaleChange()
 	{
-		GameObject spriteObject = gameObject.transform.Find(Define.CHILD_SPRITE_OBJECT).gameObject;
-		Vector3 originalScale = spriteObject.transform.localScale;
+		//GameObject spriteObject = gameObject.transform.Find(Define.CHILD_SPRITE_OBJECT).gameObject;
+		//Vector3 originalScale = spriteObject.transform.localScale;
 		spriteObject.transform.localScale = Vector3.zero;
-		spriteObject.transform.DOScale(originalScale, 0.1f).SetEase(Ease.OutCirc);
+		spriteObject.transform.DOScale(spriteOriginalScale, 0.1f).SetEase(Ease.OutCirc);
 	}
 
 	public void SetDefaultSpriteScale()
 	{
-		spriteObject.transform.localScale = originalScale;
+		if (scaleTween != null)
+		{
+			scaleTween.Kill();
+			scaleTween = null;
+		}
+		spriteObject.transform.localScale = spriteOriginalScale;
 	}
 }

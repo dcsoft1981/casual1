@@ -89,7 +89,7 @@ public class GameManager : MonoBehaviour
 	private Dictionary<GameObject, GameObject> dic_PairGimmick;
 	private int lastGrade = 0;
 	[SerializeField] private GameObject gradeUp;
-	[SerializeField] private TextMeshProUGUI clearText;
+	[SerializeField] private GameObject clearText;
 	[SerializeField] private ParticleSystem effectPrab;
 	[SerializeField] private Transform effectGroup;
 
@@ -360,7 +360,7 @@ public class GameManager : MonoBehaviour
 
 		if(lastGrade != LocalDataManager.instance.GetCurGrade())
 		{
-			clearText.text = "New Tier achieved!";
+			clearText.transform.Find("TitleGradeUp").gameObject.SetActive(true);
 			// 등급 변경
 			textLevelPlayData.text = "";
 			GameObject gradeGameObject = popupResult.transform.Find("Grade").gameObject;
@@ -372,7 +372,7 @@ public class GameManager : MonoBehaviour
 		}
 		else
 		{
-			clearText.text = "Success!";
+			clearText.transform.Find("Title").gameObject.SetActive(true);
 			// 등급 유지
 			textLevelPlayData.text = LocalDataManager.instance.GetLevelPlayDataText();
 			// Next 버튼 활성화

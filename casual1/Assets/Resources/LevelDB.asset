@@ -26,8 +26,8 @@ MonoBehaviour:
     gimmick6: 
     gimmick7: 
   - id: 2
-    hp: 5
-    shot: 7
+    hp: 9
+    shot: 10
     target: 10080
     rotation: 80
     gimmick1: 
