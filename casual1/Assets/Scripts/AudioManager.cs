@@ -27,7 +27,9 @@ public class AudioManager : MonoBehaviour
 		shot_good , 
 		buff, 
 		shot_special,
-		shot_gimmick
+		shot_gimmick,
+		fullcombo,
+		iron_hit
 	}
 
 	private void Awake()

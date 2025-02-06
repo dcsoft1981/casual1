@@ -20,6 +20,7 @@ using UnityEngine.UI;
 using Object = UnityEngine.Object;
 using static System.Net.Mime.MediaTypeNames;
 using System.Linq.Expressions;
+using static AudioManager;
 
 public class GameManager : MonoBehaviour
 {
@@ -1144,16 +1145,11 @@ public class GameManager : MonoBehaviour
 		return (baseDamage + shotUpgradeDamage + areaBonusDamage);
 	}
 
-	public AudioManager.Sfx GetComboSFX(int combo)
-	{
-		return AudioManager.Sfx.shot_good;
-	}
-
 	public void AddCombo(Vector3 position)
 	{
 		combo++;
 		float pitch = 1.0f + ((combo-1) * 0.1f);
-		AudioManager.instance.PlaySfx(GetComboSFX(combo), pitch);
+		AudioManager.instance.PlaySfx(Sfx.shot_good, pitch);
 		SetComboText();
 		ShowComboLabel(position, combo);
 		if (combo >= Define.MAX_COMBO)
@@ -1181,6 +1177,7 @@ public class GameManager : MonoBehaviour
 
 		if (currPin != null && currPin.isAbleUpgrade() && shotAddDamage)
 		{
+			AudioManager.instance.PlaySfx(Sfx.fullcombo);
 			currPin.Upgrade();
 			shotAddDamage = false;
 			currPin.ScaleShake();

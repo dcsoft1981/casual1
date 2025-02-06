@@ -1087,6 +1087,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 08b3a3d6da21b6d488fb58df0f368746, type: 3}
   - {fileID: 8300000, guid: 9fca03674ed09054b98f019d68211843, type: 3}
   - {fileID: 8300000, guid: 18bce64b8ae254448990c6941e1c1722, type: 3}
+  - {fileID: 8300000, guid: 865b96759f99aa84dae1bb1bac418547, type: 3}
+  - {fileID: 8300000, guid: 7aab270297e6c404d8dbb544f13eeeaf, type: 3}
   sfxVolume: 0.5
   channels: 10
   ticktockClip: {fileID: 8300000, guid: 2cffe95ce007b104296cecaf58aa8f50, type: 3}

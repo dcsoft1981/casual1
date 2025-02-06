@@ -68,7 +68,7 @@ public class Pin : MonoBehaviour
 			if(GameManager.instance.IsInShield())
 			{
 				// 데미지 없음
-				AudioManager.instance.PlaySfx(AudioManager.Sfx.shot_failure);
+				AudioManager.instance.PlaySfx(AudioManager.Sfx.iron_hit);
 				ReflectPin(collision);
 				GameManager.instance.ResetCombo();
 				Debug.Log("OnTriggerEnter2D Target InShield");
@@ -89,7 +89,7 @@ public class Pin : MonoBehaviour
 				int damage = GameManager.instance.GetHpAmountByTargetAngle((int)angle, isUpgraded); // 데미지 영역 계산
 				if(damage == 0)
 				{
-					AudioManager.instance.PlaySfx(AudioManager.Sfx.shot_failure);
+					AudioManager.instance.PlaySfx(AudioManager.Sfx.iron_hit);
 					ReflectPin(collision);
 					GameManager.instance.ResetCombo();
 				}
@@ -172,7 +172,7 @@ public class Pin : MonoBehaviour
 					break;
 				case Define.ShotGimmickHitResult.HIT_IRON_REFLECT:
 					{
-						AudioManager.instance.PlaySfx(AudioManager.Sfx.shot_failure);
+						AudioManager.instance.PlaySfx(AudioManager.Sfx.iron_hit);
 						ReflectPin(collision);
 						GameManager.instance.ResetCombo();
 					}
@@ -304,7 +304,10 @@ public class Pin : MonoBehaviour
 		//GameObject spriteObject = gameObject.transform.Find(Define.CHILD_SPRITE_OBJECT).gameObject;
 		//Vector3 originalScale = spriteObject.transform.localScale;
 		spriteObject.transform.localScale = Vector3.zero;
-		spriteObject.transform.DOScale(spriteOriginalScale, 0.1f).SetEase(Ease.OutCirc);
+		spriteObject.transform.DOScale(spriteOriginalScale, 0.1f).SetEase(Ease.OutCirc).OnComplete(() =>
+		{
+			spriteObject.transform.localScale = spriteOriginalScale;
+		});
 	}
 
 	public void SetDefaultSpriteScale()
