@@ -1121,7 +1121,7 @@ MonoBehaviour:
     hp: 12
     shot: 6
     target: 10100
-    rotation: 100
+    rotation: 80
     gimmick1: 20300:0:120:240
     gimmick2: 10200:24:96:144:216:264:336
     gimmick3: 
@@ -1211,5 +1211,605 @@ MonoBehaviour:
     gimmick3: 
     gimmick4: 
     gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 101
+    hp: 4
+    shot: 2
+    target: 10050
+    rotation: 100
+    gimmick1: 10200:35:325:145:215
+    gimmick2: 30101:1:-25:25
+    gimmick3: 30101:1:155:205
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 102
+    hp: 12
+    shot: 24
+    target: 10100
+    rotation: 120
+    gimmick1: 10401:24:48:72:96:144:168:192:216:264:288:312:336
+    gimmick2: 10200:0:120:240
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 103
+    hp: 12
+    shot: 9
+    target: 10080
+    rotation: 80
+    gimmick1: 10901:180:300
+    gimmick2: 11001:60
+    gimmick3: 10102:30:90:150:210:270:330
+    gimmick4: 30101:1:30:90
+    gimmick5: 30101:1:150:210
+    gimmick6: 30101:1:270:330
+    gimmick7: 
+  - id: 104
+    hp: 16
+    shot: 15
+    target: 10050
+    rotation: -120
+    gimmick1: 10801:280:0:80
+    gimmick2: 10101:40:120:160:200:240:320
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 105
+    hp: 11
+    shot: 2
+    target: 10100
+    rotation: -50
+    gimmick1: 20300:0:72:144:216:288
+    gimmick2: 20100:24:96:168:240:312
+    gimmick3: 10200:48:120:192:264:336
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 106
+    hp: 13
+    shot: 6
+    target: 10080
+    rotation: 100
+    gimmick1: 10801:0:60:120:180:240:300
+    gimmick2: 30101:1:20:40
+    gimmick3: 30101:1:80:100
+    gimmick4: 30101:1:140:160
+    gimmick5: 30101:1:200:220
+    gimmick6: 30101:1:260:280
+    gimmick7: 30101:1:320:340
+  - id: 107
+    hp: 19
+    shot: 32
+    target: 10050
+    rotation: 120
+    gimmick1: 10902:0:90:180:270
+    gimmick2: 11002:45:135:225:315
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 108
+    hp: 10
+    shot: 5
+    target: 10100
+    rotation: 180
+    gimmick1: 10401:0:90:180:270
+    gimmick2: 20300:30:150:210:330
+    gimmick3: 20200:60:120:240:300
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 109
+    hp: 18
+    shot: 15
+    target: 10050
+    rotation: -100
+    gimmick1: 10902:0:120:240
+    gimmick2: 10801:60:180:300
+    gimmick3: 30101:1:-20:20
+    gimmick4: 30101:1:100:140
+    gimmick5: 30101:1:220:260
+    gimmick6: 
+    gimmick7: 
+  - id: 110
+    hp: 8
+    shot: 8
+    target: 10080
+    rotation: -50
+    gimmick1: 10200:0:45:90:135:180:225:270:315
+    gimmick2: 
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 111
+    hp: 22
+    shot: 15
+    target: 10050
+    rotation: 120
+    gimmick1: 10801:40:80:160:200:280:320
+    gimmick2: 10200:0:120:240
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 112
+    hp: 6
+    shot: 6
+    target: 10100
+    rotation: 100
+    gimmick1: 10101:0:24:48:72:96:120:144:168:192:216:240:264:288:312:336
+    gimmick2: 30101:1:-5:5
+    gimmick3: 30101:1:115:125
+    gimmick4: 30101:1:235:245
+    gimmick5: 30101:1:55:65
+    gimmick6: 30101:1:175:185
+    gimmick7: 30101:1:295:305
+  - id: 113
+    hp: 12
+    shot: 12
+    target: 10080
+    rotation: 100
+    gimmick1: 10200:0:90:180:270
+    gimmick2: 20100:30:60:210:240
+    gimmick3: 20200:120:150:300:330
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 114
+    hp: 17
+    shot: 33
+    target: 10100
+    rotation: -100
+    gimmick1: 10200:0:120:240
+    gimmick2: 10101:24:96:144:216:264:336
+    gimmick3: 10102:48:72:168:192:288:312
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 115
+    hp: 8
+    shot: 16
+    target: 10080
+    rotation: -120
+    gimmick1: 10401:30:60:120:150:210:240:300:330
+    gimmick2: 10901:0:90:180:270
+    gimmick3: 30101:1:-5:5
+    gimmick4: 30101:1:85:95
+    gimmick5: 30101:1:175:185
+    gimmick6: 30101:1:265:275
+    gimmick7: 
+  - id: 116
+    hp: 20
+    shot: 5
+    target: 10100
+    rotation: 120
+    gimmick1: 10101:0:72:144:216:288
+    gimmick2: 20300:0:72:144:216:288
+    gimmick3: 10801:24:48:96:120:168:192:240:264:312:336
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 117
+    hp: 12
+    shot: 28
+    target: 10100
+    rotation: 100
+    gimmick1: 11002:24:144:240:288
+    gimmick2: 10902:48:168:264:312
+    gimmick3: 10200:336:0:72:96:120:192:216
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 118
+    hp: 12
+    shot: 13
+    target: 10050
+    rotation: 80
+    gimmick1: 10102:60:180:300
+    gimmick2: 10200:0:120:240
+    gimmick3: 30101:1:-35:35
+    gimmick4: 30101:1:85:155
+    gimmick5: 30101:1:205:275
+    gimmick6: 
+    gimmick7: 
+  - id: 119
+    hp: 15
+    shot: 1
+    target: 10100
+    rotation: -50
+    gimmick1: 20100:0:72:144:216:288
+    gimmick2: 20300:36:108:180:252:324
+    gimmick3: 30101:1:-5:5
+    gimmick4: 30101:1:67:77
+    gimmick5: 30101:1:139:149
+    gimmick6: 30101:1:211:221
+    gimmick7: 30101:1:283:293
+  - id: 120
+    hp: 34
+    shot: 18
+    target: 10080
+    rotation: -200
+    gimmick1: 30101:1:0:150
+    gimmick2: 20200:180:210:240:270:300:330
+    gimmick3: 10200:0:150
+    gimmick4: 10801:180:210:240:270:300:330
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 121
+    hp: 15
+    shot: 20
+    target: 10050
+    rotation: 80
+    gimmick1: 10701:0:180
+    gimmick2: 
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 122
+    hp: 15
+    shot: 20
+    target: 10100
+    rotation: 100
+    gimmick1: 10200:0:25:50:75:125:150:175:200
+    gimmick2: 10701:100
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 123
+    hp: 25
+    shot: 30
+    target: 10080
+    rotation: 100
+    gimmick1: 10701:0
+    gimmick2: 10200:90:180:270
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 124
+    hp: 3
+    shot: 6
+    target: 10100
+    rotation: 100
+    gimmick1: 10102:48:72:96:120:144:168:192:216:240:264:288:312
+    gimmick2: 10701:0
+    gimmick3: 10200:24:336
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 125
+    hp: 22
+    shot: 17
+    target: 10080
+    rotation: -120
+    gimmick1: 10701:0
+    gimmick2: 10801:60:120:180:240:300
+    gimmick3: 10101:30:90:150:210:270:330
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 126
+    hp: 24
+    shot: 14
+    target: 10050
+    rotation: 120
+    gimmick1: 30101:1:0:90
+    gimmick2: 10701:180:270
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 127
+    hp: 10
+    shot: 13
+    target: 10080
+    rotation: 80
+    gimmick1: 20100:90:180:270
+    gimmick2: 10200:30:60:120:150:210:240:300:330
+    gimmick3: 10701:90:180:270
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 128
+    hp: 13
+    shot: 13
+    target: 10100
+    rotation: 100
+    gimmick1: 10200:24:48:96:120:168:192:240:264:312:336
+    gimmick2: 10902:0
+    gimmick3: 10701:72:216:288
+    gimmick4: 20300:72:216:288
+    gimmick5: 10901:144
+    gimmick6: 
+    gimmick7: 
+  - id: 129
+    hp: 16
+    shot: 13
+    target: 10050
+    rotation: -120
+    gimmick1: 10401:0:40:80:120
+    gimmick2: 30101:1:20:100
+    gimmick3: 10701:240
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 130
+    hp: 60
+    shot: 32
+    target: 10080
+    rotation: -80
+    gimmick1: 10701:0:120:240
+    gimmick2: 10200:50:170:290
+    gimmick3: 30101:1:50:120
+    gimmick4: 30101:1:170:240
+    gimmick5: 30101:1:-70:0
+    gimmick6: 
+    gimmick7: 
+  - id: 131
+    hp: 20
+    shot: 16
+    target: 10050
+    rotation: 100
+    gimmick1: 10102:0:180
+    gimmick2: 10801:40:140:220:320
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 132
+    hp: 11
+    shot: 6
+    target: 10100
+    rotation: 100
+    gimmick1: 20100:0:72:144:216:288
+    gimmick2: 20200:24:96:168:240:312
+    gimmick3: 30101:1:7:17
+    gimmick4: 30101:1:79:89
+    gimmick5: 30101:1:149:159
+    gimmick6: 30101:1:223:233
+    gimmick7: 30101:1:295:305
+  - id: 133
+    hp: 1
+    shot: 1
+    target: 10080
+    rotation: 120
+    gimmick1: 10401:0:60:120:180:240:300
+    gimmick2: 20300:30:90:150:210:270:330
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 134
+    hp: 10
+    shot: 21
+    target: 10100
+    rotation: -100
+    gimmick1: 11002:24:144:264
+    gimmick2: 10902:0:120:240
+    gimmick3: 10200:48:72:96:168:192:216:288:312:336
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 135
+    hp: 16
+    shot: 10
+    target: 10050
+    rotation: -80
+    gimmick1: 10200:50:115:180:245:310
+    gimmick2: 10701:0
+    gimmick3: 30101:1:50:310
+    gimmick4: 20100:0
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 136
+    hp: 30
+    shot: 25
+    target: 10080
+    rotation: 120
+    gimmick1: 10801:0:60:90:150:180:210:270:300
+    gimmick2: 10200:30:120:240:330
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 137
+    hp: 15
+    shot: 15
+    target: 10080
+    rotation: 100
+    gimmick1: 30101:1:-15:165
+    gimmick2: 10102:0:30:60:90:120:150
+    gimmick3: 10101:180:210:240:270:300:330
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 138
+    hp: 13
+    shot: 17
+    target: 10100
+    rotation: 100
+    gimmick1: 10401:0:24:168:192:336
+    gimmick2: 10901:48:96:144:216:264:312
+    gimmick3: 10200:72:120:240:288
+    gimmick4: 30101:1:40:152
+    gimmick5: 30101:1:208:320
+    gimmick6: 
+    gimmick7: 
+  - id: 139
+    hp: 13
+    shot: 2
+    target: 10050
+    rotation: -100
+    gimmick1: 20300:40:160:280
+    gimmick2: 30101:1:10:30
+    gimmick3: 30101:1:130:150
+    gimmick4: 30101:1:250:270
+    gimmick5: 10801:80:200:320
+    gimmick6: 20100:0:120:240
+    gimmick7: 
+  - id: 140
+    hp: 21
+    shot: 14
+    target: 10080
+    rotation: -170
+    gimmick1: 10200:0:45:90:135:180
+    gimmick2: 20200:210:240:300:330
+    gimmick3: 30101:1:0:180
+    gimmick4: 10701:270
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 141
+    hp: 32
+    shot: 35
+    target: 10050
+    rotation: 100
+    gimmick1: 10701:0
+    gimmick2: 
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 142
+    hp: 15
+    shot: 25
+    target: 10100
+    rotation: 100
+    gimmick1: 10401:24:48:96:120:168:192:240:264:312:336
+    gimmick2: 10200:0:72:144:216:288
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 143
+    hp: 23
+    shot: 40
+    target: 10080
+    rotation: 80
+    gimmick1: 10102:0:60:120:180:240:300
+    gimmick2: 10901:30:90:150:210:270:330
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 144
+    hp: 18
+    shot: 6
+    target: 10050
+    rotation: -100
+    gimmick1: 20100:40:80
+    gimmick2: 20200:160:200
+    gimmick3: 20300:280:320
+    gimmick4: 30101:1:20:100
+    gimmick5: 30101:1:140:220
+    gimmick6: 30101:1:260:340
+    gimmick7: 
+  - id: 145
+    hp: 39
+    shot: 24
+    target: 10100
+    rotation: -70
+    gimmick1: 10200:24:72:120:240:288:336
+    gimmick2: 10801:312:0:48
+    gimmick3: 10701:96:264
+    gimmick4: 10401:144:216:168:192
+    gimmick5: 30101:1:120:240
+    gimmick6: 
+    gimmick7: 
+  - id: 146
+    hp: 16
+    shot: 4
+    target: 10050
+    rotation: 120
+    gimmick1: 10102:0:90:180:270
+    gimmick2: 10801:45:135:225:315
+    gimmick3: 20300:45:135:225:315
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 147
+    hp: 20
+    shot: 44
+    target: 10080
+    rotation: 100
+    gimmick1: 10902:0:30:120:150:240:270
+    gimmick2: 11002:60:90:180:210:300:330
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 148
+    hp: 15
+    shot: 19
+    target: 10100
+    rotation: 120
+    gimmick1: 10700:72:144:216:288
+    gimmick2: 10200:24:48:96:120:168:192:240:264:312:336
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 149
+    hp: 8
+    shot: 14
+    target: 10080
+    rotation: -100
+    gimmick1: 10102:0:30:60:90:120:150:180:210:240:270:300:330
+    gimmick2: 30101:1:5:25
+    gimmick3: 30101:1:185:205
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 150
+    hp: 24
+    shot: 15
+    target: 10050
+    rotation: -70
+    gimmick1: 10701:0:120:240
+    gimmick2: 20100:0:120:240
+    gimmick3: 30101:1:50:70
+    gimmick4: 30101:1:170:190
+    gimmick5: 30101:1:290:310
     gimmick6: 
     gimmick7: 
