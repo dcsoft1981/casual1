@@ -38,7 +38,7 @@ public class Define
 	public static Color HP_OVER4 = new Color(0.9f, 0f, 0f);
 	public static Color HP_3 = new Color(0.9f, 0f, 0f);
 	public static Color HP_2 = new Color(0.7f, 0f, 0f);
-	public static Color HP_1 = new Color(0.2f, 0f, 0f);
+	public static Color HP_1 = new Color(0.3f, 0f, 0f);
 	public static Color BASE_YELLOW = new Color(255f/255f, 254f / 255f, 213f / 255f);
 	public static Color DARK_RED = new Color(75f / 255f, 25f / 255f, 25f / 255f);
 	public static Color COLOR_TARGET_SHIELD = Color.gray;
@@ -161,9 +161,9 @@ public class Define
 	public enum ExpressionType
 	{
 		//NONE = 0,
-		CIRCLE = 1, // O O
-		SMILE = 2, //  ^ ^
-		CRY = 3, // T T
+		SMILE = 1, //  ^ ^
+		CRY = 2, // T T
+		CIRCLE = 3, // O O
 		CLOSE = 4, // > <
 		LINE = 5, // - -
 		X = 6, // X X

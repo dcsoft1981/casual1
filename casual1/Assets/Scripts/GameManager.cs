@@ -71,6 +71,7 @@ public class GameManager : MonoBehaviour
 	private bool shotAddDamage = false;
 	private Pin currPin = null;
 	private bool checkFinalShot = false;
+	private float topPosY = 0f;
 	private int skillPosY = 0;
 	private IngameType ingameType;
 
@@ -103,6 +104,8 @@ public class GameManager : MonoBehaviour
 	public float animationDuration = 1.0f; // 애니메이션 지속 시간
 	private float currentHP = 1.0f; // 현재 HP (0 ~ 1 사이 값)
 	private Coroutine hpCoroutine;
+
+	[SerializeField] private GameObject topUI;
 
 	// Start is called once before the first execution of Update after the MonoBehaviour is created
 
@@ -1385,14 +1388,21 @@ public class GameManager : MonoBehaviour
 
 		if (aspectRatio > 0.65f)
 		{
+			// 패드류
 			skillPosY = 200;
+			topPosY = 0f;
 		}
 		else
 		{
 			skillPosY = 300;
+			topPosY = -100f;
 		}
+		topUI.GetComponent<RectTransform>().anchoredPosition = new Vector2(0f, topPosY);
 		
 		Debug.Log($"SetOrthographicSize: {screenWidth}, {screenHeight}, {aspectRatio}, {skillPosY}");
+
+		// 앱아이콘 테스트 사이트
+		// https://adaptive-icon-tester.nabettu.com/?utm_source=chatgpt.com
 	}
 
 	public void PopupResultSuccess()
