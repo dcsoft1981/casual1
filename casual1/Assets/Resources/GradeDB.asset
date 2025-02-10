@@ -51,34 +51,34 @@ MonoBehaviour:
   - id: 6
     grade: Emerald
     minLevel: 151
-    maxLevel: 200
+    maxLevel: 250
     color: 80:200:120
     doubleDamage: 3
     bonusShot: 3
   - id: 7
     grade: Diamond
-    minLevel: 201
-    maxLevel: 300
+    minLevel: 251
+    maxLevel: 350
     color: 185:242:255
     doubleDamage: 3
     bonusShot: 4
   - id: 8
     grade: Master
-    minLevel: 301
-    maxLevel: 400
+    minLevel: 351
+    maxLevel: 500
     color: 128:0:128
     doubleDamage: 3
     bonusShot: 5
   - id: 9
     grade: GrandMaster
-    minLevel: 401
-    maxLevel: 500
+    minLevel: 501
+    maxLevel: 800
     color: 102:0:102
     doubleDamage: 3
     bonusShot: 6
   - id: 10
     grade: Challenger
-    minLevel: 501
+    minLevel: 801
     maxLevel: 9999
     color: 0:0:255
     doubleDamage: 3
