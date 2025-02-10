@@ -27,6 +27,8 @@ public class LobbyScene : MonoBehaviour
 	[SerializeField] private GameObject gimmickScroll;
 	[SerializeField] private GameObject gimmickPrefab;
 
+	[SerializeField] private ScrollRect gradeScrollRect;
+
 
 	private Image buttonPlayImage;
 	private Image buttonPlayerImage;
@@ -140,13 +142,12 @@ public class LobbyScene : MonoBehaviour
 	public void OnClickShare()
 	{
 		popupPlayer.SetActive(true);
+		SetGradeScrollValue();
 		if (LocalDataManager.instance.GetReddotPlayer())
 		{
 			LocalDataManager.instance.SetReddotPlayer(false);
 			btnPlayer.transform.Find("Reddot").gameObject.SetActive(false);
 		}
-			
-		SetGradeScrollValue();
 		//popupPlayer.transform.localScale = Vector3.zero;
 		//popupPlayer.transform.DOScale(Vector3.one, 0.2f).SetEase(Ease.OutCirc);
 	}
@@ -218,12 +219,14 @@ public class LobbyScene : MonoBehaviour
 		{
 			scrollBarValue = 1f - (curGrade / gradeCount);
 		}
-		Debug.Log("SetGradeScrollInfo : " + scrollBarValue);
+		Debug.Log("SetGradeScrollInfo : " + scrollBarValue + " CurGrade : " + curGrade);
 	}
 
 	void SetGradeScrollValue()
 	{
-		scrollbar.GetComponent<Scrollbar>().value = scrollBarValue;
+		//scrollbar.GetComponent<Scrollbar>().value = scrollBarValue;
+		Debug.Log("SetGradeScrollValue : " + scrollbar.GetComponent<Scrollbar>().value + "  :  " + scrollBarValue);
+		gradeScrollRect.verticalNormalizedPosition = scrollBarValue;
 	}
 
 	void CreateGrade(GradeDBEntity entity)

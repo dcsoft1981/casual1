@@ -1290,8 +1290,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 3361956707
-  m_fontColor: {r: 0.38679248, g: 0.38679248, b: 0.38679248, a: 0.78431374}
+    rgba: 3358206506
+  m_fontColor: {r: 0.16470589, g: 0.16470589, b: 0.16470589, a: 0.78431374}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -4633,6 +4633,7 @@ MonoBehaviour:
   scrollbar: {fileID: 583456883254448491}
   gimmickScroll: {fileID: 1966612628}
   gimmickPrefab: {fileID: 4575815366176395291, guid: 7d0f6c8432320ce46a5a19ea7cb60d71, type: 3}
+  gradeScrollRect: {fileID: 1784467106}
   scrollBarValue: 0
   soundOntoggle: {fileID: 5232380509345145997}
   vibrateOntoggle: {fileID: 185407000}
@@ -4640,7 +4641,7 @@ MonoBehaviour:
   cam: {fileID: 1848905702}
   topColor: {r: 0.15686275, g: 0.15686275, b: 0.15686275, a: 1}
   bottomColor: {r: 0.08627451, g: 0.08627451, b: 0.09019608, a: 1}
-  duration: 2
+  duration: 3
   marks: {fileID: 1594758318}
   markPrefab: {fileID: 2703972938989590159, guid: e08f4cc3cdd6ebb488d261b58e04b99a, type: 3}
 --- !u!4 &534193850

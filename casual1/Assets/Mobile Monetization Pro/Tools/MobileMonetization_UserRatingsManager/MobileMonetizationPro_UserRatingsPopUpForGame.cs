@@ -73,26 +73,33 @@ namespace MobileMonetizationPro
         {
 			if (PlayerPrefs.GetInt("DoNotShowRatePopUp") == 0)
             {
-                if (LaunchChecks == Options.UseAppOpenCounts)
+                int curLevel = LocalDataManager.instance.GetCurLevel();
+                if(curLevel >= 51)
                 {
-                    if (PlayerPrefs.GetInt("IsAppOpened") == 0)
-                    {
-                        openCount = PlayerPrefs.GetInt("OpenCount", 0);
-                        openCount++;
-                        PlayerPrefs.SetInt("OpenCount", openCount);
-                        PlayerPrefs.Save();
-                        PlayerPrefs.SetInt("IsAppOpened", 1);
-                    }
+					if (LaunchChecks == Options.UseAppOpenCounts)
+					{
+						if (PlayerPrefs.GetInt("IsAppOpened") == 0)
+						{
+							openCount = PlayerPrefs.GetInt("OpenCount", 0);
+							openCount++;
+							PlayerPrefs.SetInt("OpenCount", openCount);
+							PlayerPrefs.Save();
+							PlayerPrefs.SetInt("IsAppOpened", 1);
+						}
 
-                }
+					}
+					else
+					{
+						openCount = PlayerPrefs.GetInt("OpenCount", 0);
+						openCount++;
+						PlayerPrefs.SetInt("OpenCount", openCount);
+						PlayerPrefs.Save();
+					}
+				}
                 else
                 {
-                    openCount = PlayerPrefs.GetInt("OpenCount", 0);
-                    openCount++;
-                    PlayerPrefs.SetInt("OpenCount", openCount);
-                    PlayerPrefs.Save();
-                }
-
+					// 51레벨 이전에는 로직을 타지 않는다.
+				}
 
 
                 if (openCount >= LaunchCountsBeforeShowingPopup)
