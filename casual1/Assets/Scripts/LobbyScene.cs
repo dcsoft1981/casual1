@@ -10,6 +10,7 @@ using System.Text;
 
 public class LobbyScene : MonoBehaviour
 {
+	[SerializeField] private GameObject canvas;
 	[SerializeField] private GameObject btnPlay;
 	[SerializeField] private GameObject btnPlayer;
 	[SerializeField] private GameObject btnMenu;
@@ -74,11 +75,16 @@ public class LobbyScene : MonoBehaviour
 
 	void Start()
     {
+		int level = 0;
 		TextMeshProUGUI buttonText = btnPlay.GetComponentInChildren<TextMeshProUGUI>();
 		if (buttonText != null)
 		{
-			int level = LocalDataManager.instance.GetCurLevel();
+			level = LocalDataManager.instance.GetCurLevel();
 			buttonText.text = level.ToString();
+		}
+		if (level == 1)
+		{
+			canvas.SetActive(false);
 		}
 		Color curGradeColor = LocalDataManager.instance.GetCurColor();
 		buttonPlayImage.color = curGradeColor;
@@ -99,6 +105,14 @@ public class LobbyScene : MonoBehaviour
 		AudioManager.instance.TickTockPlay();
 
 		time = 0.0f;
+
+		if(level == 1)
+		{
+			// 플레이 버튼 레드닷 활성화
+			LocalDataManager.instance.SetReddotPlay(true);
+			// 강제로 인게임신 전환
+			LoadLevelSceneForced();
+		}
 	}
 
 	void Update()
@@ -108,8 +122,18 @@ public class LobbyScene : MonoBehaviour
 		cam.backgroundColor = Color.Lerp(bottomColor, topColor, t);
 	}
 
+	private void LoadLevelSceneForced()
+	{
+		SceneManager.LoadScene("IngameScene");
+	}
+
 	public void LoadLevelScene()
     {
+		if (LocalDataManager.instance.GetReddotPlay())
+		{
+			LocalDataManager.instance.SetReddotPlay(false);
+			btnPlay.transform.Find("Reddot").gameObject.SetActive(false);
+		}
 		SceneManager.LoadScene("IngameScene");
 	}
 
@@ -320,6 +344,10 @@ public class LobbyScene : MonoBehaviour
 		if (LocalDataManager.instance.GetReddotMenu())
 		{
 			btnMenu.transform.Find("Reddot").gameObject.SetActive(true);
+		}
+		if (LocalDataManager.instance.GetReddotPlay())
+		{
+			btnPlay.transform.Find("Reddot").gameObject.SetActive(true);
 		}
 	}
 }
