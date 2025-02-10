@@ -156,11 +156,16 @@ public class PinLauncher : MonoBehaviour
 	public void SetTempPin(int count)
 	{
 		queueTempPIn.Clear();
+		AddTempPin(count);
+	}
+
+	public void AddTempPin(int count)
+	{
 		float positionX = staffLength - 0.2f;
 		for (int i = 0; i < count; i++)
 		{
 			float x = UnityEngine.Random.Range(-positionX, positionX);
-			float y = UnityEngine.Random.Range(this.transform.position.y- staffOffset - 0.4f, this.transform.position.y- staffOffset);
+			float y = UnityEngine.Random.Range(this.transform.position.y - staffOffset - 0.4f, this.transform.position.y - staffOffset);
 			GameObject tempPinObj = Instantiate(tempPinPrefab, new Vector3(x, y, 0f), Quaternion.Euler(0, 0, 0));
 			TempPin tempPin = tempPinObj.GetComponent<TempPin>();
 			tempPin.SetData(this.transform);

@@ -300,6 +300,7 @@ public class TargetCircle : MonoBehaviour
 
 	private void SetExpressionLine(string lineName, Color color, Define.ExpressionType type, float scale, int index)
 	{
+		lineName = lineName+index.ToString();
 		Vector3 position = GetExpressionPosition(type, scale, index);
 		switch (type)
 		{
@@ -753,7 +754,17 @@ public class TargetCircle : MonoBehaviour
 		return Vector3.zero;
 	}
 
-	public void DrawExpression(int maxHp, int hp)
+	public void DrawClearExpression(int shot)
+	{
+		expressionType = Define.ExpressionType.SMILE;
+		if(shot == 0)
+		{
+			expressionType = Define.ExpressionType.HEART;
+		}
+		DrawExpression("ClearExpressionLine");
+	}
+
+	public void DrawExpression(string lineName)
 	{
 		ClearExpressionLines();
 
@@ -762,7 +773,7 @@ public class TargetCircle : MonoBehaviour
 			//case Define.ExpressionType.ONE_LINE:
 			case Define.ExpressionType.ONE_CAPSULE:
 			{
-					SetExpressionLine("ExpressionLine0", gradeColor, expressionType, spriteScale, 0);
+					SetExpressionLine(lineName, gradeColor, expressionType, spriteScale, 0);
 				}
 				break;
 
@@ -774,17 +785,17 @@ public class TargetCircle : MonoBehaviour
 			case Define.ExpressionType.HEART:
 			case Define.ExpressionType.WAVE:
 				{
-					SetExpressionLine("ExpressionLine0", gradeColor, expressionType, spriteScale, 0);
-					SetExpressionLine("ExpressionLine1", gradeColor, expressionType, spriteScale, 1);
+					SetExpressionLine(lineName, gradeColor, expressionType, spriteScale, 0);
+					SetExpressionLine(lineName, gradeColor, expressionType, spriteScale, 1);
 				}
 				break;
 			case Define.ExpressionType.CRY:
 			case Define.ExpressionType.X:
 				{
-					SetExpressionLine("ExpressionLine0", gradeColor, expressionType, spriteScale, 0);
-					SetExpressionLine("ExpressionLine1", gradeColor, expressionType, spriteScale, 1);
-					SetExpressionLine("ExpressionLine2", gradeColor, expressionType, spriteScale, 2);
-					SetExpressionLine("ExpressionLine3", gradeColor, expressionType, spriteScale, 3);
+					SetExpressionLine(lineName, gradeColor, expressionType, spriteScale, 0);
+					SetExpressionLine(lineName, gradeColor, expressionType, spriteScale, 1);
+					SetExpressionLine(lineName, gradeColor, expressionType, spriteScale, 2);
+					SetExpressionLine(lineName, gradeColor, expressionType, spriteScale, 3);
 				}
 				break;
 		}
@@ -843,6 +854,7 @@ public class TargetCircle : MonoBehaviour
 	{
 		// ExpressionType ÁöÁ¤
 		int curLevel = LocalDataManager.instance.GetCurLevel();
+		/*
 		if(curLevel <= 10)
 		{
 			expressionType = (Define.ExpressionType)curLevel;
@@ -851,7 +863,9 @@ public class TargetCircle : MonoBehaviour
 		{
 			expressionType = Define.GetRandomEnumValue<Define.ExpressionType>();
 		}
+		*/
 		//expressionType = Define.ExpressionType.HEART;
+		expressionType = Define.GetStartRandomExpression();
 
 		expressionLineWidth = 0.1f;
 		switch(expressionType)

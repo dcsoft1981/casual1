@@ -1,6 +1,8 @@
 using System;
 using System.Runtime.InteropServices;
 using UnityEngine;
+using System.Collections.Generic;
+using System.Linq;
 
 public class Define
 {
@@ -162,16 +164,16 @@ public class Define
 	public enum ExpressionType
 	{
 		//NONE = 0,
-		SMILE = 1, //  ^ ^
-		CRY = 2, // T T
-		CIRCLE = 3, // O O
-		CLOSE = 4, // > <
-		LINE = 5, // - -
-		X = 6, // X X
-		WAVE = 7,
-		ONE_CAPSULE = 8, 
-		STAR = 9,
-		HEART = 10,
+		CRY = 1, // T T
+		CIRCLE = 2, // O O
+		CLOSE = 3, // > <
+		LINE = 4, // - -
+		X = 5, // X X
+		WAVE = 6,
+		ONE_CAPSULE = 7, 
+		STAR = 8,
+		HEART = 9,
+		SMILE = 10, //  ^ ^
 		//ONE_LINE = 11,
 	}
 
@@ -210,5 +212,21 @@ public class Define
 	public static Color GetRGBColor(float r , float g , float b )
 	{
 		return new Color(r / 255f, g / 255f, b / 255f);
+	}
+
+	public static ExpressionType GetStartRandomExpression()
+	{
+		List<ExpressionType> list = new List<ExpressionType>();
+		list.Add(ExpressionType.CRY);
+		list.Add(ExpressionType.CIRCLE);
+		list.Add(ExpressionType.CLOSE);
+		list.Add(ExpressionType.LINE);
+		list.Add(ExpressionType.X);
+		list.Add(ExpressionType.WAVE);
+		list.Add(ExpressionType.ONE_CAPSULE);
+		list.Add(ExpressionType.STAR);
+
+		List<ExpressionType> list2Shuffle= list.OrderBy(x => Guid.NewGuid()).ToList();
+		return list2Shuffle[0];
 	}
 }

@@ -19,7 +19,6 @@ using System.Text;
 using UnityEngine.UI;
 using Object = UnityEngine.Object;
 using static System.Net.Mime.MediaTypeNames;
-using System.Linq.Expressions;
 using static AudioManager;
 using UltimateClean;
 
@@ -177,7 +176,7 @@ public class GameManager : MonoBehaviour
 		// Target 지정
 		targetCircle.SetSprite(targetScaleRate, targetId);
 		// 표정 그리기
-		targetCircle.DrawExpression(maxHp, hp);
+		targetCircle.DrawExpression("ExpressionLine");
 		CircleCollider2D collider2D = targetCircle.GetComponent<CircleCollider2D>();
 		collider2D.radius = collider2D.radius * targetScaleRate;
 
@@ -314,7 +313,9 @@ public class GameManager : MonoBehaviour
 			isGameOver = true;
             if(success)
             {
-                Camera.main.backgroundColor = LocalDataManager.instance.GetCurColor();
+				// 표정 그리기
+				targetCircle.DrawClearExpression(shot);
+				Camera.main.backgroundColor = LocalDataManager.instance.GetCurColor();
 				AudioManager.instance.OnEffectBgm();
 				Invoke("StageClear", 0.3f);
 			}
@@ -527,6 +528,7 @@ public class GameManager : MonoBehaviour
 	{
 		shot += changeShot;
 		SetShotText();
+		pinLauncher.AddTempPin(changeShot);
 	}
 
 	public int GetCheatRotation()
@@ -957,8 +959,7 @@ public class GameManager : MonoBehaviour
 			case GimmickType.ADD_SHOT:
 				{
 					reflectPin = false;
-					shot += gimmickInfo.value1;
-					SetShotText();
+					AddShot(gimmickInfo.value1);
 					GimmickHpMinusWork(gameObject, gameObjectGimmick);
 				}
 				break;
@@ -1552,6 +1553,8 @@ public class GameManager : MonoBehaviour
 					// 페어기믹
 					dic_PairGimmick.Add(list[0], list[1]);
 					dic_PairGimmick.Add(list[1], list[0]);
+					gimmick1.SetPairSprite(0);
+					gimmick2.SetPairSprite(1);
 				}
 			}
 		}

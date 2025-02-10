@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
@@ -19,6 +20,7 @@ public class Gimmick : MonoBehaviour
 	private LineRenderer lineRenderer2;
 	private List<int> listWorkedPin = null;
 	public ParticleSystem effect = null;
+	private float inputAngle = 0f;
 	// Start is called once before the first execution of Update after the MonoBehaviour is created
 	void Awake()
     {
@@ -90,6 +92,7 @@ public class Gimmick : MonoBehaviour
 		spriteObject.transform.localScale = new Vector3(spriteScale, spriteScale, 1);
 
 		// 입력 각도를 0~359도로 제한
+		inputAngle = _inputAngle;
 		float angle = (_inputAngle + 270)%360;
 
 		// 현재 회전 값을 가져옴
@@ -237,5 +240,62 @@ public class Gimmick : MonoBehaviour
 		effect.transform.localScale = new Vector3(scale, scale, scale);
 		Debug.Log("EffectPlay Gimmick Scale : " + effect.transform.localScale);
 		effect.Play();
+	}
+
+	public Vector2 GetDirectionVector(float rotationZ)
+	{
+		// 도(degree)를 라디안(radian)으로 변환
+		float rad = rotationZ * Mathf.Deg2Rad;
+		// (cos, sin)에 0.2 스케일을 곱한 벡터 반환
+		float positionLength = 0.2f;
+		float reX = 1f;
+		float reY = 1f;
+		if(rotationZ >= 0 && rotationZ < 90)
+		{
+			reY = -1f;
+		}
+		else if (rotationZ >= 90 && rotationZ < 180)
+		{
+			reX = -1f;
+			reY = -1f;
+		}
+		else if (rotationZ >= 180 && rotationZ < 270)
+		{
+			reX = -1f;
+		}
+		else
+		{
+			
+		}
+		return new Vector2(reX* positionLength * Mathf.Cos(rad), reY* positionLength * Mathf.Sin(rad));
+	}
+
+	public static Vector2 GetPointOnCircle(float angle)
+	{
+		// 도 단위를 라디안으로 변환
+		float rad = angle * Mathf.Deg2Rad;
+		// 원의 좌표: (2*cos(라디안), 2*sin(라디안))
+		float positionLength = 0.22f;
+		return new Vector2(positionLength * Mathf.Cos(rad), positionLength * Mathf.Sin(rad));
+	}
+
+	public void SetPairSprite(int index)
+	{
+		float reScale = 0.5f;
+		//float rotationZ = spriteObject.transform.eulerAngles.z;
+		//Vector2 rePosition = GetDirectionVector(rotationZ);
+		float rotationZ = inputAngle;
+		Vector2 rePosition = GetPointOnCircle(rotationZ);
+		Debug.Log("SetPairSprite : " + rotationZ + " -> " + rePosition);
+		if (index == 0)
+		{
+			spriteObject.transform.localPosition = new Vector3(-rePosition.x, -rePosition.y, 0f);
+			spriteObject.transform.localScale = new Vector3(spriteScale * reScale, spriteScale * reScale, 1f);
+		}
+		else if (index == 1)
+		{
+			spriteObject.transform.localPosition = new Vector3(rePosition.x, rePosition.y, 0f);
+			spriteObject.transform.localScale = new Vector3(spriteScale * reScale, spriteScale * reScale, 1f);
+		}
 	}
 }
