@@ -4894,6 +4894,7 @@ MonoBehaviour:
   pinObject: {fileID: 1078342239161880866, guid: 1ad25a77c1d6e9444b8105708c374692, type: 3}
   effectPrab: {fileID: 658761075008837597, guid: 4f9208e377a3247499a8476e90c4db93, type: 3}
   effectGroup: {fileID: 1591660162}
+  tempPinPrefab: {fileID: 4489339401900190599, guid: f80eae6b618c8104688014fcb7c96bda, type: 3}
 --- !u!1 &1298331928
 GameObject:
   m_ObjectHideFlags: 0
@@ -9261,7 +9262,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
   m_AnchoredPosition: {x: 0, y: 300}
-  m_SizeDelta: {x: 360, y: 120}
+  m_SizeDelta: {x: 650, y: 200}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!1 &8465940008538398397
 GameObject:
@@ -9405,8 +9406,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 50
-  m_fontSizeBase: 50
+  m_fontSize: 100
+  m_fontSizeBase: 100
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18

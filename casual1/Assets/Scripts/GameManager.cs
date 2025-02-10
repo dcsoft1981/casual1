@@ -198,6 +198,8 @@ public class GameManager : MonoBehaviour
         SetLevelText();
 		SetShotText();
 		PrepareGimmickAll();
+		pinLauncher.DrawStaff();
+		pinLauncher.SetTempPin(shot - 1);
 
 		AudioManager.instance.TickTockStop();
 		AudioManager.instance.OffEffectBgm();
@@ -209,6 +211,8 @@ public class GameManager : MonoBehaviour
 
 		if(tutorialButtonTab)
 		{
+			float buttonTabPosY = pinLauncher.transform.position.y-1.5f;
+			buttonTab.transform.position = Camera.main.WorldToScreenPoint(new Vector3(0f, buttonTabPosY, 0f));
 			buttonTab.SetActive(true);
 			buttonTabText = buttonTab.GetComponentInChildren<TextMeshProUGUI>();
 			buttonTabText.DOFade(0f, 1.3f).SetLoops(-1, LoopType.Yoyo);
@@ -1022,6 +1026,7 @@ public class GameManager : MonoBehaviour
 
 	public void DestroyAllShots()
 	{
+		pinLauncher.TempPinOff();
 		Pin[] pins = Object.FindObjectsByType<Pin>(FindObjectsSortMode.None);
 		for (int i = 0; i < pins.Length; i++)
 		{

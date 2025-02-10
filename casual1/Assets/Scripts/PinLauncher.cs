@@ -1,17 +1,23 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 using static Define;
+using System.Collections.Generic;
 
 public class PinLauncher : MonoBehaviour
 {
 	[SerializeField] private GameObject pinObject;
 	[SerializeField] private ParticleSystem effectPrab;
 	[SerializeField] private Transform effectGroup;
+	[SerializeField] private GameObject tempPinPrefab;
 
 	private Pin currPin;
+	float staffLength = 1.5f;
+	float staffOffset = 0.7f;
+	List<GameObject> staggLines = new List<GameObject>();
+	Queue<TempPin> queueTempPIn = new Queue<TempPin>();
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+	// Start is called once before the first execution of Update after the MonoBehaviour is created
+	void Start()
     {
 		PreparePin();
 	}
@@ -62,6 +68,7 @@ public class PinLauncher : MonoBehaviour
 		GameManager.instance.TutorialButtonClick();
 		GameManager.instance.DecreaseShot();
 		currPin = null;
+		TempPinMove();
 		Invoke("PreparePin", 0.1f);
 	}
 
@@ -99,5 +106,94 @@ public class PinLauncher : MonoBehaviour
     void CheckFinalShot()
     {
 		GameManager.instance.CheckFinalShot();
+	}
+
+	public void DrawStaff()
+	{
+		staggLines.Clear();
+		for (int i = 0; i < 5; i++)
+		{
+			DrawStaff(i);
+		}
+	}
+
+	private void DrawStaff(int index)
+	{
+		float alpha = 0.6f;
+		Color color;
+		if(LocalDataManager.instance.GetCurGrade() == 1)
+		{
+			color = new Color(Define.COLOR_TARGET_BASE.r, Define.COLOR_TARGET_BASE.g, Define.COLOR_TARGET_BASE.b, alpha);
+		}
+		else
+		{
+			Color gradeColor = LocalDataManager.instance.GetCurColor();
+			color = new Color(gradeColor.r, gradeColor.g, gradeColor.b, alpha);
+		}
+		// LineRenderer »ý¼º
+		string objectName = "StaffLine" + index.ToString();
+		GameObject lineObj = new GameObject(objectName);
+		lineObj.transform.parent = gameObject.transform;
+		LineRenderer lineRenderer = lineObj.AddComponent<LineRenderer>();
+		lineRenderer.material = new Material(Shader.Find("Sprites/Default"));
+		lineRenderer.startColor = color;
+		lineRenderer.endColor = color;
+		lineRenderer.positionCount = 2;
+		lineRenderer.useWorldSpace = false;
+		lineRenderer.startWidth = 0.02f;
+		lineRenderer.endWidth = 0.02f;
+		lineRenderer.sortingOrder = -10;
+
+		float staffIndexOffset = 0.15f;
+		lineRenderer.SetPosition(0, new Vector3(-staffLength, -staffOffset-index* staffIndexOffset, 0));
+		lineRenderer.SetPosition(1, new Vector3(staffLength, -staffOffset - index* staffIndexOffset, 0));
+		lineObj.transform.localPosition = Vector3.zero;
+		lineObj.transform.localScale = Vector3.one;
+		Debug.Log("DrawStaff radius :" + lineObj.transform.position);
+		staggLines.Add(lineObj);
+	}
+
+	public void SetTempPin(int count)
+	{
+		queueTempPIn.Clear();
+		float positionX = staffLength - 0.2f;
+		for (int i = 0; i < count; i++)
+		{
+			float x = UnityEngine.Random.Range(-positionX, positionX);
+			float y = UnityEngine.Random.Range(this.transform.position.y- staffOffset - 0.4f, this.transform.position.y- staffOffset);
+			GameObject tempPinObj = Instantiate(tempPinPrefab, new Vector3(x, y, 0f), Quaternion.Euler(0, 0, 0));
+			TempPin tempPin = tempPinObj.GetComponent<TempPin>();
+			tempPin.SetData(this.transform);
+			queueTempPIn.Enqueue(tempPin);
+		}
+	}
+
+	private void TempPinMove()
+	{
+		if (queueTempPIn.Count > 0)
+		{
+			TempPin tempPin = queueTempPIn.Dequeue();
+			tempPin.SetMove();
+		}
+	}
+
+	public void TempPinOff()
+	{
+		foreach(GameObject staff in staggLines)
+		{
+			staff.SetActive(false);
+		}
+		for (int i = 0; i < 100; i++)
+		{
+			if (queueTempPIn != null && queueTempPIn.Count > 0)
+			{
+				TempPin tempPin = queueTempPIn.Dequeue();
+				tempPin.gameObject.SetActive(false);
+			}
+			else
+			{
+				break;
+			}
+		}
 	}
 }
