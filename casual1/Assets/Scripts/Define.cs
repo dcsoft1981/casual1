@@ -6,6 +6,7 @@ using System.Linq;
 
 public class Define
 {
+	public const int STABLEUSER_LEVEL = 51;
 	// Local Save Data
 	public const string CHILD_SPRITE_OBJECT = "ChildSpriteObject";
 	public const string CUR_LEVEL = "CUR_LEVEL";

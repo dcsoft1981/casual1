@@ -22,14 +22,15 @@ public class AudioManager : MonoBehaviour
 
 	public enum Sfx 
 	{
-		clear , 
-		shot_failure , 
-		shot_good , 
+		clear, 
+		shot_failure, 
+		shot_good, 
 		buff, 
 		shot_special,
 		shot_gimmick,
 		fullcombo,
-		iron_hit
+		iron_hit,
+		tier_up
 	}
 
 	private void Awake()

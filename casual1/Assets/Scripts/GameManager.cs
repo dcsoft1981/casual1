@@ -391,6 +391,13 @@ public class GameManager : MonoBehaviour
 			gradeInfoGameObject.transform.localPosition = Vector3.one;
 			// Home 버튼 활성화
 			popupResult.transform.Find("ButtonHome").gameObject.SetActive(true);
+			// 쉐어버튼 활성화
+			if(LocalDataManager.instance.GetCurLevel() >= Define.STABLEUSER_LEVEL)
+			{
+				popupResult.transform.Find("ButtonShare").gameObject.SetActive(true);
+			}
+			// 사운드 발동
+			AudioManager.instance.PlaySfx(AudioManager.Sfx.tier_up);
 		}
 		else
 		{
@@ -1643,5 +1650,10 @@ public class GameManager : MonoBehaviour
 
 		currentHP = targetHP;
 		slicedFilledImage.fillAmount = currentHP;
+	}
+
+	public void DoWorkShare()
+	{
+
 	}
 }
