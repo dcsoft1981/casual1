@@ -1813,3 +1813,1803 @@ MonoBehaviour:
     gimmick5: 30101:1:290:310
     gimmick6: 
     gimmick7: 
+  - id: 151
+    hp: 6
+    shot: 13
+    target: 10050
+    rotation: 81
+    gimmick1: 10501:0:120:240
+    gimmick2: 
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 152
+    hp: 8
+    shot: 10
+    target: 10080
+    rotation: 100
+    gimmick1: 10501:0:90:180:270
+    gimmick2: 
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 153
+    hp: 18
+    shot: 12
+    target: 10080
+    rotation: 120
+    gimmick1: 10501:0:60:120:180:240:300
+    gimmick2: 10801:30:90:150:210:270:330
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 154
+    hp: 5
+    shot: 8
+    target: 10100
+    rotation: -100
+    gimmick1: 10200:0:144:168:192:216:240:264:288:312:336
+    gimmick2: 10501:48:96
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 155
+    hp: 2
+    shot: 6
+    target: 10080
+    rotation: -100
+    gimmick1: 10200:30:60:120:150:210:240:300:330
+    gimmick2: 10102:0:180
+    gimmick3: 10501:90:270
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 156
+    hp: 0
+    shot: 0
+    target: 0
+    rotation: 0
+    gimmick1: 
+    gimmick2: 
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 157
+    hp: 0
+    shot: 0
+    target: 0
+    rotation: 0
+    gimmick1: 
+    gimmick2: 
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 158
+    hp: 0
+    shot: 0
+    target: 0
+    rotation: 0
+    gimmick1: 
+    gimmick2: 
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 159
+    hp: 0
+    shot: 0
+    target: 0
+    rotation: 0
+    gimmick1: 
+    gimmick2: 
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 160
+    hp: 0
+    shot: 0
+    target: 0
+    rotation: 0
+    gimmick1: 
+    gimmick2: 
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 161
+    hp: 0
+    shot: 0
+    target: 0
+    rotation: 0
+    gimmick1: 
+    gimmick2: 
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 162
+    hp: 0
+    shot: 0
+    target: 0
+    rotation: 0
+    gimmick1: 
+    gimmick2: 
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 163
+    hp: 0
+    shot: 0
+    target: 0
+    rotation: 0
+    gimmick1: 
+    gimmick2: 
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 164
+    hp: 0
+    shot: 0
+    target: 0
+    rotation: 0
+    gimmick1: 
+    gimmick2: 
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 165
+    hp: 0
+    shot: 0
+    target: 0
+    rotation: 0
+    gimmick1: 
+    gimmick2: 
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 166
+    hp: 0
+    shot: 0
+    target: 0
+    rotation: 0
+    gimmick1: 
+    gimmick2: 
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 167
+    hp: 0
+    shot: 0
+    target: 0
+    rotation: 0
+    gimmick1: 
+    gimmick2: 
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 168
+    hp: 0
+    shot: 0
+    target: 0
+    rotation: 0
+    gimmick1: 
+    gimmick2: 
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 169
+    hp: 0
+    shot: 0
+    target: 0
+    rotation: 0
+    gimmick1: 
+    gimmick2: 
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 170
+    hp: 0
+    shot: 0
+    target: 0
+    rotation: 0
+    gimmick1: 
+    gimmick2: 
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 171
+    hp: 0
+    shot: 0
+    target: 0
+    rotation: 0
+    gimmick1: 
+    gimmick2: 
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 172
+    hp: 0
+    shot: 0
+    target: 0
+    rotation: 0
+    gimmick1: 
+    gimmick2: 
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 173
+    hp: 0
+    shot: 0
+    target: 0
+    rotation: 0
+    gimmick1: 
+    gimmick2: 
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 174
+    hp: 0
+    shot: 0
+    target: 0
+    rotation: 0
+    gimmick1: 
+    gimmick2: 
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 175
+    hp: 0
+    shot: 0
+    target: 0
+    rotation: 0
+    gimmick1: 
+    gimmick2: 
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 176
+    hp: 0
+    shot: 0
+    target: 0
+    rotation: 0
+    gimmick1: 
+    gimmick2: 
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 177
+    hp: 0
+    shot: 0
+    target: 0
+    rotation: 0
+    gimmick1: 
+    gimmick2: 
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 178
+    hp: 0
+    shot: 0
+    target: 0
+    rotation: 0
+    gimmick1: 
+    gimmick2: 
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 179
+    hp: 0
+    shot: 0
+    target: 0
+    rotation: 0
+    gimmick1: 
+    gimmick2: 
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 180
+    hp: 0
+    shot: 0
+    target: 0
+    rotation: 0
+    gimmick1: 
+    gimmick2: 
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 181
+    hp: 0
+    shot: 0
+    target: 0
+    rotation: 0
+    gimmick1: 
+    gimmick2: 
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 182
+    hp: 0
+    shot: 0
+    target: 0
+    rotation: 0
+    gimmick1: 
+    gimmick2: 
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 183
+    hp: 0
+    shot: 0
+    target: 0
+    rotation: 0
+    gimmick1: 
+    gimmick2: 
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 184
+    hp: 0
+    shot: 0
+    target: 0
+    rotation: 0
+    gimmick1: 
+    gimmick2: 
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 185
+    hp: 0
+    shot: 0
+    target: 0
+    rotation: 0
+    gimmick1: 
+    gimmick2: 
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 186
+    hp: 0
+    shot: 0
+    target: 0
+    rotation: 0
+    gimmick1: 
+    gimmick2: 
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 187
+    hp: 0
+    shot: 0
+    target: 0
+    rotation: 0
+    gimmick1: 
+    gimmick2: 
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 188
+    hp: 0
+    shot: 0
+    target: 0
+    rotation: 0
+    gimmick1: 
+    gimmick2: 
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 189
+    hp: 0
+    shot: 0
+    target: 0
+    rotation: 0
+    gimmick1: 
+    gimmick2: 
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 190
+    hp: 0
+    shot: 0
+    target: 0
+    rotation: 0
+    gimmick1: 
+    gimmick2: 
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 191
+    hp: 0
+    shot: 0
+    target: 0
+    rotation: 0
+    gimmick1: 
+    gimmick2: 
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 192
+    hp: 0
+    shot: 0
+    target: 0
+    rotation: 0
+    gimmick1: 
+    gimmick2: 
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 193
+    hp: 0
+    shot: 0
+    target: 0
+    rotation: 0
+    gimmick1: 
+    gimmick2: 
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 194
+    hp: 0
+    shot: 0
+    target: 0
+    rotation: 0
+    gimmick1: 
+    gimmick2: 
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 195
+    hp: 0
+    shot: 0
+    target: 0
+    rotation: 0
+    gimmick1: 
+    gimmick2: 
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 196
+    hp: 0
+    shot: 0
+    target: 0
+    rotation: 0
+    gimmick1: 
+    gimmick2: 
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 197
+    hp: 0
+    shot: 0
+    target: 0
+    rotation: 0
+    gimmick1: 
+    gimmick2: 
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 198
+    hp: 0
+    shot: 0
+    target: 0
+    rotation: 0
+    gimmick1: 
+    gimmick2: 
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 199
+    hp: 0
+    shot: 0
+    target: 0
+    rotation: 0
+    gimmick1: 
+    gimmick2: 
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 200
+    hp: 0
+    shot: 0
+    target: 0
+    rotation: 0
+    gimmick1: 
+    gimmick2: 
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 201
+    hp: 0
+    shot: 0
+    target: 0
+    rotation: 0
+    gimmick1: 
+    gimmick2: 
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 202
+    hp: 0
+    shot: 0
+    target: 0
+    rotation: 0
+    gimmick1: 
+    gimmick2: 
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 203
+    hp: 0
+    shot: 0
+    target: 0
+    rotation: 0
+    gimmick1: 
+    gimmick2: 
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 204
+    hp: 0
+    shot: 0
+    target: 0
+    rotation: 0
+    gimmick1: 
+    gimmick2: 
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 205
+    hp: 0
+    shot: 0
+    target: 0
+    rotation: 0
+    gimmick1: 
+    gimmick2: 
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 206
+    hp: 0
+    shot: 0
+    target: 0
+    rotation: 0
+    gimmick1: 
+    gimmick2: 
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 207
+    hp: 0
+    shot: 0
+    target: 0
+    rotation: 0
+    gimmick1: 
+    gimmick2: 
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 208
+    hp: 0
+    shot: 0
+    target: 0
+    rotation: 0
+    gimmick1: 
+    gimmick2: 
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 209
+    hp: 0
+    shot: 0
+    target: 0
+    rotation: 0
+    gimmick1: 
+    gimmick2: 
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 210
+    hp: 0
+    shot: 0
+    target: 0
+    rotation: 0
+    gimmick1: 
+    gimmick2: 
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 211
+    hp: 0
+    shot: 0
+    target: 0
+    rotation: 0
+    gimmick1: 
+    gimmick2: 
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 212
+    hp: 0
+    shot: 0
+    target: 0
+    rotation: 0
+    gimmick1: 
+    gimmick2: 
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 213
+    hp: 0
+    shot: 0
+    target: 0
+    rotation: 0
+    gimmick1: 
+    gimmick2: 
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 214
+    hp: 0
+    shot: 0
+    target: 0
+    rotation: 0
+    gimmick1: 
+    gimmick2: 
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 215
+    hp: 0
+    shot: 0
+    target: 0
+    rotation: 0
+    gimmick1: 
+    gimmick2: 
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 216
+    hp: 0
+    shot: 0
+    target: 0
+    rotation: 0
+    gimmick1: 
+    gimmick2: 
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 217
+    hp: 0
+    shot: 0
+    target: 0
+    rotation: 0
+    gimmick1: 
+    gimmick2: 
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 218
+    hp: 0
+    shot: 0
+    target: 0
+    rotation: 0
+    gimmick1: 
+    gimmick2: 
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 219
+    hp: 0
+    shot: 0
+    target: 0
+    rotation: 0
+    gimmick1: 
+    gimmick2: 
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 220
+    hp: 0
+    shot: 0
+    target: 0
+    rotation: 0
+    gimmick1: 
+    gimmick2: 
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 221
+    hp: 0
+    shot: 0
+    target: 0
+    rotation: 0
+    gimmick1: 
+    gimmick2: 
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 222
+    hp: 0
+    shot: 0
+    target: 0
+    rotation: 0
+    gimmick1: 
+    gimmick2: 
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 223
+    hp: 0
+    shot: 0
+    target: 0
+    rotation: 0
+    gimmick1: 
+    gimmick2: 
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 224
+    hp: 0
+    shot: 0
+    target: 0
+    rotation: 0
+    gimmick1: 
+    gimmick2: 
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 225
+    hp: 0
+    shot: 0
+    target: 0
+    rotation: 0
+    gimmick1: 
+    gimmick2: 
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 226
+    hp: 0
+    shot: 0
+    target: 0
+    rotation: 0
+    gimmick1: 
+    gimmick2: 
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 227
+    hp: 0
+    shot: 0
+    target: 0
+    rotation: 0
+    gimmick1: 
+    gimmick2: 
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 228
+    hp: 0
+    shot: 0
+    target: 0
+    rotation: 0
+    gimmick1: 
+    gimmick2: 
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 229
+    hp: 0
+    shot: 0
+    target: 0
+    rotation: 0
+    gimmick1: 
+    gimmick2: 
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 230
+    hp: 0
+    shot: 0
+    target: 0
+    rotation: 0
+    gimmick1: 
+    gimmick2: 
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 231
+    hp: 0
+    shot: 0
+    target: 0
+    rotation: 0
+    gimmick1: 
+    gimmick2: 
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 232
+    hp: 0
+    shot: 0
+    target: 0
+    rotation: 0
+    gimmick1: 
+    gimmick2: 
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 233
+    hp: 0
+    shot: 0
+    target: 0
+    rotation: 0
+    gimmick1: 
+    gimmick2: 
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 234
+    hp: 0
+    shot: 0
+    target: 0
+    rotation: 0
+    gimmick1: 
+    gimmick2: 
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 235
+    hp: 0
+    shot: 0
+    target: 0
+    rotation: 0
+    gimmick1: 
+    gimmick2: 
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 236
+    hp: 0
+    shot: 0
+    target: 0
+    rotation: 0
+    gimmick1: 
+    gimmick2: 
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 237
+    hp: 0
+    shot: 0
+    target: 0
+    rotation: 0
+    gimmick1: 
+    gimmick2: 
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 238
+    hp: 0
+    shot: 0
+    target: 0
+    rotation: 0
+    gimmick1: 
+    gimmick2: 
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 239
+    hp: 0
+    shot: 0
+    target: 0
+    rotation: 0
+    gimmick1: 
+    gimmick2: 
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 240
+    hp: 0
+    shot: 0
+    target: 0
+    rotation: 0
+    gimmick1: 
+    gimmick2: 
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 241
+    hp: 0
+    shot: 0
+    target: 0
+    rotation: 0
+    gimmick1: 
+    gimmick2: 
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 242
+    hp: 0
+    shot: 0
+    target: 0
+    rotation: 0
+    gimmick1: 
+    gimmick2: 
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 243
+    hp: 0
+    shot: 0
+    target: 0
+    rotation: 0
+    gimmick1: 
+    gimmick2: 
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 244
+    hp: 0
+    shot: 0
+    target: 0
+    rotation: 0
+    gimmick1: 
+    gimmick2: 
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 245
+    hp: 0
+    shot: 0
+    target: 0
+    rotation: 0
+    gimmick1: 
+    gimmick2: 
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 246
+    hp: 0
+    shot: 0
+    target: 0
+    rotation: 0
+    gimmick1: 
+    gimmick2: 
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 247
+    hp: 0
+    shot: 0
+    target: 0
+    rotation: 0
+    gimmick1: 
+    gimmick2: 
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 248
+    hp: 0
+    shot: 0
+    target: 0
+    rotation: 0
+    gimmick1: 
+    gimmick2: 
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 249
+    hp: 0
+    shot: 0
+    target: 0
+    rotation: 0
+    gimmick1: 
+    gimmick2: 
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 250
+    hp: 0
+    shot: 0
+    target: 0
+    rotation: 0
+    gimmick1: 
+    gimmick2: 
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 251
+    hp: 0
+    shot: 0
+    target: 0
+    rotation: 0
+    gimmick1: 
+    gimmick2: 
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 252
+    hp: 0
+    shot: 0
+    target: 0
+    rotation: 0
+    gimmick1: 
+    gimmick2: 
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 253
+    hp: 0
+    shot: 0
+    target: 0
+    rotation: 0
+    gimmick1: 
+    gimmick2: 
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 254
+    hp: 0
+    shot: 0
+    target: 0
+    rotation: 0
+    gimmick1: 
+    gimmick2: 
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 255
+    hp: 0
+    shot: 0
+    target: 0
+    rotation: 0
+    gimmick1: 
+    gimmick2: 
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 256
+    hp: 0
+    shot: 0
+    target: 0
+    rotation: 0
+    gimmick1: 
+    gimmick2: 
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 257
+    hp: 0
+    shot: 0
+    target: 0
+    rotation: 0
+    gimmick1: 
+    gimmick2: 
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 258
+    hp: 0
+    shot: 0
+    target: 0
+    rotation: 0
+    gimmick1: 
+    gimmick2: 
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 259
+    hp: 0
+    shot: 0
+    target: 0
+    rotation: 0
+    gimmick1: 
+    gimmick2: 
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 260
+    hp: 0
+    shot: 0
+    target: 0
+    rotation: 0
+    gimmick1: 
+    gimmick2: 
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 261
+    hp: 0
+    shot: 0
+    target: 0
+    rotation: 0
+    gimmick1: 
+    gimmick2: 
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 262
+    hp: 0
+    shot: 0
+    target: 0
+    rotation: 0
+    gimmick1: 
+    gimmick2: 
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 263
+    hp: 0
+    shot: 0
+    target: 0
+    rotation: 0
+    gimmick1: 
+    gimmick2: 
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 264
+    hp: 0
+    shot: 0
+    target: 0
+    rotation: 0
+    gimmick1: 
+    gimmick2: 
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 265
+    hp: 0
+    shot: 0
+    target: 0
+    rotation: 0
+    gimmick1: 
+    gimmick2: 
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 266
+    hp: 0
+    shot: 0
+    target: 0
+    rotation: 0
+    gimmick1: 
+    gimmick2: 
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 267
+    hp: 0
+    shot: 0
+    target: 0
+    rotation: 0
+    gimmick1: 
+    gimmick2: 
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 268
+    hp: 0
+    shot: 0
+    target: 0
+    rotation: 0
+    gimmick1: 
+    gimmick2: 
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 269
+    hp: 0
+    shot: 0
+    target: 0
+    rotation: 0
+    gimmick1: 
+    gimmick2: 
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 270
+    hp: 0
+    shot: 0
+    target: 0
+    rotation: 0
+    gimmick1: 
+    gimmick2: 
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 271
+    hp: 0
+    shot: 0
+    target: 0
+    rotation: 0
+    gimmick1: 
+    gimmick2: 
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 272
+    hp: 0
+    shot: 0
+    target: 0
+    rotation: 0
+    gimmick1: 
+    gimmick2: 
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 273
+    hp: 0
+    shot: 0
+    target: 0
+    rotation: 0
+    gimmick1: 
+    gimmick2: 
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 274
+    hp: 0
+    shot: 0
+    target: 0
+    rotation: 0
+    gimmick1: 
+    gimmick2: 
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 275
+    hp: 0
+    shot: 0
+    target: 0
+    rotation: 0
+    gimmick1: 
+    gimmick2: 
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 276
+    hp: 0
+    shot: 0
+    target: 0
+    rotation: 0
+    gimmick1: 
+    gimmick2: 
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 277
+    hp: 0
+    shot: 0
+    target: 0
+    rotation: 0
+    gimmick1: 
+    gimmick2: 
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 278
+    hp: 0
+    shot: 0
+    target: 0
+    rotation: 0
+    gimmick1: 
+    gimmick2: 
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 279
+    hp: 0
+    shot: 0
+    target: 0
+    rotation: 0
+    gimmick1: 
+    gimmick2: 
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 280
+    hp: 0
+    shot: 0
+    target: 0
+    rotation: 0
+    gimmick1: 
+    gimmick2: 
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 281
+    hp: 0
+    shot: 0
+    target: 0
+    rotation: 0
+    gimmick1: 
+    gimmick2: 
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 282
+    hp: 0
+    shot: 0
+    target: 0
+    rotation: 0
+    gimmick1: 
+    gimmick2: 
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 283
+    hp: 0
+    shot: 0
+    target: 0
+    rotation: 0
+    gimmick1: 
+    gimmick2: 
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 284
+    hp: 0
+    shot: 0
+    target: 0
+    rotation: 0
+    gimmick1: 
+    gimmick2: 
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 285
+    hp: 0
+    shot: 0
+    target: 0
+    rotation: 0
+    gimmick1: 
+    gimmick2: 
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 286
+    hp: 0
+    shot: 0
+    target: 0
+    rotation: 0
+    gimmick1: 
+    gimmick2: 
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 287
+    hp: 0
+    shot: 0
+    target: 0
+    rotation: 0
+    gimmick1: 
+    gimmick2: 
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 288
+    hp: 0
+    shot: 0
+    target: 0
+    rotation: 0
+    gimmick1: 
+    gimmick2: 
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 289
+    hp: 0
+    shot: 0
+    target: 0
+    rotation: 0
+    gimmick1: 
+    gimmick2: 
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 290
+    hp: 0
+    shot: 0
+    target: 0
+    rotation: 0
+    gimmick1: 
+    gimmick2: 
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 291
+    hp: 0
+    shot: 0
+    target: 0
+    rotation: 0
+    gimmick1: 
+    gimmick2: 
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 292
+    hp: 0
+    shot: 0
+    target: 0
+    rotation: 0
+    gimmick1: 
+    gimmick2: 
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 293
+    hp: 0
+    shot: 0
+    target: 0
+    rotation: 0
+    gimmick1: 
+    gimmick2: 
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 294
+    hp: 0
+    shot: 0
+    target: 0
+    rotation: 0
+    gimmick1: 
+    gimmick2: 
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 295
+    hp: 0
+    shot: 0
+    target: 0
+    rotation: 0
+    gimmick1: 
+    gimmick2: 
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 296
+    hp: 0
+    shot: 0
+    target: 0
+    rotation: 0
+    gimmick1: 
+    gimmick2: 
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 297
+    hp: 0
+    shot: 0
+    target: 0
+    rotation: 0
+    gimmick1: 
+    gimmick2: 
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 298
+    hp: 0
+    shot: 0
+    target: 0
+    rotation: 0
+    gimmick1: 
+    gimmick2: 
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 299
+    hp: 0
+    shot: 0
+    target: 0
+    rotation: 0
+    gimmick1: 
+    gimmick2: 
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
+  - id: 300
+    hp: 0
+    shot: 0
+    target: 0
+    rotation: 0
+    gimmick1: 
+    gimmick2: 
+    gimmick3: 
+    gimmick4: 
+    gimmick5: 
+    gimmick6: 
+    gimmick7: 
