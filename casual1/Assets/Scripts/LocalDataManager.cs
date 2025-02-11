@@ -555,7 +555,7 @@ public class LocalDataManager : MonoBehaviour
 
 	public bool LevelDataGimmickExist(string gimmick, int gimmickId)
 	{
-		if (gimmick.Length == 0)
+		if (gimmick == null || gimmick.Length == 0)
 			return false;
 
 		string[] strInfo = gimmick.Split(":");
