@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Text;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 using static Define;
@@ -22,6 +23,7 @@ public class LocalDataManager : MonoBehaviour
 	private int reddotPlayer = 0;
 	private int reddotMenu = 0;
 	private int reddotPlay = 0;
+	private int playCountForAD = 0;
 
 	[SerializeField] private LevelDB levelDB;
 	[SerializeField] private GimmickDB gimmickDB;
@@ -64,6 +66,7 @@ public class LocalDataManager : MonoBehaviour
 			reddotPlayer = PlayerPrefs.GetInt(Define.REDDOT_PLAYER, 0);
 			reddotMenu = PlayerPrefs.GetInt(Define.REDDOT_MENU, 0);
 			reddotPlay = PlayerPrefs.GetInt(Define.REDDOT_PLAY, 0);
+			playCountForAD = PlayerPrefs.GetInt(Define.PLAY_ADCHECK_COUNT, 0);
 
 
 			dic_gimmicks = new Dictionary<int, GimmickDBEntity>();
@@ -628,5 +631,42 @@ public class LocalDataManager : MonoBehaviour
 		reddotPlay = value;
 		PlayerPrefs.SetInt(Define.REDDOT_PLAY, reddotPlay);
 		PlayerPrefs.Save();
+	}
+
+	public void AddPlayCountForAD()
+	{
+		if(GetCurLevel() >= Define.STABLEUSER_LEVEL)
+		{
+			SetPlayADCount(playCountForAD + 1);
+		}
+	}
+
+	public int GetPlayCountForAD()
+	{
+		return playCountForAD;
+	}
+
+	public bool ShowAD()
+	{
+		if(GetPlayCountForAD() >= Define.PLAY_AD_COUNT)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	private void SetPlayADCount(int count)
+	{
+		playCountForAD = count;
+		PlayerPrefs.SetInt(Define.PLAY_ADCHECK_COUNT, playCountForAD);
+		PlayerPrefs.Save();
+	}
+
+	public void ResetPlayADCount()
+	{
+		SetPlayADCount(0);
 	}
 }

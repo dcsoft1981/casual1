@@ -206,6 +206,8 @@ public class GameManager : MonoBehaviour
 
 		// 플레이 기록 갱신
 		LocalDataManager.instance.StartLevelPlayData();
+		// 광고체크를 위한 플레이 카운트 갱신
+		LocalDataManager.instance.AddPlayCountForAD();
 		InvokeRepeating("CheckStageFailure", 0f, 0.3f);
 
 		if(tutorialButtonTab)
@@ -404,8 +406,16 @@ public class GameManager : MonoBehaviour
 			clearText.transform.Find("Title").gameObject.SetActive(true);
 			// 등급 유지
 			textLevelPlayData.text = LocalDataManager.instance.GetLevelPlayDataText();
-			// Next 버튼 활성화
-			popupResult.transform.Find("ButtonNext").gameObject.SetActive(true);
+			if(LocalDataManager.instance.ShowAD())
+			{
+				// Home 버튼 활성화
+				popupResult.transform.Find("ButtonHome").gameObject.SetActive(true);
+			}
+			else
+			{
+				// Next 버튼 활성화
+				popupResult.transform.Find("ButtonNext").gameObject.SetActive(true);
+			}
 		}
 		AudioManager.instance.PlaySfx(AudioManager.Sfx.clear);
 		Vibrate3();

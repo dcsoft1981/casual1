@@ -23,7 +23,7 @@ MonoBehaviour:
     value1: 0
     sprite2: 
     sprite3: 
-    textinfo: textinfo
+    textinfo: Removable
   - id: 10200
     desc: "\uBB34\uC801 \uBC29\uD328(1\uCC28 \uAD6C\uD604 \uC644)"
     gimmick: Iron Shield
@@ -34,7 +34,7 @@ MonoBehaviour:
     value1: 0
     sprite2: 
     sprite3: 
-    textinfo: textinfo
+    textinfo: Unable to remove
   - id: 10300
     desc: "\uC21C\uC11C(1\uCC28 \uAD6C\uD604 \uC644)"
     gimmick: Sequence
@@ -45,7 +45,7 @@ MonoBehaviour:
     value1: 0
     sprite2: Checked
     sprite3: 
-    textinfo: textinfo
+    textinfo: Can be removed when striking in the order of activation
   - id: 10400
     desc: "\uACE0\uB9AC(1\uCC28 \uAD6C\uD604 \uC644)"
     gimmick: Chain Shield
@@ -56,7 +56,10 @@ MonoBehaviour:
     value1: 0
     sprite2: 
     sprite3: 
-    textinfo: textinfo
+    textinfo: 'Grant target invincible status
+
+      All Gimmick Strike Required
+      for removal'
   - id: 10500
     desc: "\uD788\uD2B8\uC2DC \uD0C0\uAC9F \uD68C\uBCF5(1\uCC28 \uAD6C\uD604 \uC644)
       - value1(\uD68C\uBCF5\uB7C9)"
@@ -68,7 +71,7 @@ MonoBehaviour:
     value1: 1
     sprite2: 
     sprite3: 
-    textinfo: textinfo
+    textinfo: Recovery of target HP in the event of a strike
   - id: 10600
     desc: "\uC5F0\uC18D \uD788\uD2B8(1\uCC28 \uAD6C\uD604 \uC644)"
     gimmick: Potion
@@ -79,7 +82,10 @@ MonoBehaviour:
     value1: 0
     sprite2: PotionFull
     sprite3: 
-    textinfo: textinfo
+    textinfo: 'Remove from gimmick consecutive strikes
+
+      If you don''t strike
+      back to back, you''re in a state'
   - id: 10700
     desc: "\uD0C0\uAC9F\uC5D0 \uBD99\uC740 \uBAA8\uB4E0 \uBC1C\uC0AC\uCCB4 \uC18C\uAC70(1\uCC28
       \uAD6C\uD604 \uC644)"
@@ -91,7 +97,7 @@ MonoBehaviour:
     value1: 0
     sprite2: 
     sprite3: 
-    textinfo: textinfo
+    textinfo: Remove all notes attached to the target
   - id: 10800
     desc: "\uB370\uBBF8\uC9C0N (1\uCC28 \uAD6C\uD604 \uC644) - value1(\uB370\uBBF8\uC9C0)"
     gimmick: Blade
@@ -102,7 +108,7 @@ MonoBehaviour:
     value1: 2
     sprite2: 
     sprite3: 
-    textinfo: textinfo
+    textinfo: Apply Damage 2 to Target
   - id: 10900
     desc: "\uD134\uB9C8\uB2E4 \uC81C\uAC70 \uAC00\uB2A5 \uC5EC\uBD80\uAC00 \uBC14\uB01C
       \uD788\uD2B8 \uAC00\uB2A5 \uC2DC\uC791(1\uCC28 \uAD6C\uD604 \uC644)"
@@ -114,7 +120,9 @@ MonoBehaviour:
     value1: 0
     sprite2: LockOpened
     sprite3: 
-    textinfo: textinfo
+    textinfo: 'Remove status change per turn
+
+      Starting Unremovable Status'
   - id: 11000
     desc: "\uD134\uB9C8\uB2E4 \uC81C\uAC70 \uAC00\uB2A5 \uC5EC\uBD80\uAC00 \uBC14\uB01C
       \uD788\uD2B8 \uBD88\uAC00 \uC2DC\uC791(1\uCC28 \uAD6C\uD604 \uC644)"
@@ -126,7 +134,9 @@ MonoBehaviour:
     value1: 0
     sprite2: LockOpened
     sprite3: 
-    textinfo: textinfo
+    textinfo: 'Remove status change per turn
+
+      Start Removable Status'
   - id: 20100
     desc: "\uD788\uD2B8 \uC2DC \uD68C\uC804\uC18D\uB3C4 \uC99D\uAC00(1\uCC28 \uAD6C\uD604
       \uC644)"
@@ -138,7 +148,9 @@ MonoBehaviour:
     value1: 30
     sprite2: 
     sprite3: 
-    textinfo: textinfo
+    textinfo: 'Increase target rotational speed
+
+      Target strike'
   - id: 20200
     desc: "\uD788\uD2B8 \uC2DC \uD68C\uC804\uC18D\uB3C4 \uAC10\uC18C(1\uCC28 \uAD6C\uD604
       \uC644)"
@@ -150,7 +162,9 @@ MonoBehaviour:
     value1: 30
     sprite2: 
     sprite3: 
-    textinfo: textinfo
+    textinfo: 'Reduce target rotational speed
+
+      Target strike'
   - id: 20300
     desc: "\uD788\uD2B8 \uC2DC \uBC1C\uC0AC\uCCB4 \uC218\uB7C9 N \uC99D\uAC00(1\uCC28
       \uAD6C\uD604 \uC644)"
@@ -162,7 +176,9 @@ MonoBehaviour:
     value1: 2
     sprite2: 
     sprite3: 
-    textinfo: textinfo
+    textinfo: 'Earn a note
+
+      Target strike'
   - id: 30100
     desc: "\uD574\uB2F9 \uC601\uC5ED\uC744 \uD1B5\uACFC\uD574\uC11C \uD788\uD2B8
       \uC2DC, \uB370\uBBF8\uC9C0 \uCD94\uAC001"
@@ -174,7 +190,7 @@ MonoBehaviour:
     value1: 0
     sprite2: 
     sprite3: 
-    textinfo: textinfo
+    textinfo: Add damage 1 in case of local strike
   - id: 30200
     desc: "\uD574\uB2F9 \uC601\uC5ED\uC744 \uD1B5\uACFC\uD574\uC11C \uD788\uD2B8
       \uC2DC, \uB370\uBBF8\uC9C0\uC5C6\uC74C"
@@ -186,4 +202,4 @@ MonoBehaviour:
     value1: 0
     sprite2: 
     sprite3: 
-    textinfo: textinfo
+    textinfo: No damage in case of local strike

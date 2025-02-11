@@ -12,6 +12,7 @@ public class LobbyScene : MonoBehaviour
 {
 	[SerializeField] private GameObject canvas;
 	[SerializeField] private GameObject btnPlay;
+	[SerializeField] private GameObject btnTempAD;
 	[SerializeField] private GameObject btnPlayer;
 	[SerializeField] private GameObject btnMenu;
 	[SerializeField] private GameObject popupPlayer;
@@ -114,6 +115,30 @@ public class LobbyScene : MonoBehaviour
 			LocalDataManager.instance.SetReddotPlay(true);
 			// 강제로 인게임신 전환
 			LoadLevelSceneForced();
+		}
+		else
+		{
+			if(LocalDataManager.instance.ShowAD())
+			{
+				// 광고 제생(네트워크 환경, 광고 불러옴 체크)
+				bool ableShowAD = true;
+
+				if(ableShowAD)
+				{
+					// 공고 재생 후 플레이 버튼 활성화
+					// 임시로 광고 팝업 활성화
+					btnTempAD.SetActive(true);
+				}
+				else
+				{
+					// 광고 제생 불가 상황에서는 플레이 버튼 활성화
+					ActiveBtnPlay();
+				}
+			}
+			else
+			{
+				ActiveBtnPlay();
+			}
 		}
 	}
 
@@ -352,5 +377,17 @@ public class LobbyScene : MonoBehaviour
 		{
 			btnPlay.transform.Find("Reddot").gameObject.SetActive(true);
 		}
+	}
+
+	public void ActiveBtnPlay()
+	{
+		btnPlay.SetActive(true);
+	}
+
+	public void OnClearAD()
+	{
+		LocalDataManager.instance.ResetPlayADCount();
+		btnTempAD.SetActive(false);
+		ActiveBtnPlay();
 	}
 }

@@ -7,6 +7,8 @@ using System.Linq;
 public class Define
 {
 	public const int STABLEUSER_LEVEL = 51;
+	public const int PLAY_AD_COUNT = 5;
+
 	// Local Save Data
 	public const string CHILD_SPRITE_OBJECT = "ChildSpriteObject";
 	public const string CUR_LEVEL = "CUR_LEVEL";
@@ -20,6 +22,7 @@ public class Define
 	public const string REDDOT_PLAYER = "REDDOT_PLAYER";
 	public const string REDDOT_MENU = "REDDOT_MENU";
 	public const string REDDOT_PLAY = "REDDOT_PLAY";
+	public const string PLAY_ADCHECK_COUNT = "PLAY_ADCHECK_COUNT";
 
 
 	public const string LOCALE_RETRY = "RETRY";
