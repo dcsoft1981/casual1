@@ -51,8 +51,8 @@ public class Define
 	public static Color COLOR_TARGET_SHIELD = Color.gray;
 	public static Color DAMAGE_LINE_COLOR = new Color(183f / 255f, 88f / 255f, 255f / 255f, 200f/255f);
 	public static Color NODAMAGE_LINE_COLOR = new Color(127f / 255f, 127f / 255f, 127f / 255f, 200f / 255f);
-	public static Color GIMMICKHIT_DEBUFF = new Color(0.1f, 0f, 0f);
-	public static Color GIMMICKHIT_BUFF = new Color(0.9f, 0f, 0f);
+	public static Color GIMMICKHIT_DEBUFF = new Color(0.3f, 0f, 0.3f);
+	public static Color GIMMICKHIT_BUFF = new Color(0.9f, 0f, 0.3f);
 	public static Color TARGETHIT_DEBUFF = new Color(0f, 0f, 0.3f);
 	public static Color TARGETHIT_BUFF = new Color(0f, 0f, 1f);
 
@@ -179,6 +179,16 @@ public class Define
 		HEART = 9,
 		SMILE = 10, //  ^ ^
 		//ONE_LINE = 11,
+	}
+
+	// 진동 타입
+	public enum VibrationType
+	{
+		NONE = 0,
+		NormalDamage = 1,
+		DoubleDamage = 2,
+		Clear = 3,
+		Shake = 4,
 	}
 
 

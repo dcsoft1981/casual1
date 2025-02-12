@@ -504,11 +504,10 @@ public class LocalDataManager : MonoBehaviour
 			case GimmickType.REMOVE_SHOT:
 				return Define.GIMMICKHIT_BUFF;
 			case GimmickType.ROTATION_DOWN:
+			case GimmickType.ADD_SHOT:
 				return Define.TARGETHIT_BUFF;
 			case GimmickType.ROTATION_UP:
 				return Define.TARGETHIT_DEBUFF;
-			case GimmickType.ADD_SHOT:
-				return Define.TARGETHIT_BUFF;
 			case GimmickType.SEQUENCE:
 				{
 					if (isChecked)

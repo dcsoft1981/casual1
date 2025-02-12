@@ -1,7 +1,5 @@
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
-using VibrationUtility;
 
 public class PopupCheat : MonoBehaviour
 {
@@ -20,9 +18,9 @@ public class PopupCheat : MonoBehaviour
 		if(!initVibrate)
 		{
 			initVibrate = true;
-			VibrationUtil.Init();
 		}
 		int type = int.Parse(inputFieldVibrate.text);
+		/*
 		VibrationType vibrationType = VibrationType.Default;
 		switch(type)
 		{
@@ -40,5 +38,6 @@ public class PopupCheat : MonoBehaviour
 			case 12: vibrationType = VibrationType.Warning; break;
 		}
 		VibrationUtil.Vibrate(vibrationType);
+		*/
 	}
 }

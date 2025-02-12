@@ -13,7 +13,6 @@ using Unity.Burst.Intrinsics;
 using System.Collections;
 using Febucci.UI;
 using DG.Tweening.Core.Easing;
-using VibrationUtility;
 using static UnityEngine.EventSystems.EventTrigger;
 using System.Text;
 using UnityEngine.UI;
@@ -106,6 +105,8 @@ public class GameManager : MonoBehaviour
 
 	[SerializeField] private GameObject topUI;
 
+	private bool clearTierUp = false;
+
 	// Start is called once before the first execution of Update after the MonoBehaviour is created
 
 	private void Awake()
@@ -126,7 +127,6 @@ public class GameManager : MonoBehaviour
 			dic_PairGimmick = new Dictionary<GameObject, GameObject>();
 			dic_doubleDamage = new Dictionary<int, int>();
 			dic_noDamage = new Dictionary<int, int>();
-			VibrationUtil.Init();
 		}
 	}
 
@@ -278,9 +278,9 @@ public class GameManager : MonoBehaviour
 			hp -= damage;
 			targetCircle.GetColorByTargetHp(maxHp, hp);
 			if (damage == 2)
-				Vibrate2();
+				VibrateDoubleDamage();
 			else
-				Vibrate1();
+				VibrateNormalDamage();
 			StartCoroutine(Shake(targetCircle.gameObject, ShakeType.NORMAL));
 		}
 		if (hp < 0)
@@ -337,6 +337,12 @@ public class GameManager : MonoBehaviour
 			//if(array[i].positionCount < 10)
 			array[i].enabled = false;
 		}
+	}
+
+	public void TierUpSound()
+	{
+		// 사운드 발동
+		AudioManager.instance.PlaySfx(AudioManager.Sfx.tier_up);
 	}
 
 	private  void StageClear()
@@ -398,8 +404,7 @@ public class GameManager : MonoBehaviour
 			{
 				popupResult.transform.Find("ButtonShare").gameObject.SetActive(true);
 			}
-			// 사운드 발동
-			AudioManager.instance.PlaySfx(AudioManager.Sfx.tier_up);
+			clearTierUp = true;
 		}
 		else
 		{
@@ -418,7 +423,7 @@ public class GameManager : MonoBehaviour
 			}
 		}
 		AudioManager.instance.PlaySfx(AudioManager.Sfx.clear);
-		Vibrate3();
+		VibrateClear();
 		Invoke("PopupClearResult", 1f);
 	}
 
@@ -735,11 +740,11 @@ public class GameManager : MonoBehaviour
 		{
 			if(gameObjectGimmick.gimmickType == GimmickType.REMOVE_SHOT)
 			{
-				Vibrate4();
+				VibrateShake();
 			}
 			else
 			{
-				Vibrate1();
+				VibrateNormalDamage();
 			}
 		}
 		StartCoroutine(Shake(gameObject, ShakeType.NORMAL));
@@ -1603,26 +1608,27 @@ public class GameManager : MonoBehaviour
 	{
 		if (LocalDataManager.instance.GetVibrateOff())
 			return;
-		VibrationUtil.Vibrate(type);
+		
+		// 구현 필요
 	}
-	public void Vibrate1()
+	public void VibrateNormalDamage()
 	{
-		Vibrate(VibrationType.Nope);
-	}
-
-	public void Vibrate2()
-	{
-		Vibrate(VibrationType.Success);
+		Vibrate(VibrationType.NormalDamage);
 	}
 
-	public void Vibrate3()
+	public void VibrateDoubleDamage()
 	{
-		Vibrate(VibrationType.Error);
+		Vibrate(VibrationType.DoubleDamage);
 	}
 
-	public void Vibrate4()
+	public void VibrateClear()
 	{
-		Vibrate(VibrationType.Default);
+		Vibrate(VibrationType.Clear);
+	}
+
+	public void VibrateShake()
+	{
+		Vibrate(VibrationType.Shake);
 	}
 
 	public void TutorialButtonClick()
@@ -1643,6 +1649,10 @@ public class GameManager : MonoBehaviour
 	{
 		PopupResultSuccess();
 		LocalDataManager.instance.ClearLevelPlayData();
+		if(clearTierUp)
+		{
+			TierUpSound();
+		}
 	}
 
 	private IEnumerator AnimateHPChange(float targetHP)
