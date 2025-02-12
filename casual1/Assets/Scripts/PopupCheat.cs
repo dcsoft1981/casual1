@@ -20,24 +20,17 @@ public class PopupCheat : MonoBehaviour
 			initVibrate = true;
 		}
 		int type = int.Parse(inputFieldVibrate.text);
-		/*
-		VibrationType vibrationType = VibrationType.Default;
 		switch(type)
 		{
-			case 1: vibrationType = VibrationType.Default; break;
-			case 2: vibrationType = VibrationType.Peek; break;
-			case 3: vibrationType = VibrationType.Pop; break;
-			case 4: vibrationType = VibrationType.Nope; break;
-			case 5: vibrationType = VibrationType.Heavy; break;
-			case 6: vibrationType = VibrationType.Medium; break;
-			case 7: vibrationType = VibrationType.Light; break;
-			case 8: vibrationType = VibrationType.Rigid; break;
-			case 9: vibrationType = VibrationType.Soft; break;
-			case 10: vibrationType = VibrationType.Error; break;
-			case 11: vibrationType = VibrationType.Success; break;
-			case 12: vibrationType = VibrationType.Warning; break;
+			case 1: Taptic.Warning(); break;
+			case 2: Taptic.Failure(); break;
+			case 3: Taptic.Success(); break;
+			case 4: Taptic.Light(); break;
+			case 5: Taptic.Medium(); break;
+			case 6: Taptic.Heavy(); break;
+			case 7: Taptic.Default(); break;
+			case 8: Taptic.Vibrate(); break;
+			case 9: Taptic.Selection(); break;
 		}
-		VibrationUtil.Vibrate(vibrationType);
-		*/
 	}
 }

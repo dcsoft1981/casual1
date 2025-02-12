@@ -1604,31 +1604,24 @@ public class GameManager : MonoBehaviour
 		}
 	}
 
-	private void Vibrate(VibrationType type)
-	{
-		if (LocalDataManager.instance.GetVibrateOff())
-			return;
-		
-		// 구현 필요
-	}
 	public void VibrateNormalDamage()
 	{
-		Vibrate(VibrationType.NormalDamage);
+		Taptic.Light();
 	}
 
 	public void VibrateDoubleDamage()
 	{
-		Vibrate(VibrationType.DoubleDamage);
+		Taptic.Medium();
 	}
 
 	public void VibrateClear()
 	{
-		Vibrate(VibrationType.Clear);
+		Taptic.Success();
 	}
 
 	public void VibrateShake()
 	{
-		Vibrate(VibrationType.Shake);
+		Taptic.Warning();
 	}
 
 	public void TutorialButtonClick()
