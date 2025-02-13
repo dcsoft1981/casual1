@@ -24,6 +24,9 @@ namespace Google.Play.Review.Samples.ReviewDemo
 {
     public class ReviewDemo : MonoBehaviour
     {
+        #if UNITY_IOS
+
+        #else
         private static PlayReviewInfo _playReviewInfo;
         private ReviewManager _reviewManager;
         private Dictionary<KeyCode, Action> _keyMappings;
@@ -150,5 +153,6 @@ namespace Google.Play.Review.Samples.ReviewDemo
             requestFlowButton.interactable = true;
             allInOneButton.interactable = true;
         }
+        #endif
     }
 }
