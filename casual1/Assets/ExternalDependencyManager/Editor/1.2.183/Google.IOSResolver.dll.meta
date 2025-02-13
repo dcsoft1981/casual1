@@ -1,9 +1,9 @@
 fileFormatVersion: 2
 guid: a366c71c93ae411ea1ece423e8b1538f
 labels:
-- gvh_version-1.2.183
-- gvhp_exportpath-ExternalDependencyManager/Editor/1.2.183/Google.IOSResolver.dll
 - gvh
+- gvh_version-9.5.0
+- gvhp_exportpath-ExternalDependencyManager/Editor/1.2.183/Google.IOSResolver.dll
 - gvhp_targets-editor
 PluginImporter:
   externalObjects: {}
@@ -13,8 +13,8 @@ PluginImporter:
   defineConstraints: []
   isPreloaded: 0
   isOverridable: 0
-  isExplicitlyReferenced: 0
-  validateReferences: 1
+  isExplicitlyReferenced: 1
+  validateReferences: 0
   platformData:
     Android:
       enabled: 0
@@ -26,7 +26,7 @@ PluginImporter:
       enabled: 0
       settings:
         Exclude Android: 1
-        Exclude Editor: 0
+        Exclude Editor: 1
         Exclude Linux64: 1
         Exclude OSXUniversal: 1
         Exclude Win: 1

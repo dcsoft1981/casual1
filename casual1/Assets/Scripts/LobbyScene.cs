@@ -7,7 +7,9 @@ using NUnit.Framework;
 using System.Collections.Generic;
 using static Define;
 using System.Text;
+using UnityEngine.Scripting;
 
+[Preserve]
 public class LobbyScene : MonoBehaviour
 {
 	[SerializeField] private GameObject canvas;
@@ -32,6 +34,7 @@ public class LobbyScene : MonoBehaviour
 
 
 	private Image buttonPlayImage;
+	private Image buttonADImage;
 	private Image buttonPlayerImage;
 	private Image buttonMenuImage;
 	private List<string> titlePrefix;
@@ -56,6 +59,7 @@ public class LobbyScene : MonoBehaviour
 	private void Awake()
 	{
 		buttonPlayImage = btnPlay.transform.Find("Image").GetComponent<Image>();
+		buttonADImage = btnTempAD.transform.Find("Image").GetComponent<Image>();
 		buttonPlayerImage = btnPlayer.GetComponent<Image>();
 		buttonMenuImage = btnMenu.GetComponent<Image>();
 		titlePrefix = new List<string>();
@@ -91,6 +95,7 @@ public class LobbyScene : MonoBehaviour
 		}
 		Color curGradeColor = LocalDataManager.instance.GetCurColor();
 		buttonPlayImage.color = curGradeColor;
+		buttonADImage.color = curGradeColor;
 		buttonPlayerImage.color = curGradeColor;
 		buttonMenuImage.color = curGradeColor;
 		IngameType ingameType = LocalDataManager.instance.GetIngameType();
@@ -387,6 +392,11 @@ public class LobbyScene : MonoBehaviour
 	public void OnClearAD()
 	{
 		LocalDataManager.instance.ResetPlayADCount();
+		SwapAdBtnToPlayBtn();
+	}
+
+	public void SwapAdBtnToPlayBtn()
+	{
 		btnTempAD.SetActive(false);
 		ActiveBtnPlay();
 	}

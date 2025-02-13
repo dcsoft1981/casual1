@@ -430,15 +430,7 @@ public class LocalDataManager : MonoBehaviour
 		// 아이콘 색상 변경
 		Image image = iconTransform.gameObject.GetComponent<Image>();
 		GimmickType gimmickType = (GimmickType)entity.id;
-		if (gimmickType == GimmickType.ONOFF_OFF)
-		{
-			if (dic_gimmickSprites2.TryGetValue(entity.id, out Sprite sprite))
-			{
-				image.sprite = sprite;
-				image.color = GetGimmickColor(gimmickType, 1, false);
-			}
-		}
-		else if (dic_gimmickSprites.TryGetValue(entity.id, out Sprite sprite))
+		if (dic_gimmickSprites.TryGetValue(entity.id, out Sprite sprite))
 		{
 			image.sprite = sprite;
 			image.color = GetGimmickColor(gimmickType, 1, false);
@@ -647,6 +639,12 @@ public class LocalDataManager : MonoBehaviour
 
 	public bool ShowAD()
 	{
+		/*
+		int a = 1;
+		if (a == 1)
+			return true;
+		*/
+
 		if(GetPlayCountForAD() >= Define.PLAY_AD_COUNT)
 		{
 			return true;

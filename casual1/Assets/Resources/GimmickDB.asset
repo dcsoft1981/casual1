@@ -122,7 +122,7 @@ MonoBehaviour:
     sprite3: 
     textinfo: 'Remove status change per turn
 
-      Starting Unremovable Status'
+      Start Removable Status'
   - id: 11000
     desc: "\uD134\uB9C8\uB2E4 \uC81C\uAC70 \uAC00\uB2A5 \uC5EC\uBD80\uAC00 \uBC14\uB01C
       \uD788\uD2B8 \uBD88\uAC00 \uC2DC\uC791(1\uCC28 \uAD6C\uD604 \uC644)"
@@ -136,7 +136,7 @@ MonoBehaviour:
     sprite3: 
     textinfo: 'Remove status change per turn
 
-      Start Removable Status'
+      Starting Unremovable Status'
   - id: 20100
     desc: "\uD788\uD2B8 \uC2DC \uD68C\uC804\uC18D\uB3C4 \uC99D\uAC00(1\uCC28 \uAD6C\uD604
       \uC644)"
