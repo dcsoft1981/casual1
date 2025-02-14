@@ -9,6 +9,8 @@ public class PopupCheat : MonoBehaviour
 
 	public void OnClickCheatStage()
     {
+		if (!LocalDataManager.instance.GetCheatStage())
+			return;
 		int stage = int.Parse(inputFieldStage.text);
 		LocalDataManager.instance.SetCurLevel(stage);
 	}

@@ -791,15 +791,17 @@ namespace MobileMonetizationPro
             ad.OnAdFullScreenContentOpened += () =>
             {
                 Debug.Log("AlexADRewarded ad full screen content opened.");
+				AudioManager.instance.TickTockStop();
             };
             // Raised when the ad closed full screen content.
             ad.OnAdFullScreenContentClosed += () =>
             {
                 Debug.Log("AlexADRewarded ad full screen content closed.");
-                DestroyRewardedAd();
+				DestroyRewardedAd();
 				IsAdCompleted = true;
                 CheckForAdmobManagerScript();
-            };
+				AudioManager.instance.TickTockPlay();
+			};
             // Raised when the ad failed to open full screen content.
             ad.OnAdFullScreenContentFailed += (AdError error) =>
             {

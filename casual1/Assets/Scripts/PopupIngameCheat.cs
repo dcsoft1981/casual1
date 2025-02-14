@@ -8,12 +8,16 @@ public class PopupIngameCheat : MonoBehaviour
 
 	public void OnClickIngameCheatRotation()
 	{
+		if (!LocalDataManager.instance.GetCheatStage())
+			return;
 		int rotation = int.Parse(inputFieldRotation.text);
 		GameManager.instance.SetCheatRotation(rotation);
 	}
 
 	public void OnClickIngameCheatShot()
 	{
+		if (!LocalDataManager.instance.GetCheatStage())
+			return;
 		int shot = int.Parse(inputFieldShot.text);
 		GameManager.instance.AddShot(shot);
 	}

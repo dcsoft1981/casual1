@@ -405,6 +405,8 @@ public class GameManager : MonoBehaviour
 				popupResult.transform.Find("ButtonShare").gameObject.SetActive(true);
 			}
 			clearTierUp = true;
+			// 레드닷 활성화
+			LocalDataManager.instance.SetReddotPlayer(true);
 		}
 		else
 		{
@@ -1616,7 +1618,7 @@ public class GameManager : MonoBehaviour
 
 	public void VibrateClear()
 	{
-		Taptic.Success();
+		Taptic.Failure();
 	}
 
 	public void VibrateShake()

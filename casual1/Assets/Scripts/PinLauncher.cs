@@ -91,6 +91,7 @@ public class PinLauncher : MonoBehaviour
 			*/
 
 			currPin = pin.GetComponent<Pin>();
+			currPin.ConnectorSetting(true);
 			currPin.SetPinId(GameManager.instance.GetNextPinID());
 			currPin.effect = Instantiate(effectPrab, effectGroup);
 			GameManager.instance.SetCreatedPin(currPin);

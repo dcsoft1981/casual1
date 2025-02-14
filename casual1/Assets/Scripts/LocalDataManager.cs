@@ -41,6 +41,7 @@ public class LocalDataManager : MonoBehaviour
 	private int maxLevel = 0;
 
 	public Sprite spriteQuestion = null;
+	private bool enableCheat = false;
 
 	private void Awake()
 	{
@@ -116,6 +117,10 @@ public class LocalDataManager : MonoBehaviour
 			LocalDataManager.instance.CheckInfinityStage();
 
 			spriteQuestion = Resources.Load<Sprite>("Help");
+
+#if UNITY_EDITOR
+			enableCheat = true;
+#endif
 		}
 	}
 
@@ -388,11 +393,12 @@ public class LocalDataManager : MonoBehaviour
 		int startTime = levelPlayDataStartSec;
 		int curTime = Define.GetCurrentUnixTimestamp();
 		int sec = curTime - startTime;
-		if (sec < 0)
-			sec = 0;
+		if (sec < 3)
+			sec = 3;
+
 		string timeText = Define.ConvertSecondsToTimeString(sec);
 		StringBuilder sb = new StringBuilder();
-		sb.Append(timeText).Append(" Time Taken\\nTryCount : ").Append(levelPlayDataTryCount).Append(" ShotCount : ").Append(levelPlayDataShotCount);
+		sb.Append(timeText).Append(" Time Taken\\nTryCount : ").Append(levelPlayDataTryCount).Append("\\nShotCount : ").Append(levelPlayDataShotCount);
 		return sb.ToString();
 	}
 
@@ -665,5 +671,10 @@ public class LocalDataManager : MonoBehaviour
 	public void ResetPlayADCount()
 	{
 		SetPlayADCount(0);
+	}
+
+	public bool GetCheatStage()
+	{
+		return enableCheat;
 	}
 }

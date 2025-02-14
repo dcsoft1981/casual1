@@ -21,20 +21,24 @@ public class Pin : MonoBehaviour
 	private GameObject spriteObject;
 	private Vector3 spriteOriginalScale;
 	private Tweener scaleTween;
+	private GameObject objConnector;
+	private bool connectorAlive = false;
+	private float rotationSpeed = 100f;
 
 	private void Awake()
 	{
 		spriteRenderer = GetComponent<SpriteRenderer>();
 		spriteObject = gameObject.transform.Find(Define.CHILD_SPRITE_OBJECT).gameObject;
 		spriteOriginalScale = spriteObject.transform.localScale;
+		objConnector = spriteObject.transform.Find("Connector").gameObject;
 	}
 	void Start()
     {
         
     }
 
-    // Update is called once per frame
-    void FixedUpdate()
+	// Update is called once per frame
+	void FixedUpdate()
     {
         if (isPinned == false)
         {
@@ -96,6 +100,7 @@ public class Pin : MonoBehaviour
 				else
 				{
 					isPinned = true;
+					ConnectorSetting(false);
 					// 위치 조정
 					transform.position = GameManager.instance.GetTargetPinnedPosition();
 
@@ -318,5 +323,20 @@ public class Pin : MonoBehaviour
 			scaleTween = null;
 		}
 		spriteObject.transform.localScale = spriteOriginalScale;
+	}
+
+	public void ConnectorSetting(bool alive)
+	{
+		objConnector.SetActive(alive);
+		connectorAlive = alive;
+		SpriteRenderer objConnectorSprite = objConnector.GetComponent<SpriteRenderer>();
+		if (alive)
+		{
+			objConnectorSprite.DOFade(0.2f, 0.5f).SetLoops(-1, LoopType.Yoyo);
+		}
+		else
+		{
+			objConnectorSprite.DOKill();
+		}
 	}
 }

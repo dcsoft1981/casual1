@@ -55,9 +55,11 @@ public class LobbyScene : MonoBehaviour
 
 	[SerializeField] private GameObject marks;
 	[SerializeField] private GameObject markPrefab;
+	[SerializeField] private GameObject btnCheat;
 
 	private void Awake()
 	{
+		// https://docs.febucci.com/text-animator-unity/effects/built-in-effects-list
 		buttonPlayImage = btnPlay.transform.Find("Image").GetComponent<Image>();
 		buttonADImage = btnTempAD.transform.Find("Image").GetComponent<Image>();
 		buttonPlayerImage = btnPlayer.GetComponent<Image>();
@@ -110,6 +112,7 @@ public class LobbyScene : MonoBehaviour
 		SetGimmickScrollInfo();
 		SetMarksInfo();
 		SetReddot();
+		SetCheat();
 		AudioManager.instance.TickTockPlay();
 
 		time = 0.0f;
@@ -209,6 +212,8 @@ public class LobbyScene : MonoBehaviour
 
 	public void OnClickCheat()
 	{
+		if (!LocalDataManager.instance.GetCheatStage())
+			return;
 		popupCheat.SetActive(true);
 		popupCheat.transform.localScale = Vector3.zero;
 		popupCheat.transform.DOScale(Vector3.one, 0.2f).SetEase(Ease.OutCirc);
@@ -368,15 +373,25 @@ public class LobbyScene : MonoBehaviour
 		markGameObject.GetComponent<Mark>().SetData(entity);
 	}
 
+	public void PunchScale(Transform t)
+	{
+		// 버튼의 transform에 DOPunchScale 효과 적용
+		// new Vector3(0.2f, 0.2f, 0f): x, y축으로 0.2만큼 펀치 효과
+		// 0.3f: 효과 지속 시간, 10: 진동 횟수, 1f: 탄력성
+		t.DOPunchScale(new Vector3(0.2f, 0.2f, 0f), 3f, 10, 0.5f).SetLoops(-1, LoopType.Restart);
+	}
+
 	public void SetReddot()
 	{
 		if(LocalDataManager.instance.GetReddotPlayer())
 		{
 			btnPlayer.transform.Find("Reddot").gameObject.SetActive(true);
+			PunchScale(btnPlayer.transform);
 		}
 		if (LocalDataManager.instance.GetReddotMenu())
 		{
 			btnMenu.transform.Find("Reddot").gameObject.SetActive(true);
+			PunchScale(btnMenu.transform);
 		}
 		if (LocalDataManager.instance.GetReddotPlay())
 		{
@@ -399,5 +414,13 @@ public class LobbyScene : MonoBehaviour
 	{
 		btnTempAD.SetActive(false);
 		ActiveBtnPlay();
+	}
+
+	public void SetCheat()
+	{
+		if(LocalDataManager.instance.GetCheatStage())
+		{
+			btnCheat.SetActive(true);
+		}
 	}
 }

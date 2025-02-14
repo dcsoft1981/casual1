@@ -212,8 +212,18 @@ public class Define
 
 	public static string ConvertSecondsToTimeString(long totalSeconds)
 	{
-		TimeSpan timeSpan = TimeSpan.FromSeconds(totalSeconds);
-		return timeSpan.ToString(@"hh\:mm\:ss");
+		try
+		{
+			TimeSpan timeSpan = TimeSpan.FromSeconds(totalSeconds);
+			if (timeSpan.Days > 0)
+				return (timeSpan.Days.ToString()+"D");
+			else
+				return timeSpan.ToString(@"hh\:mm\:ss");
+		}
+		catch (Exception e)
+		{
+			return "LongTime";
+		}
 	}
 
 	public static T GetRandomEnumValue<T>() where T : Enum
