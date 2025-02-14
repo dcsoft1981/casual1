@@ -1618,7 +1618,7 @@ public class GameManager : MonoBehaviour
 
 	public void VibrateClear()
 	{
-		Taptic.Failure();
+		Taptic.Success();
 	}
 
 	public void VibrateShake()

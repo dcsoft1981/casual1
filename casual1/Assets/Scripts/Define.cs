@@ -181,16 +181,6 @@ public class Define
 		//ONE_LINE = 11,
 	}
 
-	// 진동 타입
-	public enum VibrationType
-	{
-		NONE = 0,
-		NormalDamage = 1,
-		DoubleDamage = 2,
-		Clear = 3,
-		Shake = 4,
-	}
-
 
 	// Static 함수들
 	public static GimmickCathegory GetGimmickCathegory(GimmickType type)
