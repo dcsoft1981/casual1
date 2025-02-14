@@ -12,7 +12,7 @@ public class PinLauncher : MonoBehaviour
 
 	private Pin currPin;
 	float staffLength = 1.5f;
-	float staffOffset = 0.7f;
+	float staffOffset = 0.5f;
 	List<GameObject> staggLines = new List<GameObject>();
 	Queue<TempPin> queueTempPIn = new Queue<TempPin>();
 

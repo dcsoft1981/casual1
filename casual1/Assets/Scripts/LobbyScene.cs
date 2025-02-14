@@ -180,6 +180,7 @@ public class LobbyScene : MonoBehaviour
 		{
 			LocalDataManager.instance.SetReddotPlayer(false);
 			btnPlayer.transform.Find("Reddot").gameObject.SetActive(false);
+			StopTweenAni(btnPlayer.transform);
 		}
 		//popupPlayer.transform.localScale = Vector3.zero;
 		//popupPlayer.transform.DOScale(Vector3.one, 0.2f).SetEase(Ease.OutCirc);
@@ -198,6 +199,7 @@ public class LobbyScene : MonoBehaviour
 		{
 			LocalDataManager.instance.SetReddotMenu(false);
 			btnMenu.transform.Find("Reddot").gameObject.SetActive(false);
+			StopTweenAni(btnMenu.transform);
 		}
 		SetSetting();
 		//popupMenu.transform.localScale = Vector3.zero;
@@ -381,6 +383,11 @@ public class LobbyScene : MonoBehaviour
 		t.DOPunchScale(new Vector3(0.2f, 0.2f, 0f), 3f, 10, 0.5f).SetLoops(-1, LoopType.Restart);
 	}
 
+	public void StopTweenAni(Transform t)
+	{
+		t.DOKill();
+	}
+
 	public void SetReddot()
 	{
 		if(LocalDataManager.instance.GetReddotPlayer())
@@ -399,15 +406,15 @@ public class LobbyScene : MonoBehaviour
 		}
 	}
 
-	public void ActiveBtnPlay()
-	{
-		btnPlay.SetActive(true);
-	}
-
-	public void OnClearAD()
+	public void OnClearADWork()
 	{
 		LocalDataManager.instance.ResetPlayADCount();
 		SwapAdBtnToPlayBtn();
+	}
+
+	private void ActiveBtnPlay()
+	{
+		btnPlay.SetActive(true);
 	}
 
 	public void SwapAdBtnToPlayBtn()

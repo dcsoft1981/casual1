@@ -12462,9 +12462,9 @@ MonoBehaviour:
     - GuideLineOn
     - SetMarksInfo
     - PunchScale
+    - StopTweenAni
     - SetReddot
-    - ActiveBtnPlay
-    - OnClearAD
+    - OnClearADWork
     - SwapAdBtnToPlayBtn
     - SetCheat
     - get_destroyCancellationToken

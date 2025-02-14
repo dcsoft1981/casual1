@@ -14,7 +14,7 @@ public class Pin : MonoBehaviour
 	private Vector3 reflectVec = Vector3.zero;
 	private bool isUpgraded = false;
 	private bool isWorked = false;
-	private SpriteRenderer spriteRenderer;
+	//private SpriteRenderer spriteRenderer;
 	private float reflectRotateSpeed = 0f;
 	private int pinId = 0;
 	public ParticleSystem effect = null;
@@ -27,7 +27,7 @@ public class Pin : MonoBehaviour
 
 	private void Awake()
 	{
-		spriteRenderer = GetComponent<SpriteRenderer>();
+		//spriteRenderer = GetComponent<SpriteRenderer>();
 		spriteObject = gameObject.transform.Find(Define.CHILD_SPRITE_OBJECT).gameObject;
 		spriteOriginalScale = spriteObject.transform.localScale;
 		objConnector = spriteObject.transform.Find("Connector").gameObject;
@@ -165,6 +165,7 @@ public class Pin : MonoBehaviour
 					{
 						AudioManager.instance.PlaySfx(AudioManager.Sfx.shot_gimmick);
 						ReflectPin(collision);
+						//DisapearPin();
 						GameManager.instance.ResetCombo();
 					}
 					break;
@@ -172,6 +173,7 @@ public class Pin : MonoBehaviour
 					{
 						AudioManager.instance.PlaySfx(AudioManager.Sfx.shot_gimmick);
 						ReflectPin(collision);
+						//DisapearPin();
 						GameManager.instance.ResetCombo();
 					}
 					break;
@@ -203,6 +205,12 @@ public class Pin : MonoBehaviour
 		isLaunched = true;
 	}
 
+	private void DisapearPin()
+	{
+		isReflecteded = true;
+		Invoke("DestroyPin", 0.3f);
+	}
+
 	private void ReflectPin(Collider2D collision)
 	{
 		Pin collisionPin = collision.gameObject.GetComponent<Pin>();
@@ -215,24 +223,42 @@ public class Pin : MonoBehaviour
 				return;
 			}
 		}
+		// 스파라이트 스케일 줄이기
+		DisappearScaleChange();
 
 		Vector3 colliderPos = collision.transform.position;
 		reflectVec = (collision.transform.position - this.transform.position).normalized;
 		reflectVec = Vector3.Reflect(Vector3.down, reflectVec);
-		float reflectX = reflectVec.x;
+		float reflectX = -reflectVec.x;
 		if(reflectX > 0)
 		{
 			if (reflectX < 0.01f)
+			{
 				reflectX = 0.01f;
-			else if (reflectX > 0.6f)
-				reflectX = 0.6f;
+			}
+			else if (reflectX < 0.3f)
+			{
+				reflectX = 0.3f;
+			}
+			else if (reflectX > 0.8f)
+			{
+				reflectX = 0.8f;
+			}
 		}
 		else
 		{
 			if (reflectX > -0.01f)
+			{
 				reflectX = -0.01f;
-			else if (reflectX < -0.3f)
+			}
+			else if (reflectX > -0.3f)
+			{
 				reflectX = -0.3f;
+			}
+			else if (reflectX < -0.8f)
+			{
+				reflectX = -0.8f;
+			}
 		}
 
 		reflectVec = new Vector3(reflectX, -1f, 0f);
@@ -306,13 +332,17 @@ public class Pin : MonoBehaviour
 
 	public void CreateScaleChange()
 	{
-		//GameObject spriteObject = gameObject.transform.Find(Define.CHILD_SPRITE_OBJECT).gameObject;
-		//Vector3 originalScale = spriteObject.transform.localScale;
 		spriteObject.transform.localScale = Vector3.zero;
 		spriteObject.transform.DOScale(spriteOriginalScale, 0.1f).SetEase(Ease.OutCirc).OnComplete(() =>
 		{
 			spriteObject.transform.localScale = spriteOriginalScale;
 		});
+	}
+
+	public void DisappearScaleChange()
+	{
+		spriteObject.transform.localScale = spriteOriginalScale;
+		spriteObject.transform.DOScale(Vector3.zero, 0.5f).SetEase(Ease.OutCirc);
 	}
 
 	public void SetDefaultSpriteScale()
