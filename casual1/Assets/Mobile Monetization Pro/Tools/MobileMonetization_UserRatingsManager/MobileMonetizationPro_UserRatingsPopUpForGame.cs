@@ -17,9 +17,10 @@ namespace MobileMonetizationPro
         public bool UseNativeAndroidReviewPopUp = true;
         public bool UseNativeIosReviewPopUp = true;
 
-        public string LinkToTheGame = "";
+        public string LinkToTheGameAndroid = "";
+		public string LinkToTheGameIOS = "";
 
-        [System.Serializable]
+		[System.Serializable]
         public enum Options
         {
             UseAppOpenCounts,
@@ -179,8 +180,19 @@ namespace MobileMonetizationPro
 
         void OpenReviewLink()
         {
-            // Open the link to Google.com
-            Application.OpenURL(LinkToTheGame);
+            string link = "";
+#if UNITY_ANDROID
+            link = LinkToTheGameAndroid;
+#endif
+
+#if UNITY_IOS
+            link = LinkToTheGameIOS;
+#endif
+			// Open the link to Google.com
+            if(link.Length > 0)
+            {
+				Application.OpenURL(link);
+			}
             CloseReviewLink();
             PlayerPrefs.SetInt("DoNotShowRatePopUp", 1);
         }

@@ -1666,9 +1666,4 @@ public class GameManager : MonoBehaviour
 		currentHP = targetHP;
 		slicedFilledImage.fillAmount = currentHP;
 	}
-
-	public void DoWorkShare()
-	{
-
-	}
 }
