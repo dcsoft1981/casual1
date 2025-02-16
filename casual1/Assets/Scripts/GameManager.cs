@@ -222,7 +222,7 @@ public class GameManager : MonoBehaviour
 
 		if(tutorialButtonTab)
 		{
-			float buttonTabPosY = pinLauncher.transform.position.y-1.5f;
+			float buttonTabPosY = pinLauncher.transform.position.y-1.43f;
 			buttonTab.transform.position = Camera.main.WorldToScreenPoint(new Vector3(0f, buttonTabPosY, 0f));
 			buttonTab.SetActive(true);
 			buttonTabText = buttonTab.GetComponentInChildren<TextMeshProUGUI>();

@@ -5193,7 +5193,7 @@ MonoBehaviour:
   guidelineOntoggle: {fileID: 1714116513}
   cam: {fileID: 1848905702}
   topColor: {r: 0.15686275, g: 0.15686275, b: 0.15686275, a: 1}
-  bottomColor: {r: 0.039215688, g: 0.039215688, b: 0.039215688, a: 1}
+  bottomColor: {r: 0.019607844, g: 0.019607844, b: 0.019607844, a: 1}
   duration: 3
   marks: {fileID: 1594758318}
   markPrefab: {fileID: 2703972938989590159, guid: e08f4cc3cdd6ebb488d261b58e04b99a, type: 3}
