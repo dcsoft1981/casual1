@@ -13,6 +13,7 @@ public class LocalDataManager : MonoBehaviour
 {
 	public static LocalDataManager instance = null;
 	private int curLevel = 0;
+	private int appStartTime = 0;
 	private int optionSoundOff = 0;
 	private int optionVibrateOff = 0;
 	private int optionGuideLineOff = 0;
@@ -42,6 +43,7 @@ public class LocalDataManager : MonoBehaviour
 
 	public Sprite spriteQuestion = null;
 	private bool enableCheat = false;
+	private bool disableAD = false;
 
 	private void Awake()
 	{
@@ -57,6 +59,11 @@ public class LocalDataManager : MonoBehaviour
 
 			// ∑Œƒ√ ¿˙¿Â µ•¿Ã≈Õ
 			curLevel = PlayerPrefs.GetInt(Define.CUR_LEVEL, 1);
+			appStartTime = PlayerPrefs.GetInt(Define.APP_START_TIME, 0);
+			if (appStartTime == 0)
+			{
+				SetAppStartTime();
+			}
 			optionSoundOff = PlayerPrefs.GetInt(Define.OPTION_SOUND_OFF, 0);
 			optionVibrateOff = PlayerPrefs.GetInt(Define.OPTION_VIBRATE_OFF, 0);
 			optionGuideLineOff = PlayerPrefs.GetInt(Define.OPTION_GUIDELINE_OFF, 1);
@@ -121,6 +128,8 @@ public class LocalDataManager : MonoBehaviour
 #if UNITY_EDITOR
 			enableCheat = true;
 #endif
+			// ±§∞Ì ONOFF
+			disableAD = true;
 		}
 	}
 
@@ -134,6 +143,40 @@ public class LocalDataManager : MonoBehaviour
 		PlayerPrefs.SetInt(Define.CUR_LEVEL, level);
 		PlayerPrefs.Save();
 		curLevel = level;
+	}
+
+	private void SetAppStartTime()
+	{
+		int curTime = Define.GetCurrentUnixTimestamp();
+		PlayerPrefs.SetInt(Define.APP_START_TIME, curTime);
+		PlayerPrefs.Save();
+		appStartTime = curTime;
+	}
+
+	public int GetAppStartTime()
+	{
+		return appStartTime;
+	}
+
+	private string GetTierTimeKeyValue(int tier)
+	{
+		string str = Define.TIER_GET_TIME + tier.ToString();
+		return str;
+	}
+
+	public void SetTierGetTime(int tier)
+	{
+		int sec = Define.GetCurrentUnixTimestamp() - appStartTime;
+		string timeVAlue = Define.ConvertSecondsToTimeString(sec);
+		string str = GetTierTimeKeyValue(tier);
+		PlayerPrefs.SetString(str, timeVAlue);
+		PlayerPrefs.Save();
+	}
+
+	public string GetTierGetTime(int tier)
+	{
+		string str = GetTierTimeKeyValue(tier);
+		return PlayerPrefs.GetString(str, "");
 	}
 
 	public LevelDBEntity GetLevelDBEntity(int level)
@@ -415,6 +458,9 @@ public class LocalDataManager : MonoBehaviour
 		iconTransform.gameObject.GetComponent<Image>().color = LocalDataManager.instance.GetGradeColor(entity.id);
 		nameTransform.gameObject.GetComponent<TextMeshProUGUI>().SetText(entity.grade);
 		messageTransform.gameObject.GetComponent<TextMeshProUGUI>().SetText(GetGradeInfoStr(entity));
+		// ∆ºæÓ ¥ﬁº∫ Ω√∞£ «•±‚
+		Transform timeTransform = gradeGameObject.transform.Find("Content/TimeText");
+		timeTransform.gameObject.GetComponent<TextMeshProUGUI>().SetText(LocalDataManager.instance.GetTierGetTime(entity.id));
 		return gradeGameObject;
 	}
 
@@ -645,13 +691,15 @@ public class LocalDataManager : MonoBehaviour
 
 	public bool ShowAD()
 	{
-		/*
-		int a = 1;
-		if (a == 1)
-			return true;
-		*/
+		// ƒ°∆Æ ∫ÙµÂ¥¬ ±§∞Ì æ»≥™ø»
+		if(GetCheatStage())
+			return false;
 
-		if(GetPlayCountForAD() >= Define.PLAY_AD_COUNT)
+		// ¿”Ω√∑Œ ±§∞Ì OFF Ω√≈≥∂© ±§∞Ì æ»≥™ø»
+		if(disableAD)
+			return false;
+
+		if (GetPlayCountForAD() >= Define.PLAY_AD_COUNT)
 		{
 			return true;
 		}

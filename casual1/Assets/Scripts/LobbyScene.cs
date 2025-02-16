@@ -231,7 +231,7 @@ public class LobbyScene : MonoBehaviour
 		// 정보 링크
 		// https://docs.febucci.com/text-animator-unity/effects/built-in-effects-list
 		int randValue = Random.Range(0, titlePrefix.Count);
-		string str = titlePrefix[randValue] + "TapTok";
+		string str = titlePrefix[randValue] + "TokTok";
 		textTitle1.SetText(str);
 		Debug.Log("SetTitleText : " + str);
 	}

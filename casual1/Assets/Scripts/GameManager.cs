@@ -395,12 +395,14 @@ public class GameManager : MonoBehaviour
 			textLevelPlayData.text = "";
 			GameObject gradeGameObject = popupResult.transform.Find("Grade").gameObject;
 			GradeDBEntity entity = LocalDataManager.instance.GetCurGradeDBEntity();
+			// 등급 달성 시간 기록
+			LocalDataManager.instance.SetTierGetTime(entity.id);
 			GameObject gradeInfoGameObject = LocalDataManager.instance.CreateGradeInfo(entity, gradeUp, gradeGameObject.transform);
 			gradeInfoGameObject.transform.localPosition = Vector3.one;
 			// Home 버튼 활성화
 			popupResult.transform.Find("ButtonHome").gameObject.SetActive(true);
 			// 쉐어버튼 활성화
-			if(LocalDataManager.instance.GetCurLevel() >= Define.STABLEUSER_LEVEL)
+			if(LocalDataManager.instance.GetCurGrade() >= 3) // 실버 부터
 			{
 				popupResult.transform.Find("ButtonShare").gameObject.SetActive(true);
 			}

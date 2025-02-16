@@ -7,7 +7,7 @@ using System.Linq;
 public class Define
 {
 	public const int STABLEUSER_LEVEL = 51;
-	public const int PLAY_AD_COUNT = 5;
+	public const int PLAY_AD_COUNT = 7;
 
 	// Local Save Data
 	public const string CHILD_SPRITE_OBJECT = "ChildSpriteObject";
@@ -23,6 +23,9 @@ public class Define
 	public const string REDDOT_MENU = "REDDOT_MENU";
 	public const string REDDOT_PLAY = "REDDOT_PLAY";
 	public const string PLAY_ADCHECK_COUNT = "PLAY_ADCHECK_COUNT";
+	public const string APP_START_TIME = "APP_START_TIME";
+	public const string TIER_GET_TIME = "TIER_GET_TIME";
+
 
 
 	public const string LOCALE_RETRY = "RETRY";
@@ -206,7 +209,7 @@ public class Define
 		{
 			TimeSpan timeSpan = TimeSpan.FromSeconds(totalSeconds);
 			if (timeSpan.Days > 0)
-				return (timeSpan.Days.ToString()+"D");
+				return (timeSpan.Days.ToString()+"D "+ timeSpan.ToString(@"hh\:mm\:ss"));
 			else
 				return timeSpan.ToString(@"hh\:mm\:ss");
 		}

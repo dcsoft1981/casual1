@@ -1,3 +1,5 @@
+using System.Reflection.Emit;
+using System.Text;
 using UnityEngine;
 
 public class ShareManager : MonoBehaviour
@@ -12,9 +14,24 @@ public class ShareManager : MonoBehaviour
 		}
 	}
 
-	public void DoWorkShare()
+
+	public void DoWorkShareNormal()
 	{
-		string text = "test test test";
+		string str = "Let`s Play TokTok with me!!";
+		DoWorkShare(str);
+	}
+
+	public void DoWorkShareTierUP()
+	{
+		GradeDBEntity entity = LocalDataManager.instance.GetCurGradeDBEntity();
+		StringBuilder sb = new StringBuilder();
+		sb.Append("I`d got ").Append(entity.grade).Append(" in ").Append(LocalDataManager.instance.GetTierGetTime(entity.id)).Append("\nPlay TokTok with me!!");
+		DoWorkShare(sb.ToString());
+	}
+
+
+	private void DoWorkShare(string text)
+	{
 		string url = "www.naver.com";
 		ShareText(text, url);
 	}

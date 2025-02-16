@@ -45,7 +45,7 @@ public class PinLauncher : MonoBehaviour
 
 				// 결과 출력
 				Debug.Log("월드 좌표: " + worldPosition);
-				if(worldPosition.x > -1f && worldPosition.x < 1f && worldPosition.y > -3f && worldPosition.y < -1f)
+				if(worldPosition.x > -5f && worldPosition.x < 5f && worldPosition.y > -4f && worldPosition.y < -1f)
 				{
 					noCheckPosition = true;
 				}

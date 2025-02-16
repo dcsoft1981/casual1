@@ -2225,7 +2225,7 @@ GameObject:
   - component: {fileID: 560791576}
   - component: {fileID: 560791575}
   m_Layer: 5
-  m_Name: TextTapTok
+  m_Name: TextTokTok
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2270,7 +2270,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Tap \n Tok"
+  m_text: "Tok \n Tok"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -5249,7 +5249,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 422262554}
         m_TargetAssemblyTypeName: ShareManager, Assembly-CSharp
-        m_MethodName: DoWorkShare
+        m_MethodName: DoWorkShareTierUP
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
