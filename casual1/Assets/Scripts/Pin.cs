@@ -367,6 +367,7 @@ public class Pin : MonoBehaviour
 		else
 		{
 			objConnectorSprite.DOKill();
+			objConnector.SetActive(false);
 		}
 	}
 }

@@ -130,6 +130,9 @@ public class LocalDataManager : MonoBehaviour
 #endif
 			// 광고 ONOFF
 			disableAD = true;
+
+			// 치트 활성화
+			enableCheat = true;
 		}
 	}
 
