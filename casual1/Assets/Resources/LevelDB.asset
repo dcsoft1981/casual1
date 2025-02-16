@@ -25,6 +25,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 2
     hp: 9
     shot: 10
@@ -37,6 +42,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 3
     hp: 11
     shot: 15
@@ -49,6 +59,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 4
     hp: 7
     shot: 6
@@ -61,6 +76,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 5
     hp: 13
     shot: 12
@@ -73,6 +93,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 6
     hp: 3
     shot: 10
@@ -85,6 +110,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 7
     hp: 8
     shot: 12
@@ -97,6 +127,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 8
     hp: 8
     shot: 10
@@ -109,6 +144,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 9
     hp: 4
     shot: 5
@@ -121,6 +161,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 10
     hp: 2
     shot: 6
@@ -133,6 +178,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 11
     hp: 6
     shot: 5
@@ -145,6 +195,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 12
     hp: 10
     shot: 6
@@ -157,6 +212,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 13
     hp: 8
     shot: 5
@@ -169,6 +229,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 14
     hp: 12
     shot: 14
@@ -181,6 +246,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 15
     hp: 15
     shot: 12
@@ -193,6 +263,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 16
     hp: 4
     shot: 10
@@ -205,6 +280,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 17
     hp: 6
     shot: 8
@@ -217,6 +297,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 18
     hp: 3
     shot: 3
@@ -229,6 +314,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 19
     hp: 8
     shot: 10
@@ -241,6 +331,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 20
     hp: 3
     shot: 7
@@ -253,6 +348,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 21
     hp: 4
     shot: 10
@@ -265,6 +365,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 22
     hp: 15
     shot: 15
@@ -277,6 +382,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 23
     hp: 10
     shot: 12
@@ -289,6 +399,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 24
     hp: 1
     shot: 3
@@ -301,6 +416,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 25
     hp: 14
     shot: 12
@@ -313,6 +433,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 26
     hp: 18
     shot: 10
@@ -325,6 +450,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 27
     hp: 9
     shot: 9
@@ -337,6 +467,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 28
     hp: 10
     shot: 10
@@ -349,6 +484,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 29
     hp: 15
     shot: 15
@@ -361,6 +501,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 30
     hp: 7
     shot: 6
@@ -373,6 +518,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 31
     hp: 5
     shot: 10
@@ -385,6 +535,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 32
     hp: 5
     shot: 10
@@ -397,6 +552,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 33
     hp: 6
     shot: 6
@@ -409,6 +569,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 34
     hp: 8
     shot: 8
@@ -421,6 +586,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 35
     hp: 12
     shot: 8
@@ -433,6 +603,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 36
     hp: 7
     shot: 7
@@ -445,6 +620,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 37
     hp: 9
     shot: 10
@@ -457,6 +637,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 38
     hp: 16
     shot: 8
@@ -469,6 +654,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 39
     hp: 8
     shot: 10
@@ -481,6 +671,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 40
     hp: 5
     shot: 10
@@ -493,6 +688,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 41
     hp: 3
     shot: 10
@@ -505,6 +705,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 42
     hp: 5
     shot: 12
@@ -517,6 +722,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 43
     hp: 5
     shot: 10
@@ -529,6 +739,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 44
     hp: 12
     shot: 12
@@ -541,6 +756,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 45
     hp: 1
     shot: 7
@@ -553,6 +773,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 46
     hp: 10
     shot: 10
@@ -565,6 +790,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 47
     hp: 4
     shot: 12
@@ -577,6 +807,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 48
     hp: 6
     shot: 10
@@ -589,6 +824,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 49
     hp: 5
     shot: 6
@@ -601,6 +841,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 50
     hp: 5
     shot: 8
@@ -613,6 +858,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 51
     hp: 20
     shot: 10
@@ -625,6 +875,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 52
     hp: 20
     shot: 10
@@ -637,6 +892,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 53
     hp: 20
     shot: 10
@@ -649,6 +909,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 54
     hp: 10
     shot: 5
@@ -661,6 +926,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 55
     hp: 6
     shot: 15
@@ -673,6 +943,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 56
     hp: 8
     shot: 4
@@ -685,6 +960,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 57
     hp: 10
     shot: 9
@@ -697,6 +977,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 58
     hp: 8
     shot: 6
@@ -709,6 +994,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 59
     hp: 4
     shot: 6
@@ -721,6 +1011,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 60
     hp: 15
     shot: 10
@@ -733,6 +1028,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 61
     hp: 20
     shot: 20
@@ -745,6 +1045,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 62
     hp: 10
     shot: 7
@@ -757,6 +1062,11 @@ MonoBehaviour:
     gimmick5: 30101:1:165:195
     gimmick6: 30101:1:285:315
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 63
     hp: 4
     shot: 12
@@ -769,6 +1079,11 @@ MonoBehaviour:
     gimmick5: 30101:1:320:340
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 64
     hp: 6
     shot: 8
@@ -781,6 +1096,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 65
     hp: 7
     shot: 11
@@ -793,6 +1113,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 66
     hp: 12
     shot: 6
@@ -805,6 +1130,11 @@ MonoBehaviour:
     gimmick5: 30101:1:170:190
     gimmick6: 30101:1:230:250
     gimmick7: 30101:1:290:310
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 67
     hp: 16
     shot: 12
@@ -817,6 +1147,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 68
     hp: 9
     shot: 12
@@ -829,6 +1164,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 69
     hp: 2
     shot: 12
@@ -841,6 +1181,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 70
     hp: 20
     shot: 14
@@ -853,6 +1198,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 71
     hp: 3
     shot: 10
@@ -865,6 +1215,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 72
     hp: 5
     shot: 15
@@ -877,6 +1232,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 73
     hp: 6
     shot: 12
@@ -889,6 +1249,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 74
     hp: 4
     shot: 12
@@ -901,6 +1266,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 75
     hp: 8
     shot: 16
@@ -913,6 +1283,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 76
     hp: 20
     shot: 10
@@ -925,6 +1300,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 77
     hp: 6
     shot: 15
@@ -937,6 +1317,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 78
     hp: 10
     shot: 17
@@ -949,6 +1334,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 79
     hp: 4
     shot: 4
@@ -961,6 +1351,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 80
     hp: 12
     shot: 20
@@ -973,6 +1368,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 81
     hp: 15
     shot: 15
@@ -985,6 +1385,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 82
     hp: 12
     shot: 11
@@ -997,6 +1402,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 83
     hp: 5
     shot: 15
@@ -1009,6 +1419,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 84
     hp: 21
     shot: 15
@@ -1021,6 +1436,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 85
     hp: 6
     shot: 15
@@ -1033,6 +1453,11 @@ MonoBehaviour:
     gimmick5: 10401:40:120:160:200:240:320
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 86
     hp: 18
     shot: 12
@@ -1045,6 +1470,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 87
     hp: 24
     shot: 12
@@ -1057,6 +1487,11 @@ MonoBehaviour:
     gimmick5: 30101:1:310:320
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 88
     hp: 14
     shot: 18
@@ -1069,6 +1504,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 89
     hp: 12
     shot: 15
@@ -1081,6 +1521,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 90
     hp: 16
     shot: 28
@@ -1093,6 +1538,11 @@ MonoBehaviour:
     gimmick5: 30101:1:130:140
     gimmick6: 30101:1:190:200
     gimmick7: 30101:1:250:260
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 91
     hp: 8
     shot: 4
@@ -1105,6 +1555,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 92
     hp: 6
     shot: 2
@@ -1117,6 +1572,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 93
     hp: 12
     shot: 6
@@ -1129,6 +1589,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 94
     hp: 18
     shot: 3
@@ -1141,6 +1606,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 95
     hp: 4
     shot: 1
@@ -1153,6 +1623,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 96
     hp: 7
     shot: 4
@@ -1165,6 +1640,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 97
     hp: 9
     shot: 3
@@ -1177,6 +1657,11 @@ MonoBehaviour:
     gimmick5: 30101:1:290:310
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 98
     hp: 10
     shot: 5
@@ -1189,6 +1674,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 99
     hp: 8
     shot: 4
@@ -1201,6 +1691,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 100
     hp: 60
     shot: 11
@@ -1213,6 +1708,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 101
     hp: 4
     shot: 2
@@ -1225,6 +1725,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 102
     hp: 12
     shot: 24
@@ -1237,6 +1742,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 103
     hp: 12
     shot: 9
@@ -1249,6 +1759,11 @@ MonoBehaviour:
     gimmick5: 30101:1:150:210
     gimmick6: 30101:1:270:330
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 104
     hp: 16
     shot: 15
@@ -1261,6 +1776,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 105
     hp: 11
     shot: 2
@@ -1273,6 +1793,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 106
     hp: 13
     shot: 6
@@ -1285,6 +1810,11 @@ MonoBehaviour:
     gimmick5: 30101:1:200:220
     gimmick6: 30101:1:260:280
     gimmick7: 30101:1:320:340
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 107
     hp: 19
     shot: 32
@@ -1297,6 +1827,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 108
     hp: 10
     shot: 5
@@ -1309,6 +1844,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 109
     hp: 18
     shot: 15
@@ -1321,6 +1861,11 @@ MonoBehaviour:
     gimmick5: 30101:1:220:260
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 110
     hp: 8
     shot: 8
@@ -1333,6 +1878,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 111
     hp: 22
     shot: 15
@@ -1345,6 +1895,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 112
     hp: 6
     shot: 6
@@ -1357,6 +1912,11 @@ MonoBehaviour:
     gimmick5: 30101:1:55:65
     gimmick6: 30101:1:175:185
     gimmick7: 30101:1:295:305
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 113
     hp: 12
     shot: 12
@@ -1369,6 +1929,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 114
     hp: 17
     shot: 33
@@ -1381,6 +1946,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 115
     hp: 8
     shot: 16
@@ -1393,6 +1963,11 @@ MonoBehaviour:
     gimmick5: 30101:1:175:185
     gimmick6: 30101:1:265:275
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 116
     hp: 20
     shot: 5
@@ -1405,6 +1980,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 117
     hp: 12
     shot: 28
@@ -1417,6 +1997,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 118
     hp: 12
     shot: 13
@@ -1429,6 +2014,11 @@ MonoBehaviour:
     gimmick5: 30101:1:205:275
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 119
     hp: 15
     shot: 1
@@ -1441,6 +2031,11 @@ MonoBehaviour:
     gimmick5: 30101:1:139:149
     gimmick6: 30101:1:211:221
     gimmick7: 30101:1:283:293
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 120
     hp: 34
     shot: 18
@@ -1453,6 +2048,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 121
     hp: 15
     shot: 20
@@ -1465,6 +2065,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 122
     hp: 15
     shot: 20
@@ -1477,6 +2082,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 123
     hp: 25
     shot: 30
@@ -1489,6 +2099,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 124
     hp: 3
     shot: 6
@@ -1501,6 +2116,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 125
     hp: 22
     shot: 17
@@ -1513,6 +2133,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 126
     hp: 24
     shot: 14
@@ -1525,6 +2150,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 127
     hp: 10
     shot: 13
@@ -1537,6 +2167,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 128
     hp: 13
     shot: 13
@@ -1549,6 +2184,11 @@ MonoBehaviour:
     gimmick5: 10901:144
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 129
     hp: 16
     shot: 13
@@ -1561,6 +2201,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 130
     hp: 60
     shot: 32
@@ -1573,6 +2218,11 @@ MonoBehaviour:
     gimmick5: 30101:1:-70:0
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 131
     hp: 20
     shot: 16
@@ -1585,6 +2235,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 132
     hp: 11
     shot: 6
@@ -1597,6 +2252,11 @@ MonoBehaviour:
     gimmick5: 30101:1:149:159
     gimmick6: 30101:1:223:233
     gimmick7: 30101:1:295:305
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 133
     hp: 1
     shot: 1
@@ -1609,6 +2269,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 134
     hp: 10
     shot: 21
@@ -1621,6 +2286,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 135
     hp: 16
     shot: 10
@@ -1633,6 +2303,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 136
     hp: 30
     shot: 25
@@ -1645,6 +2320,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 137
     hp: 15
     shot: 15
@@ -1657,6 +2337,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 138
     hp: 13
     shot: 17
@@ -1669,6 +2354,11 @@ MonoBehaviour:
     gimmick5: 30101:1:208:320
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 139
     hp: 13
     shot: 2
@@ -1681,6 +2371,11 @@ MonoBehaviour:
     gimmick5: 10801:80:200:320
     gimmick6: 20100:0:120:240
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 140
     hp: 21
     shot: 14
@@ -1693,6 +2388,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 141
     hp: 32
     shot: 35
@@ -1705,6 +2405,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 142
     hp: 15
     shot: 25
@@ -1717,6 +2422,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 143
     hp: 23
     shot: 40
@@ -1729,6 +2439,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 144
     hp: 18
     shot: 6
@@ -1741,6 +2456,11 @@ MonoBehaviour:
     gimmick5: 30101:1:140:220
     gimmick6: 30101:1:260:340
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 145
     hp: 39
     shot: 24
@@ -1753,6 +2473,11 @@ MonoBehaviour:
     gimmick5: 30101:1:120:240
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 146
     hp: 16
     shot: 4
@@ -1765,6 +2490,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 147
     hp: 20
     shot: 44
@@ -1777,6 +2507,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 148
     hp: 15
     shot: 19
@@ -1789,6 +2524,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 149
     hp: 8
     shot: 14
@@ -1801,6 +2541,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 150
     hp: 24
     shot: 15
@@ -1813,6 +2558,11 @@ MonoBehaviour:
     gimmick5: 30101:1:290:310
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 151
     hp: 6
     shot: 12
@@ -1825,6 +2575,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 152
     hp: 8
     shot: 10
@@ -1837,6 +2592,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 153
     hp: 18
     shot: 12
@@ -1849,6 +2609,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 154
     hp: 5
     shot: 8
@@ -1861,6 +2626,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 155
     hp: 2
     shot: 6
@@ -1873,6 +2643,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 156
     hp: 5
     shot: 5
@@ -1885,6 +2660,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 157
     hp: 8
     shot: 10
@@ -1897,6 +2677,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 158
     hp: 9
     shot: 17
@@ -1909,6 +2694,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 159
     hp: 10
     shot: 12
@@ -1921,6 +2711,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 160
     hp: 8
     shot: 16
@@ -1933,6 +2728,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 161
     hp: 6
     shot: 15
@@ -1945,6 +2745,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 162
     hp: 20
     shot: 1
@@ -1957,6 +2762,11 @@ MonoBehaviour:
     gimmick5: 30101:1:205:215
     gimmick6: 30101:1:265:275
     gimmick7: 30101:1:325:335
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 163
     hp: 14
     shot: 9
@@ -1969,6 +2779,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 164
     hp: 10
     shot: 9
@@ -1981,6 +2796,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 165
     hp: 50
     shot: 32
@@ -1993,6 +2813,11 @@ MonoBehaviour:
     gimmick5: 10701:150:330
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 166
     hp: 1
     shot: 5
@@ -2005,6 +2830,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 167
     hp: 16
     shot: 1
@@ -2017,6 +2847,11 @@ MonoBehaviour:
     gimmick5: 30101:1:220:230
     gimmick6: 30101:1:310:320
     gimmick7: 20300:0:90:180:270
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 168
     hp: 13
     shot: 21
@@ -2029,6 +2864,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 169
     hp: 16
     shot: 1
@@ -2041,6 +2881,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 170
     hp: 23
     shot: 16
@@ -2053,6 +2898,11 @@ MonoBehaviour:
     gimmick5: 20100:160
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 171
     hp: 15
     shot: 30
@@ -2065,6 +2915,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 172
     hp: 18
     shot: 12
@@ -2077,6 +2932,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 173
     hp: 16
     shot: 9
@@ -2089,6 +2949,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 174
     hp: 40
     shot: 40
@@ -2101,6 +2966,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 175
     hp: 20
     shot: 15
@@ -2113,6 +2983,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 176
     hp: 6
     shot: 9
@@ -2125,6 +3000,11 @@ MonoBehaviour:
     gimmick5: 30101:1:250:270
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 177
     hp: 14
     shot: 5
@@ -2137,6 +3017,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 178
     hp: 5
     shot: 15
@@ -2149,6 +3034,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 179
     hp: 16
     shot: 14
@@ -2161,6 +3051,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 180
     hp: 13
     shot: 20
@@ -2173,6 +3068,11 @@ MonoBehaviour:
     gimmick5: 30101:1:260:280
     gimmick6: 30101:1:-10:10
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 181
     hp: 16
     shot: 2
@@ -2185,6 +3085,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 182
     hp: 14
     shot: 24
@@ -2197,6 +3102,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 183
     hp: 26
     shot: 21
@@ -2209,6 +3119,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 184
     hp: 9
     shot: 1
@@ -2221,6 +3136,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 185
     hp: 16
     shot: 16
@@ -2233,6 +3153,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 186
     hp: 40
     shot: 20
@@ -2245,6 +3170,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 187
     hp: 9
     shot: 9
@@ -2257,6 +3187,11 @@ MonoBehaviour:
     gimmick5: 30101:1:220:260
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 188
     hp: 20
     shot: 16
@@ -2269,6 +3204,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 189
     hp: 8
     shot: 15
@@ -2281,6 +3221,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 190
     hp: 45
     shot: 28
@@ -2293,6 +3238,11 @@ MonoBehaviour:
     gimmick5: 10200:0:90:180:270
     gimmick6: 10701:315
     gimmick7: 20100:315
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 191
     hp: 22
     shot: 12
@@ -2305,6 +3255,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 192
     hp: 26
     shot: 37
@@ -2317,6 +3272,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 193
     hp: 6
     shot: 7
@@ -2329,6 +3289,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 194
     hp: 11
     shot: 7
@@ -2341,6 +3306,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 195
     hp: 40
     shot: 31
@@ -2353,6 +3323,11 @@ MonoBehaviour:
     gimmick5: 30101:1:36:156
     gimmick6: 30101:1:204:324
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 196
     hp: 16
     shot: 3
@@ -2365,6 +3340,11 @@ MonoBehaviour:
     gimmick5: 20300:60:180:300
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 197
     hp: 28
     shot: 24
@@ -2377,6 +3357,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 198
     hp: 10
     shot: 4
@@ -2389,6 +3374,11 @@ MonoBehaviour:
     gimmick5: 30101:1:0:35
     gimmick6: 30101:1:180:215
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 199
     hp: 9
     shot: 13
@@ -2401,6 +3391,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 200
     hp: 145
     shot: 70
@@ -2413,6 +3408,11 @@ MonoBehaviour:
     gimmick5: 20300:48:72:96:120:144:168:192:216:240:264:288:312
     gimmick6: 10401:336
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 201
     hp: 0
     shot: 0
@@ -2425,6 +3425,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 202
     hp: 0
     shot: 0
@@ -2437,6 +3442,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 203
     hp: 0
     shot: 0
@@ -2449,6 +3459,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 204
     hp: 0
     shot: 0
@@ -2461,6 +3476,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 205
     hp: 0
     shot: 0
@@ -2473,6 +3493,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 206
     hp: 0
     shot: 0
@@ -2485,6 +3510,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 207
     hp: 0
     shot: 0
@@ -2497,6 +3527,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 208
     hp: 0
     shot: 0
@@ -2509,6 +3544,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 209
     hp: 0
     shot: 0
@@ -2521,6 +3561,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 210
     hp: 0
     shot: 0
@@ -2533,6 +3578,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 211
     hp: 0
     shot: 0
@@ -2545,6 +3595,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 212
     hp: 0
     shot: 0
@@ -2557,6 +3612,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 213
     hp: 0
     shot: 0
@@ -2569,6 +3629,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 214
     hp: 0
     shot: 0
@@ -2581,6 +3646,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 215
     hp: 0
     shot: 0
@@ -2593,6 +3663,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 216
     hp: 0
     shot: 0
@@ -2605,6 +3680,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 217
     hp: 0
     shot: 0
@@ -2617,6 +3697,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 218
     hp: 0
     shot: 0
@@ -2629,6 +3714,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 219
     hp: 0
     shot: 0
@@ -2641,6 +3731,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 220
     hp: 0
     shot: 0
@@ -2653,6 +3748,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 221
     hp: 0
     shot: 0
@@ -2665,6 +3765,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 222
     hp: 0
     shot: 0
@@ -2677,6 +3782,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 223
     hp: 0
     shot: 0
@@ -2689,6 +3799,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 224
     hp: 0
     shot: 0
@@ -2701,6 +3816,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 225
     hp: 0
     shot: 0
@@ -2713,6 +3833,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 226
     hp: 0
     shot: 0
@@ -2725,6 +3850,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 227
     hp: 0
     shot: 0
@@ -2737,6 +3867,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 228
     hp: 0
     shot: 0
@@ -2749,6 +3884,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 229
     hp: 0
     shot: 0
@@ -2761,6 +3901,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 230
     hp: 0
     shot: 0
@@ -2773,6 +3918,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 231
     hp: 0
     shot: 0
@@ -2785,6 +3935,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 232
     hp: 0
     shot: 0
@@ -2797,6 +3952,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 233
     hp: 0
     shot: 0
@@ -2809,6 +3969,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 234
     hp: 0
     shot: 0
@@ -2821,6 +3986,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 235
     hp: 0
     shot: 0
@@ -2833,6 +4003,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 236
     hp: 0
     shot: 0
@@ -2845,6 +4020,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 237
     hp: 0
     shot: 0
@@ -2857,6 +4037,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 238
     hp: 0
     shot: 0
@@ -2869,6 +4054,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 239
     hp: 0
     shot: 0
@@ -2881,6 +4071,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 240
     hp: 0
     shot: 0
@@ -2893,6 +4088,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 241
     hp: 0
     shot: 0
@@ -2905,6 +4105,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 242
     hp: 0
     shot: 0
@@ -2917,6 +4122,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 243
     hp: 0
     shot: 0
@@ -2929,6 +4139,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 244
     hp: 0
     shot: 0
@@ -2941,6 +4156,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 245
     hp: 0
     shot: 0
@@ -2953,6 +4173,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 246
     hp: 0
     shot: 0
@@ -2965,6 +4190,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 247
     hp: 0
     shot: 0
@@ -2977,6 +4207,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 248
     hp: 0
     shot: 0
@@ -2989,6 +4224,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 249
     hp: 0
     shot: 0
@@ -3001,6 +4241,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 250
     hp: 0
     shot: 0
@@ -3013,6 +4258,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 251
     hp: 0
     shot: 0
@@ -3025,6 +4275,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 252
     hp: 0
     shot: 0
@@ -3037,6 +4292,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 253
     hp: 0
     shot: 0
@@ -3049,6 +4309,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 254
     hp: 0
     shot: 0
@@ -3061,6 +4326,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 255
     hp: 0
     shot: 0
@@ -3073,6 +4343,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 256
     hp: 0
     shot: 0
@@ -3085,6 +4360,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 257
     hp: 0
     shot: 0
@@ -3097,6 +4377,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 258
     hp: 0
     shot: 0
@@ -3109,6 +4394,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 259
     hp: 0
     shot: 0
@@ -3121,6 +4411,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 260
     hp: 0
     shot: 0
@@ -3133,6 +4428,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 261
     hp: 0
     shot: 0
@@ -3145,6 +4445,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 262
     hp: 0
     shot: 0
@@ -3157,6 +4462,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 263
     hp: 0
     shot: 0
@@ -3169,6 +4479,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 264
     hp: 0
     shot: 0
@@ -3181,6 +4496,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 265
     hp: 0
     shot: 0
@@ -3193,6 +4513,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 266
     hp: 0
     shot: 0
@@ -3205,6 +4530,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 267
     hp: 0
     shot: 0
@@ -3217,6 +4547,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 268
     hp: 0
     shot: 0
@@ -3229,6 +4564,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 269
     hp: 0
     shot: 0
@@ -3241,6 +4581,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 270
     hp: 0
     shot: 0
@@ -3253,6 +4598,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 271
     hp: 0
     shot: 0
@@ -3265,6 +4615,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 272
     hp: 0
     shot: 0
@@ -3277,6 +4632,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 273
     hp: 0
     shot: 0
@@ -3289,6 +4649,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 274
     hp: 0
     shot: 0
@@ -3301,6 +4666,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 275
     hp: 0
     shot: 0
@@ -3313,6 +4683,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 276
     hp: 0
     shot: 0
@@ -3325,6 +4700,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 277
     hp: 0
     shot: 0
@@ -3337,6 +4717,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 278
     hp: 0
     shot: 0
@@ -3349,6 +4734,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 279
     hp: 0
     shot: 0
@@ -3361,6 +4751,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 280
     hp: 0
     shot: 0
@@ -3373,6 +4768,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 281
     hp: 0
     shot: 0
@@ -3385,6 +4785,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 282
     hp: 0
     shot: 0
@@ -3397,6 +4802,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 283
     hp: 0
     shot: 0
@@ -3409,6 +4819,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 284
     hp: 0
     shot: 0
@@ -3421,6 +4836,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 285
     hp: 0
     shot: 0
@@ -3433,6 +4853,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 286
     hp: 0
     shot: 0
@@ -3445,6 +4870,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 287
     hp: 0
     shot: 0
@@ -3457,6 +4887,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 288
     hp: 0
     shot: 0
@@ -3469,6 +4904,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 289
     hp: 0
     shot: 0
@@ -3481,6 +4921,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 290
     hp: 0
     shot: 0
@@ -3493,6 +4938,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 291
     hp: 0
     shot: 0
@@ -3505,6 +4955,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 292
     hp: 0
     shot: 0
@@ -3517,6 +4972,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 293
     hp: 0
     shot: 0
@@ -3529,6 +4989,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 294
     hp: 0
     shot: 0
@@ -3541,6 +5006,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 295
     hp: 0
     shot: 0
@@ -3553,6 +5023,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 296
     hp: 0
     shot: 0
@@ -3565,6 +5040,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 297
     hp: 0
     shot: 0
@@ -3577,6 +5057,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 298
     hp: 0
     shot: 0
@@ -3589,6 +5074,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 299
     hp: 0
     shot: 0
@@ -3601,6 +5091,11 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 
   - id: 300
     hp: 0
     shot: 0
@@ -3613,3 +5108,8 @@ MonoBehaviour:
     gimmick5: 
     gimmick6: 
     gimmick7: 
+    gimmick8: 
+    gimmick9: 
+    gimmick10: 
+    gimmick11: 
+    gimmick12: 

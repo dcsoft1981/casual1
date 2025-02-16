@@ -55,6 +55,11 @@ public class GameManager : MonoBehaviour
 	private List<GameObject> listGimmick5;
 	private List<GameObject> listGimmick6;
 	private List<GameObject> listGimmick7;
+	private List<GameObject> listGimmick8;
+	private List<GameObject> listGimmick9;
+	private List<GameObject> listGimmick10;
+	private List<GameObject> listGimmick11;
+	private List<GameObject> listGimmick12;
 
 	[SerializeField] private Color failureColor;
 
@@ -121,6 +126,11 @@ public class GameManager : MonoBehaviour
 			listGimmick5 = new List<GameObject>();
 			listGimmick6 = new List<GameObject>();
 			listGimmick7 = new List<GameObject>();
+			listGimmick8 = new List<GameObject>();
+			listGimmick9 = new List<GameObject>();
+			listGimmick10 = new List<GameObject>();
+			listGimmick11 = new List<GameObject>();
+			listGimmick12 = new List<GameObject>();
 
 			listPinnedShot = new List<GameObject>();
 			dic_AngleGimmicks = new Dictionary<int, List<GameObject>>();
@@ -572,6 +582,11 @@ public class GameManager : MonoBehaviour
 		PrepareGimmick(levelData.gimmick5, listGimmick5);
 		PrepareGimmick(levelData.gimmick6, listGimmick6);
 		PrepareGimmick(levelData.gimmick7, listGimmick7);
+		PrepareGimmick(levelData.gimmick8, listGimmick8);
+		PrepareGimmick(levelData.gimmick9, listGimmick9);
+		PrepareGimmick(levelData.gimmick10, listGimmick10);
+		PrepareGimmick(levelData.gimmick11, listGimmick11);
+		PrepareGimmick(levelData.gimmick12, listGimmick12);
 		// 페어기믹 세팅
 		SetPairGimmick();
 	}
@@ -1105,6 +1120,11 @@ public class GameManager : MonoBehaviour
 		CheckListGimmickStatus(listGimmick5);
 		CheckListGimmickStatus(listGimmick6);
 		CheckListGimmickStatus(listGimmick7);
+		CheckListGimmickStatus(listGimmick8);
+		CheckListGimmickStatus(listGimmick9);
+		CheckListGimmickStatus(listGimmick10);
+		CheckListGimmickStatus(listGimmick11);
+		CheckListGimmickStatus(listGimmick12);
 	}
 
 	private void CheckListGimmickStatus(List<GameObject> list)

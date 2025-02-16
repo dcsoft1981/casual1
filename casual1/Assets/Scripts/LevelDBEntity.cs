@@ -14,4 +14,9 @@ public class LevelDBEntity
 	public string gimmick5;
 	public string gimmick6;
 	public string gimmick7;
+	public string gimmick8;
+	public string gimmick9;
+	public string gimmick10;
+	public string gimmick11;
+	public string gimmick12;
 }
