@@ -415,6 +415,11 @@ public class LocalDataManager : MonoBehaviour
 		levelPlayDataShotCount = 0;
 	}
 
+	public int GetLevelPlayDataTryCount()
+	{
+		return levelPlayDataTryCount;
+	}
+
 	public void StartLevelPlayData()
 	{
 		if (levelPlayDataStartSec == 0)

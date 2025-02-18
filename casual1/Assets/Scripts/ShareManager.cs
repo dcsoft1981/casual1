@@ -1,5 +1,8 @@
+using Firebase.Analytics;
+using System;
 using System.Reflection.Emit;
 using System.Text;
+using UnityEditor;
 using UnityEngine;
 
 public class ShareManager : MonoBehaviour
@@ -18,7 +21,7 @@ public class ShareManager : MonoBehaviour
 	public void DoWorkShareNormal()
 	{
 		string str = "Let`s Play TokTok with me!!";
-		DoWorkShare(str);
+		DoWorkShare(str, "MenuButton");
 	}
 
 	public void DoWorkShareTierUP()
@@ -26,14 +29,38 @@ public class ShareManager : MonoBehaviour
 		GradeDBEntity entity = LocalDataManager.instance.GetCurGradeDBEntity();
 		StringBuilder sb = new StringBuilder();
 		sb.Append("I`d got ").Append(entity.grade).Append(" in ").Append(LocalDataManager.instance.GetTierGetTime(entity.id)).Append("\nPlay TokTok with me!!");
-		DoWorkShare(sb.ToString());
+		DoWorkShare(sb.ToString(), "TierUP");
 	}
 
 
-	private void DoWorkShare(string text)
+	private void DoWorkShare(string text, string where)
 	{
 		string url = "www.naver.com";
+#if UNITY_ANDROID
+		url = "https://play.google.com/store/apps/details?id=com.dcsoft1981.casual1";
+#elif UNITY_IOS
+        url = "https://play.google.com/store/apps/details?id=com.dcsoft1981.casual1"; // TODO ios 용 주소 적용
+#else
+        Debug.Log("Share Doesnt Work!!!");
+#endif
 		ShareText(text, url);
+#if !UNITY_EDITOR
+		int level = LocalDataManager.instance.GetCurLevel();
+		try
+		{
+			string key = "button_share";
+			Parameter[] parameters = {
+				new Parameter("button_where", where),
+				new Parameter("user_level", level)
+			};
+			FirebaseAnalytics.LogEvent(key, parameters);
+			Debug.Log("Firebase DoWorkShare : " + key);
+		}
+		catch (Exception e)
+		{
+			Debug.LogError("Firebase DoWorkShare : " + e.Message);
+		}
+#endif
 	}
 
 	// 공유할 텍스트와 URL을 받아서 공유 팝업을 호출합니다.

@@ -445,6 +445,11 @@ public class GameManager : MonoBehaviour
 		Invoke("PopupClearResult", 1f);
 	}
 
+	public void OnClickHome()
+	{
+		SceneManager.LoadScene("LobbyScene");
+	}
+
 	public void StageFailure()
 	{
 		switch (ingameType)
@@ -1705,6 +1710,7 @@ public class GameManager : MonoBehaviour
 	{
 #if !UNITY_EDITOR
 		int level = LocalDataManager.instance.GetCurLevel();
+		int tryCount = LocalDataManager.instance.GetLevelPlayDataTryCount();
 		try
 		{
 			string key;
@@ -1718,8 +1724,8 @@ public class GameManager : MonoBehaviour
 			}
 
 			// 레벨 클리어 이벤트 로깅
-			FirebaseAnalytics.LogEvent(key);
-			Debug.Log("Firebase LogKey : " + key);
+			FirebaseAnalytics.LogEvent(key, new Parameter("try_count", tryCount));
+			Debug.Log("Firebase LogKey : " + key + " tryCount : " + tryCount);
 		}
 		catch (Exception e)
 		{
