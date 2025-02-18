@@ -20,6 +20,7 @@ using Object = UnityEngine.Object;
 using static System.Net.Mime.MediaTypeNames;
 using static AudioManager;
 using UltimateClean;
+using Firebase.Analytics;
 
 public class GameManager : MonoBehaviour
 {
@@ -319,7 +320,9 @@ public class GameManager : MonoBehaviour
 
 	public void SetGameOver(bool success)
     {
-        if(isGameOver == false)
+		// firebase 초기화 체크
+		FirebaseManager.CheckInitFirebase();
+		if (isGameOver == false)
         {
 			ClearGuideLines();
 			isGameOver = true;
@@ -369,7 +372,8 @@ public class GameManager : MonoBehaviour
 			case IngameType.NORMAL:
 				{
 					int level = LocalDataManager.instance.GetCurLevel();
-					if(level == 10)
+					LevelClearLog(true);
+					if (level == 10)
 					{
 						// 레드닷 활성화
 						LocalDataManager.instance.SetReddotPlayer(true);
@@ -443,12 +447,20 @@ public class GameManager : MonoBehaviour
 
 	public void StageFailure()
 	{
+		switch (ingameType)
+		{
+			case IngameType.NORMAL:
+				{
+					LevelClearLog(false);
+				}
+				break;
+		}
 		/*
 		TextMeshProUGUI buttonText = btnRetry.GetComponentInChildren<TextMeshProUGUI>();
 		if (buttonText != null)
 			buttonText.text = Define.LOCALE_RETRY;
 		btnRetry.SetActive(true);
-        labelFailure.SetActive(true);
+		labelFailure.SetActive(true);
 		*/
 		SceneManager.LoadScene("LobbyScene");
 	}
@@ -1687,5 +1699,31 @@ public class GameManager : MonoBehaviour
 
 		currentHP = targetHP;
 		slicedFilledImage.fillAmount = currentHP;
+	}
+
+	public void LevelClearLog(bool clear)
+	{
+		int level = LocalDataManager.instance.GetCurLevel();
+		try
+		{
+			string key;
+			if (clear)
+			{
+				key = "level_clear"+level;
+			}
+			else
+			{
+				key = "level_failure" + level;
+			}
+
+			// 레벨 클리어 이벤트 로깅
+			FirebaseAnalytics.LogEvent(key);
+			Debug.Log("Firebase LogKey : " + key);
+		}
+		catch (Exception e)
+		{
+			Debug.LogError("Firebase LevelClearLogError : " + e.Message);
+		}
+		
 	}
 }

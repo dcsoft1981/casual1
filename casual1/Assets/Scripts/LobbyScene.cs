@@ -117,7 +117,10 @@ public class LobbyScene : MonoBehaviour
 
 		time = 0.0f;
 
-		if(level == 1)
+		// firebase 초기화
+		FirebaseManager.CheckInitFirebase();
+
+		if (level == 1)
 		{
 			// 플레이 버튼 레드닷 활성화
 			LocalDataManager.instance.SetReddotPlay(true);

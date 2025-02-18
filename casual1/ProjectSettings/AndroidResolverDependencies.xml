@@ -2,12 +2,22 @@
   <packages>
     <package>androidx.constraintlayout:constraintlayout:2.1.4</package>
     <package>com.google.android.gms:play-services-ads:23.6.0</package>
+    <package>com.google.android.gms:play-services-base:18.5.0</package>
     <package>com.google.android.play:core-common:2.0.4</package>
     <package>com.google.android.play:review:2.0.2</package>
     <package>com.google.android.ump:user-messaging-platform:3.1.0</package>
     <package>com.google.code.gson:gson:2.8.5</package>
+    <package>com.google.firebase:firebase-analytics:22.2.0</package>
+    <package>com.google.firebase:firebase-analytics-unity:12.6.0</package>
+    <package>com.google.firebase:firebase-app-unity:12.6.0</package>
+    <package>com.google.firebase:firebase-common:21.0.0</package>
   </packages>
-  <files />
+  <files>
+    <file>Assets/GeneratedLocalRepo/Firebase/m2repository/com/google/firebase/firebase-analytics-unity/12.6.0/firebase-analytics-unity-12.6.0.aar</file>
+    <file>Assets/GeneratedLocalRepo/Firebase/m2repository/com/google/firebase/firebase-analytics-unity/12.6.0/firebase-analytics-unity-12.6.0.pom</file>
+    <file>Assets/GeneratedLocalRepo/Firebase/m2repository/com/google/firebase/firebase-app-unity/12.6.0/firebase-app-unity-12.6.0.aar</file>
+    <file>Assets/GeneratedLocalRepo/Firebase/m2repository/com/google/firebase/firebase-app-unity/12.6.0/firebase-app-unity-12.6.0.pom</file>
+  </files>
   <settings>
     <setting name="androidAbis" value="arm64-v8a,armeabi-v7a" />
     <setting name="bundleId" value="com.dcsoft1981.casual1" />
