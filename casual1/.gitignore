@@ -10,8 +10,7 @@ Logs/
 com.dcsoft1981.casual1_BurstDebugInformation_DoNotShip/
 DC Play_BurstDebugInformation_DoNotShip/
 UserSettings/
-Assets/Firebase/Plugins/x86_64/FirebaseCppApp-12_6_0.bundle
-Assets/Firebase/Plugins/x86_64/FirebaseCppApp-12_6_0.so
+[Aa]ssets/Firebase/Plugins/x86_64/
 *.csproj
 *.sln
 .vscode/
