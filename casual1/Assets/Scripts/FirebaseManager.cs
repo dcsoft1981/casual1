@@ -8,6 +8,7 @@ class FirebaseManager
 
 	public static void CheckInitFirebase()
 	{
+#if !UNITY_EDITOR
 		if (!init)
 		{
 			try
@@ -39,5 +40,6 @@ class FirebaseManager
 			}
 
 		}
+#endif
 	}
 }

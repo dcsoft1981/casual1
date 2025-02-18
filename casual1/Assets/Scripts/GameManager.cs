@@ -1703,6 +1703,7 @@ public class GameManager : MonoBehaviour
 
 	public void LevelClearLog(bool clear)
 	{
+#if !UNITY_EDITOR
 		int level = LocalDataManager.instance.GetCurLevel();
 		try
 		{
@@ -1724,6 +1725,6 @@ public class GameManager : MonoBehaviour
 		{
 			Debug.LogError("Firebase LevelClearLogError : " + e.Message);
 		}
-		
+#endif
 	}
 }
