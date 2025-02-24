@@ -2,25 +2,15 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
 using UnityEditor;
-using System;
-using static UnityEngine.GraphicsBuffer;
-using static DG.Tweening.DOTweenAnimation;
 using static Define;
 using Unity.VisualScripting;
 using System.Collections.Generic;
 using DG.Tweening;
-using Unity.Burst.Intrinsics;
 using System.Collections;
 using Febucci.UI;
-using DG.Tweening.Core.Easing;
-using static UnityEngine.EventSystems.EventTrigger;
-using System.Text;
-using UnityEngine.UI;
 using Object = UnityEngine.Object;
-using static System.Net.Mime.MediaTypeNames;
 using static AudioManager;
 using UltimateClean;
-using Firebase.Analytics;
 
 public class GameManager : MonoBehaviour
 {
@@ -101,7 +91,7 @@ public class GameManager : MonoBehaviour
 	[SerializeField] private Transform effectGroup;
 
 	[SerializeField] private GameObject buttonTab;
-	private TextMeshProUGUI buttonTabText;
+	private TextMeshProUGUI buttonTabText = null;
 	public bool tutorialButtonTab = false;
 
 	[SerializeField] private SlicedFilledImage slicedFilledImage;
@@ -181,6 +171,10 @@ public class GameManager : MonoBehaviour
 			targetScale = 100;
 		float targetScaleRate = targetScale / 100f;
 		targetId = levelData.target - targetScale;
+
+		// Target SIZE ¿¡ µû¸¥ TextHP ÆùÆ® »çÀÌÁî Á¶Á¤
+		SetTargetHPFontSize();
+
 		//float curTargetScale = Define.TARGET_BASE_SCALE;
 		//targetCircle.transform.localScale = new Vector3(curTargetScale, curTargetScale, curTargetScale);
 
@@ -364,7 +358,7 @@ public class GameManager : MonoBehaviour
 		textShot.gameObject.SetActive(false);
 		targetCircle.ClearExpressionLines();
 		DestroyAllGimmicks();
-		DestroyAllShots();
+		DestroyAllShots(true);
 		Invoke("TargetEffect", 0.5f);
 		//targetCircle.GRADIENT_ON();
 		switch (ingameType)
@@ -445,9 +439,21 @@ public class GameManager : MonoBehaviour
 		Invoke("PopupClearResult", 1f);
 	}
 
+	public void LoadIngameScene()
+	{
+		StopAllAni();
+		SceneManager.LoadScene("IngameScene");
+	}
+
+	public void LoadLobbyScene()
+	{
+		StopAllAni();
+		SceneManager.LoadScene("LobbyScene");
+	}
+
 	public void OnClickHome()
 	{
-		SceneManager.LoadScene("LobbyScene");
+		LoadLobbyScene();
 	}
 
 	public void StageFailure()
@@ -467,13 +473,34 @@ public class GameManager : MonoBehaviour
 		btnRetry.SetActive(true);
 		labelFailure.SetActive(true);
 		*/
-		SceneManager.LoadScene("LobbyScene");
+		LoadLobbyScene();
 	}
 
 	public void Retry()
     {
-        SceneManager.LoadScene("IngameScene");
-    }
+		LoadIngameScene();
+	}
+
+	public void StopAllAni()
+	{
+		// Æ©Åä¸®¾ó ¹öÆ° ¾Ö´Ï ¸ØÃã
+		if(buttonTabText != null)
+		{
+			buttonTabText.DOKill();
+		}
+
+		// ÇÉ ¾Ö´Ï ¸ØÃã
+		if(currPin != null)
+		{
+			currPin.StopAni();
+		}
+
+		// Å¸°Ù¿¡ ºÙÀº ÇÉµé ¾Ö´Ï ¸ØÃã
+		DestroyAllShots(false);
+
+		// À½Ç¥ ¾Ö´Ï ¸ØÃã
+		pinLauncher.StopAni();
+	}
 
 	public void CreateAndPlayAnimation()
 	{
@@ -579,9 +606,14 @@ public class GameManager : MonoBehaviour
 
 	public void AddShot(int changeShot)
 	{
+		int beforeShot = shot;
+		int addTempShot = changeShot;
+		if (shot == 0)
+			addTempShot--;
 		shot += changeShot;
+		Debug.Log("AddShot : " + beforeShot + "->" + shot);
 		SetShotText();
-		pinLauncher.AddTempPin(changeShot);
+		pinLauncher.AddTempPin(addTempShot);
 	}
 
 	public int GetCheatRotation()
@@ -790,16 +822,25 @@ public class GameManager : MonoBehaviour
 		}
 	}
 
-	private void DestroyShot(GameObject gameObject, Pin pin)
+	private void DestroyShot(GameObject gameObject, Pin pin, bool effect)
 	{
 		if (gameObject.IsDestroyed())
 			return;
 
-		// ±â¹Í Á¦°Å
-		gameObject.transform.DOScale(Vector3.zero, 0.3f).SetEase(Ease.InBack).OnComplete(() =>
+		if(effect)
 		{
-			pin.EffectPlay();
-		});
+			// ±â¹Í Á¦°Å
+			gameObject.transform.DOScale(Vector3.zero, 0.3f).SetEase(Ease.InBack).OnComplete(() =>
+			{
+				pin.StopAni();
+				pin.EffectPlay();
+			});
+		}
+		else
+		{
+			pin.StopAni();
+		}
+		
 	}
 
 	private void DestroyGimmick(GameObject gameObject, Gimmick gameObjectGimmick, bool afterClear)
@@ -824,8 +865,12 @@ public class GameManager : MonoBehaviour
 		// ±â¹Í Á¦°Å
 		gameObject.transform.DOScale(Vector3.zero, 0.1f).SetEase(Ease.InBack).OnComplete(() =>
 		{
-			if(!afterClear)
+			if (!afterClear)
+			{
+				gameObject.transform.DOKill();
 				Destroy(gameObject);
+			}
+
 		});
 	}
 
@@ -1083,13 +1128,13 @@ public class GameManager : MonoBehaviour
 		}
 	}
 
-	public void DestroyAllShots()
+	public void DestroyAllShots(bool effect)
 	{
 		pinLauncher.TempPinOff();
 		Pin[] pins = Object.FindObjectsByType<Pin>(FindObjectsSortMode.None);
 		for (int i = 0; i < pins.Length; i++)
 		{
-			DestroyShot(pins[i].gameObject, pins[i]);
+			DestroyShot(pins[i].gameObject, pins[i], effect);
 		}
 	}
 
@@ -1209,7 +1254,7 @@ public class GameManager : MonoBehaviour
 		{
 			if(!go.IsDestroyed())
 			{
-				go.transform.DOScale(Vector3.zero, 0.1f).SetEase(Ease.InBack).OnComplete(() => Destroy(go));
+				go.transform.DOScale(Vector3.zero, 0.1f).SetEase(Ease.InBack).OnComplete(() => { go.transform.DOKill(); Destroy(go); });
 			}
 		}
 	}
@@ -1732,5 +1777,13 @@ public class GameManager : MonoBehaviour
 			Debug.LogError("Firebase LevelClearLogError : " + e.Message);
 		}
 #endif
+	}
+
+	public void SetTargetHPFontSize()
+	{
+		if(targetScale == 50)
+		{
+			textHP.fontSize = 60;
+		}
 	}
 }

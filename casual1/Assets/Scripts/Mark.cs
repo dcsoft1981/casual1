@@ -32,4 +32,9 @@ public class Mark : MonoBehaviour
 		.SetLoops(-1, LoopType.Yoyo)   // 무한 반복 설정
 		.SetEase(Ease.OutQuad);         // 일정한 속도로 애니메이션 진행
 	}
+
+	public void StopJump()
+	{
+		imageRectTransform.DOKill();
+	}
 }

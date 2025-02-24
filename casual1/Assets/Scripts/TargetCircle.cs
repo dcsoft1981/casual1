@@ -261,8 +261,8 @@ public class TargetCircle : MonoBehaviour
 		lineRenderer.numCapVertices = 10; // 끝부분을 둥글게 만들기 위해 추가할 버텍스 수
 		lineRenderer.positionCount = (int)segments + 1;
 		lineRenderer.useWorldSpace = false;
-		lineRenderer.startWidth = 0.1f;
-		lineRenderer.endWidth = 0.1f;
+		lineRenderer.startWidth = 0.12f;
+		lineRenderer.endWidth = 0.12f;
 		lineRenderer.sortingOrder = -10;
 
 		float angle = startAngle;

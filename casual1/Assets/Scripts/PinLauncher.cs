@@ -23,7 +23,7 @@ public class PinLauncher : MonoBehaviour
 	}
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
 		bool noCheckPosition = false;
 		if (Input.touchCount > 0)
@@ -72,41 +72,42 @@ public class PinLauncher : MonoBehaviour
 		Invoke("PreparePin", 0.1f);
 	}
 
+	void CreatePin()
+	{
+		GameObject pin = Instantiate(pinObject, transform.position, Quaternion.Euler(0, 0, 0));
+
+		/*
+		// 핀 색상 등급별 지정
+		Transform childTransform = pin.transform.Find(Define.CHILD_SPRITE_OBJECT);
+		SpriteRenderer spriteRenderer = childTransform.gameObject.GetComponent<SpriteRenderer>();
+		spriteRenderer.color = LocalDataManager.instance.GetCurColor();
+		*/
+
+		currPin = pin.GetComponent<Pin>();
+		currPin.ConnectorSetting(true);
+		currPin.SetPinId(GameManager.instance.GetNextPinID());
+		currPin.effect = Instantiate(effectPrab, effectGroup);
+		GameManager.instance.SetCreatedPin(currPin);
+		GameManager.instance.ResetHitGimmick();
+		bool skillTriggered = GameManager.instance.CheckTriggerSkill(PassiveType.SHOT_DOUBLE_DAMAGE);
+		if (!skillTriggered)
+		{
+			currPin.CreateScaleChange();
+		}
+	}
+
 	void PreparePin()
     {
 		if (GameManager.instance.isGameOver == false)
         {
 			if (GameManager.instance.GetCheckFinalShot() && GameManager.instance.GetShotCount() == 0)
 			{
+				Debug.Log("PreparePin No More Shot");
 				return;
 			}
 
-			GameObject pin = Instantiate(pinObject, transform.position, Quaternion.Euler(0, 0, 0));
-
-			/*
-			// 핀 색상 등급별 지정
-			Transform childTransform = pin.transform.Find(Define.CHILD_SPRITE_OBJECT);
-			SpriteRenderer spriteRenderer = childTransform.gameObject.GetComponent<SpriteRenderer>();
-			spriteRenderer.color = LocalDataManager.instance.GetCurColor();
-			*/
-
-			currPin = pin.GetComponent<Pin>();
-			currPin.ConnectorSetting(true);
-			currPin.SetPinId(GameManager.instance.GetNextPinID());
-			currPin.effect = Instantiate(effectPrab, effectGroup);
-			GameManager.instance.SetCreatedPin(currPin);
-			GameManager.instance.ResetHitGimmick();
-			bool skillTriggered = GameManager.instance.CheckTriggerSkill(PassiveType.SHOT_DOUBLE_DAMAGE);
-			if(!skillTriggered)
-			{
-				currPin.CreateScaleChange();
-			}
+			CreatePin();
 		}
-	}
-
-    void CheckFinalShot()
-    {
-		GameManager.instance.CheckFinalShot();
 	}
 
 	public void DrawStaff()
@@ -154,6 +155,14 @@ public class PinLauncher : MonoBehaviour
 		staggLines.Add(lineObj);
 	}
 
+	public void StopAni()
+	{
+		foreach(TempPin tempPin in queueTempPIn)
+		{
+			tempPin.StopAni();
+		}
+	}
+
 	public void SetTempPin(int count)
 	{
 		queueTempPIn.Clear();
@@ -194,6 +203,7 @@ public class PinLauncher : MonoBehaviour
 			if (queueTempPIn != null && queueTempPIn.Count > 0)
 			{
 				TempPin tempPin = queueTempPIn.Dequeue();
+				tempPin.StopAni();
 				tempPin.gameObject.SetActive(false);
 			}
 			else

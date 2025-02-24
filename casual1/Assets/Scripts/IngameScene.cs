@@ -38,6 +38,6 @@ public class IngameScene : MonoBehaviour
 
 	public void OnClickHome()
 	{
-		SceneManager.LoadScene("LobbyScene");
+		GameManager.instance.LoadLobbyScene();
 	}
 }

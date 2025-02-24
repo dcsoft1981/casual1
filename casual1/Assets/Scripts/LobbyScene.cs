@@ -56,6 +56,7 @@ public class LobbyScene : MonoBehaviour
 	[SerializeField] private GameObject marks;
 	[SerializeField] private GameObject markPrefab;
 	[SerializeField] private GameObject btnCheat;
+	private List<Mark> listMark = new List<Mark>();
 
 	private void Awake()
 	{
@@ -160,9 +161,15 @@ public class LobbyScene : MonoBehaviour
 		cam.backgroundColor = Color.Lerp(bottomColor, topColor, t);
 	}
 
+	private void LoadIngameScene()
+	{
+		StopMarksJump();
+		SceneManager.LoadScene("IngameScene");
+	}
+
 	private void LoadLevelSceneForced()
 	{
-		SceneManager.LoadScene("IngameScene");
+		LoadIngameScene();
 	}
 
 	public void LoadLevelScene()
@@ -172,7 +179,7 @@ public class LobbyScene : MonoBehaviour
 			LocalDataManager.instance.SetReddotPlay(false);
 			btnPlay.transform.Find("Reddot").gameObject.SetActive(false);
 		}
-		SceneManager.LoadScene("IngameScene");
+		LoadIngameScene();
 	}
 
 	public void OnClickShare()
@@ -358,6 +365,7 @@ public class LobbyScene : MonoBehaviour
 
 	public void SetMarksInfo()
 	{
+		listMark.Clear();
 		int markCount = 0;
 		foreach (GradeDBEntity entity in LocalDataManager.instance.GetGradeEntity())
 		{
@@ -375,7 +383,17 @@ public class LobbyScene : MonoBehaviour
 	{
 		GameObject markGameObject = Instantiate(markPrefab, Vector3.zero, Quaternion.identity);
 		markGameObject.transform.SetParent(marks.transform);
-		markGameObject.GetComponent<Mark>().SetData(entity);
+		Mark mark = markGameObject.GetComponent<Mark>();
+		mark.SetData(entity);
+		listMark.Add(mark);
+	}
+
+	public void StopMarksJump()
+	{
+		foreach(Mark mark in listMark)
+		{
+			mark.StopJump();
+		}
 	}
 
 	public void PunchScale(Transform t)

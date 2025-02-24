@@ -53,7 +53,8 @@ public class Define
 	public static Color DARK_RED = new Color(75f / 255f, 25f / 255f, 25f / 255f);
 	public static Color COLOR_TARGET_SHIELD = Color.gray;
 	public static Color DAMAGE_LINE_COLOR = new Color(183f / 255f, 88f / 255f, 255f / 255f, 200f/255f);
-	public static Color NODAMAGE_LINE_COLOR = new Color(127f / 255f, 127f / 255f, 127f / 255f, 200f / 255f);
+	//public static Color NODAMAGE_LINE_COLOR = new Color(127f / 255f, 127f / 255f, 127f / 255f, 200f / 255f);
+	public static Color NODAMAGE_LINE_COLOR = new Color(255f / 255f, 0f / 255f, 0f / 255f, 200f / 255f);
 	public static Color GIMMICKHIT_DEBUFF = new Color(0.3f, 0f, 0.3f);
 	public static Color GIMMICKHIT_BUFF = new Color(0.9f, 0f, 0.3f);
 	public static Color TARGETHIT_DEBUFF = new Color(0f, 0f, 0.3f);

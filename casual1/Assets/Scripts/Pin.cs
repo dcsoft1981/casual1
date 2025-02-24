@@ -1,6 +1,5 @@
 using DG.Tweening;
-using Microsoft.SqlServer.Server;
-using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Pin : MonoBehaviour
@@ -269,8 +268,15 @@ public class Pin : MonoBehaviour
 		Invoke("DestroyPin", 0.3f);
 	}
 
+	public void StopAni()
+	{
+		spriteObject.transform.DOKill();
+		ConnectorSetting(false);
+	}
+
 	private void DestroyPin()
 	{
+		StopAni();
 		Destroy(this.gameObject);
 	}
 
@@ -326,14 +332,18 @@ public class Pin : MonoBehaviour
 
 	public void ScaleShake()
 	{
+		if (spriteObject.IsDestroyed())
+			return;
 		spriteObject.transform.localScale = spriteOriginalScale;
 		scaleTween = spriteObject.transform.DOScale(spriteOriginalScale * 2, 0.1f).SetLoops(2, LoopType.Yoyo);
 	}
 
 	public void CreateScaleChange()
 	{
+		if (spriteObject.IsDestroyed())
+			return;
 		spriteObject.transform.localScale = Vector3.zero;
-		spriteObject.transform.DOScale(spriteOriginalScale, 0.1f).SetEase(Ease.OutCirc).OnComplete(() =>
+		scaleTween = spriteObject.transform.DOScale(spriteOriginalScale, 0.1f).SetEase(Ease.OutCirc).OnComplete(() =>
 		{
 			spriteObject.transform.localScale = spriteOriginalScale;
 		});
@@ -341,6 +351,8 @@ public class Pin : MonoBehaviour
 
 	public void DisappearScaleChange()
 	{
+		if (spriteObject.IsDestroyed())
+			return;
 		spriteObject.transform.localScale = spriteOriginalScale;
 		spriteObject.transform.DOScale(Vector3.zero, 0.5f).SetEase(Ease.OutCirc);
 	}
@@ -357,6 +369,8 @@ public class Pin : MonoBehaviour
 
 	public void ConnectorSetting(bool alive)
 	{
+		if (spriteObject.IsDestroyed())
+			return;
 		objConnector.SetActive(alive);
 		connectorAlive = alive;
 		SpriteRenderer objConnectorSprite = objConnector.GetComponent<SpriteRenderer>();
