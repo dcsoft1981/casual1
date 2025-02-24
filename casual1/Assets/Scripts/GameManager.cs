@@ -11,6 +11,8 @@ using Febucci.UI;
 using Object = UnityEngine.Object;
 using static AudioManager;
 using UltimateClean;
+using System;
+using Firebase.Analytics;
 
 public class GameManager : MonoBehaviour
 {
