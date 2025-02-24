@@ -1,7 +1,5 @@
-using UnityEditor;
 using UnityEngine;
 using DG.Tweening;
-using UnityEngine.UIElements;
 using Unity.VisualScripting;
 
 public class TempPin : MonoBehaviour
@@ -32,6 +30,9 @@ public class TempPin : MonoBehaviour
 
 	public void StopAni()
 	{
+		transform.DOKill();
+		if (spriteRenderer.gameObject.IsDestroyed())
+			return;
 		spriteRenderer.DOKill();
 	}
 }

@@ -822,6 +822,12 @@ public class GameManager : MonoBehaviour
 		}
 	}
 
+	private void StopPinAni(GameObject gameObject, Pin pin)
+	{
+		gameObject.transform.DOKill();
+		pin.StopAni();
+	}
+
 	private void DestroyShot(GameObject gameObject, Pin pin, bool effect)
 	{
 		if (gameObject.IsDestroyed())
@@ -830,15 +836,22 @@ public class GameManager : MonoBehaviour
 		if(effect)
 		{
 			// ±â¹Í Á¦°Å
-			gameObject.transform.DOScale(Vector3.zero, 0.3f).SetEase(Ease.InBack).OnComplete(() =>
+			if (pin.isReflected())
 			{
-				pin.StopAni();
-				pin.EffectPlay();
-			});
+				StopPinAni(gameObject, pin);
+			}
+			else
+			{
+				gameObject.transform.DOScale(Vector3.zero, 0.3f).SetEase(Ease.InBack).OnComplete(() =>
+				{
+					StopPinAni(gameObject, pin);
+					pin.EffectPlay();
+				});
+			}
 		}
 		else
 		{
-			pin.StopAni();
+			StopPinAni(gameObject, pin);
 		}
 		
 	}
