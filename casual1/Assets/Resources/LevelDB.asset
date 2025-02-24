@@ -442,7 +442,7 @@ MonoBehaviour:
     hp: 18
     shot: 10
     target: 10050
-    rotation: 180
+    rotation: 150
     gimmick1: 10801:0:40:80:120:160:200:240:280:320
     gimmick2: 
     gimmick3: 
@@ -595,7 +595,7 @@ MonoBehaviour:
     hp: 12
     shot: 8
     target: 10080
-    rotation: -200
+    rotation: -160
     gimmick1: 10102:0:30:60:90
     gimmick2: 20200:120:150:180:210
     gimmick3: 10801:240:270:300:330
@@ -680,7 +680,7 @@ MonoBehaviour:
     hp: 5
     shot: 10
     target: 10100
-    rotation: -200
+    rotation: -150
     gimmick1: 20200:0:30:60:90:120:150:180:210:240:270:300:330
     gimmick2: 10101:0:30:60:90:120:150:180:210:240:270:300:330
     gimmick3: 
@@ -712,7 +712,7 @@ MonoBehaviour:
     gimmick12: 
   - id: 42
     hp: 5
-    shot: 12
+    shot: 13
     target: 10080
     rotation: 100
     gimmick1: 10401:0:60:120:180:240:300
@@ -882,7 +882,7 @@ MonoBehaviour:
     gimmick12: 
   - id: 52
     hp: 20
-    shot: 10
+    shot: 11
     target: 10080
     rotation: 100
     gimmick1: 30100:1:0:180
@@ -1292,7 +1292,7 @@ MonoBehaviour:
     hp: 20
     shot: 10
     target: 10100
-    rotation: 120
+    rotation: 100
     gimmick1: 30101:1:0:60
     gimmick2: 30101:1:180:240
     gimmick3: 10801:120:300
@@ -1360,7 +1360,7 @@ MonoBehaviour:
     hp: 12
     shot: 20
     target: 10100
-    rotation: -150
+    rotation: -120
     gimmick1: 10901:30:60:210:240
     gimmick2: 11001:120:150:300:330
     gimmick3: 10102:0:90:270:180
@@ -1442,11 +1442,11 @@ MonoBehaviour:
     gimmick11: 
     gimmick12: 
   - id: 85
-    hp: 6
+    hp: 9
     shot: 15
     target: 10050
-    rotation: -150
-    gimmick1: 10902:0:80:280
+    rotation: -120
+    gimmick1: 10901:0:80:280
     gimmick2: 30101:1:-10:10
     gimmick3: 30101:1:70:90
     gimmick4: 30101:1:270:290
@@ -1493,12 +1493,12 @@ MonoBehaviour:
     gimmick11: 
     gimmick12: 
   - id: 88
-    hp: 14
-    shot: 18
+    hp: 16
+    shot: 20
     target: 10050
-    rotation: 200
-    gimmick1: 10901:0:120:240
-    gimmick2: 10401:40:160:280
+    rotation: 160
+    gimmick1: 10401:0:120:240
+    gimmick2: 10901:40:160:280
     gimmick3: 20200:80:200:320
     gimmick4: 
     gimmick5: 
@@ -1527,18 +1527,18 @@ MonoBehaviour:
     gimmick11: 
     gimmick12: 
   - id: 90
-    hp: 16
-    shot: 28
+    hp: 20
+    shot: 26
     target: 10080
-    rotation: -150
-    gimmick1: 10902:60:120:180:240
-    gimmick2: 11002:90:150:210:270
+    rotation: -120
+    gimmick1: 11002:120:180:240
+    gimmick2: 10902:90:150:210
     gimmick3: 10200:0:30:300:330
     gimmick4: 30101:1:70:80
     gimmick5: 30101:1:130:140
     gimmick6: 30101:1:190:200
     gimmick7: 30101:1:250:260
-    gimmick8: 
+    gimmick8: 10801:60:270
     gimmick9: 
     gimmick10: 
     gimmick11: 
@@ -1836,7 +1836,7 @@ MonoBehaviour:
     hp: 10
     shot: 5
     target: 10100
-    rotation: 180
+    rotation: 150
     gimmick1: 10401:0:90:180:270
     gimmick2: 20300:30:150:210:330
     gimmick3: 20200:60:120:240:300
@@ -1987,11 +1987,11 @@ MonoBehaviour:
     gimmick12: 
   - id: 117
     hp: 12
-    shot: 28
+    shot: 20
     target: 10100
     rotation: 100
-    gimmick1: 11002:24:144:240:288
-    gimmick2: 10902:48:168:264:312
+    gimmick1: 11001:24:144:240:288
+    gimmick2: 10901:48:168:264:312
     gimmick3: 10200:336:0:72:96:120:192:216
     gimmick4: 
     gimmick5: 
@@ -2497,11 +2497,11 @@ MonoBehaviour:
     gimmick12: 
   - id: 147
     hp: 20
-    shot: 44
+    shot: 32
     target: 10080
     rotation: 100
-    gimmick1: 10902:0:30:120:150:240:270
-    gimmick2: 11002:60:90:180:210:300:330
+    gimmick1: 10901:0:30:120:150:240:270
+    gimmick2: 11001:60:90:180:210:300:330
     gimmick3: 
     gimmick4: 
     gimmick5: 
@@ -3618,10 +3618,10 @@ MonoBehaviour:
     gimmick11: 
     gimmick12: 
   - id: 213
-    hp: 17
-    shot: 8
+    hp: 16
+    shot: 9
     target: 10080
-    rotation: 80
+    rotation: 60
     gimmick1: 20100:0:45:90:135:180:225:270:315
     gimmick2: 30101:1:15:30
     gimmick3: 30101:1:60:75
@@ -3706,7 +3706,7 @@ MonoBehaviour:
     hp: 10
     shot: 7
     target: 10050
-    rotation: 150
+    rotation: 120
     gimmick1: 20200:160:200
     gimmick2: 10200:90:270:330:30
     gimmick3: 30101:1:-140:140
@@ -3791,11 +3791,11 @@ MonoBehaviour:
     hp: 16
     shot: 4
     target: 10080
-    rotation: 100
-    gimmick1: 10200:0:45:90:135:180
-    gimmick2: 10701:210:240:270:300:330
-    gimmick3: 20300:210:240:270:300:330
-    gimmick4: 30101:1:0:180
+    rotation: 80
+    gimmick1: 10200:0:52:105:157:210
+    gimmick2: 10701:240:270:300:330
+    gimmick3: 20300:240:270:300:330
+    gimmick4: 30101:1:0:210
     gimmick5: 
     gimmick6: 
     gimmick7: 
@@ -3941,14 +3941,14 @@ MonoBehaviour:
     gimmick11: 
     gimmick12: 
   - id: 232
-    hp: 12
-    shot: 7
+    hp: 16
+    shot: 10
     target: 10050
     rotation: 80
-    gimmick1: 10200:120:180:240:300:360
+    gimmick1: 10200:120:180:300:360
     gimmick2: 20100:40:80
     gimmick3: 30101:1:120:360
-    gimmick4: 
+    gimmick4: 10801:240
     gimmick5: 
     gimmick6: 
     gimmick7: 
@@ -3961,7 +3961,7 @@ MonoBehaviour:
     hp: 26
     shot: 22
     target: 10080
-    rotation: 120
+    rotation: 100
     gimmick1: 11002:0:180
     gimmick2: 10801:60:90:120:240:270:300
     gimmick3: 10501:30:150:210:330
@@ -4031,8 +4031,8 @@ MonoBehaviour:
     target: 10080
     rotation: 50
     gimmick1: 10200:30:90:150:210:270:330
-    gimmick2: 20100:0:60:120:180:240:300
-    gimmick3: 
+    gimmick2: 20100:0:120:240
+    gimmick3: 20200:60:180:300
     gimmick4: 
     gimmick5: 
     gimmick6: 
@@ -4043,12 +4043,12 @@ MonoBehaviour:
     gimmick11: 
     gimmick12: 
   - id: 238
-    hp: 12
-    shot: 13
+    hp: 27
+    shot: 20
     target: 10100
-    rotation: 50
+    rotation: 100
     gimmick1: 10200:0:72:144:216:288
-    gimmick2: 10501:36:108:180:252:324
+    gimmick2: 10801:36:108:180:252:324
     gimmick3: 
     gimmick4: 
     gimmick5: 
@@ -4213,13 +4213,13 @@ MonoBehaviour:
     gimmick11: 
     gimmick12: 
   - id: 248
-    hp: 7
-    shot: 6
+    hp: 22
+    shot: 17
     target: 10050
-    rotation: 100
-    gimmick1: 10200:0:60:120:180:240:300
-    gimmick2: 
-    gimmick3: 
+    rotation: 120
+    gimmick1: 30101:1:0:200
+    gimmick2: 10102:50:100:150
+    gimmick3: 10101:240:280:320
     gimmick4: 
     gimmick5: 
     gimmick6: 
@@ -4231,13 +4231,13 @@ MonoBehaviour:
     gimmick12: 
   - id: 249
     hp: 18
-    shot: 28
+    shot: 26
     target: 10080
     rotation: -100
     gimmick1: 10200:0:90:180:270
-    gimmick2: 10902:30:120:210:300
+    gimmick2: 10902:120:300
     gimmick3: 10401:60:150:240:330
-    gimmick4: 
+    gimmick4: 10901:30:210
     gimmick5: 
     gimmick6: 
     gimmick7: 
