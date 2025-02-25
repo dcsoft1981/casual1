@@ -225,6 +225,8 @@ public class GameManager : MonoBehaviour
 			buttonTabText = buttonTab.GetComponentInChildren<TextMeshProUGUI>();
 			buttonTabText.DOFade(0f, 1.3f).SetLoops(-1, LoopType.Yoyo);
 		}
+
+		GameCenterManager.CheckInit();
 	}
 
     void SetHPText()
@@ -377,6 +379,7 @@ public class GameManager : MonoBehaviour
 					}
 					int nextLevel = level + 1;
 					LocalDataManager.instance.SetCurLevel(nextLevel);
+					GameCenterManager.AuthenticateAndReportScore(nextLevel);
 				}
 				break;
 			case IngameType.INFINITY:
