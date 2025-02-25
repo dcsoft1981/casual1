@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using static Define;
 using System.Text;
 using UnityEngine.Scripting;
+using System.Configuration;
 
 [Preserve]
 public class LobbyScene : MonoBehaviour
@@ -57,6 +58,8 @@ public class LobbyScene : MonoBehaviour
 	[SerializeField] private GameObject markPrefab;
 	[SerializeField] private GameObject btnCheat;
 	private List<Mark> listMark = new List<Mark>();
+
+	[SerializeField] private TextMeshProUGUI textVersion;
 
 	private void Awake()
 	{
@@ -114,6 +117,7 @@ public class LobbyScene : MonoBehaviour
 		SetMarksInfo();
 		SetReddot();
 		SetCheat();
+		SetClientVersion();
 		AudioManager.instance.TickTockPlay();
 
 		time = 0.0f;
@@ -450,5 +454,10 @@ public class LobbyScene : MonoBehaviour
 		{
 			btnCheat.SetActive(true);
 		}
+	}
+
+	public void SetClientVersion()
+	{
+		textVersion.text = Define.CLIENT_VERSION;
 	}
 }
