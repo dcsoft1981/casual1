@@ -1,7 +1,5 @@
 {
   "dependencies": {
-    "com.apple.unityplugin.core": "file:../Tgz/com.apple.unityplugin.core-3.1.8.tgz",
-    "com.apple.unityplugin.gamekit": "file:../Tgz/com.apple.unityplugin.gamekit-3.0.2.tgz",
     "com.unity.collab-proxy": "2.6.0",
     "com.unity.device-simulator.devices": "1.0.0",
     "com.unity.feature.2d": "2.0.1",

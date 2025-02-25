@@ -1,7 +1,11 @@
 using UnityEngine;
 using System;
 using System.Threading.Tasks;
+#if UNITY_IOS
 using Apple.GameKit;
+#elif UNITY_ANDROID
+
+#endif
 
 class GameCenterManager
 {
@@ -12,9 +16,26 @@ class GameCenterManager
 		if(init)
 			return;
 
+
+#if UNITY_IOS
 		AuthenticateGameCenter();	
+#elif UNITY_ANDROID
+
+#endif
+
 	}
 
+	public static void AuthenticateAndReportScore(long score)
+	{
+#if UNITY_IOS
+		AuthenticateAndReportScoreIOS(score);
+#elif UNITY_ANDROID
+
+#endif
+	}
+
+
+#if UNITY_IOS
 	private static async Task AuthenticateGameCenter()
     {
 		try
@@ -35,9 +56,9 @@ class GameCenterManager
 		{
 			Debug.Log($"GameCenter Init Failure: {e.Message}");
 		}	
-    }
+	}
 
-	public static void AuthenticateAndReportScore(long score)
+	public static void AuthenticateAndReportScoreIOS(long score)
     {
 		try
 		{
@@ -83,4 +104,5 @@ class GameCenterManager
 			Debug.Log($"GameCenter ReportScore Failure: {score}");
 		}
     }
+#endif
 }
