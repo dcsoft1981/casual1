@@ -247,7 +247,7 @@ public class LobbyScene : MonoBehaviour
 		int randValue = Random.Range(0, titlePrefix.Count);
 		string str = titlePrefix[randValue] + "TokTok";
 		textTitle1.SetText(str);
-		Debug.Log("SetTitleText : " + str);
+		LogManager.Log("SetTitleText : " + str);
 	}
 
 	void SetGradeScrollInfo()
@@ -270,13 +270,13 @@ public class LobbyScene : MonoBehaviour
 		{
 			scrollBarValue = 1f - (curGrade / gradeCount);
 		}
-		Debug.Log("SetGradeScrollInfo : " + scrollBarValue + " CurGrade : " + curGrade);
+		LogManager.Log("SetGradeScrollInfo : " + scrollBarValue + " CurGrade : " + curGrade);
 	}
 
 	void SetGradeScrollValue()
 	{
 		//scrollbar.GetComponent<Scrollbar>().value = scrollBarValue;
-		Debug.Log("SetGradeScrollValue : " + scrollbar.GetComponent<Scrollbar>().value + "  :  " + scrollBarValue);
+		LogManager.Log("SetGradeScrollValue : " + scrollbar.GetComponent<Scrollbar>().value + "  :  " + scrollBarValue);
 		gradeScrollRect.verticalNormalizedPosition = scrollBarValue;
 	}
 

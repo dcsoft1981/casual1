@@ -191,7 +191,7 @@ public class GameManager : MonoBehaviour
 		shot = levelData.shot;
 
 		CreateAndPlayAnimation();
-		Debug.Log("levelData:" + level + " - " + levelData.id + " - " + levelData.hp);
+		LogManager.Log("levelData:" + level + " - " + levelData.id + " - " + levelData.hp);
 		Vector3 targetScreenPosition = Camera.main.WorldToScreenPoint(targetCircle.transform.position);
 		textHP.transform.position = Camera.main.WorldToScreenPoint(new Vector3(0f, GetTargetHPPosition(), 0f));
 		textTapTok.transform.position = targetScreenPosition;
@@ -511,7 +511,7 @@ public class GameManager : MonoBehaviour
 	{
 		if (targetCircle == null || levelData == null)
 		{
-			Debug.LogError("TargetCircle or LevelData is not assigned.");
+			LogManager.LogError("TargetCircle or LevelData is not assigned.");
 			return;
 		}
 
@@ -556,39 +556,6 @@ public class GameManager : MonoBehaviour
 
 		targetCircle.StartAnimation(speedCurve);
 		targetCircle.SetLevelDB(levelData);
-		/*
-		try 
-		{
-			clip.SetCurve("", typeof(TargetCircle), "m_RotateSpeed", curve);
-			//clip.SetCurve("", typeof(Transform), "localEulerAngles.z", curve);
-		} 
-		catch ( Exception e )
-		{
-			Debug.LogError(e.ToString());
-			Debug.LogError(e.Message);
-		}
-		
-		clip.wrapMode = WrapMode.Loop;
-		EnableLooping(clip);
-
-		// Animator에 AnimationClip 할당 및 실행
-		Animator animator = targetCircle.GetComponent<Animator>();
-		if (animator == null)
-		{
-			animator = targetCircle.gameObject.AddComponent<Animator>();
-		}
-
-		RuntimeAnimatorController controller = new AnimatorOverrideController
-		{
-			runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>("DefaultController")
-		};
-		animator.runtimeAnimatorController = controller;
-
-		AnimatorOverrideController overrideController = (AnimatorOverrideController)animator.runtimeAnimatorController;
-		overrideController["Rotation"] = clip;
-
-		animator.Play("Rotation");
-		*/
 	}
 
 	void EnableLooping(AnimationClip clip)
@@ -616,7 +583,7 @@ public class GameManager : MonoBehaviour
 		if (shot == 0)
 			addTempShot--;
 		shot += changeShot;
-		Debug.Log("AddShot : " + beforeShot + "->" + shot);
+		LogManager.Log("AddShot : " + beforeShot + "->" + shot);
 		SetShotText();
 		pinLauncher.AddTempPin(addTempShot);
 	}
@@ -685,7 +652,7 @@ public class GameManager : MonoBehaviour
 					dic_doubleDamage.Add(i, 1); ;
 				}
 			}
-			Debug.Log($"DAMAGE_AREA :  {targetScale}, {numInfo[2]}, {numInfo[3]}");
+			LogManager.Log($"DAMAGE_AREA :  {targetScale}, {numInfo[2]}, {numInfo[3]}");
 			targetCircle.DrawDamageLine(numInfo[2], numInfo[3]);
 		}
 		else if (gimmickType == GimmickType.NODAMAGE_AREA)
@@ -711,7 +678,7 @@ public class GameManager : MonoBehaviour
 					dic_noDamage.Add(i, 1); ;
 				}
 			}
-			Debug.Log($"NODAMAGE_AREA :  {targetScale}, {numInfo[2]}, {numInfo[3]}");
+			LogManager.Log($"NODAMAGE_AREA :  {targetScale}, {numInfo[2]}, {numInfo[3]}");
 			targetCircle.DrawNoDamageLine(numInfo[2], numInfo[3]);
 		}
 		else
@@ -1187,7 +1154,7 @@ public class GameManager : MonoBehaviour
 
 	public void ResetHitGimmick()
 	{
-		Debug.Log("리셋 ResetHitGimmick");
+		LogManager.Log("Reset ResetHitGimmick");
 		curHitGimmick = null;
 	}
 
@@ -1222,7 +1189,7 @@ public class GameManager : MonoBehaviour
 				{
 					case GimmickType.CONTINUE_HIT:
 						{
-							Debug.Log($"리셋 체크 GimmickType.CONTINUE_HIT: {curHitGimmick}");
+							LogManager.Log($"리셋 체크 GimmickType.CONTINUE_HIT: {curHitGimmick}");
 							if (go == curHitGimmick)
 							{
 								// 리셋 스킵
@@ -1530,8 +1497,8 @@ public class GameManager : MonoBehaviour
 			topPosY = -100f;
 		}
 		topUI.GetComponent<RectTransform>().anchoredPosition = new Vector2(0f, topPosY);
-		
-		Debug.Log($"SetOrthographicSize: {screenWidth}, {screenHeight}, {aspectRatio}, {skillPosY}");
+
+		LogManager.Log($"SetOrthographicSize: {screenWidth}, {screenHeight}, {aspectRatio}, {skillPosY}");
 
 		// 앱아이콘 테스트 사이트
 		// https://adaptive-icon-tester.nabettu.com/?utm_source=chatgpt.com
@@ -1619,7 +1586,7 @@ public class GameManager : MonoBehaviour
 		if (!gimmick.PinWork(_pin.GetPinID()))
 		{
 			// 이미 처리한 핀
-			Debug.Log("OnTriggerEnter2D Gimmick Aleady WORKED : " + _pin.GetPinID());
+			LogManager.Log("OnTriggerEnter2D Gimmick Aleady WORKED : " + _pin.GetPinID());
 			return true;
 		}
 		else
@@ -1788,11 +1755,11 @@ public class GameManager : MonoBehaviour
 
 			// 레벨 클리어 이벤트 로깅
 			FirebaseAnalytics.LogEvent(key, new Parameter("try_count", tryCount));
-			Debug.Log("Firebase LogKey : " + key + " tryCount : " + tryCount);
+			LogManager.Log("Firebase LogKey : " + key + " tryCount : " + tryCount);
 		}
 		catch (Exception e)
 		{
-			Debug.LogError("Firebase LevelClearLogError : " + e.Message);
+			LogManager.LogError("Firebase LevelClearLogError : " + e.Message);
 		}
 #endif
 	}

@@ -67,7 +67,7 @@ public class Gimmick : MonoBehaviour
 		}
 		else
 		{
-			Debug.LogError($"{gimmickType} 스프라이트를 로드할 수 없습니다. 경로를 확인하세요.");
+			LogManager.LogError($"{gimmickType} 스프라이트를 로드할 수 없습니다. 경로를 확인하세요.");
 		}
 
 		//spriteRenderer.material = Resources.Load<Material>("Materials/ice");
@@ -173,7 +173,7 @@ public class Gimmick : MonoBehaviour
 
 		// SmallCircle의 반지름 (가정: SpriteRenderer의 bounds를 사용)
 		float smallRadius = GetComponent<SpriteRenderer>().bounds.extents.x*1.20f;
-		Debug.Log($"DrawGuideLine smallRadius : {smallRadius}");
+		LogManager.Log($"DrawGuideLine smallRadius : {smallRadius}");
 
 		// 접점 계산
 		Vector3 tangentPoint1 = smallCenter + Quaternion.Euler(0, 0, 90) * direction * smallRadius;
@@ -236,7 +236,7 @@ public class Gimmick : MonoBehaviour
 		float scale = 0.05f;
 		effect.transform.position = transform.position;
 		effect.transform.localScale = new Vector3(scale, scale, scale);
-		Debug.Log("EffectPlay Gimmick Scale : " + effect.transform.localScale);
+		LogManager.Log("EffectPlay Gimmick Scale : " + effect.transform.localScale);
 		effect.Play();
 	}
 
@@ -284,7 +284,7 @@ public class Gimmick : MonoBehaviour
 		//Vector2 rePosition = GetDirectionVector(rotationZ);
 		float rotationZ = inputAngle;
 		Vector2 rePosition = GetPointOnCircle(rotationZ);
-		Debug.Log("SetPairSprite : " + rotationZ + " -> " + rePosition);
+		LogManager.Log("SetPairSprite : " + rotationZ + " -> " + rePosition);
 		if (index == 0)
 		{
 			spriteObject.transform.localPosition = new Vector3(-rePosition.x, -rePosition.y, 0f);

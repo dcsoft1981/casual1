@@ -74,7 +74,7 @@ public class Pin : MonoBehaviour
 				AudioManager.instance.PlaySfx(AudioManager.Sfx.iron_hit);
 				ReflectPin(collision);
 				GameManager.instance.ResetCombo();
-				Debug.Log("OnTriggerEnter2D Target InShield");
+				LogManager.Log("OnTriggerEnter2D Target InShield");
 			}
 			else
 			{
@@ -110,7 +110,7 @@ public class Pin : MonoBehaviour
 					GameManager.instance.AddPinnedShot(this.gameObject);
 					GameManager.instance.AddCombo(transform.position);
 
-					Debug.Log("OnTriggerEnter2D Target HIT Angle : " + angle + " , DAMAGE : " + damage + " , Position : " + transform.position);
+					LogManager.Log("OnTriggerEnter2D Target HIT Angle : " + angle + " , DAMAGE : " + damage + " , Position : " + transform.position);
 				}
 			}
 			this.SetDefaultSpriteScale();
@@ -121,7 +121,7 @@ public class Pin : MonoBehaviour
 			Pin pin = collision.gameObject.GetComponent<Pin>();
 			if(pin == null)
 			{
-				Debug.LogError("OnTriggerEnter2D No Pin");
+				LogManager.LogError("OnTriggerEnter2D No Pin");
 				return;
 			}
 
@@ -131,7 +131,7 @@ public class Pin : MonoBehaviour
 				GameManager.instance.ResetCombo();
 				AudioManager.instance.PlaySfx(AudioManager.Sfx.shot_failure);
 				ReflectPin(collision);
-				Debug.Log("OnTriggerEnter2D to Pinned -> ReflectPin");
+				LogManager.Log("OnTriggerEnter2D to Pinned -> ReflectPin");
 				isWorked = true;
 			}
 			else
@@ -143,7 +143,7 @@ public class Pin : MonoBehaviour
 		else if (collision.gameObject.tag == "Gimmick")
 		{
 			Define.ShotGimmickHitResult shotGimmickHitResult = GameManager.instance.ShotGimmickHit(this, collision.gameObject);
-			Debug.Log("OnTriggerEnter2D Gimmick : " + this.GetPinID() + " , " + shotGimmickHitResult);
+			LogManager.Log("OnTriggerEnter2D Gimmick : " + this.GetPinID() + " , " + shotGimmickHitResult);
 			switch (shotGimmickHitResult)
 			{
 				case Define.ShotGimmickHitResult.NONE:
@@ -189,7 +189,7 @@ public class Pin : MonoBehaviour
 		else
 		{
 			GameManager.instance.ResetCombo();
-			Debug.Log("OnTriggerEnter2D STRANGE NO WORK");
+			LogManager.Log("OnTriggerEnter2D STRANGE NO WORK");
 		}
 
 		// 모든 기믹들 상태 변환 체크
@@ -218,7 +218,7 @@ public class Pin : MonoBehaviour
 			if(collisionPin.isReflected())
 			{
 				// 반사 시키지 않는다.
-				Debug.Log("튕기지 않음");
+				LogManager.Log("튕기지 않음");
 				return;
 			}
 		}
@@ -262,7 +262,7 @@ public class Pin : MonoBehaviour
 
 		reflectVec = new Vector3(reflectX, -1f, 0f);
 		reflectRotateSpeed = reflectX*rotateSpeed*20;
-		Debug.Log($"튕김 방향: {reflectVec} , {reflectRotateSpeed}");
+		LogManager.Log($"튕김 방향: {reflectVec} , {reflectRotateSpeed}");
 
 		isReflecteded = true;
 		Invoke("DestroyPin", 0.3f);
@@ -326,7 +326,7 @@ public class Pin : MonoBehaviour
 		float scale = 0.035f;
 		effect.transform.position = transform.position;
 		effect.transform.localScale = new Vector3(scale, scale, scale);
-		Debug.Log("EffectPlay Pin Scale : " + effect.transform.localScale);
+		LogManager.Log("EffectPlay Pin Scale : " + effect.transform.localScale);
 		effect.Play();
 	}
 

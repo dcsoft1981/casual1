@@ -52,31 +52,6 @@ public class TargetCircle : MonoBehaviour
 
 		effectPrab = Instantiate(effectPrab, effectGroup);
 		listExpression = new List<LineRenderer>();
-
-		/*
-		spriteObject = new GameObject(Define.CHILD_SPRITE_OBJECT);
-		spriteObject.transform.SetParent(this.transform);
-
-		// 자식 오브젝트의 위치를 부모와 동일하게 설정합니다.
-		spriteObject.transform.localPosition = Vector3.zero;
-
-		// SpriteRenderer 컴포넌트를 추가합니다.
-		spriteRenderer = spriteObject.AddComponent<SpriteRenderer>();
-		Shader shader = Shader.Find("AllIn1SpriteShader/AllIn1SpriteShader");
-		shader = null;
-		if (shader != null)
-		{
-			spriteObject.AddComponent<AllIn1Shader>();
-			spriteRenderer.material = new Material(shader);
-			shaderLoaded = true;
-			Debug.Log("AllIn1SpriteShader Shader Exist");
-		}
-		else
-		{
-			spriteRenderer.material = new Material(Shader.Find("Sprites/Default"));
-			Debug.LogError("AllIn1SpriteShader Shader Not Exist");
-		}
-		*/
 	}
 
 	private void Start()
@@ -93,22 +68,6 @@ public class TargetCircle : MonoBehaviour
 		spriteRenderer.color = Define.COLOR_TARGET_BASE;
 		spriteObject.transform.localScale = new Vector3(spriteScale, spriteScale, 1);
 		Define.TargetType targetType = (Define.TargetType)_targetId;
-		// 보류 일단 표정으로 처리
-		/*
-		switch(targetType)
-		{
-			case Define.TargetType.SILVER:
-				{
-					spriteObject.transform.Find("Sprite1").gameObject.SetActive(true);
-				}
-				break;
-			case Define.TargetType.GOLD:
-				{
-					spriteObject.transform.Find("Sprite2").gameObject.SetActive(true);
-				}
-				break;
-		}
-		*/
 	}
 
 	public void StartAnimation(AnimationCurve animationCurve)
@@ -184,7 +143,6 @@ public class TargetCircle : MonoBehaviour
 			rotationSpeed = GameManager.instance.GetRotationValue(GetCurRotationSpeed(curTime));
 			// 현재 속도로 회전 적용
 			transform.Rotate(0, 0, rotationSpeed * Time.deltaTime);
-			//Debug.Log("TargetCircle : " + elapsedTime + " - " + curTime + " - " + rotationSpeed);
 
 			if(expressionSegments != 0)
 			{
@@ -239,7 +197,7 @@ public class TargetCircle : MonoBehaviour
 		}
 		lineObj.transform.localPosition = Vector3.zero;
 		lineObj.transform.localScale = Vector3.one;
-		Debug.Log("DrawDamageLine radius :" + radius + " , position : " + lineObj.transform.position);
+		LogManager.Log("DrawDamageLine radius :" + radius + " , position : " + lineObj.transform.position);
 	}
 
 	public void DrawNoDamageLine(int _startAngle, int _endAngle)
@@ -275,7 +233,7 @@ public class TargetCircle : MonoBehaviour
 		}
 		lineObj.transform.localPosition = Vector3.zero;
 		lineObj.transform.localScale = Vector3.one;
-		Debug.Log("DrawNoDamageLine radius :" + radius + " , position : " + lineObj.transform.position);
+		LogManager.Log("DrawNoDamageLine radius :" + radius + " , position : " + lineObj.transform.position);
 	}
 
 	private LineRenderer GetExpressionLineBase(string lineName, Vector3 position, Color color, int segments)
@@ -840,7 +798,7 @@ public class TargetCircle : MonoBehaviour
 		float scale = 0.7f;
 		effectPrab.transform.position = transform.position;
 		effectPrab.transform.localScale = new Vector3(scale, scale, scale);
-		Debug.Log("EffectPlay Target Scale : " + effectPrab.transform.localScale);
+		LogManager.Log("EffectPlay Target Scale : " + effectPrab.transform.localScale);
 		effectPrab.GetComponent<Renderer>().sortingOrder = -10;
 		effectPrab.Play();
 	}

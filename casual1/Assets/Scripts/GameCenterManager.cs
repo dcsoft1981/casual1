@@ -13,6 +13,9 @@ class GameCenterManager
 
 	public static void CheckInit()
 	{
+		if (!Define.MARKET_ABILITY)
+			return;
+
 		if(init)
 			return;
 
@@ -27,6 +30,9 @@ class GameCenterManager
 
 	public static void AuthenticateAndReportScore(long score)
 	{
+		if (!Define.MARKET_ABILITY)
+			return;
+
 #if UNITY_IOS
 		AuthenticateAndReportScoreIOS(score);
 #elif UNITY_ANDROID
@@ -40,25 +46,25 @@ class GameCenterManager
     {
 		try
 		{
-			Debug.Log($"GameCenter Init Start");
+			LogManager.Log($"GameCenter Init Start");
 			if (!GKLocalPlayer.Local.IsAuthenticated)
 			{
 				var player = await GKLocalPlayer.Authenticate();
-				Debug.Log($"GameCenter Init Success: {player.DisplayName}");
+				LogManager.Log($"GameCenter Init Success: {player.DisplayName}");
 				init = true;
 			}
 			else
 			{
-				Debug.Log("GameCenter Init Completed");
+				LogManager.Log("GameCenter Init Completed");
 			}
 		}
 		catch(Exception e)
 		{
-			Debug.Log($"GameCenter Init Failure: {e.Message}");
+			LogManager.Log($"GameCenter Init Failure: {e.Message}");
 		}	
 	}
 
-	public static void AuthenticateAndReportScoreIOS(long score)
+	private static void AuthenticateAndReportScoreIOS(long score)
     {
 		try
 		{
@@ -67,22 +73,22 @@ class GameCenterManager
 			{
 				if (success)
 				{
-					Debug.Log("GameCenter SocialInit Success");
+					LogManager.Log("GameCenter SocialInit Success");
 					ReportScore(score);
 				}
 				else
 				{
-					Debug.Log("GameCenter SocialInit Failure");
+					LogManager.Log("GameCenter SocialInit Failure");
 				}
 			});
 		}
 		catch(Exception e)
 		{
-			Debug.Log($"GameCenter SocialInit Failure: {score}");
+			LogManager.Log($"GameCenter SocialInit Failure: {score}");
 		}
     }
 
-	public static void ReportScore(long score)
+	private static void ReportScore(long score)
     {
 		try
 		{
@@ -91,17 +97,17 @@ class GameCenterManager
 			{
 				if (success)
 				{
-					Debug.Log($"GameCenter ReportScore Success: {score}");
+					LogManager.Log($"GameCenter ReportScore Success: {score}");
 				}
 				else
 				{
-					Debug.Log($"GameCenter ReportScore failure: {score}");
+					LogManager.Log($"GameCenter ReportScore failure: {score}");
 				}
 			});
 		}
 		catch(Exception e)
 		{
-			Debug.Log($"GameCenter ReportScore Failure: {score}");
+			LogManager.Log($"GameCenter ReportScore Failure: {score}");
 		}
     }
 #endif

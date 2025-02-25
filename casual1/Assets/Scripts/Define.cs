@@ -7,6 +7,8 @@ using System.Linq;
 public class Define
 {
 	public const string CLIENT_VERSION = "v20250228(1.0.0)";
+	public const bool MARKET_ABILITY = false;
+	public const bool DEBUG_LOG = false;
 
 	public const int STABLEUSER_LEVEL = 51;
 	public const int PLAY_AD_COUNT = 7;

@@ -24,19 +24,19 @@ class FirebaseManager
 						init = true;
 
 						// Set a flag here to indicate whether Firebase is ready to use by your app.
-						Debug.Log("Firebase Init Complete");
+						LogManager.Log("Firebase Init Complete");
 
 					}
 					else
 					{
-						Debug.LogError(System.String.Format("Firebase Could not resolve all dependencies: {0}", dependencyStatus));
+						LogManager.LogError(System.String.Format("Firebase Could not resolve all dependencies: {0}", dependencyStatus));
 						// Firebase Unity SDK is not safe to use here.
 					}
 				});
 			}
 			catch (System.Exception e)
 			{
-				Debug.LogError(System.String.Format("Firebase CheckInitFirebase Error: {0}", e.Message));
+				LogManager.LogError(System.String.Format("Firebase CheckInitFirebase Error: {0}", e.Message));
 			}
 
 		}

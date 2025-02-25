@@ -41,7 +41,7 @@ public class ShareManager : MonoBehaviour
 #elif UNITY_IOS
         url = "https://play.google.com/store/apps/details?id=com.dcsoft1981.casual1"; // TODO ios 용 주소 적용
 #else
-        Debug.Log("Share Doesnt Work!!!");
+        LogManager.Log("Share Doesnt Work!!!");
 #endif
 		ShareText(text, url);
 #if !UNITY_EDITOR
@@ -54,11 +54,11 @@ public class ShareManager : MonoBehaviour
 				new Parameter("user_level", level)
 			};
 			FirebaseAnalytics.LogEvent(key, parameters);
-			Debug.Log("Firebase DoWorkShare : " + key);
+			LogManager.Log("Firebase DoWorkShare : " + key);
 		}
 		catch (Exception e)
 		{
-			Debug.LogError("Firebase DoWorkShare : " + e.Message);
+			LogManager.LogError("Firebase DoWorkShare : " + e.Message);
 		}
 #endif
 	}
@@ -73,7 +73,7 @@ public class ShareManager : MonoBehaviour
 #elif UNITY_IOS
         ShareOniOS(shareMessage);
 #else
-        Debug.Log("Share Doesnt Work!!!");
+        LogManager.Log("Share Doesnt Work!!!");
 #endif
 	}
 

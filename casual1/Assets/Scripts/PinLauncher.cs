@@ -44,7 +44,7 @@ public class PinLauncher : MonoBehaviour
 				Vector3 worldPosition = Camera.main.ScreenToWorldPoint(touchPosition);
 
 				// 결과 출력
-				Debug.Log("월드 좌표: " + worldPosition);
+				LogManager.Log("월드 좌표: " + worldPosition);
 				if(worldPosition.x > -5f && worldPosition.x < 5f && worldPosition.y > -4f && worldPosition.y < -1f)
 				{
 					noCheckPosition = true;
@@ -102,7 +102,7 @@ public class PinLauncher : MonoBehaviour
         {
 			if (GameManager.instance.GetCheckFinalShot() && GameManager.instance.GetShotCount() == 0)
 			{
-				Debug.Log("PreparePin No More Shot");
+				LogManager.Log("PreparePin No More Shot");
 				return;
 			}
 
@@ -151,7 +151,7 @@ public class PinLauncher : MonoBehaviour
 		lineRenderer.SetPosition(1, new Vector3(staffLength, -staffOffset - index* staffIndexOffset, 0));
 		lineObj.transform.localPosition = Vector3.zero;
 		lineObj.transform.localScale = Vector3.one;
-		Debug.Log("DrawStaff radius :" + lineObj.transform.position);
+		LogManager.Log("DrawStaff radius :" + lineObj.transform.position);
 		staggLines.Add(lineObj);
 	}
 
