@@ -1,19 +1,5 @@
 {
   "dependencies": {
-    "com.apple.unityplugin.core": {
-      "version": "file:/Users/daegyukim/Documents/GitHub/unityplugins/Build/com.apple.unityplugin.core-3.1.8.tgz",
-      "depth": 0,
-      "source": "local-tarball",
-      "dependencies": {}
-    },
-    "com.apple.unityplugin.gamekit": {
-      "version": "file:/Users/daegyukim/Documents/GitHub/unityplugins/Build/com.apple.unityplugin.gamekit-3.0.2.tgz",
-      "depth": 0,
-      "source": "local-tarball",
-      "dependencies": {
-        "com.apple.unityplugin.core": "3.1.8"
-      }
-    },
     "com.unity.2d.animation": {
       "version": "10.1.4",
       "depth": 1,
