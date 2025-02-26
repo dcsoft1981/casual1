@@ -40,8 +40,6 @@ public class LocalDataManager : MonoBehaviour
 	private int maxLevel = 0;
 
 	public Sprite spriteQuestion = null;
-	private bool enableCheat = false;
-	private bool disableAD = false;
 
 	private void Awake()
 	{
@@ -122,15 +120,6 @@ public class LocalDataManager : MonoBehaviour
 			LocalDataManager.instance.CheckInfinityStage();
 
 			spriteQuestion = Resources.Load<Sprite>("Help");
-
-#if UNITY_EDITOR
-			enableCheat = true;
-#endif
-			// 광고 ONOFF
-			disableAD = true;
-
-			// 치트 활성화
-			//enableCheat = true;
 		}
 	}
 
@@ -729,6 +718,9 @@ public class LocalDataManager : MonoBehaviour
 
 	public bool GetCheatStage()
 	{
+#if UNITY_EDITOR
+		return true;
+#endif
 		return enableCheat;
 	}
 }

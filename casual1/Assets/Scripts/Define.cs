@@ -10,6 +10,8 @@ public class Define
 	public const bool MARKET_ABILITY = false;
 	public const bool DEBUG_LOG = true;
 	public const bool FIREBASE_WORK = true;
+	public const bool enableCheat = false; // 치트 활성화
+	public const bool disableAD = true; // 광고 ONOFF
 
 	public const string ANDROID_MARKET_URL = "https://play.google.com/store/apps/details?id=com.dcsoft1981.casual1";
 	public const string IOS_MARKET_URL = "https://apps.apple.com/us/app/toktok-by-dc/id6742087075";
