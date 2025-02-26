@@ -1738,6 +1738,9 @@ public class GameManager : MonoBehaviour
 
 	public void LevelClearLog(bool clear)
 	{
+		// FirebaseLog
+		if (!Define.FIREBASE_WORK)
+			return;
 #if !UNITY_EDITOR
 		int level = LocalDataManager.instance.GetCurLevel();
 		int tryCount = LocalDataManager.instance.GetLevelPlayDataTryCount();

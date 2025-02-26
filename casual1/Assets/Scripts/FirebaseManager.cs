@@ -8,6 +8,8 @@ class FirebaseManager
 
 	public static void CheckInitFirebase()
 	{
+		if (!Define.FIREBASE_WORK)
+			return;
 #if !UNITY_EDITOR
 		if (!init)
 		{

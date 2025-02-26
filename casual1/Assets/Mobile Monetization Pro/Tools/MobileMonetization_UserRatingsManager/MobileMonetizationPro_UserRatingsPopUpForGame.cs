@@ -14,12 +14,6 @@ namespace MobileMonetizationPro
     private PlayReviewInfo _playReviewInfo;
 #endif
 
-        public bool UseNativeAndroidReviewPopUp = true;
-        public bool UseNativeIosReviewPopUp = true;
-
-        public string LinkToTheGameAndroid = "";
-		public string LinkToTheGameIOS = "";
-
 		[System.Serializable]
         public enum Options
         {
@@ -29,53 +23,19 @@ namespace MobileMonetizationPro
         public Options LaunchChecks;
 
         public int LaunchCountsBeforeShowingPopup = 5; // Number of times the game should be opened before showing review popup
-        public GameObject CustomReviewPopup; // Custom review popup UI game object
-        public Button CustomRateUIButton; // Rate button UI
-        public Button CustomLaterUIButton; // Rate button UI
-
-        public int StarRatingsByDefault = 5;
-        public Color StarColor = Color.yellow; // Color to change the stars
-        public GameObject[] CustomStars; // Array of custom stars UI game objects
-        public Sprite StarSprite; // Image to be activated on star click
-
         private int openCount = 0;
-        private Color[] originalStarColors; // Array to store the original colors of stars
-        private Sprite[] originalStarSprites; // Array to store the original sprites of stars
-        private bool[] starActiveStates; // Array to store the active states of stars
-
+        
         private void Awake()
         {
-            if (CustomStars.Length >= 1)
-            {
-                // Initialize originalStarColors and originalStarSprites arrays with the original colors and sprites of stars
-                originalStarColors = new Color[CustomStars.Length];
-                originalStarSprites = new Sprite[CustomStars.Length];
-                starActiveStates = new bool[CustomStars.Length];
 
-                for (int i = 0; i < CustomStars.Length; i++)
-                {
-                    originalStarColors[i] = CustomStars[i].GetComponent<Image>().color;
-                    originalStarSprites[i] = CustomStars[i].GetComponent<Image>().sprite;
-                    starActiveStates[i] = false;
-                }
-
-                OnStarClick(StarRatingsByDefault - 1);
-            }
         }
-        //private void OnApplicationPause()
-        //{
-        //    PlayerPrefs.SetInt("IsAppOpened", 0);
-        //}
-        //private void OnApplicationQuit()
-        //{
-        //    PlayerPrefs.SetInt("IsAppOpened", 0);
-        //}
+
         void Start()
         {
-			if (PlayerPrefs.GetInt("DoNotShowRatePopUp") == 0)
+			if (!IsRatePopupCalled())
             {
                 int curLevel = LocalDataManager.instance.GetCurLevel();
-                if(curLevel >= 51)
+                if(curLevel >= Define.RATEPOPUP_LEVEL)
                 {
 					if (LaunchChecks == Options.UseAppOpenCounts)
 					{
@@ -106,22 +66,6 @@ namespace MobileMonetizationPro
                 if (openCount >= LaunchCountsBeforeShowingPopup)
                 {
                     RateWork();
-
-                }
-
-                if (CustomRateUIButton != null)
-                {
-                    CustomRateUIButton.onClick.AddListener(OpenReviewLink);
-                }
-                if (CustomLaterUIButton != null)
-                {
-                    CustomLaterUIButton.onClick.AddListener(CloseReviewLink);
-                }
-
-                for (int i = 0; i < CustomStars.Length; i++)
-                {
-                    int index = i; // To capture the correct index in the lambda expression
-                    CustomStars[i].GetComponent<Button>().onClick.AddListener(() => OnStarClick(index));
                 }
             }
         }
@@ -138,6 +82,7 @@ namespace MobileMonetizationPro
         if (requestFlowOperation.Error != ReviewErrorCode.NoError)
         {
             // Log error. For example, using requestFlowOperation.Error.ToString().
+            LogManager.LogError("RequestReviewForAndroid1:" + requestFlowOperation.Error.ToString());
             yield break;
         }
         _playReviewInfo = requestFlowOperation.GetResult();
@@ -151,14 +96,24 @@ namespace MobileMonetizationPro
         _playReviewInfo = null; // Reset the object
         if (launchFlowOperation.Error != ReviewErrorCode.NoError)
         {
-            // Log error. For example, using requestFlowOperation.Error.ToString().
-            yield break;
+			// Log error. For example, using requestFlowOperation.Error.ToString().
+			LogManager.LogError("RequestReviewForAndroid2:" + requestFlowOperation.Error.ToString());
+			yield break;
         }
-        // The flow has finished. The API does not indicate whether the user
-        // reviewed or not, or even whether the review dialog was shown. Thus, no
-        // matter the result, we continue our app flow.
-    }
+
+        LogManager.Log("RequestReviewForAndroid Good");
+		SetNoMorePopup();
+		// The flow has finished. The API does not indicate whether the user
+		// reviewed or not, or even whether the review dialog was shown. Thus, no
+		// matter the result, we continue our app flow.
+		}
 #endif
+
+        void SetNoMorePopup()
+        {
+			PlayerPrefs.SetInt("DoNotShowRatePopUp", 1);
+			LogManager.Log("SetNoMorePopup");
+		}
 
         void RequestReviewForiOS()
         {
@@ -166,91 +121,40 @@ namespace MobileMonetizationPro
             PlayerPrefs.SetInt("OpenCount", 0);
             PlayerPrefs.SetInt("IsAppOpened", 0);
             UnityEngine.iOS.Device.RequestStoreReview();
+
+            LogManager.Log("RequestReviewForiOS Good");
+		    SetNoMorePopup();
 #endif
-        }
-
-        void ShowReviewPopup()
-        {
-            // Show custom review popup
-            if (CustomReviewPopup != null)
-            {
-                CustomReviewPopup.SetActive(true);
-            }
-        }
-
-        void OpenReviewLink()
-        {
-            string link = "";
-#if UNITY_ANDROID
-            link = LinkToTheGameAndroid;
-#endif
-
-#if UNITY_IOS
-            link = LinkToTheGameIOS;
-#endif
-			// Open the link to Google.com
-            if(link.Length > 0)
-            {
-				Application.OpenURL(link);
-			}
-            CloseReviewLink();
-            PlayerPrefs.SetInt("DoNotShowRatePopUp", 1);
-        }
-
-        void CloseReviewLink()
-        {
-            // Show custom review popup
-            if (CustomReviewPopup != null)
-            {
-                CustomReviewPopup.SetActive(false);
-            }
-            PlayerPrefs.SetInt("OpenCount", 0);
-            PlayerPrefs.SetInt("IsAppOpened", 0);
-        }
-        void OnStarClick(int starIndex)
-        {
-            // Activate the images above stars up to the clicked star
-            for (int i = 0; i <= starIndex; i++)
-            {
-                CustomStars[i].GetComponent<Image>().color = StarColor;
-                if (StarSprite != null)
-                {
-                    CustomStars[i].GetComponent<Image>().sprite = StarSprite;
-                }
-                CustomStars[i].GetComponent<Image>().enabled = true;
-                starActiveStates[i] = true;
-            }
-
-            // Restore previous state for stars beyond the clicked star
-            for (int i = starIndex + 1; i < CustomStars.Length; i++)
-            {
-                CustomStars[i].GetComponent<Image>().color = originalStarColors[i];
-                CustomStars[i].GetComponent<Image>().sprite = originalStarSprites[i];
-                //CustomStars[i].GetComponent<Image>().enabled = starActiveStates[i];
-            }
-        }
+		}
 
         public void RateWork()
         {
-			if (UseNativeAndroidReviewPopUp == true)
-			{
-#if UNITY_ANDROID && !UNITY_EDITOR
-                    StartCoroutine(RequestReviewForAndroid());
+            LogManager.Log("DoRateWork");
+            if(IsRatePopupCalled())
+            {
+                //마켓 링크
+                string link = Define.ANDROID_MARKET_URL;
+#if UNITY_IOS
+                link = Define.IOS_MARKET_URL;
 #endif
+				Application.OpenURL(link);
 			}
 			else
-			{
-				ShowReviewPopup();
-			}
-
-			if (UseNativeIosReviewPopUp == true)
-			{
+            {
+                // 마켓 평점
+#if UNITY_ANDROID && !UNITY_EDITOR
+                StartCoroutine(RequestReviewForAndroid());
+#endif
 				RequestReviewForiOS();
 			}
-			else
-			{
-				ShowReviewPopup();
-			}
+		}
+
+        private bool IsRatePopupCalled()
+        {
+            if (PlayerPrefs.GetInt("DoNotShowRatePopUp") == 0)
+                return false;
+            else
+                return true;
 		}
     }
 }

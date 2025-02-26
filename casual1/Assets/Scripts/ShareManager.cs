@@ -1,3 +1,4 @@
+using DG.Tweening.Core;
 using Firebase.Analytics;
 using System;
 using System.Reflection.Emit;
@@ -20,8 +21,9 @@ public class ShareManager : MonoBehaviour
 
 	public void DoWorkShareNormal()
 	{
-		string str = "Let`s Play TokTok with me!!";
-		DoWorkShare(str, "MenuButton");
+		StringBuilder sb = new StringBuilder();
+		sb.Append("Level ").Append(LocalDataManager.instance.GetCurLevel()).Append(" here! Ready to play together ?");
+		DoWorkShare(sb.ToString(), "MenuButton");
 	}
 
 	public void DoWorkShareTierUP()
@@ -37,13 +39,17 @@ public class ShareManager : MonoBehaviour
 	{
 		string url = "www.naver.com";
 #if UNITY_ANDROID
-		url = "https://play.google.com/store/apps/details?id=com.dcsoft1981.casual1";
+		url = Define.ANDROID_MARKET_URL;
 #elif UNITY_IOS
-        url = "https://play.google.com/store/apps/details?id=com.dcsoft1981.casual1"; // TODO ios 용 주소 적용
+        url = Define.IOS_MARKET_URL;
 #else
         LogManager.Log("Share Doesnt Work!!!");
 #endif
 		ShareText(text, url);
+
+		// FirebaseLog
+		if (!Define.FIREBASE_WORK)
+			return;
 #if !UNITY_EDITOR
 		int level = LocalDataManager.instance.GetCurLevel();
 		try
