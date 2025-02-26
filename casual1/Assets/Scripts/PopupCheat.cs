@@ -35,4 +35,9 @@ public class PopupCheat : MonoBehaviour
 			case 9: Taptic.Selection(); break;
 		}
 	}
+
+	public void OnClickResetReview()
+	{
+		PlayerPrefs.SetInt("DoNotShowRatePopUp", 0);
+	}
 }

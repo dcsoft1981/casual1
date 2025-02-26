@@ -3365,20 +3365,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c37b9db1cc384dba9981b64a6528339, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UseNativeAndroidReviewPopUp: 1
-  UseNativeIosReviewPopUp: 1
   LaunchChecks: 0
   LaunchCountsBeforeShowingPopup: 1
-  CustomReviewPopup: {fileID: 0}
-  StarRatingsByDefault: 5
-  StarColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
-  CustomStars:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  StarSprite: {fileID: 21300000, guid: c49668f5fdc544bf0861af643870f227, type: 3}
 --- !u!1 &341266680
 GameObject:
   m_ObjectHideFlags: 0
@@ -3568,7 +3556,7 @@ GameObject:
   m_Component:
   - component: {fileID: 348210663}
   m_Layer: 5
-  m_Name: ButtonCheat 2
+  m_Name: ButtonCheatResetReview
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4899,7 +4887,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Temp2
+  m_text: ResetReview
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -10169,7 +10157,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1463801205}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 909339517}
+        m_TargetAssemblyTypeName: PopupCheat, Assembly-CSharp
+        m_MethodName: OnClickResetReview
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1463801205
 MonoBehaviour:
   m_ObjectHideFlags: 0
