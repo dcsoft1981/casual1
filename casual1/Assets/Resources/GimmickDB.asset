@@ -112,7 +112,7 @@ MonoBehaviour:
   - id: 10900
     desc: "\uD134\uB9C8\uB2E4 \uC81C\uAC70 \uAC00\uB2A5 \uC5EC\uBD80\uAC00 \uBC14\uB01C
       \uD788\uD2B8 \uAC00\uB2A5 \uC2DC\uC791(1\uCC28 \uAD6C\uD604 \uC644)"
-    gimmick: OnOff(ON)
+    gimmick: On Off(ON)
     sprite: Lock
     spritescale: 0.4
     objectscale: 0.8
@@ -126,7 +126,7 @@ MonoBehaviour:
   - id: 11000
     desc: "\uD134\uB9C8\uB2E4 \uC81C\uAC70 \uAC00\uB2A5 \uC5EC\uBD80\uAC00 \uBC14\uB01C
       \uD788\uD2B8 \uBD88\uAC00 \uC2DC\uC791(1\uCC28 \uAD6C\uD604 \uC644)"
-    gimmick: OnOff(Off)
+    gimmick: On Off(Off)
     sprite: Lock
     spritescale: 0.4
     objectscale: 0.8
@@ -140,7 +140,7 @@ MonoBehaviour:
   - id: 20100
     desc: "\uD788\uD2B8 \uC2DC \uD68C\uC804\uC18D\uB3C4 \uC99D\uAC00(1\uCC28 \uAD6C\uD604
       \uC644)"
-    gimmick: SpeedUp
+    gimmick: Speed Up
     sprite: Reload
     spritescale: 0.4
     objectscale: 0.8
@@ -154,7 +154,7 @@ MonoBehaviour:
   - id: 20200
     desc: "\uD788\uD2B8 \uC2DC \uD68C\uC804\uC18D\uB3C4 \uAC10\uC18C(1\uCC28 \uAD6C\uD604
       \uC644)"
-    gimmick: SpeedDown
+    gimmick: Speed Down
     sprite: Undo
     spritescale: 0.4
     objectscale: 0.8
@@ -168,7 +168,7 @@ MonoBehaviour:
   - id: 20300
     desc: "\uD788\uD2B8 \uC2DC \uBC1C\uC0AC\uCCB4 \uC218\uB7C9 N \uC99D\uAC00(1\uCC28
       \uAD6C\uD604 \uC644)"
-    gimmick: AddShot
+    gimmick: Shot Up
     sprite: BulletSingle
     spritescale: 0.4
     objectscale: 0.8

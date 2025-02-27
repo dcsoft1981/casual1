@@ -8,7 +8,7 @@ public class Define
 {
 	public const string CLIENT_VERSION = "v20250228(1.0.0)";
 	public const bool MARKET_ABILITY = false;
-	public const bool DEBUG_LOG = true;
+	public const bool DEBUG_LOG = false;
 	public const bool FIREBASE_WORK = true;
 	public const bool enableCheat = false; // 치트 활성화
 	public const bool disableAD = true; // 광고 ONOFF
