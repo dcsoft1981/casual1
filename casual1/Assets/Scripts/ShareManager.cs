@@ -39,13 +39,12 @@ public class ShareManager : MonoBehaviour
 	{
 		string url = "www.naver.com";
 #if UNITY_ANDROID
-		url = Define.ANDROID_MARKET_URL;
+		ShareText(text);
 #elif UNITY_IOS
-        url = Define.IOS_MARKET_URL;
+		ShareText(text, Define.IOS_MARKET_URL, Define.ANDROID_MARKET_URL);
 #else
         LogManager.Log("Share Doesnt Work!!!");
 #endif
-		ShareText(text, url);
 
 		// FirebaseLog
 		if (!Define.FIREBASE_WORK)
@@ -70,14 +69,20 @@ public class ShareManager : MonoBehaviour
 	}
 
 	// 공유할 텍스트와 URL을 받아서 공유 팝업을 호출합니다.
-	public void ShareText(string text, string url)
+	public void ShareText(string text)
 	{
-		string shareMessage = text + "\n" + url;
-
 #if UNITY_ANDROID
-		ShareOnAndroid(shareMessage);
+		StringBuilder sb = new StringBuilder();
+		sb.Append(text).Append("\n")
+			.Append("Google Play\n").Append(Define.ANDROID_MARKET_URL).Append("\n")
+			.Append("App Store\n").Append(Define.IOS_MARKET_URL);
+		ShareOnAndroid(sb.ToString());
 #elif UNITY_IOS
-        ShareOniOS(shareMessage);
+		StringBuilder sb = new StringBuilder();
+		sb.Append(text).Append("\n")
+			.Append("App Store\n").Append(Define.IOS_MARKET_URL).Append("\n")
+			.Append("Google Play\n").Append(Define.ANDROID_MARKET_URL);
+        ShareOniOS(sb.ToString());
 #else
         LogManager.Log("Share Doesnt Work!!!");
 #endif
