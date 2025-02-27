@@ -3,16 +3,17 @@ using UnityEngine;
 
 public class PopupCheat : MonoBehaviour
 {
-    public TMP_InputField inputFieldStage;
+    public TMP_InputField inputFieldLevel;
 	public TMP_InputField inputFieldVibrate;
+	public TMP_InputField inputFieldInfinityStage;
 	bool initVibrate = false;
 
-	public void OnClickCheatStage()
+	public void OnClickCheatLevel()
     {
 		if (!LocalDataManager.instance.GetCheatStage())
 			return;
-		int stage = int.Parse(inputFieldStage.text);
-		LocalDataManager.instance.SetCurLevel(stage);
+		int level = int.Parse(inputFieldLevel.text);
+		LocalDataManager.instance.SetCurLevel(level);
 	}
 
 	public void OnClickCheatVibrate()
@@ -39,5 +40,13 @@ public class PopupCheat : MonoBehaviour
 	public void OnClickResetReview()
 	{
 		PlayerPrefs.SetInt("DoNotShowRatePopUp", 0);
+	}
+
+	public void OnClickCheaInfinityStage()
+	{
+		if (!LocalDataManager.instance.GetCheatStage())
+			return;
+		int stage = int.Parse(inputFieldInfinityStage.text);
+		LocalDataManager.instance.SetInfinityStage(stage);
 	}
 }
