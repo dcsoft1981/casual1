@@ -41,7 +41,7 @@ public class ShareManager : MonoBehaviour
 #if UNITY_ANDROID
 		ShareText(text);
 #elif UNITY_IOS
-		ShareText(text, Define.IOS_MARKET_URL, Define.ANDROID_MARKET_URL);
+		ShareText(text);
 #else
         LogManager.Log("Share Doesnt Work!!!");
 #endif
