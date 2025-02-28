@@ -11,6 +11,7 @@ public class PlatformSpecificBuild : IPreprocessBuildWithReport
 
 	public void OnPreprocessBuild(BuildReport report)
 	{
+		/*
 		string manifestPath = Path.Combine(Application.dataPath, "../Packages/manifest.json");
 		var manifestJson = JObject.Parse(File.ReadAllText(manifestPath));
 		var dependencies = manifestJson["dependencies"] as JObject;
@@ -29,5 +30,6 @@ public class PlatformSpecificBuild : IPreprocessBuildWithReport
 		}
 
 		File.WriteAllText(manifestPath, manifestJson.ToString());
+		*/
 	}
 }
