@@ -40,6 +40,7 @@ public class LocalDataManager : MonoBehaviour
 	private int maxLevel = 0;
 
 	public Sprite spriteQuestion = null;
+	private Sprite bg = null;
 
 	private void Awake()
 	{
@@ -722,5 +723,22 @@ public class LocalDataManager : MonoBehaviour
 		return true;
 #endif
 		return enableCheat;
+	}
+
+	public Sprite GetBG()
+	{
+		int random = Random.Range(1, 4);
+		if(random == 2)
+		{
+			return Resources.Load<Sprite>("bg2");
+		}
+		else if (random == 3)
+		{
+			return Resources.Load<Sprite>("bg3");
+		}
+		else
+		{
+			return Resources.Load<Sprite>("bg1");
+		}
 	}
 }

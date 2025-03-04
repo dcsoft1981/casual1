@@ -81,7 +81,7 @@ public class ShareManager : MonoBehaviour
 		StringBuilder sb = new StringBuilder();
 		sb.Append(text).Append("\n")
 			.Append("App Store\n").Append(Define.IOS_MARKET_URL).Append("\n")
-			.Append("Google Play(Available from March 6, 2025)\n").Append(Define.ANDROID_MARKET_URL);
+			.Append("Google Play\n").Append(Define.ANDROID_MARKET_URL);
         ShareOniOS(sb.ToString());
 #else
         LogManager.Log("Share Doesnt Work!!!");

@@ -21,6 +21,7 @@ public class Pin : MonoBehaviour
 	private Vector3 spriteOriginalScale;
 	private Tweener scaleTween;
 	private GameObject objConnector;
+	//private GameObject objJoy;
 	private bool connectorAlive = false;
 	private float rotationSpeed = 100f;
 
@@ -30,11 +31,13 @@ public class Pin : MonoBehaviour
 		spriteObject = gameObject.transform.Find(Define.CHILD_SPRITE_OBJECT).gameObject;
 		spriteOriginalScale = spriteObject.transform.localScale;
 		objConnector = spriteObject.transform.Find("Connector").gameObject;
+		//objJoy = spriteObject.transform.Find("Joy").gameObject;
 	}
 	void Start()
     {
-        
-    }
+		//SpriteRenderer objJoySprite = objJoy.GetComponent<SpriteRenderer>();
+		//objJoySprite.color = LocalDataManager.instance.GetCurColor();
+	}
 
 	// Update is called once per frame
 	void FixedUpdate()
@@ -374,14 +377,22 @@ public class Pin : MonoBehaviour
 		objConnector.SetActive(alive);
 		connectorAlive = alive;
 		SpriteRenderer objConnectorSprite = objConnector.GetComponent<SpriteRenderer>();
+		//SpriteRenderer objJoySprite = objJoy.GetComponent<SpriteRenderer>();
 		if (alive)
 		{
 			objConnectorSprite.DOFade(0.2f, 0.5f).SetLoops(-1, LoopType.Yoyo);
+			//objJoySprite.DOFade(0.2f, 0.5f).SetLoops(-1, LoopType.Yoyo);
 		}
 		else
 		{
 			objConnectorSprite.DOKill();
 			objConnector.SetActive(false);
+			/*
+			objJoySprite.DOKill();
+			Color currentColor = objJoySprite.color;
+			currentColor.a = 1f;
+			objJoySprite.color = currentColor;
+			*/
 		}
 	}
 }

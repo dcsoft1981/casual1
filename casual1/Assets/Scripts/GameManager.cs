@@ -104,6 +104,7 @@ public class GameManager : MonoBehaviour
 	[SerializeField] private GameObject topUI;
 
 	private bool clearTierUp = false;
+	[SerializeField] private GameObject bg;
 
 	// Start is called once before the first execution of Update after the MonoBehaviour is created
 
@@ -174,9 +175,6 @@ public class GameManager : MonoBehaviour
 		float targetScaleRate = targetScale / 100f;
 		targetId = levelData.target - targetScale;
 
-		// Target SIZE 에 따른 TextHP 폰트 사이즈 조정
-		SetTargetHPFontSize();
-
 		//float curTargetScale = Define.TARGET_BASE_SCALE;
 		//targetCircle.transform.localScale = new Vector3(curTargetScale, curTargetScale, curTargetScale);
 
@@ -193,7 +191,7 @@ public class GameManager : MonoBehaviour
 		CreateAndPlayAnimation();
 		LogManager.Log("levelData:" + level + " - " + levelData.id + " - " + levelData.hp);
 		Vector3 targetScreenPosition = Camera.main.WorldToScreenPoint(targetCircle.transform.position);
-		textHP.transform.position = Camera.main.WorldToScreenPoint(new Vector3(0f, GetTargetHPPosition(), 0f));
+		//textHP.transform.position = Camera.main.WorldToScreenPoint(new Vector3(0f, GetTargetHPPosition(), 0f));
 		textTapTok.transform.position = targetScreenPosition;
 
 		Vector3 texpHPPostion = pinLauncher.transform.position + new Vector3(0.6f, 0f, 0f);
@@ -231,12 +229,14 @@ public class GameManager : MonoBehaviour
 
     void SetHPText()
     {
-		textHP.SetText(hp.ToString());
+		string str = hp + "/" + maxHp;
+		textHP.SetText(str);
 		if (hpCoroutine != null)
 		{
 			StopCoroutine(hpCoroutine);
 		}
 		float amount = (float)hp / (float)maxHp;
+		targetCircle.DrawMouthLine(amount);
 		hpCoroutine = StartCoroutine(AnimateHPChange(amount));
 	}
 
@@ -330,6 +330,7 @@ public class GameManager : MonoBehaviour
 				targetCircle.DrawClearExpression(shot);
 				Camera.main.backgroundColor = LocalDataManager.instance.GetCurColor();
 				AudioManager.instance.OnEffectBgm();
+				//bg.SetActive(false);
 				Invoke("StageClear", 0.3f);
 			}
             else
@@ -360,7 +361,6 @@ public class GameManager : MonoBehaviour
     {
 		textHP.gameObject.SetActive(false);
 		textShot.gameObject.SetActive(false);
-		targetCircle.ClearExpressionLines();
 		DestroyAllGimmicks();
 		DestroyAllShots(true);
 		Invoke("TargetEffect", 0.5f);
@@ -1705,6 +1705,7 @@ public class GameManager : MonoBehaviour
 
 	public void TargetEffect()
 	{
+		targetCircle.ClearExpressionLines();
 		targetCircle.EffectPlay();
 		textTapTok.gameObject.SetActive(true);
 	}
@@ -1767,11 +1768,4 @@ public class GameManager : MonoBehaviour
 #endif
 	}
 
-	public void SetTargetHPFontSize()
-	{
-		if(targetScale == 50)
-		{
-			textHP.fontSize = 60;
-		}
-	}
 }

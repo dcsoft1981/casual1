@@ -1,7 +1,9 @@
 using AllIn1SpriteShader;
+using Firebase.Analytics;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq.Expressions;
+using System.Net;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -43,6 +45,7 @@ public class TargetCircle : MonoBehaviour
 	public int expressionSegments = 0; // 세그먼트 수
 	public LineRenderer expressionLineRenderer1 = null;
 	public LineRenderer expressionLineRenderer2 = null;
+	public LineRenderer mouthLineRenderer = null;
 
 
 	private void Awake()
@@ -57,7 +60,6 @@ public class TargetCircle : MonoBehaviour
 	private void Start()
 	{
 		SetColorType();
-		SetExpressionType();
 	}
 
 	public void SetSprite(float _spriteScale, int _targetId)
@@ -68,6 +70,7 @@ public class TargetCircle : MonoBehaviour
 		spriteRenderer.color = Define.COLOR_TARGET_BASE;
 		spriteObject.transform.localScale = new Vector3(spriteScale, spriteScale, 1);
 		Define.TargetType targetType = (Define.TargetType)_targetId;
+		SetExpressionType(targetType);
 	}
 
 	public void StartAnimation(AnimationCurve animationCurve)
@@ -236,18 +239,72 @@ public class TargetCircle : MonoBehaviour
 		LogManager.Log("DrawNoDamageLine radius :" + radius + " , position : " + lineObj.transform.position);
 	}
 
+	public void DrawMouthLine(float parameter)
+	{
+		if (mouthLineRenderer == null)
+			return;
+
+		mouthLineRenderer.numCapVertices = 10;
+		// 파라미터 값이 0에서 1 사이인지 확인합니다.
+		int segmentCount = 50;
+		parameter = Mathf.Clamp01(parameter);
+		float scale = 0.5f;
+		if(spriteScale == 1f)
+		{
+			scale = 0.3f;
+		}
+		else if (spriteScale == 0.8f)
+		{
+			scale = 0.25f;
+		}
+		else if (spriteScale == 0.5f)
+		{
+			scale = 0.18f;
+		}
+
+		if (parameter <= 0f)
+		{
+			mouthLineRenderer.positionCount = segmentCount + 1;
+			float radius = scale;
+			for (int i = 0; i <= segmentCount; i++)
+			{
+				float angle = Mathf.PI * i / segmentCount; // 0에서 PI까지의 각도
+				float x = radius * Mathf.Cos(angle);
+				float y = -0.7f*radius * Mathf.Sin(angle);
+				mouthLineRenderer.SetPosition(i, new Vector3(x, y, 0f));
+			}
+		}
+		else
+		{
+			if (parameter >= 0.8f)
+				parameter = 0.8f;
+			// 직선과 반원 사이의 형태를 그립니다.
+			mouthLineRenderer.positionCount = segmentCount + 1;
+			float radius = scale;
+			for (int i = 0; i <= segmentCount; i++)
+			{
+				float angle = Mathf.PI * i / segmentCount; // 0에서 PI까지의 각도
+				float x = radius * Mathf.Cos(angle);
+				float y = radius * Mathf.Sin(angle) * parameter * parameter;
+				mouthLineRenderer.SetPosition(i, new Vector3(x, y, 0f));
+			}
+		}
+
+	}
+
 	private LineRenderer GetExpressionLineBase(string lineName, Vector3 position, Color color, int segments)
 	{
 		GameObject lineObj = new GameObject(lineName);
 		LineRenderer lineRenderer = lineObj.AddComponent<LineRenderer>();
+		string lineRendererName = lineRenderer.name;
 		lineRenderer.material = new Material(Shader.Find("Sprites/Default"));
 		lineRenderer.startColor = color;
 		lineRenderer.endColor = color;
 		//lineRenderer.numCapVertices = 20; // 끝부분을 둥글게 만들기 위해 추가할 버텍스 수
 		lineRenderer.positionCount = segments;
 		lineRenderer.useWorldSpace = false;
-		lineRenderer.startWidth = GetExpressionLineWidth();
-		lineRenderer.endWidth = GetExpressionLineWidth();
+		lineRenderer.startWidth = GetExpressionLineWidth(lineRenderer.name);
+		lineRenderer.endWidth = GetExpressionLineWidth(lineRenderer.name);
 		lineRenderer.sortingOrder = 10;
 
 		lineObj.transform.localPosition = position;
@@ -262,6 +319,11 @@ public class TargetCircle : MonoBehaviour
 		Vector3 position = GetExpressionPosition(type, scale, index);
 		switch (type)
 		{
+			case Define.ExpressionType.MOUTH:
+				{
+					mouthLineRenderer = GetExpressionLineBase(lineName, position, color, 0);
+				}
+				break;
 			case Define.ExpressionType.CIRCLE:
 				{
 					float radius = scale * 0.3f; // 원의 반지름
@@ -495,6 +557,25 @@ public class TargetCircle : MonoBehaviour
 	{
 		switch (type)
 		{
+			case Define.ExpressionType.MOUTH:
+				{
+					float x = 0f;
+					float y = 1f;
+					if (scale == 1f)
+					{
+						y = 1.1f;
+					}
+					else if (scale == 0.8f)
+					{
+						y = 1.2f;
+					}
+					else if (scale == 0.5f)
+					{
+						y = 1.3f;
+					}
+					return new Vector3(x, y, 0f);
+				}
+
 			case Define.ExpressionType.CIRCLE:
 			case Define.ExpressionType.CLOSE:
 			case Define.ExpressionType.STAR:
@@ -511,7 +592,7 @@ public class TargetCircle : MonoBehaviour
 					}
 					else if (scale == 0.5f)
 					{
-						x = 0.35f;
+						x = 0.3f;
 					}
 
 					float y = 2f;
@@ -581,7 +662,7 @@ public class TargetCircle : MonoBehaviour
 					}
 					else if (scale == 0.5f)
 					{
-						x = 0.25f;
+						x = 0.2f;
 					}
 					float y = 2f;
 					if (scale == 1f)
@@ -615,7 +696,7 @@ public class TargetCircle : MonoBehaviour
 					}
 					else if (scale == 0.5f)
 					{
-						x = 0.4f;
+						x = 0.35f;
 					}
 					float y = 2f;
 					if (scale == 1f)
@@ -650,7 +731,7 @@ public class TargetCircle : MonoBehaviour
 					}
 					else if (scale == 0.5f)
 					{
-						x = 0.4f;
+						x = 0.35f;
 					}
 					float y = 2f;
 					if (scale == 1f)
@@ -720,12 +801,14 @@ public class TargetCircle : MonoBehaviour
 			expressionType = Define.ExpressionType.HEART;
 		}
 		DrawExpression("ClearExpressionLine");
+		DrawMouthLine(0f);
 	}
 
 	public void DrawExpression(string lineName)
 	{
 		ClearExpressionLines();
 
+		// 표정 그리기
 		switch (expressionType)
 		{
 			//case Define.ExpressionType.ONE_LINE:
@@ -757,6 +840,9 @@ public class TargetCircle : MonoBehaviour
 				}
 				break;
 		}
+
+		// 입모양 그리기
+		SetExpressionLine("Mouth", gradeColor, Define.ExpressionType.MOUTH, spriteScale, 0);
 	}
 
 	public void SetExpressionLineScaleUp()
@@ -765,8 +851,8 @@ public class TargetCircle : MonoBehaviour
 		{
 			if (!line.gameObject.IsDestroyed())
 			{
-				line.startWidth = GetExpressionLineWidth() * 1.5f;
-				line.endWidth = GetExpressionLineWidth() * 1.5f;
+				line.startWidth = GetExpressionLineWidth(line.name) * 1.5f;
+				line.endWidth = GetExpressionLineWidth(line.name) * 1.5f;
 			}
 		}
 	}
@@ -777,8 +863,8 @@ public class TargetCircle : MonoBehaviour
 		{
 			if (!line.gameObject.IsDestroyed())
 			{
-				line.startWidth = GetExpressionLineWidth();
-				line.endWidth = GetExpressionLineWidth();
+				line.startWidth = GetExpressionLineWidth(line.name);
+				line.endWidth = GetExpressionLineWidth(line.name);
 			}
 		}
 	}
@@ -808,24 +894,12 @@ public class TargetCircle : MonoBehaviour
 		targetColorType = Define.GetRandomEnumValue<TargetColorType>();
 	}
 
-	private void SetExpressionType()
+	private void SetExpressionType(Define.TargetType targetType)
 	{
 		// ExpressionType 지정
-		int curLevel = LocalDataManager.instance.GetCurLevel();
-		/*
-		if(curLevel <= 10)
-		{
-			expressionType = (Define.ExpressionType)curLevel;
-		}
-		else
-		{
-			expressionType = Define.GetRandomEnumValue<Define.ExpressionType>();
-		}
-		*/
-		//expressionType = Define.ExpressionType.HEART;
-		expressionType = Define.GetStartRandomExpression();
+		expressionType = Define.GetStartRandomExpression(targetType);
 
-		expressionLineWidth = 0.1f;
+		expressionLineWidth = 0.12f;
 		switch(expressionType)
 		{
 			//case Define.ExpressionType.ONE_LINE:
@@ -842,12 +916,16 @@ public class TargetCircle : MonoBehaviour
 		}
 		if(spriteScale == 0.5f)
 		{
-			expressionLineWidth = expressionLineWidth * 0.25f;
+			expressionLineWidth = expressionLineWidth * 0.5f;
 		}
 	}
 
-	public float GetExpressionLineWidth()
+	public float GetExpressionLineWidth(string lineName)
 	{
+		if(lineName.Equals("Mouth0"))
+		{
+			return expressionLineWidth * 0.4f;
+		}
 		return expressionLineWidth;
 	}
 

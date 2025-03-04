@@ -6,7 +6,7 @@ using System.Linq;
 
 public class Define
 {
-	public const string CLIENT_VERSION = "v20250228(1.0.0)";
+	public const string CLIENT_VERSION = "v20250305(1.0.0)";
 	public const bool MARKET_ABILITY = false;
 	public const bool DEBUG_LOG = false;
 	public const bool FIREBASE_WORK = true;
@@ -42,8 +42,8 @@ public class Define
 	public const string LOCALE_RETRY = "RETRY";
 	public const string LOCALE_NEXT = "NEXT";
 
-	public const string SKILL_DOUBLE_DAMAGE = "Double Damage";
-	public const string SKILL_FINAL_SHOT = "Final Shot";
+	public const string SKILL_DOUBLE_DAMAGE = "DELIGHT";
+	public const string SKILL_FINAL_SHOT = "FORTUNE";
 
 	//public const int MAX_LEVEL_KEYFRAME_COUNT = 5; // 회전값 복수개 사용시 사용 현재 미사용
 
@@ -60,7 +60,6 @@ public class Define
 	public static Color HP_3 = new Color(0.9f, 0f, 0f);
 	public static Color HP_2 = new Color(0.7f, 0f, 0f);
 	public static Color HP_1 = new Color(0.3f, 0f, 0f);
-	public static Color BASE_YELLOW = new Color(255f/255f, 254f / 255f, 213f / 255f);
 	public static Color DARK_RED = new Color(75f / 255f, 25f / 255f, 25f / 255f);
 	public static Color COLOR_TARGET_SHIELD = Color.gray;
 	public static Color DAMAGE_LINE_COLOR = new Color(183f / 255f, 88f / 255f, 255f / 255f, 200f/255f);
@@ -193,6 +192,7 @@ public class Define
 		STAR = 8,
 		HEART = 9,
 		SMILE = 10, //  ^ ^
+		MOUTH = 11, // 입 모양
 		//ONE_LINE = 11,
 	}
 
@@ -243,17 +243,26 @@ public class Define
 		return new Color(r / 255f, g / 255f, b / 255f);
 	}
 
-	public static ExpressionType GetStartRandomExpression()
+	public static ExpressionType GetStartRandomExpression(Define.TargetType targetType)
 	{
 		List<ExpressionType> list = new List<ExpressionType>();
-		list.Add(ExpressionType.CRY);
-		list.Add(ExpressionType.CIRCLE);
-		list.Add(ExpressionType.CLOSE);
-		list.Add(ExpressionType.LINE);
-		list.Add(ExpressionType.X);
-		list.Add(ExpressionType.WAVE);
-		list.Add(ExpressionType.ONE_CAPSULE);
-		list.Add(ExpressionType.STAR);
+		if(targetType == TargetType.GOLD)
+		{
+			list.Add(ExpressionType.STAR);
+		}
+		else if (targetType == TargetType.SILVER)
+		{
+			list.Add(ExpressionType.CLOSE);
+			list.Add(ExpressionType.ONE_CAPSULE);
+		}
+		else
+		{
+			list.Add(ExpressionType.LINE);
+			list.Add(ExpressionType.WAVE);
+			list.Add(ExpressionType.CIRCLE);
+			list.Add(ExpressionType.X);
+			list.Add(ExpressionType.CRY);
+		}
 
 		List<ExpressionType> list2Shuffle= list.OrderBy(x => Guid.NewGuid()).ToList();
 		return list2Shuffle[0];

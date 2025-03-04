@@ -52,9 +52,10 @@ public class PinLauncher : MonoBehaviour
 			}
 		}
 
+		bool isPointerOver = EventSystem.current.IsPointerOverGameObject();
 		if (currPin != null && 
 			(Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space)) && 
-			(!EventSystem.current.IsPointerOverGameObject() || noCheckPosition) && 
+			(!isPointerOver || noCheckPosition) && 
 			GameManager.instance.isGameOver == false)
         {
 			LaunchPin();

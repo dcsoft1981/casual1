@@ -9,6 +9,9 @@ using static Define;
 using System.Text;
 using UnityEngine.Scripting;
 using System.Configuration;
+using UnityEngine.Video;
+using System.Collections;
+using UnityEngine.Networking;
 
 [Preserve]
 public class LobbyScene : MonoBehaviour
@@ -60,6 +63,11 @@ public class LobbyScene : MonoBehaviour
 	private List<Mark> listMark = new List<Mark>();
 
 	[SerializeField] private TextMeshProUGUI textVersion;
+
+	public RawImage rawImage;
+	public VideoPlayer videoPlayer;
+	public float videoWidth = 1200f;
+	public float videoHeight = 1920f;
 
 	private void Awake()
 	{
@@ -127,10 +135,13 @@ public class LobbyScene : MonoBehaviour
 
 		if (level == 1)
 		{
+			// Sfx 끄기
+			AudioManager.instance.TickTockStop();
 			// 플레이 버튼 레드닷 활성화
 			LocalDataManager.instance.SetReddotPlay(true);
-			// 강제로 인게임신 전환
-			LoadLevelSceneForced();
+			// RawImage 활성화
+			rawImage.gameObject.SetActive(true);
+			StartCoroutine(PlayVideoWithFade());
 		}
 		else
 		{
@@ -459,5 +470,57 @@ public class LobbyScene : MonoBehaviour
 	public void SetClientVersion()
 	{
 		textVersion.text = Define.CLIENT_VERSION;
+	}
+
+	private IEnumerator PlayVideoWithFade()
+	{
+		// 타이틀 문구 끄기
+		textTitle1.gameObject.SetActive(false);
+		AdjustVideoScale();
+		// 비디오 준비
+		videoPlayer.Prepare();
+
+		// 최대 7초 대기
+		float timeout = 7f;
+		float startTime = Time.time;
+
+		while (!videoPlayer.isPrepared)
+		{
+			if (Time.time - startTime > timeout)
+			{
+				LogManager.LogError("Video preparation timed out.");
+				LoadLevelSceneForced();
+				yield break;
+			}
+			yield return null;
+		}
+
+		// 비디오 재생
+		videoPlayer.Play();
+		rawImage.texture = videoPlayer.texture;
+		canvas.SetActive(true);
+
+		// 비디오 재생이 끝날 때까지 대기
+		while (videoPlayer.isPlaying)
+		{
+			if (Time.time - startTime > timeout)
+			{
+				LogManager.LogError("Video playback timed out.");
+				LoadLevelSceneForced();
+				yield break;
+			}
+			yield return null;
+		}
+		
+		// 강제로 인게임신 전환
+		LoadLevelSceneForced();
+	}
+
+	void AdjustVideoScale()
+	{
+		float canvasWidth = canvas.GetComponent<RectTransform>().rect.width;
+		float multiflyValue = canvasWidth / (float)videoWidth;
+		RectTransform rawImageRectTransform = rawImage.rectTransform;
+		rawImageRectTransform.localScale = new Vector3(multiflyValue, multiflyValue, 1f);
 	}
 }

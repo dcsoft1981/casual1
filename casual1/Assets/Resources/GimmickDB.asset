@@ -56,22 +56,22 @@ MonoBehaviour:
     value1: 0
     sprite2: 
     sprite3: 
-    textinfo: 'Grant target invincible status
+    textinfo: 'Grant Worry invincible status
 
-      All Gimmick Strike Required
-      for removal'
+      All Gimmick Strike Required for
+      removal'
   - id: 10500
     desc: "\uD788\uD2B8\uC2DC \uD0C0\uAC9F \uD68C\uBCF5(1\uCC28 \uAD6C\uD604 \uC644)
       - value1(\uD68C\uBCF5\uB7C9)"
-    gimmick: Target Heart
-    sprite: Heart
-    spritescale: 0.4
+    gimmick: Worry HP
+    sprite: WorryBaseWhite
+    spritescale: 0.3
     objectscale: 0.8
     distance: 0.4
     value1: 1
     sprite2: 
     sprite3: 
-    textinfo: Recovery of target HP in the event of a strike
+    textinfo: Recovery of Worry HP in the event of a strike
   - id: 10600
     desc: "\uC5F0\uC18D \uD788\uD2B8(1\uCC28 \uAD6C\uD604 \uC644)"
     gimmick: Potion
@@ -97,7 +97,7 @@ MonoBehaviour:
     value1: 0
     sprite2: 
     sprite3: 
-    textinfo: Remove all notes attached to the target
+    textinfo: Remove Joy attached to the Worry
   - id: 10800
     desc: "\uB370\uBBF8\uC9C0N (1\uCC28 \uAD6C\uD604 \uC644) - value1(\uB370\uBBF8\uC9C0)"
     gimmick: Blade
@@ -108,7 +108,7 @@ MonoBehaviour:
     value1: 2
     sprite2: 
     sprite3: 
-    textinfo: Apply Damage 2 to Target
+    textinfo: Apply Damage 2 to Worry
   - id: 10900
     desc: "\uD134\uB9C8\uB2E4 \uC81C\uAC70 \uAC00\uB2A5 \uC5EC\uBD80\uAC00 \uBC14\uB01C
       \uD788\uD2B8 \uAC00\uB2A5 \uC2DC\uC791(1\uCC28 \uAD6C\uD604 \uC644)"
@@ -148,9 +148,9 @@ MonoBehaviour:
     value1: 30
     sprite2: 
     sprite3: 
-    textinfo: 'Increase target rotational speed
+    textinfo: 'Increase Worry rotational speed
 
-      Target strike'
+      Worry strike'
   - id: 20200
     desc: "\uD788\uD2B8 \uC2DC \uD68C\uC804\uC18D\uB3C4 \uAC10\uC18C(1\uCC28 \uAD6C\uD604
       \uC644)"
@@ -162,23 +162,23 @@ MonoBehaviour:
     value1: 30
     sprite2: 
     sprite3: 
-    textinfo: 'Reduce target rotational speed
+    textinfo: 'Reduce Worry rotational speed
 
-      Target strike'
+      Worry strike'
   - id: 20300
     desc: "\uD788\uD2B8 \uC2DC \uBC1C\uC0AC\uCCB4 \uC218\uB7C9 N \uC99D\uAC00(1\uCC28
       \uAD6C\uD604 \uC644)"
-    gimmick: Shot Up
-    sprite: BulletSingle
-    spritescale: 0.4
+    gimmick: Joy Up
+    sprite: SmileBaseWhite
+    spritescale: 0.3
     objectscale: 0.8
     distance: 0.4
     value1: 2
     sprite2: 
     sprite3: 
-    textinfo: 'Earn a note
+    textinfo: 'Earn a Joy
 
-      Target strike'
+      Worry strike'
   - id: 30100
     desc: "\uD574\uB2F9 \uC601\uC5ED\uC744 \uD1B5\uACFC\uD574\uC11C \uD788\uD2B8
       \uC2DC, \uB370\uBBF8\uC9C0 \uCD94\uAC001"
