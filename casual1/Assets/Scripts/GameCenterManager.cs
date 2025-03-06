@@ -1,6 +1,7 @@
 using UnityEngine;
 using System;
 using System.Threading.Tasks;
+using UnityEngine.SocialPlatforms;
 #if UNITY_IOS
 using Apple.GameKit;
 #elif UNITY_ANDROID
@@ -9,14 +10,15 @@ using Apple.GameKit;
 
 class GameCenterManager
 {
-	private static bool init = false;
+	private static bool initUser = false;
+	private static bool initSocial = false;
 
 	public static void CheckInit()
 	{
 		if (!Define.MARKET_ABILITY)
 			return;
 
-		if(init)
+		if(initUser && initSocial)
 			return;
 
 
@@ -33,11 +35,14 @@ class GameCenterManager
 		if (!Define.MARKET_ABILITY)
 			return;
 
+		if(initUser && initSocial)
+		{
 #if UNITY_IOS
-		AuthenticateAndReportScoreIOS(score);
+			ReportScoreIOS(score);
 #elif UNITY_ANDROID
 
 #endif
+		}
 	}
 
 	public static void ShowLeaderboardUI()
@@ -45,6 +50,8 @@ class GameCenterManager
 		if (!Define.MARKET_ABILITY)
 			return;
 
+		if(!initSocial)
+			return;
 #if UNITY_IOS
 		ShowLeaderboardUIIOS();
 #elif UNITY_ANDROID
@@ -52,6 +59,27 @@ class GameCenterManager
 #endif
 	}
 
+	public static void RequestSingleRank()
+	{
+		if (!Define.MARKET_ABILITY)
+			return;
+
+		if(!initSocial)
+			return;
+#if UNITY_IOS
+		LoadUserScoreAndRankIOS();
+#elif UNITY_ANDROID
+
+#endif
+	}
+
+
+// Android GPGS Work
+#if UNITY_ANDROID
+
+#endif
+
+// IOS GameCenter Work
 #if UNITY_IOS
 	private static async Task AuthenticateGameCenter()
     {
@@ -62,12 +90,13 @@ class GameCenterManager
 			{
 				var player = await GKLocalPlayer.Authenticate();
 				LogManager.Log($"GameCenter Init Success: {player.DisplayName}");
-				init = true;
+				initUser = true;
 			}
 			else
 			{
-				LogManager.Log("GameCenter Init Completed");
+				LogManager.Log("GameCenter Init Aleady Completed");
 			}
+			SocialLoginGameCenter();
 		}
 		catch(Exception e)
 		{
@@ -75,31 +104,34 @@ class GameCenterManager
 		}	
 	}
 
-	private static void AuthenticateAndReportScoreIOS(long score)
-    {
-		try
+	private static async Task SocialLoginGameCenter()
+	{
+		if (!Social.localUser.authenticated)
 		{
-			// Game Center Social인증
-			Social.localUser.Authenticate(success =>
+			try
 			{
-				if (success)
+				// Game Center Social인증
+				Social.localUser.Authenticate(success =>
 				{
-					LogManager.Log("GameCenter SocialInit Success");
-					ReportScore(score);
-				}
-				else
-				{
-					LogManager.Log("GameCenter SocialInit Failure");
-				}
-			});
+					if (success)
+					{
+						LogManager.Log("GameCenter SocialInit Success");
+						initSocial = true;
+					}
+					else
+					{
+						LogManager.Log("GameCenter SocialInit Failure");
+					}
+				});
+			}
+			catch(Exception e)
+			{
+				LogManager.Log($"GameCenter SocialInit Failure");
+			}
 		}
-		catch(Exception e)
-		{
-			LogManager.Log($"GameCenter SocialInit Failure: {score}");
-		}
-    }
+	}
 
-	private static void ReportScore(long score)
+	private static void ReportScoreIOS(long score)
     {
 		try
 		{
@@ -125,6 +157,35 @@ class GameCenterManager
 	private static void ShowLeaderboardUIIOS()
 	{
 		Social.ShowLeaderboardUI();
+	}
+
+	public static void LoadUserScoreAndRankIOS()
+	{
+		if (Social.localUser.authenticated)
+		{
+			ILeaderboard leaderboard = Social.CreateLeaderboard();
+			leaderboard.id = "toktok_level";
+			leaderboard.userScope = UserScope.FriendsOnly; // 또는 UserScope.Global
+			leaderboard.range = new UnityEngine.SocialPlatforms.Range(1, 1); // 상위 1명의 점수만 로드
+			leaderboard.LoadScores(success =>
+			{
+				if (success && leaderboard.localUserScore != null)
+				{
+					long userScore = leaderboard.localUserScore.value;
+					int userRank = leaderboard.localUserScore.rank;
+					LogManager.Log($"GameCenter Leaderboard Score: {userScore}, Rank: {userRank}");
+					// 점수와 랭킹을 UI에 표시하거나 추가 로직 수행
+				}
+				else
+				{
+					LogManager.Log("GameCenter Leaderboard Info Not Exist");
+				}
+			});
+		}
+		else
+		{
+			LogManager.Log("GameCenter Leaderboard User Not authenticated");
+		}
 	}
 #endif
 }
