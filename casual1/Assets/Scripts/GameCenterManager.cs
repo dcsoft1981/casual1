@@ -2,7 +2,7 @@ using UnityEngine;
 using System;
 using System.Threading.Tasks;
 #if UNITY_IOS
-//using Apple.GameKit;
+using Apple.GameKit;
 #elif UNITY_ANDROID
 
 #endif
@@ -21,7 +21,7 @@ class GameCenterManager
 
 
 #if UNITY_IOS
-		//AuthenticateGameCenter();	
+		AuthenticateGameCenter();
 #elif UNITY_ANDROID
 
 #endif
@@ -34,13 +34,24 @@ class GameCenterManager
 			return;
 
 #if UNITY_IOS
-		//AuthenticateAndReportScoreIOS(score);
+		AuthenticateAndReportScoreIOS(score);
 #elif UNITY_ANDROID
 
 #endif
 	}
 
-/*
+	public static void ShowLeaderboardUI()
+	{
+		if (!Define.MARKET_ABILITY)
+			return;
+
+#if UNITY_IOS
+		ShowLeaderboardUIIOS();
+#elif UNITY_ANDROID
+
+#endif
+	}
+
 #if UNITY_IOS
 	private static async Task AuthenticateGameCenter()
     {
@@ -110,6 +121,10 @@ class GameCenterManager
 			LogManager.Log($"GameCenter ReportScore Failure: {score}");
 		}
     }
+
+	private static void ShowLeaderboardUIIOS()
+	{
+		Social.ShowLeaderboardUI();
+	}
 #endif
-*/
 }

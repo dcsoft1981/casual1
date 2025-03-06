@@ -7,10 +7,15 @@ using System.Linq;
 public class Define
 {
 	public const string CLIENT_VERSION = "v20250305(1.0.0)";
+#if UNITY_EDITOR
 	public const bool MARKET_ABILITY = false;
-	public const bool DEBUG_LOG = false;
+#else
+	public const bool MARKET_ABILITY = true;
+#endif
+	
+	public const bool DEBUG_LOG = true;
 	public const bool FIREBASE_WORK = true;
-	public const bool enableCheat = false; // 치트 활성화
+	public const bool enableCheat = true; // 치트 활성화
 	public const bool disableAD = true; // 광고 ONOFF
 
 	public const string ANDROID_MARKET_URL = "https://play.google.com/store/apps/details?id=com.dcsoft1981.casual1";
