@@ -146,7 +146,7 @@ RectTransform:
   m_GameObject: {fileID: 63004281}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3, y: 6.6, z: 1}
+  m_LocalScale: {x: 10, y: 10, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1740064621}
@@ -169,14 +169,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 1, a: 1}
+  m_Color: {r: 0.4, g: 0, b: 0.4, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 6245244881549424503, guid: b1e7976b3d57d42409e192e5490c4580, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 55bffd6f588d39f4f80fbdf2ba6e8a93, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

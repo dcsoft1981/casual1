@@ -523,4 +523,9 @@ public class LobbyScene : MonoBehaviour
 		RectTransform rawImageRectTransform = rawImage.rectTransform;
 		rawImageRectTransform.localScale = new Vector3(multiflyValue, multiflyValue, 1f);
 	}
+
+	public void ShowLeaderboardUI()
+	{
+		GameCenterManager.ShowLeaderboardUI();
+	}
 }
