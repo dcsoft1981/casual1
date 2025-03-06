@@ -5214,6 +5214,7 @@ MonoBehaviour:
   videoPlayer: {fileID: 2063644990}
   videoWidth: 1200
   videoHeight: 1920
+  btnAllRank: {fileID: 1752956955}
 --- !u!4 &534193850
 Transform:
   m_ObjectHideFlags: 0
@@ -12523,7 +12524,10 @@ MonoBehaviour:
     - SwapAdBtnToPlayBtn
     - SetCheat
     - SetClientVersion
+    - CheckGameCenterInit
+    - CheckRankInfo
     - ShowLeaderboardUI
+    - ShowSingleRank
     - get_destroyCancellationToken
     - IsInvoking
     - CancelInvoke

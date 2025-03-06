@@ -69,6 +69,9 @@ public class LobbyScene : MonoBehaviour
 	public float videoWidth = 1200f;
 	public float videoHeight = 1920f;
 
+	[SerializeField] private GameObject btnAllRank;
+	Define.RankInfo rankInfoAll = null;
+
 	private void Awake()
 	{
 		// https://docs.febucci.com/text-animator-unity/effects/built-in-effects-list
@@ -166,6 +169,10 @@ public class LobbyScene : MonoBehaviour
 			{
 				ActiveBtnPlay();
 			}
+
+			rankInfoAll = null;
+			InvokeRepeating("CheckGameCenterInit", 0f, 3f);
+			InvokeRepeating("CheckRankInfo", 0.7f, 1f);
 		}
 	}
 
@@ -524,8 +531,32 @@ public class LobbyScene : MonoBehaviour
 		rawImageRectTransform.localScale = new Vector3(multiflyValue, multiflyValue, 1f);
 	}
 
+	public void CheckGameCenterInit()
+	{
+		GameCenterManager.CheckAuthInit();
+	}
+
+	public void CheckRankInfo()
+	{
+		if(rankInfoAll == null)
+		{
+			ShowSingleRank(GameCenterManager.RequestAllRank());
+		}
+	}
+
 	public void ShowLeaderboardUI()
 	{
 		GameCenterManager.ShowLeaderboardUI();
+	}
+
+	public void ShowSingleRank(Define.RankInfo rankInfo)
+	{
+		if (rankInfo == null)
+			return;
+
+		rankInfoAll = rankInfo;
+		btnAllRank.SetActive(true);
+		TextMeshProUGUI buttonText = btnAllRank.GetComponentInChildren<TextMeshProUGUI>();
+		buttonText.text = rankInfo.GetTextInfo();
 	}
 }

@@ -224,7 +224,7 @@ public class GameManager : MonoBehaviour
 			buttonTabText.DOFade(0f, 1.3f).SetLoops(-1, LoopType.Yoyo);
 		}
 
-		GameCenterManager.CheckInit();
+		GameCenterManager.CheckAuthInit();
 	}
 
     void SetHPText()
@@ -320,6 +320,8 @@ public class GameManager : MonoBehaviour
     {
 		// firebase 초기화 체크
 		FirebaseManager.CheckInitFirebase();
+		// GameCenter 초기화 체크
+		GameCenterManager.CheckAuthInit();
 		if (isGameOver == false)
         {
 			ClearGuideLines();

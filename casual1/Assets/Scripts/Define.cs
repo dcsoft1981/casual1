@@ -3,6 +3,7 @@ using System.Runtime.InteropServices;
 using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 
 public class Define
 {
@@ -271,5 +272,20 @@ public class Define
 
 		List<ExpressionType> list2Shuffle= list.OrderBy(x => Guid.NewGuid()).ToList();
 		return list2Shuffle[0];
+	}
+
+	public class RankInfo
+	{
+		public string id;
+		public string name;
+		public long score;
+		public int rank;
+
+		public string GetTextInfo()
+		{
+			StringBuilder sb = new StringBuilder();
+			sb.Append(name).Append("\nRank : ").Append(rank).Append("\nScore : ").Append(score);
+			return sb.ToString();
+		}
 	}
 }

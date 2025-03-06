@@ -13,12 +13,24 @@ class GameCenterManager
 	private static bool initUser = false;
 	private static bool initSocial = false;
 
-	public static void CheckInit()
+	public static bool IsIstinialized()
+	{
+		if (initUser && initSocial)
+			return true;
+
+		return false;
+	}
+
+	public static void CheckAuthInit()
 	{
 		if (!Define.MARKET_ABILITY)
 			return;
 
-		if(initUser && initSocial)
+		int curLevel = LocalDataManager.instance.GetCurLevel();
+		if (curLevel < 3)
+			return;
+
+		if (IsIstinialized())
 			return;
 
 
@@ -35,7 +47,7 @@ class GameCenterManager
 		if (!Define.MARKET_ABILITY)
 			return;
 
-		if(initUser && initSocial)
+		if(IsIstinialized())
 		{
 #if UNITY_IOS
 			ReportScoreIOS(score);
@@ -50,36 +62,48 @@ class GameCenterManager
 		if (!Define.MARKET_ABILITY)
 			return;
 
-		if(!initSocial)
-			return;
+		if(IsIstinialized())
+		{
 #if UNITY_IOS
 		ShowLeaderboardUIIOS();
 #elif UNITY_ANDROID
 
 #endif
+		}
 	}
 
-	public static void RequestSingleRank()
+	public static Define.RankInfo RequestAllRank()
 	{
-		if (!Define.MARKET_ABILITY)
-			return;
-
-		if(!initSocial)
-			return;
-#if UNITY_IOS
-		LoadUserScoreAndRankIOS();
-#elif UNITY_ANDROID
-
+#if UNITY_EDITOR
+		Define.RankInfo info = new Define.RankInfo();
+		info.id = "toktok_level";
+		info.name = "AllRank";
+		info.score = LocalDataManager.instance.GetCurLevel();
+		info.rank = 1;
+		return info;
 #endif
+
+		if (!Define.MARKET_ABILITY)
+			return null;
+
+		if (IsIstinialized())
+		{
+
+#if UNITY_IOS
+		return LoadUserScoreAndRankIOS();
+#elif UNITY_ANDROID
+			return null;
+#endif
+		}
 	}
 
 
-// Android GPGS Work
+	// Android GPGS Work
 #if UNITY_ANDROID
 
 #endif
 
-// IOS GameCenter Work
+	// IOS GameCenter Work
 #if UNITY_IOS
 	private static async Task AuthenticateGameCenter()
     {
@@ -159,7 +183,7 @@ class GameCenterManager
 		Social.ShowLeaderboardUI();
 	}
 
-	public static void LoadUserScoreAndRankIOS()
+	public static Define.RankInfo LoadUserScoreAndRankIOS()
 	{
 		if (Social.localUser.authenticated)
 		{
@@ -175,6 +199,12 @@ class GameCenterManager
 					int userRank = leaderboard.localUserScore.rank;
 					LogManager.Log($"GameCenter Leaderboard Score: {userScore}, Rank: {userRank}");
 					// 점수와 랭킹을 UI에 표시하거나 추가 로직 수행
+					Define.RankInfo info = new Define.RankInfo();
+					info.id = leaderboard.id;
+					info.name = "RANK";
+					info.score = userScore;
+					info.rank = userRank;
+					return info;
 				}
 				else
 				{
@@ -186,6 +216,8 @@ class GameCenterManager
 		{
 			LogManager.Log("GameCenter Leaderboard User Not authenticated");
 		}
+
+		return null;
 	}
 #endif
 }
