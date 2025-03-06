@@ -361,6 +361,7 @@ public class GameManager : MonoBehaviour
 
 	private  void StageClear()
     {
+		GameCenterManager.ResetRankInfo();
 		textHP.gameObject.SetActive(false);
 		textShot.gameObject.SetActive(false);
 		DestroyAllGimmicks();

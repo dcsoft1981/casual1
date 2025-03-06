@@ -70,7 +70,6 @@ public class LobbyScene : MonoBehaviour
 	public float videoHeight = 1920f;
 
 	[SerializeField] private GameObject btnAllRank;
-	Define.RankInfo rankInfoAll = null;
 
 	private void Awake()
 	{
@@ -170,9 +169,9 @@ public class LobbyScene : MonoBehaviour
 				ActiveBtnPlay();
 			}
 
-			rankInfoAll = null;
 			InvokeRepeating("CheckGameCenterInit", 0f, 3f);
-			InvokeRepeating("CheckRankInfo", 0.7f, 1f);
+			InvokeRepeating("ReqRankInfo", 0.5f, 1f);
+			InvokeRepeating("ShowRankInfo", 0.8f, 1f);
 		}
 	}
 
@@ -536,12 +535,17 @@ public class LobbyScene : MonoBehaviour
 		GameCenterManager.CheckAuthInit();
 	}
 
-	public void CheckRankInfo()
+	public void ReqRankInfo()
 	{
-		if(rankInfoAll == null)
+		if(GameCenterManager.GetRankInfoAll() == null)
 		{
-			ShowSingleRank(GameCenterManager.RequestAllRank());
+			GameCenterManager.RequestAllRank();
 		}
+	}
+
+	public void ShowRankInfo()
+	{
+		ShowSingleRank(GameCenterManager.GetRankInfoAll());
 	}
 
 	public void ShowLeaderboardUI()
@@ -554,7 +558,6 @@ public class LobbyScene : MonoBehaviour
 		if (rankInfo == null)
 			return;
 
-		rankInfoAll = rankInfo;
 		btnAllRank.SetActive(true);
 		TextMeshProUGUI buttonText = btnAllRank.GetComponentInChildren<TextMeshProUGUI>();
 		buttonText.text = rankInfo.GetTextInfo();

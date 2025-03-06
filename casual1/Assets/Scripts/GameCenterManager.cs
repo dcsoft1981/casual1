@@ -13,6 +13,9 @@ class GameCenterManager
 	private static bool initUser = false;
 	private static bool initSocial = false;
 
+	private static Define.RankInfo rankInfoAll = null;
+	private static bool rankAllRequesting = false;
+
 	public static bool IsIstinialized()
 	{
 		if (initUser && initSocial)
@@ -33,7 +36,7 @@ class GameCenterManager
 		if (IsIstinialized())
 			return;
 
-
+		GameCenterManager.ResetRankInfo();
 #if UNITY_IOS
 		AuthenticateGameCenter();
 #elif UNITY_ANDROID
@@ -72,29 +75,38 @@ class GameCenterManager
 		}
 	}
 
-	public static Define.RankInfo RequestAllRank()
+	public static void RequestAllRank()
 	{
-#if UNITY_EDITOR
-		Define.RankInfo info = new Define.RankInfo();
-		info.id = "toktok_level";
-		info.name = "AllRank";
-		info.score = LocalDataManager.instance.GetCurLevel();
-		info.rank = 1;
-		return info;
-#endif
-
 		if (!Define.MARKET_ABILITY)
-			return null;
+			return;
 
 		if (IsIstinialized())
 		{
 
 #if UNITY_IOS
-		return LoadUserScoreAndRankIOS();
+			LoadUserScoreAndRankIOS();
 #elif UNITY_ANDROID
-			return null;
+			
 #endif
 		}
+	}
+
+	public static void ResetRankInfo()
+	{
+		rankInfoAll = null;
+	}
+
+	public static Define.RankInfo GetRankInfoAll()
+	{
+#if UNITY_EDITOR
+		Define.RankInfo info = new Define.RankInfo();
+		info.id = "toktok_level";
+		info.name = "AllUser";
+		info.score = LocalDataManager.instance.GetCurLevel();
+		info.rank = 1;
+		return info;
+#endif
+		return rankInfoAll;
 	}
 
 
@@ -144,14 +156,19 @@ class GameCenterManager
 					}
 					else
 					{
-						LogManager.Log("GameCenter SocialInit Failure");
+						LogManager.Log("GameCenter SocialInit Failure1");
 					}
 				});
 			}
 			catch(Exception e)
 			{
-				LogManager.Log($"GameCenter SocialInit Failure");
+				LogManager.Log($"GameCenter SocialInit Failure2");
 			}
+		}
+		else
+		{
+			LogManager.Log("GameCenter SocialInit Aleady Success");
+			initSocial = true;
 		}
 	}
 
@@ -183,41 +200,58 @@ class GameCenterManager
 		Social.ShowLeaderboardUI();
 	}
 
-	public static Define.RankInfo LoadUserScoreAndRankIOS()
+	public static void LoadUserScoreAndRankIOS()
 	{
 		if (Social.localUser.authenticated)
 		{
+			if(rankAllRequesting)
+			{
+				LogManager.Log("GameCenter Requesting AllUserRank");
+				return;
+			}
+
+			rankAllRequesting = true;
 			ILeaderboard leaderboard = Social.CreateLeaderboard();
 			leaderboard.id = "toktok_level";
 			leaderboard.userScope = UserScope.FriendsOnly; // 또는 UserScope.Global
 			leaderboard.range = new UnityEngine.SocialPlatforms.Range(1, 1); // 상위 1명의 점수만 로드
-			leaderboard.LoadScores(success =>
+
+			try
 			{
-				if (success && leaderboard.localUserScore != null)
+				leaderboard.LoadScores(success =>
 				{
-					long userScore = leaderboard.localUserScore.value;
-					int userRank = leaderboard.localUserScore.rank;
-					LogManager.Log($"GameCenter Leaderboard Score: {userScore}, Rank: {userRank}");
-					// 점수와 랭킹을 UI에 표시하거나 추가 로직 수행
-					Define.RankInfo info = new Define.RankInfo();
-					info.id = leaderboard.id;
-					info.name = "RANK";
-					info.score = userScore;
-					info.rank = userRank;
-					return info;
-				}
-				else
-				{
-					LogManager.Log("GameCenter Leaderboard Info Not Exist");
-				}
-			});
+					if (success && leaderboard.localUserScore != null)
+					{
+						long userScore = leaderboard.localUserScore.value;
+						int userRank = leaderboard.localUserScore.rank;
+						LogManager.Log($"GameCenter Leaderboard Score: {userScore}, Rank: {userRank}");
+						// 점수와 랭킹을 UI에 표시하거나 추가 로직 수행
+						Define.RankInfo info = new Define.RankInfo();
+						info.id = leaderboard.id;
+						info.name = "AllUser";
+						info.score = userScore;
+						info.rank = userRank;
+						rankInfoAll = info;
+					}
+					else
+					{
+						LogManager.Log("GameCenter Leaderboard Info Not Exist");
+					}
+					rankAllRequesting = false;
+				});
+			}
+			catch(Exception ex)
+			{
+				LogManager.LogError($"GameCenter Exception occurred while loading leaderboard scores: {ex.Message}");
+    			rankAllRequesting = false;
+			}
+
+			
 		}
 		else
 		{
 			LogManager.Log("GameCenter Leaderboard User Not authenticated");
 		}
-
-		return null;
 	}
 #endif
 }

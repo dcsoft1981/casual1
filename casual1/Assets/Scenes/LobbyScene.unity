@@ -9165,6 +9165,7 @@ RectTransform:
   - {fileID: 1594758319}
   - {fileID: 543300630}
   - {fileID: 121860882}
+  - {fileID: 1358354979}
   - {fileID: 121137796}
   - {fileID: 1097208485}
   - {fileID: 1475297137}
@@ -9176,7 +9177,6 @@ RectTransform:
   - {fileID: 909339516}
   - {fileID: 467070979}
   - {fileID: 1192116823}
-  - {fileID: 1358354979}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -12525,7 +12525,8 @@ MonoBehaviour:
     - SetCheat
     - SetClientVersion
     - CheckGameCenterInit
-    - CheckRankInfo
+    - ReqRankInfo
+    - ShowRankInfo
     - ShowLeaderboardUI
     - ShowSingleRank
     - get_destroyCancellationToken
