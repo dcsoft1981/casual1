@@ -199,7 +199,7 @@ public class LobbyScene : MonoBehaviour
 		if (LocalDataManager.instance.GetReddotPlay())
 		{
 			LocalDataManager.instance.SetReddotPlay(false);
-			btnPlay.transform.Find("Reddot").gameObject.SetActive(false);
+			btnPlay.transform.Find(Define.REDDOT).gameObject.SetActive(false);
 		}
 		LoadIngameScene();
 	}
@@ -211,7 +211,7 @@ public class LobbyScene : MonoBehaviour
 		if (LocalDataManager.instance.GetReddotPlayer())
 		{
 			LocalDataManager.instance.SetReddotPlayer(false);
-			btnPlayer.transform.Find("Reddot").gameObject.SetActive(false);
+			btnPlayer.transform.Find(Define.REDDOT).gameObject.SetActive(false);
 			StopTweenAni(btnPlayer.transform);
 		}
 		//popupPlayer.transform.localScale = Vector3.zero;
@@ -230,7 +230,7 @@ public class LobbyScene : MonoBehaviour
 		if (LocalDataManager.instance.GetReddotMenu())
 		{
 			LocalDataManager.instance.SetReddotMenu(false);
-			btnMenu.transform.Find("Reddot").gameObject.SetActive(false);
+			btnMenu.transform.Find(Define.REDDOT).gameObject.SetActive(false);
 			StopTweenAni(btnMenu.transform);
 		}
 		SetSetting();
@@ -435,17 +435,17 @@ public class LobbyScene : MonoBehaviour
 	{
 		if(LocalDataManager.instance.GetReddotPlayer())
 		{
-			btnPlayer.transform.Find("Reddot").gameObject.SetActive(true);
+			btnPlayer.transform.Find(Define.REDDOT).gameObject.SetActive(true);
 			PunchScale(btnPlayer.transform);
 		}
 		if (LocalDataManager.instance.GetReddotMenu())
 		{
-			btnMenu.transform.Find("Reddot").gameObject.SetActive(true);
+			btnMenu.transform.Find(Define.REDDOT).gameObject.SetActive(true);
 			PunchScale(btnMenu.transform);
 		}
 		if (LocalDataManager.instance.GetReddotPlay())
 		{
-			btnPlay.transform.Find("Reddot").gameObject.SetActive(true);
+			btnPlay.transform.Find(Define.REDDOT).gameObject.SetActive(true);
 		}
 	}
 
@@ -551,6 +551,11 @@ public class LobbyScene : MonoBehaviour
 
 	public void ShowLeaderboardUI()
 	{
+		if (!LocalDataManager.instance.GetReddotRank())
+		{
+			btnAllRank.transform.Find(Define.REDDOT).gameObject.SetActive(false);
+			LocalDataManager.instance.SetReddotRank();
+		}		
 		GameCenterManager.ShowLeaderboardUI();
 	}
 
@@ -561,6 +566,10 @@ public class LobbyScene : MonoBehaviour
 
 		btnAllRank.SetActive(true);
 		iconRank.SetActive(true);
+		if(!LocalDataManager.instance.GetReddotRank())
+		{
+			btnAllRank.transform.Find(Define.REDDOT).gameObject.SetActive(true);
+		}
 		TextMeshProUGUI buttonText = btnAllRank.GetComponentInChildren<TextMeshProUGUI>();
 		buttonText.text = rankInfo.GetTextInfo();
 	}

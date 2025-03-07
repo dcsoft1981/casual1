@@ -382,7 +382,6 @@ public class GameManager : MonoBehaviour
 					}
 					int nextLevel = level + 1;
 					LocalDataManager.instance.SetCurLevel(nextLevel);
-					GameCenterManager.AuthenticateAndReportScore(nextLevel);
 				}
 				break;
 			case IngameType.INFINITY:
@@ -394,6 +393,8 @@ public class GameManager : MonoBehaviour
 				}
 				break;
 		}
+		LocalDataManager.instance.AddTotalClear();
+		GameCenterManager.AuthenticateAndReportScore(LocalDataManager.instance.GetTotalClear());
 		LocalDataManager.instance.CheckAchieve();
 
 

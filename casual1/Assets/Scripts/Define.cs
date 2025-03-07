@@ -29,6 +29,7 @@ public class Define
 	public const int MAX_RANK_VALUE = 99999999;
 
 	// Local Save Data
+	public const string REDDOT = "Reddot";
 	public const string CHILD_SPRITE_OBJECT = "ChildSpriteObject";
 	public const string CUR_LEVEL = "CUR_LEVEL";
 	public const string OPTION_SOUND_OFF = "OPTION_SOUND_OFF";
@@ -41,6 +42,7 @@ public class Define
 	public const string REDDOT_PLAYER = "REDDOT_PLAYER";
 	public const string REDDOT_MENU = "REDDOT_MENU";
 	public const string REDDOT_PLAY = "REDDOT_PLAY";
+	public const string REDDOT_RANK = "REDDOT_RANK";
 	public const string PLAY_ADCHECK_COUNT = "PLAY_ADCHECK_COUNT";
 	public const string APP_START_TIME = "APP_START_TIME";
 	public const string TIER_GET_TIME = "TIER_GET_TIME";
@@ -48,6 +50,7 @@ public class Define
 	public const string ACHIEVE_PLATINUM = "tier_platinum";
 	public const string ACHIEVE_EMERALD = "tier_emerald";
 	public const string ACHIEVE_DIAMOND = "tier_diamondD";
+	public const string TOTAL_CLEAR = "TOTAL_CLEAR";
 
 	public const int GRADE_GOLD = 4;
 	public const int GRADE_PLATINUM = 5;

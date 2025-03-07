@@ -104,7 +104,7 @@ class GameCenterManager
 		Define.RankInfo info = new Define.RankInfo();
 		info.id = "toktok_level";
 		info.name = "All User";
-		info.score = LocalDataManager.instance.GetCurLevel();
+		info.score = LocalDataManager.instance.GetTotalClear();
 		info.rank = 1;
 		return info;
 #endif

@@ -22,7 +22,9 @@ public class LocalDataManager : MonoBehaviour
 	private int reddotPlayer = 0;
 	private int reddotMenu = 0;
 	private int reddotPlay = 0;
+	private int reddotRank = 0;
 	private int playCountForAD = 0;
+	private int totalClear = 0;
 
 	[SerializeField] private LevelDB levelDB;
 	[SerializeField] private GimmickDB gimmickDB;
@@ -56,6 +58,9 @@ public class LocalDataManager : MonoBehaviour
 
 			// 로컬 저장 데이터
 			curLevel = PlayerPrefs.GetInt(Define.CUR_LEVEL, 1);
+			totalClear = PlayerPrefs.GetInt(Define.TOTAL_CLEAR, 0);
+			MigrateTotalClear();
+
 			appStartTime = PlayerPrefs.GetInt(Define.APP_START_TIME, 0);
 			if (appStartTime == 0)
 			{
@@ -71,6 +76,7 @@ public class LocalDataManager : MonoBehaviour
 			reddotPlayer = PlayerPrefs.GetInt(Define.REDDOT_PLAYER, 0);
 			reddotMenu = PlayerPrefs.GetInt(Define.REDDOT_MENU, 0);
 			reddotPlay = PlayerPrefs.GetInt(Define.REDDOT_PLAY, 0);
+			reddotRank = PlayerPrefs.GetInt(Define.REDDOT_RANK, 0);
 			playCountForAD = PlayerPrefs.GetInt(Define.PLAY_ADCHECK_COUNT, 0);
 
 
@@ -134,6 +140,19 @@ public class LocalDataManager : MonoBehaviour
 		PlayerPrefs.SetInt(Define.CUR_LEVEL, level);
 		PlayerPrefs.Save();
 		curLevel = level;
+	}
+
+	public int GetTotalClear()
+	{
+		return totalClear;
+	}
+
+	public void AddTotalClear()
+	{
+		int value = totalClear + 1;
+		PlayerPrefs.SetInt(Define.TOTAL_CLEAR, value);
+		PlayerPrefs.Save();
+		totalClear = value;
 	}
 
 	private void SetAppStartTime()
@@ -677,6 +696,21 @@ public class LocalDataManager : MonoBehaviour
 		PlayerPrefs.Save();
 	}
 
+	public void SetReddotRank()
+	{
+		reddotRank = 1;
+		PlayerPrefs.SetInt(Define.REDDOT_RANK, 1);
+		PlayerPrefs.Save();
+	}
+
+	public bool GetReddotRank()
+	{
+		if (reddotRank == 0)
+			return false;
+		else
+			return true;
+	}
+
 	public void AddPlayCountForAD()
 	{
 		if(GetCurLevel() >= Define.STABLEUSER_LEVEL)
@@ -807,5 +841,16 @@ public class LocalDataManager : MonoBehaviour
 			return;
 
 		GameCenterManager.CheckAchievementStatus(listRequestAchieveId);
+	}
+
+	private void MigrateTotalClear()
+	{
+		int minTotalClear = curLevel - 1;
+		if(totalClear < minTotalClear)
+		{
+			PlayerPrefs.SetInt(Define.TOTAL_CLEAR, minTotalClear);
+			PlayerPrefs.Save();
+			totalClear = minTotalClear;
+		}
 	}
 }
