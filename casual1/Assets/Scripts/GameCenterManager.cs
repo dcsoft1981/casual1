@@ -247,8 +247,8 @@ class GameCenterManager
 			rankAllRequesting = true;
 			ILeaderboard leaderboard = Social.CreateLeaderboard();
 			leaderboard.id = "toktok_level";
-			leaderboard.userScope = UserScope.FriendsOnly; // 또는 UserScope.Global
-			leaderboard.range = new UnityEngine.SocialPlatforms.Range(1, 1); // 상위 1명의 점수만 로드
+			leaderboard.userScope = UserScope.Global; // 또는 UserScope.Global  
+			//leaderboard.range = new UnityEngine.SocialPlatforms.Range(1, 1); // 상위 1명의 점수만 로드
 
 			try
 			{
