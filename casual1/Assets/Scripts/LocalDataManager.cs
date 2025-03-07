@@ -245,6 +245,11 @@ public class LocalDataManager : MonoBehaviour
 		if (grade == 0)
 			return null;
 
+		return GetCurGradeDBEntity(grade);
+	}
+
+	public GradeDBEntity GetCurGradeDBEntity(int grade)
+	{
 		if (dic_grades.TryGetValue(grade, out GradeDBEntity entity))
 			return entity;
 		return null;
@@ -740,5 +745,67 @@ public class LocalDataManager : MonoBehaviour
 		{
 			return Resources.Load<Sprite>("bg1");
 		}
+	}
+
+	public bool GetAchieveRecordState(string str)
+	{
+		int value = PlayerPrefs.GetInt(str, 0);
+		if (value == 1)
+			return true;
+		else
+			return false;
+	}
+
+	public void SetAchieveRecordState(string str)
+	{
+		PlayerPrefs.SetInt(str, 1);
+		PlayerPrefs.Save();
+	}
+
+	public void CheckAchieve()
+	{
+		List<string> listRequestAchieveId = new List<string>();
+		int curLevel = GetCurLevel();
+		GradeDBEntity entityGold = GetCurGradeDBEntity(Define.GRADE_GOLD);
+		if(curLevel >= entityGold.minLevel)
+		{
+			if(!GetAchieveRecordState(Define.ACHIEVE_GOLD))
+			{
+				listRequestAchieveId.Add(Define.ACHIEVE_GOLD);
+				LogManager.Log("CheckAchieve ACHIEVE_GOLD");
+			}
+		}
+		GradeDBEntity entityPlatinum = GetCurGradeDBEntity(Define.GRADE_PLATINUM);
+		if (curLevel >= entityPlatinum.minLevel)
+		{
+			if (!GetAchieveRecordState(Define.ACHIEVE_PLATINUM))
+			{
+				listRequestAchieveId.Add(Define.ACHIEVE_PLATINUM);
+				LogManager.Log("CheckAchieve ACHIEVE_PLATINUM");
+			}
+		}
+		GradeDBEntity entityEmerald = GetCurGradeDBEntity(Define.GRADE_EMERALD);
+		if (curLevel >= entityEmerald.minLevel)
+		{
+			if (!GetAchieveRecordState(Define.ACHIEVE_EMERALD))
+			{
+				listRequestAchieveId.Add(Define.ACHIEVE_EMERALD);
+				LogManager.Log("CheckAchieve ACHIEVE_EMERALD");
+			}
+		}
+		GradeDBEntity entityDiamond = GetCurGradeDBEntity(Define.GRADE_DIAMOND);
+		if (curLevel >= entityDiamond.minLevel)
+		{
+			if (!GetAchieveRecordState(Define.ACHIEVE_DIAMOND))
+			{
+				listRequestAchieveId.Add(Define.ACHIEVE_DIAMOND);
+				LogManager.Log("CheckAchieve ACHIEVE_DIAMOND");
+			}
+		}
+
+		if (listRequestAchieveId.Count == 0)
+			return;
+
+		GameCenterManager.CheckAchievementStatus(listRequestAchieveId);
 	}
 }

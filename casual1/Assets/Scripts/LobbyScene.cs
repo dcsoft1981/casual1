@@ -70,6 +70,7 @@ public class LobbyScene : MonoBehaviour
 	public float videoHeight = 1920f;
 
 	[SerializeField] private GameObject btnAllRank;
+	[SerializeField] private GameObject iconRank;
 
 	private void Awake()
 	{
@@ -559,6 +560,7 @@ public class LobbyScene : MonoBehaviour
 			return;
 
 		btnAllRank.SetActive(true);
+		iconRank.SetActive(true);
 		TextMeshProUGUI buttonText = btnAllRank.GetComponentInChildren<TextMeshProUGUI>();
 		buttonText.text = rankInfo.GetTextInfo();
 	}

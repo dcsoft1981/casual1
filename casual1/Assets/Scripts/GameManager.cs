@@ -394,6 +394,7 @@ public class GameManager : MonoBehaviour
 				}
 				break;
 		}
+		LocalDataManager.instance.CheckAchieve();
 
 
 		/*
@@ -404,7 +405,7 @@ public class GameManager : MonoBehaviour
         labelClear.SetActive(true);
 		*/
 
-		if(lastGrade != LocalDataManager.instance.GetCurGrade())
+		if (lastGrade != LocalDataManager.instance.GetCurGrade())
 		{
 			clearText.transform.Find("TitleGradeUp").gameObject.SetActive(true);
 			// 등급 변경

@@ -26,6 +26,8 @@ public class Define
 	public const int RATEPOPUP_LEVEL = 52;
 	public const int PLAY_AD_COUNT = 7;
 
+	public const int MAX_RANK_VALUE = 99999999;
+
 	// Local Save Data
 	public const string CHILD_SPRITE_OBJECT = "ChildSpriteObject";
 	public const string CUR_LEVEL = "CUR_LEVEL";
@@ -42,8 +44,15 @@ public class Define
 	public const string PLAY_ADCHECK_COUNT = "PLAY_ADCHECK_COUNT";
 	public const string APP_START_TIME = "APP_START_TIME";
 	public const string TIER_GET_TIME = "TIER_GET_TIME";
+	public const string ACHIEVE_GOLD = "tier_gold";
+	public const string ACHIEVE_PLATINUM = "tier_platinum";
+	public const string ACHIEVE_EMERALD = "tier_emerald";
+	public const string ACHIEVE_DIAMOND = "tier_diamondD";
 
-
+	public const int GRADE_GOLD = 4;
+	public const int GRADE_PLATINUM = 5;
+	public const int GRADE_EMERALD = 6;
+	public const int GRADE_DIAMOND = 7;
 
 	public const string LOCALE_RETRY = "RETRY";
 	public const string LOCALE_NEXT = "NEXT";
@@ -284,6 +293,10 @@ public class Define
 		public string GetTextInfo()
 		{
 			StringBuilder sb = new StringBuilder();
+			if (score > MAX_RANK_VALUE)
+				score = MAX_RANK_VALUE;
+			if (rank > MAX_RANK_VALUE)
+				rank = MAX_RANK_VALUE;
 			sb.Append(name).Append("\nRank : ").Append(rank).Append("\nScore : ").Append(score);
 			return sb.ToString();
 		}
