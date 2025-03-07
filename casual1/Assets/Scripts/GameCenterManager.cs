@@ -314,6 +314,7 @@ class GameCenterManager
 
 					if (isAchieved)
 					{
+						LocalDataManager.instance.SetAchieveRecordState(achievementID);
 						LogManager.Log($"GameCenter '{achievementID}'aleady cleared");
 					}
 					else
@@ -337,6 +338,7 @@ class GameCenterManager
 			{
 				if (success)
 				{
+					LocalDataManager.instance.SetAchieveRecordState(achievementID);
 					Debug.Log($"GameCenter '{achievementID}' ReportAchievementIOS success");
 				}
 				else
