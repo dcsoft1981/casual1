@@ -1,4 +1,6 @@
 using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
 using System;
 using System.Threading.Tasks;
 using UnityEngine.SocialPlatforms;
@@ -107,6 +109,38 @@ class GameCenterManager
 		return info;
 #endif
 		return rankInfoAll;
+	}
+
+	public static void CheckAchievementStatus(List<string> ids)
+	{
+		if (!Define.MARKET_ABILITY)
+			return;
+
+		if (IsIstinialized())
+		{
+
+#if UNITY_IOS
+			CheckAchievementStatusIOS(ids);
+#elif UNITY_ANDROID
+			
+#endif
+		}
+	}
+
+	public static void ReportAchievement(string id)
+	{
+		if (!Define.MARKET_ABILITY)
+			return;
+
+		if (IsIstinialized())
+		{
+
+#if UNITY_IOS
+			ReportAchievementIOS(id);
+#elif UNITY_ANDROID
+			
+#endif
+		}
 	}
 
 
@@ -253,5 +287,68 @@ class GameCenterManager
 			LogManager.Log("GameCenter Leaderboard User Not authenticated");
 		}
 	}
+
+	public static void CheckAchievementStatusIOS(List<string> ids)
+    {
+		try
+		{
+			Social.LoadAchievements(achievements =>
+			{
+				if (achievements == null)
+				{
+					LogManager.LogError("GameCenter achieve load failure");
+					return;
+				}
+
+				foreach(string achievementID in ids)
+				{
+					bool isAchieved = false;
+					foreach (IAchievement achievement in achievements)
+					{
+						if (achievement.id == achievementID && achievement.completed)
+						{
+							isAchieved = true;
+							break;
+						}
+					}
+
+					if (isAchieved)
+					{
+						LogManager.Log($"GameCenter '{achievementID}'aleady cleared");
+					}
+					else
+					{
+						ReportAchievementIOS(achievementID);
+					}
+				}
+			});
+		}
+		catch(Exception ex)
+		{
+			LogManager.LogError($"GameCenter CheckAchievementStatusIOS occurred error: {ex.Message}");
+		}
+    }
+
+	public static void ReportAchievementIOS(string achievementID)
+    {
+		try
+		{
+			Social.ReportProgress(achievementID, 100, success =>
+			{
+				if (success)
+				{
+					Debug.Log($"GameCenter '{achievementID}' ReportAchievementIOS success");
+				}
+				else
+				{
+					Debug.LogError($"GameCenter '{achievementID}' ReportAchievementIOS failure");
+				}
+			});
+		}
+		catch(Exception ex)
+		{
+			LogManager.LogError($"GameCenter ReportAchievementIOS occurred error: {ex.Message}");
+		}
+    }
 #endif
 }
