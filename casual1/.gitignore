@@ -11,6 +11,7 @@ com.dcsoft1981.casual1_BurstDebugInformation_DoNotShip/
 DC Play_BurstDebugInformation_DoNotShip/
 UserSettings/
 [Aa]ssets/Firebase/Plugins/x86_64/
+[Aa]ssets/Firebase/Editor/res/
 *.csproj
 *.sln
 .vscode/
