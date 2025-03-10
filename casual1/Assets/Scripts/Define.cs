@@ -307,7 +307,7 @@ public class Define
 				score = MAX_RANK_VALUE;
 			if (rank > MAX_RANK_VALUE)
 				rank = MAX_RANK_VALUE;
-			sb.Append("           ").Append(name).Append(" : ").Append(rank).Append(" Score : ").Append(score);
+			sb.Append("            ").Append(name).Append(" : ").Append(rank).Append(" Score : ").Append(score);
 			return sb.ToString();
 		}
 	}

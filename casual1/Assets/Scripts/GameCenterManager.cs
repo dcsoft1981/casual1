@@ -105,7 +105,7 @@ class GameCenterManager
 #if UNITY_EDITOR
 		Define.RankInfo info = new Define.RankInfo();
 		info.id = "toktok_level";
-		info.name = "All User";
+		info.name = "Total";
 		info.score = LocalDataManager.instance.GetTotalClear();
 		info.rank = 1;
 		return info;
@@ -245,7 +245,7 @@ class GameCenterManager
 							// 점수와 랭킹을 UI에 표시하거나 추가 로직 수행
 							Define.RankInfo info = new Define.RankInfo();
 							info.id = GPGSIds.leaderboard_total_clear;
-							info.name = "AllUser";
+							info.name = "Total";
 							info.score = userScore;
 							info.rank = userRank;
 							rankInfoAll = info;
