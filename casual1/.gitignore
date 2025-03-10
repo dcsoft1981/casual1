@@ -12,6 +12,7 @@ DC Play_BurstDebugInformation_DoNotShip/
 UserSettings/
 [Aa]ssets/Firebase/Plugins/x86_64/
 [Aa]ssets/Firebase/Editor/res/
+[Aa]ssets/Firebase/Editor/res.meta
 *.csproj
 *.sln
 .vscode/
