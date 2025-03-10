@@ -7,7 +7,8 @@ using UnityEngine.SocialPlatforms;
 #if UNITY_IOS
 using Apple.GameKit;
 #elif UNITY_ANDROID
-
+using GooglePlayGames;
+using GooglePlayGames.BasicApi;
 #endif
 
 class GameCenterManager
@@ -42,7 +43,7 @@ class GameCenterManager
 #if UNITY_IOS
 		AuthenticateGameCenter();
 #elif UNITY_ANDROID
-
+		AuthenticateGPGS();
 #endif
 
 	}
@@ -146,10 +147,38 @@ class GameCenterManager
 
 	// Android GPGS Work
 #if UNITY_ANDROID
+	private static async Task AuthenticateGPGS()
+	{
+		try
+		{
+			// Google Play Games 플랫폼 활성화
+			PlayGamesPlatform.Activate();
 
+			// 사용자 인증
+			PlayGamesPlatform.Instance.Authenticate(success =>
+			{
+				if (success == SignInStatus.Success)
+				{
+					LogManager.Log("GPGS Auth Success");
+					// 추가적인 게임 서비스 기능을 여기에 구현할 수 있습니다.
+					initUser = true;
+					initSocial = true;
+				}
+				else
+				{
+					LogManager.Log("GPGS Auth Failure");
+					// 로그인 실패 처리 로직을 여기에 구현할 수 있습니다.
+				}
+			});
+		}
+		catch (Exception e)
+		{
+			LogManager.Log($"GPGS Init Failure: {e.Message}");
+		}
+	}
 #endif
 
-	// IOS GameCenter Work
+		// IOS GameCenter Work
 #if UNITY_IOS
 	private static async Task AuthenticateGameCenter()
     {
