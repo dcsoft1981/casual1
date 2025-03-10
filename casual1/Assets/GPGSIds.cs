@@ -25,6 +25,10 @@
 public static class GPGSIds
 {
         public const string leaderboard_total_clear = "CgkIme7O_4sGEAIQAQ"; // <GPGSID>
+        public const string achievement_diamond = "CgkIme7O_4sGEAIQBw"; // <GPGSID>
+        public const string achievement_emerald = "CgkIme7O_4sGEAIQBg"; // <GPGSID>
+        public const string achievement_platinum = "CgkIme7O_4sGEAIQBQ"; // <GPGSID>
+        public const string achievement_gold = "CgkIme7O_4sGEAIQBA"; // <GPGSID>
 
 }
 

@@ -38,7 +38,7 @@ namespace GooglePlayGames {
 
         public const string ApplicationId = "209378850585"; // Filled in automatically
         public const string IosClientId = "__IOS_CLIENTID__"; // Filled in automatically
-        public const string WebClientId = ""; // Filled in automatically
+        public const string WebClientId = "209378850585-s3oeu99tcg6k4rnmf813tbv7ij7bkbfp.apps.googleusercontent.com"; // Filled in automatically
         public const string NearbyConnectionServiceId = "";
 
         public static bool ApplicationIdInitialized() {

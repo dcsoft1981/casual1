@@ -24,6 +24,7 @@ class GameCenterManager
 		if (initUser && initSocial)
 			return true;
 
+		LogManager.Log("IsIstinialized : " + initUser + " , " + initSocial);
 		return false;
 	}
 
@@ -58,7 +59,7 @@ class GameCenterManager
 #if UNITY_IOS
 			ReportScoreIOS(score);
 #elif UNITY_ANDROID
-
+			ReportScoreAndroid(score);
 #endif
 		}
 	}
@@ -71,9 +72,9 @@ class GameCenterManager
 		if(IsIstinialized())
 		{
 #if UNITY_IOS
-		ShowLeaderboardUIIOS();
+			ShowLeaderboardUIIOS();
 #elif UNITY_ANDROID
-
+			ShowLeaderboardUIAndroid();
 #endif
 		}
 	}
@@ -89,7 +90,7 @@ class GameCenterManager
 #if UNITY_IOS
 			LoadUserScoreAndRankIOS();
 #elif UNITY_ANDROID
-			
+			LoadUserScoreAndRankAndroid();
 #endif
 		}
 	}
@@ -123,12 +124,12 @@ class GameCenterManager
 #if UNITY_IOS
 			CheckAchievementStatusIOS(ids);
 #elif UNITY_ANDROID
-			
+			CheckAchievementStatusAndroid(ids);
 #endif
 		}
 	}
 
-	public static void ReportAchievement(string id)
+	public static void ShowAchieveUI()
 	{
 		if (!Define.MARKET_ABILITY)
 			return;
@@ -137,12 +138,13 @@ class GameCenterManager
 		{
 
 #if UNITY_IOS
-			ReportAchievementIOS(id);
+			ShowAchieveUIIOS();
 #elif UNITY_ANDROID
-			
+			ShowAchieveUIAndroid();
 #endif
 		}
 	}
+
 
 
 	// Android GPGS Work
@@ -166,7 +168,7 @@ class GameCenterManager
 				}
 				else
 				{
-					LogManager.Log("GPGS Auth Failure");
+					LogManager.Log("GPGS Auth Failure : " + success);
 					// 로그인 실패 처리 로직을 여기에 구현할 수 있습니다.
 				}
 			});
@@ -176,9 +178,135 @@ class GameCenterManager
 			LogManager.Log($"GPGS Init Failure: {e.Message}");
 		}
 	}
+
+	private static void ReportScoreAndroid(long score)
+	{
+		try
+		{
+			// 'toktok_level' 순위표에 점수 제출
+			PlayGamesPlatform.Instance.ReportScore(score, GPGSIds.leaderboard_total_clear, success =>
+			{
+				if (success)
+				{
+					LogManager.Log($"GPGS ReportScore Success: {score}");
+				}
+				else
+				{
+					LogManager.Log($"GPGS ReportScore failure: {score}");
+				}
+			});
+		}
+		catch (Exception e)
+		{
+			LogManager.Log($"GPGS ReportScore Failure: {score}");
+		}
+	}
+
+	private static void ShowLeaderboardUIAndroid()
+	{
+		try
+		{
+			LogManager.Log("GPGS ShowLeaderboardUIAndroid");
+			PlayGamesPlatform.Instance.ShowLeaderboardUI(GPGSIds.leaderboard_total_clear);
+		}
+		catch(Exception e)
+		{
+			LogManager.LogError("GPGS ShowLeaderboardUIAndroid Failure : " + e.Message);
+		}
+		
+	}
+
+	public static void LoadUserScoreAndRankAndroid()
+	{
+		if (rankAllRequesting)
+		{
+			LogManager.Log("GPGS Requesting AllUserRank");
+			return;
+		}
+
+		rankAllRequesting = true;
+		try
+		{
+			PlayGamesPlatform.Instance.LoadScores(
+				GPGSIds.leaderboard_total_clear,
+				LeaderboardStart.TopScores,
+				1,
+				LeaderboardCollection.Public,
+				LeaderboardTimeSpan.AllTime,
+				(LeaderboardScoreData data) =>
+				{
+					if (data.Valid)
+					{
+						if (data.PlayerScore != null)
+						{
+							long userScore = data.PlayerScore.value;
+							int userRank = data.PlayerScore.rank;
+							LogManager.Log($"GPGS Leaderboard Score: {userScore}, Rank: {userRank}");
+							// 점수와 랭킹을 UI에 표시하거나 추가 로직 수행
+							Define.RankInfo info = new Define.RankInfo();
+							info.id = GPGSIds.leaderboard_total_clear;
+							info.name = "AllUser";
+							info.score = userScore;
+							info.rank = userRank;
+							rankInfoAll = info;
+						}
+						else
+						{
+							LogManager.LogError("GPGS Leaderboard score Not Exist.");
+						}
+					}
+					else
+					{
+						LogManager.LogError("GPGS Leaderboard load Failure.");
+					}
+					rankAllRequesting = false;
+				});
+		}
+		catch (Exception ex)
+		{
+			LogManager.LogError($"GPGS Exception occurred while loading leaderboard scores: {ex.Message}");
+			rankAllRequesting = false;
+		}
+	}
+
+	public static void CheckAchievementStatusAndroid(List<string> ids)
+	{
+		foreach(string id in ids)
+		{
+			ReportAchievementAndroid(id);
+		}
+	}
+
+	public static void ReportAchievementAndroid(string achievementID)
+	{
+		try
+		{
+			PlayGamesPlatform.Instance.ReportProgress(achievementID, 100, success =>
+			{
+				if (success)
+				{
+					LocalDataManager.instance.SetAchieveRecordState(achievementID);
+					Debug.Log($"GPGS '{achievementID}' ReportAchievementAndroid success");
+				}
+				else
+				{
+					Debug.LogError($"GPGS '{achievementID}' ReportAchievementAndroid failure");
+				}
+			});
+		}
+		catch (Exception ex)
+		{
+			LogManager.LogError($"GameCenter ReportAchievementIOS occurred error: {ex.Message}");
+		}
+	}
+
+	private static void ShowAchieveUIAndroid()
+	{
+		PlayGamesPlatform.Instance.ShowAchievementsUI();
+	}
 #endif
 
-		// IOS GameCenter Work
+	// IOS GameCenter Work
 #if UNITY_IOS
 	private static async Task AuthenticateGameCenter()
     {
@@ -381,5 +509,10 @@ class GameCenterManager
 			LogManager.LogError($"GameCenter ReportAchievementIOS occurred error: {ex.Message}");
 		}
     }
+
+	private static void ShowAchieveUIIOS()
+	{
+		Social.ShowAchievementsUI();
+	}
 #endif
 }

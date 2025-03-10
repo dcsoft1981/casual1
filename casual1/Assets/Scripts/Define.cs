@@ -46,10 +46,17 @@ public class Define
 	public const string PLAY_ADCHECK_COUNT = "PLAY_ADCHECK_COUNT";
 	public const string APP_START_TIME = "APP_START_TIME";
 	public const string TIER_GET_TIME = "TIER_GET_TIME";
+#if UNITY_IOS
 	public const string ACHIEVE_GOLD = "tier_gold";
 	public const string ACHIEVE_PLATINUM = "tier_platinum";
 	public const string ACHIEVE_EMERALD = "tier_emerald";
 	public const string ACHIEVE_DIAMOND = "tier_diamondD";
+#else
+	public const string ACHIEVE_GOLD = GPGSIds.achievement_gold;
+	public const string ACHIEVE_PLATINUM = GPGSIds.achievement_platinum;
+	public const string ACHIEVE_EMERALD = GPGSIds.achievement_emerald;
+	public const string ACHIEVE_DIAMOND = GPGSIds.achievement_diamond;
+#endif
 	public const string TOTAL_CLEAR = "TOTAL_CLEAR";
 
 	public const int GRADE_GOLD = 4;
