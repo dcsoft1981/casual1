@@ -14,7 +14,7 @@ public class Define
 	public const bool MARKET_ABILITY = true;
 #endif
 	
-	public const bool DEBUG_LOG = true;
+	public const bool DEBUG_LOG = false;
 	public const bool FIREBASE_WORK = true;
 	public const bool enableCheat = false; // 치트 활성화
 	public const bool disableAD = false; // 광고 ONOFF
