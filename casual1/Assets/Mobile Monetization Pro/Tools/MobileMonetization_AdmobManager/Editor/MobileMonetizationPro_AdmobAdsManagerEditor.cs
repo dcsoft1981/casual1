@@ -21,7 +21,7 @@ namespace MobileMonetizationPro
         SerializedProperty AdInspectorButton;
         MobileMonetizationPro_AdmobAdsInitializer adsInitializer;
 
-        private void OnEnable()
+		private void OnEnable()
         {
             adsInitializer = FindObjectOfType<MobileMonetizationPro_AdmobAdsInitializer>();
             DebugAdInspector = serializedObject.FindProperty("DebugAdInspector");
@@ -40,7 +40,8 @@ namespace MobileMonetizationPro
                 rect.y += 2;
                 EditorGUI.PropertyField(new Rect(rect.x, rect.y, rect.width, EditorGUIUtility.singleLineHeight), element, GUIContent.none);
             };
-        }
+
+		}
         private GUIStyle GetButtonStyle()
         {
             GUIStyle style = new GUIStyle(GUI.skin.button);

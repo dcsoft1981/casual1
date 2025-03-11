@@ -20,12 +20,12 @@ namespace MobileMonetizationPro
         //public TextMeshProUGUI T;
 
         [Header("Ad unit Id's")]
-        public string AndroidBannerId = "ca-app-pub-3940256099942544/6300978111";
-        public string AndroidInterstitalId = "ca-app-pub-3940256099942544/1033173712";
-        public string AndroidRewardedId = "ca-app-pub-3940256099942544/5224354917";
-        public string AndroidNativeId = "ca-app-pub-3940256099942544/2247696110";
-        public string AndroidAppOpenId = "ca-app-pub-3940256099942544/9257395921";
-        public string AndroidRewardedInterstitialID = "ca-app-pub-3940256099942544/5354046379";
+        public string AndroidBannerId = "";
+        public string AndroidInterstitalId = "";
+        public string AndroidRewardedId = "";
+        public string AndroidNativeId = "";
+        public string AndroidAppOpenId = "";
+        public string AndroidRewardedInterstitialID = "";
         
         //public string AndroidRewardedInterstitalId = "ca-app-pub-3940256099942544/5354046379";
 
@@ -94,15 +94,14 @@ namespace MobileMonetizationPro
 
         private RewardedInterstitialAd _rewardedInterstitialAd;
 
-
-        [Header("Alex Ads Settings")]
-        public LobbyScene lobbyScene;
-
 		//alex 광고 20250213 배너와 보상형 광고만 설정
 		private bool adState20250213 = true;
         private int rewardADRetryCount = 0;
-		
-        private void Awake()
+
+		[Header("Alex Ads Settings")]
+		public LobbyScene lobbyScene;
+
+		private void Awake()
         {
             if (instance == null)
             {
@@ -493,6 +492,10 @@ namespace MobileMonetizationPro
             //}
 
             // New Code If you want to use previous code than comment from line 466 to 493
+            int curLevel = LocalDataManager.instance.GetCurLevel();
+            if (curLevel < Define.STABLEUSER_LEVEL)
+                return;
+
             if (PlayerPrefs.GetInt("AdsRemoved") == 0 && IsAdsInitializationCompleted == true)
             {
                 if (bannerView == null)
@@ -1081,6 +1084,19 @@ namespace MobileMonetizationPro
             else
             {
 				lobbyScene.SwapAdBtnToPlayBtn();
+			}
+		}
+
+        public void OnClearADWork()
+        {
+			lobbyScene = FindFirstObjectByType<LobbyScene>();
+			if (lobbyScene == null)
+			{
+				Debug.Log("AlexAD OnClearADWork cannot find LobbyScene.");
+			}
+			else
+			{
+				lobbyScene.OnClearADWork();
 			}
 		}
 	}

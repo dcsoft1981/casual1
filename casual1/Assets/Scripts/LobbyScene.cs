@@ -68,6 +68,8 @@ public class LobbyScene : MonoBehaviour
 	public VideoPlayer videoPlayer;
 	public float videoWidth = 1200f;
 	public float videoHeight = 1920f;
+	public CanvasGroup canvasGroup;
+	public float fadeDuration = 1.0f; // 페이드 인/아웃 지속 시간
 
 	[SerializeField] private GameObject btnAllRank;
 
@@ -149,20 +151,9 @@ public class LobbyScene : MonoBehaviour
 		{
 			if(LocalDataManager.instance.ShowAD())
 			{
-				// 광고 제생(네트워크 환경, 광고 불러옴 체크)
-				bool ableShowAD = true;
-
-				if(ableShowAD)
-				{
-					// 공고 재생 후 플레이 버튼 활성화
-					// 임시로 광고 팝업 활성화
-					btnTempAD.SetActive(true);
-				}
-				else
-				{
-					// 광고 제생 불가 상황에서는 플레이 버튼 활성화
-					ActiveBtnPlay();
-				}
+				// 공고 재생 후 플레이 버튼 활성화
+				// 임시로 광고 팝업 활성화
+				btnTempAD.SetActive(true);
 			}
 			else
 			{
@@ -191,6 +182,13 @@ public class LobbyScene : MonoBehaviour
 	private void LoadLevelSceneForced()
 	{
 		LoadIngameScene();
+	}
+
+	public void OnClearADWork()
+	{
+		LogManager.Log("OnClearADWork");
+		LocalDataManager.instance.ResetPlayADCount();
+		SwapAdBtnToPlayBtn();
 	}
 
 	public void LoadLevelScene()
@@ -448,12 +446,6 @@ public class LobbyScene : MonoBehaviour
 		}
 	}
 
-	public void OnClearADWork()
-	{
-		LocalDataManager.instance.ResetPlayADCount();
-		SwapAdBtnToPlayBtn();
-	}
-
 	private void ActiveBtnPlay()
 	{
 		btnPlay.SetActive(true);
@@ -486,8 +478,11 @@ public class LobbyScene : MonoBehaviour
 		// 비디오 준비
 		videoPlayer.Prepare();
 
-		// 최대 7초 대기
-		float timeout = 7f;
+		// 페이드 인
+		yield return StartCoroutine(Fade(0f, 1f));
+
+		// 최대 9초 대기
+		float timeout = 9f;
 		float startTime = Time.time;
 
 		while (!videoPlayer.isPrepared)
@@ -517,9 +512,24 @@ public class LobbyScene : MonoBehaviour
 			}
 			yield return null;
 		}
-		
+
+		// 페이드 아웃
+		yield return StartCoroutine(Fade(1f, 0f));
+
 		// 강제로 인게임신 전환
 		LoadLevelSceneForced();
+	}
+
+	private IEnumerator Fade(float startAlpha, float endAlpha)
+	{
+		float elapsedTime = 0f;
+		while (elapsedTime < fadeDuration)
+		{
+			canvasGroup.alpha = Mathf.Lerp(startAlpha, endAlpha, elapsedTime / fadeDuration);
+			elapsedTime += Time.deltaTime;
+			yield return null;
+		}
+		canvasGroup.alpha = endAlpha;
 	}
 
 	void AdjustVideoScale()

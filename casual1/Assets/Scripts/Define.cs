@@ -7,7 +7,7 @@ using System.Text;
 
 public class Define
 {
-	public const string CLIENT_VERSION = "v20250305(1.0.0)";
+	public const string CLIENT_VERSION = "v20250311(1.1.0)";
 #if UNITY_EDITOR
 	public const bool MARKET_ABILITY = false;
 #else
@@ -16,8 +16,8 @@ public class Define
 	
 	public const bool DEBUG_LOG = true;
 	public const bool FIREBASE_WORK = true;
-	public const bool enableCheat = true; // 치트 활성화
-	public const bool disableAD = true; // 광고 ONOFF
+	public const bool enableCheat = false; // 치트 활성화
+	public const bool disableAD = false; // 광고 ONOFF
 
 	public const string ANDROID_MARKET_URL = "https://play.google.com/store/apps/details?id=com.dcsoft1981.casual1";
 	public const string IOS_MARKET_URL = "https://apps.apple.com/us/app/toktok-by-dc/id6742087075";
@@ -307,7 +307,7 @@ public class Define
 				score = MAX_RANK_VALUE;
 			if (rank > MAX_RANK_VALUE)
 				rank = MAX_RANK_VALUE;
-			sb.Append("            ").Append(name).Append(" : ").Append(rank).Append(" Score : ").Append(score);
+			sb.Append("Rank:").Append(rank).Append("  Score:").Append(score);
 			return sb.ToString();
 		}
 	}

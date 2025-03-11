@@ -11,13 +11,13 @@ namespace MobileMonetizationPro
 {
     public class MobileMonetizationPro_AdmobAdsManager : MonoBehaviour
     {
-        public bool DebugAdInspector = true;
+		public bool DebugAdInspector = true;
         public Button AdInspectorButton;
 
         public Button ShowBannerAdButton;
         public Image ImageToUseToDisplayNativeAd;
 
-        [Serializable]
+		[Serializable]
         public class FunctionInfo
         {
             public bool ShowRewardedInterstial = false;
@@ -36,7 +36,7 @@ namespace MobileMonetizationPro
 
         FunctionInfo functionInfo;
 
-        private void OnValidate()
+		private void OnValidate()
         {
             foreach (var function in functions)
             {
@@ -231,9 +231,10 @@ namespace MobileMonetizationPro
                     ResetAndReloadFullAds();
                     if (MobileMonetizationPro_AdmobAdsInitializer.instance != null)
                     {
-                        OnButtonClick();
-                    }
-                }
+                        MobileMonetizationPro_AdmobAdsInitializer.instance.OnClearADWork();
+						//OnButtonClick();
+					}
+				}
                 else if (MobileMonetizationPro_AdmobAdsInitializer.instance.IsAdSkipped == true)
                 {
                     ResetAndReloadFullAds();
