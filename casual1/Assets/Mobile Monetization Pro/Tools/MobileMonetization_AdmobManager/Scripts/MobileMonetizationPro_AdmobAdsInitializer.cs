@@ -492,6 +492,9 @@ namespace MobileMonetizationPro
             //}
 
             // New Code If you want to use previous code than comment from line 466 to 493
+            if (LocalDataManager.instance == null)
+                return;
+
             int curLevel = LocalDataManager.instance.GetCurLevel();
             if (curLevel < Define.STABLEUSER_LEVEL)
                 return;
