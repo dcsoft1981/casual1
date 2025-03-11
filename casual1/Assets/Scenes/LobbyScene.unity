@@ -3910,12 +3910,12 @@ MonoBehaviour:
   AndroidNativeId: ca-app-pub-5330788287631098/5075185554
   AndroidAppOpenId: ca-app-pub-5330788287631098/9696956841
   AndroidRewardedInterstitialID: ca-app-pub-5330788287631098/1903099441
-  IOSBannerId: ca-app-pub-3940256099942544/2934735716
-  IOSInterstitalId: ca-app-pub-3940256099942544/44114689102
-  IOSRewardedId: ca-app-pub-3940256099942544/1712485313
-  IOSNativeId: ca-app-pub-3940256099942544/3986624511
-  IOSAppOpenId: ca-app-pub-3940256099942544/9257395921
-  IOSRewardedInterstitialID: ca-app-pub-3940256099942544/6978759866
+  IOSBannerId: ca-app-pub-5330788287631098/6355012592
+  IOSInterstitalId: ca-app-pub-5330788287631098/6980864403
+  IOSRewardedId: ca-app-pub-5330788287631098/6238628373
+  IOSNativeId: ca-app-pub-5330788287631098/3484234846
+  IOSAppOpenId: ca-app-pub-5330788287631098/8983973537
+  IOSRewardedInterstitialID: ca-app-pub-5330788287631098/4018587312
   ShowBannerAdsInStart: 1
   ChooseBannerPosition: 1
   EnableTimedInterstitalAds: 0
@@ -13001,99 +13001,6 @@ MonoBehaviour:
     - ShowLeaderboardUI
     - ShowSingleRank
     - ShowAchieveUI
-    - get_destroyCancellationToken
-    - IsInvoking
-    - CancelInvoke
-    - Invoke
-    - InvokeRepeating
-    - CancelInvoke
-    - IsInvoking
-    - StartCoroutine
-    - StartCoroutine
-    - StartCoroutine
-    - StartCoroutine_Auto
-    - StopCoroutine
-    - StopCoroutine
-    - StopCoroutine
-    - StopAllCoroutines
-    - get_useGUILayout
-    - set_useGUILayout
-    - get_didStart
-    - get_didAwake
-    - get_runInEditMode
-    - set_runInEditMode
-    - get_enabled
-    - set_enabled
-    - get_isActiveAndEnabled
-    - get_transform
-    - get_gameObject
-    - GetComponent
-    - GetComponent
-    - TryGetComponent
-    - TryGetComponent
-    - GetComponent
-    - GetComponentInChildren
-    - GetComponentInChildren
-    - GetComponentInChildren
-    - GetComponentInChildren
-    - GetComponentsInChildren
-    - GetComponentsInChildren
-    - GetComponentsInChildren
-    - GetComponentsInChildren
-    - GetComponentsInChildren
-    - GetComponentsInChildren
-    - GetComponentInParent
-    - GetComponentInParent
-    - GetComponentInParent
-    - GetComponentInParent
-    - GetComponentsInParent
-    - GetComponentsInParent
-    - GetComponentsInParent
-    - GetComponentsInParent
-    - GetComponentsInParent
-    - GetComponents
-    - GetComponents
-    - GetComponents
-    - get_tag
-    - set_tag
-    - GetComponents
-    - GetComponentIndex
-    - CompareTag
-    - CompareTag
-    - SendMessageUpwards
-    - SendMessageUpwards
-    - SendMessageUpwards
-    - SendMessageUpwards
-    - SendMessage
-    - SendMessage
-    - SendMessage
-    - SendMessage
-    - BroadcastMessage
-    - BroadcastMessage
-    - BroadcastMessage
-    - BroadcastMessage
-    - get_rigidbody
-    - get_rigidbody2D
-    - get_camera
-    - get_light
-    - get_animation
-    - get_constantForce
-    - get_renderer
-    - get_audio
-    - get_networkView
-    - get_collider
-    - get_collider2D
-    - get_hingeJoint
-    - get_particleSystem
-    - GetInstanceID
-    - GetHashCode
-    - Equals
-    - get_name
-    - set_name
-    - get_hideFlags
-    - set_hideFlags
-    - ToString
-    - GetType
     selectedFunctionIndex: 15
 --- !u!4 &1592888408
 Transform:
